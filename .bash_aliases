@@ -10,8 +10,8 @@ alias off="update; sudo shutdown now"
 alias open='xdg-open'
 alias out="sudo pkill -u ${USER}"
 alias t="todo.sh -At"
-alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && do-release-upgrade --check-dist-upgrade-only"
+alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes"
 
 # Actualiza sistema y muestra información sobre el sitema
-update
+(( $(date +%H) > 20 )) && update
 neofetch
