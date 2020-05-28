@@ -10,6 +10,10 @@ alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-up
 alias vi=nvim
 alias vim=nvim
 
-# Actualiza sistema y muestra información sobre el sitema
-(( $(date +%H) > 20 )) && update
+# Activa modo Vim
+set -o vi
+# Actualiza sistema
+(( $(date +%H) > 18 )) && update
+# Muestra información sobre el sitema
 neofetch
+
