@@ -17,5 +17,5 @@ Para instalar los archivos de configuración ejecutamos lo siguiente:
 ```
 git clone https://github.com/evaristor/dotfiles.git
 cd dotfiles
-sudo make install
+make install
 ```
