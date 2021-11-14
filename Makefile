@@ -1,5 +1,7 @@
 .PHONY: install
 
 install:
-	cp $$(ls -lap | grep " \." | grep -v / | rev | cut -d" " -f1 | rev) $${HOME}
-	mkdir --parents ~/.config/nvim && ln --symbolic ~/.vimrc ~/.config/nvim/init.vim
+	ln -s ${PWD}/.bash_aliases ~
+	ln -s ${PWD}/.tmux.conf ~
+	ln -s ${PWD}/.vimrc ~
+
