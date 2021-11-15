@@ -53,8 +53,8 @@ vj () {
   if ! tmux has-session -t journals; then
     tmux new -d -s journals
     tmux send-keys -t journals "cd /home/evaro/repositorios/journals" ENTER
+    tmux send-keys -t journals "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
   fi
-  tmux send-keys -t journals "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
   tmux switch -t journals
 }
 
