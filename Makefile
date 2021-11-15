@@ -1,7 +1,12 @@
 .PHONY: install
 
 install:
-	ln -s ${PWD}/.bash_aliases ~
-	ln -s ${PWD}/.tmux.conf ~
-	ln -s ${PWD}/.vimrc ~
+	ln --force --symbolic ${PWD}/.bash_aliases ~
+	ln --force --symbolic ${PWD}/.tmux.conf ~
+	ln --force --symbolic ${PWD}/.vimrc ~
+	mkdir --parents ~/.config/nvim/
+	ln --force --symbolic ${PWD}/.config/nvim/gruvbox.vim ~/.config/nvim/
+	ln --force --symbolic ${PWD}/.config/nvim/init.vim ~/.config/nvim/
+	ln --force --symbolic ${PWD}/.config/nvim/lightline-bufferline.vim ~/.config/nvim/
+	ln --force --symbolic ${PWD}/.config/nvim/telescope.vim ~/.config/nvim/
 
