@@ -1,0 +1,20 @@
+{
+  "segments": [
+    "virtual_env",
+    "username",
+    "hostname",
+    "ssh",
+    "cwd",
+    "git",
+    "git_stash",
+    "hg",
+    "jobs",
+    "set_term_title",
+    "newline",
+    "root"
+  ],
+  "vcs": {
+    "show_symbol": true
+  },
+  "theme": "gruvbox"
+}
