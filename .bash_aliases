@@ -45,6 +45,7 @@ t () {
     if [ -d "/home/evaro/repositorios/$1" ]; then
       tmux send-keys -t $1 "cd /home/evaro/repositorios/$1" ENTER
     fi
+    tmux send-keys -t $1 "vim ." ENTER
   fi
   tmux switch -t $1
 }
