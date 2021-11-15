@@ -1,7 +1,8 @@
 call plug#begin()
+Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'mengelbrecht/lightline-bufferline'
-Plug 'morhetz/gruvbox'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
