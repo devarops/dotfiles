@@ -40,20 +40,20 @@ if [ ! -n "$TMUX" ]; then
 fi
 
 t () {
+  if [ -d "/home/evaro/repositorios/$1" ]; then
+    cd /home/evaro/repositorios/$1
+  fi
   if ! tmux has-session -t $1; then
     tmux new -d -s $1
-    if [ -d "/home/evaro/repositorios/$1" ]; then
-      tmux send-keys -t $1 "cd /home/evaro/repositorios/$1" ENTER
-    fi
     tmux send-keys -t $1 "vim ." ENTER
   fi
   tmux switch -t $1
 }
 
 vj () {
+  cd /home/evaro/repositorios/journals
   if ! tmux has-session -t journals; then
     tmux new -d -s journals
-    tmux send-keys -t journals "cd /home/evaro/repositorios/journals" ENTER
     tmux send-keys -t journals "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
   fi
   tmux switch -t journals
