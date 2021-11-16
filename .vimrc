@@ -5,6 +5,7 @@ nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
 nnoremap <leader>pp <cmd>set nornu <bar> set background=light<cr>
+nnoremap <leader>ps <cmd>set rnu <bar> set background=dark<cr>
 set colorcolumn=100
 set hidden
 set hlsearch
