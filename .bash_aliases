@@ -12,6 +12,7 @@ alias run='docker run -it --rm --volume ${PWD}:/workdir ${PWD##*/} bash'
 alias speed="speedtest-cli --no-upload"
 alias tmp="sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp"
 alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && docker pull python:latest && docker pull islasgeci/base:latest && echo && echo && docker run --rm python:latest python --version && docker run --rm islasgeci/base:latest R --version | grep 'R version'"
+alias v=nvim
 alias vi=nvim
 alias vim=nvim
 
@@ -54,7 +55,10 @@ vj () {
   cd /home/evaro/repositorios/journals
   if ! tmux has-session -t journals; then
     tmux new -d -s journals
-    tmux send-keys -t journals "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
+    tmux new-window -t "journals:1"
+    tmux new-window -t "journals:2"
+    tmux send-keys -t journals:1 "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
+    tmux send-keys -t journals:2 "lookatme --live /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
   fi
   tmux switch -t journals
 }
