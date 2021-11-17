@@ -1,4 +1,5 @@
 highlight ColorColumn ctermbg=238
+let g:netrw_liststyle = 3
 map <Space> <Leader>
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
