@@ -12,7 +12,6 @@ set hidden
 set hlsearch
 set incsearch
 set list listchars=tab:»·,extends:>,precedes:<,trail:·
-set nohlsearch
 set noshowmode
 set number
 set relativenumber
