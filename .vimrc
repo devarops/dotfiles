@@ -8,6 +8,8 @@ nnoremap <Up> <Nop>
 nnoremap <leader>pp <cmd>set nornu <bar> set background=light<cr>
 nnoremap <leader>ps <cmd>set rnu <bar> set background=dark<cr>
 set colorcolumn=100
+set complete+=kspell
+set completeopt+=longest,menuone,noselect
 set hidden
 set hlsearch
 set incsearch

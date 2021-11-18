@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'gruvbox-community/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'lifepillar/vim-mucomplete'
 Plug 'liuchengxu/vim-which-key'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'nvim-lua/plenary.nvim'
@@ -14,4 +15,5 @@ source ~/.config/nvim/gruvbox.vim
 source ~/.config/nvim/lightline-bufferline.vim
 source ~/.config/nvim/telescope.vim
 source ~/.config/nvim/vim-floaterm.vim
+source ~/.config/nvim/vim-mucomplete.vim
 source ~/.vimrc
