@@ -17,6 +17,8 @@ set number
 set relativenumber
 set scrolloff=10
 set showtabline=2
+set smartcase
 set softtabstop=4
 set tabstop=4
 set textwidth=100
+syntax on
