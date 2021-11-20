@@ -16,7 +16,7 @@ Para instalar los archivos de configuración ejecutamos lo siguiente:
 
 ```
 mkdir --parents ~/repos
-git clone --bare https://github.com/evaristor/dotfiles.git ~/repos/dotfiles.git
+git clone --bare https://github.com/devarops/dotfiles.git ~/repos/dotfiles.git
 cd ~/repos/dotfiles.git
 make install
 ```
