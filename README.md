@@ -1,22 +1,12 @@
 # Configuración inicial de la máquina del Evaristo
 
-## Prerrequisito
-
-Necesitamos instalar Git y Make:
-
-```
-sudo apt update && sudo apt install --yes \
-  git \
-  make
-```
-
-# Instala los archivos de configuración
+## Instalación
 
 Para instalar los archivos de configuración ejecutamos lo siguiente:
 
 ```
 mkdir --parents ~/repos
 git clone --bare https://github.com/devarops/dotfiles.git ~/repos/dotfiles.git
-cd ~/repos/dotfiles.git
-make install
+git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME} checkout
+git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
