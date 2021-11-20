@@ -2,8 +2,9 @@
 alias R="docker run --rm -it islasgeci/base:latest R"
 alias alpine="docker run --rm -it alpine"
 alias build='docker build . --tag ${PWD##*/}'
+alias gd="/usr/bin/git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
-alias nvim="/usr/local/nvim.appimage"
+alias nvim="/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
