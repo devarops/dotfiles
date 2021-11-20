@@ -15,7 +15,8 @@ sudo apt update && sudo apt install --yes \
 Para instalar los archivos de configuración ejecutamos lo siguiente:
 
 ```
-git clone https://github.com/evaristor/dotfiles.git
-cd dotfiles
+mkdir --parents ~/repos
+git clone --bare https://github.com/evaristor/dotfiles.git ~/repos/dotfiles.git
+cd ~/repos/dotfiles.git
 make install
 ```
