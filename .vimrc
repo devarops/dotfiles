@@ -6,6 +6,7 @@ nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
 set colorcolumn=100
+set expandtab
 set hidden
 set hlsearch
 set incsearch
@@ -14,9 +15,7 @@ set noshowmode
 set number
 set relativenumber
 set scrolloff=10
-set showtabline=2
+set shiftwidth=4
 set smartcase
-set softtabstop=4
-set tabstop=4
 set textwidth=100
 syntax on
