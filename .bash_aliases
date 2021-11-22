@@ -54,8 +54,8 @@ t () {
 }
 
 vj () {
-  cd /home/evaro/repositorios/journals
   if ! tmux has-session -t journals; then
+    cd /home/evaro/repositorios/journals
     tmux new -d -s journals
     tmux new-window -t "journals:1"
     tmux new-window -t "journals:2"
