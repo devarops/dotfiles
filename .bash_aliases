@@ -1,9 +1,9 @@
 # Agrega alias
 alias R="docker run --rm -it islasgeci/base:latest R"
 alias alpine="docker run --rm -it alpine"
-alias build.dev='docker build --tag ${PWD##*/}.dev --file Dockerfile.dev .'
 alias build='docker build --tag ${PWD##*/} .'
-alias dev='docker run -it --rm --volume ${PWD}:/workdir ${PWD##*/}.dev bash'
+alias dev-build='docker build --tag ${PWD##*/}:develop --file Dockerfile.dev .'
+alias dev-run='docker run -it --rm --volume ${PWD}:/workdir ${PWD##*/}:develop bash'
 alias gd="/usr/bin/git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
 alias nvim="/usr/bin/nvim"
