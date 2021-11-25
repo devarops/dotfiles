@@ -1,7 +1,9 @@
 # Agrega alias
 alias R="docker run --rm -it islasgeci/base:latest R"
 alias alpine="docker run --rm -it alpine"
+alias build.dev='docker build --tag ${PWD##*/}.dev --file Dockerfile.dev .'
 alias build='docker build --tag ${PWD##*/} .'
+alias dev='docker run -it --rm --volume ${PWD}:/workdir ${PWD##*/}.dev bash'
 alias gd="/usr/bin/git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
 alias nvim="/usr/bin/nvim"
@@ -12,7 +14,8 @@ alias py="docker run --rm -it python:latest"
 alias run='docker run -it --rm --volume ${PWD}:/workdir ${PWD##*/} bash'
 alias speed="speedtest-cli --no-upload"
 alias tmp="sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp"
-alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
+alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo
+apt autoremove --yes && sudo apt clean --yes && gd pull && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
 alias update_tags="cd ~/repos && ctags --recurse=yes --exclude=.git && cd -"
 alias v=nvim
 alias vi=nvim
