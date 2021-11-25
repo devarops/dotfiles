@@ -1,4 +1,5 @@
 highlight ColorColumn ctermbg=238
+let g:mapleader = "\<Space>"
 let g:netrw_liststyle = 3
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
