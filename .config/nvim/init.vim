@@ -17,8 +17,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
+source ~/.vimrc
 source ~/.config/nvim/gruvbox.vim
 source ~/.config/nvim/lightline-bufferline.vim
 source ~/.config/nvim/telescope.vim
 source ~/.config/nvim/vim-floaterm.vim
-source ~/.vimrc
