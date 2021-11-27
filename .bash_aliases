@@ -1,5 +1,4 @@
 # Agrega alias
-alias R="docker run --rm -it islasgeci/base:latest R"
 alias alpine="docker run --rm -it alpine"
 alias build='docker build --tag ${PWD##*/} .'
 alias dev-build='docker build --tag ${PWD##*/}:develop --file Dockerfile.dev .'
