@@ -1,0 +1,9 @@
+[user]
+    name = Evaristo Rojas
+    email = evaristo.rojas@islas.org.mx
+
+[alias]
+    adog = log --all --decorate --oneline --graph
+
+[init]
+    defaultBranch = develop
