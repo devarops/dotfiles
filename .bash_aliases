@@ -40,7 +40,7 @@ fi
 
 # tmux
 if [ ! -n "$TMUX" ]; then
-  tmux new-session -A -s home
+  tmux new-session -A -u -s home
 fi
 
 t () {
@@ -48,7 +48,7 @@ t () {
     cd /home/evaro/repositorios/$1
   fi
   if ! tmux has-session -t $1; then
-    tmux new -d -s $1
+    tmux new -d -u -s $1
     tmux send-keys -t $1 "vim ." ENTER
   fi
   tmux switch -t $1
@@ -56,7 +56,7 @@ t () {
 
 vj () {
   if ! tmux has-session -t journals; then
-    tmux new -c /home/evaro/repositorios/journals -d -s journals
+    tmux new -c /home/evaro/repositorios/journals -d -u -s journals
     tmux new-window -t "journals:1"
     tmux new-window -t "journals:2"
     tmux send-keys -t journals:1 "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
