@@ -12,11 +12,11 @@ set hlsearch
 set incsearch
 set list listchars=tab:»·,extends:>,precedes:<,trail:·
 set noshowmode
+set nowrap
 set number
 set relativenumber
 set scrolloff=10
 set shiftwidth=4
 set showtabline=2
 set smartcase
-set textwidth=100
 syntax on
