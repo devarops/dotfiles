@@ -44,11 +44,12 @@ if [ ! -n "$TMUX" ]; then
 fi
 
 t () {
-  if [ -d "/home/evaro/repositorios/$1" ]; then
-    cd /home/evaro/repositorios/$1
-  fi
   if ! tmux has-session -t $1; then
-    tmux new -d -s $1
+    if [ -d "/home/evaro/repositorios/$1" ]; then
+      tmux new -c "/home/evaro/repositorios/$1" -d -s $1
+    else
+      tmux new -d -s $1
+    fi
     tmux send-keys -t $1 "vim ." ENTER
   fi
   tmux switch -t $1
