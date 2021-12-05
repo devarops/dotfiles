@@ -68,6 +68,6 @@ vj () {
 
 # Muestra información sobre el sitema
 neofetch
-tmux ls
-
-
+if [ ! -f /.dockerenv ]; then
+    tmux ls
+fi
