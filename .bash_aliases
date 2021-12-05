@@ -39,7 +39,7 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 
 # tmux
-if [ ! -n "$TMUX" ]; then
+if [ ! -n "$TMUX" ] && [ ! -f /.dockerenv ]; then
   tmux new-session -A -s home
 fi
 
