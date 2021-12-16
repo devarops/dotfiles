@@ -7,6 +7,7 @@ nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
 set colorcolumn=100
 set expandtab
+set formatoptions-=t
 set hidden
 set hlsearch
 set incsearch
@@ -20,4 +21,5 @@ set shiftwidth=4
 set showtabline=2
 set signcolumn=yes
 set smartcase
+set textwidth=100
 syntax on
