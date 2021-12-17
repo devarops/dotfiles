@@ -21,5 +21,6 @@ set shiftwidth=4
 set showtabline=2
 set signcolumn=yes
 set smartcase
+set tabstop=4
 set textwidth=100
 syntax on
