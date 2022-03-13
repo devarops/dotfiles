@@ -13,6 +13,7 @@ set hlsearch
 set incsearch
 set list listchars=tab:»·,extends:>,precedes:<,trail:·
 set noshowmode
+set noswapfile
 set nowrap
 set number
 set relativenumber
