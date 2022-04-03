@@ -1,7 +1,7 @@
 # Agrega alias
 alias alpine="docker run --rm -it alpine"
-alias build='docker build --tag islasgeci/${PWD##*/}:latest .'
-alias dev='tail --lines=+2 ./Dockerfile | cat ~/repos/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:latest -'
+alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
+alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repos/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:develop -'
 alias exec='docker exec -it ${PWD##*/} bash'
 alias gd="/usr/bin/git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
@@ -10,7 +10,8 @@ alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
 alias py="docker run --rm -it python:latest"
-alias run='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/} --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
+alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/} --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
+alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/} --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:develop bash'
 alias speed="speedtest-cli --no-upload"
 alias tmp="sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp"
 alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gd pull && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
