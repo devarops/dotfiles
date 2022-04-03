@@ -1,7 +1,7 @@
 # Agrega alias
 alias alpine="docker run --rm -it alpine"
 alias build='docker build --tag islasgeci/${PWD##*/}:latest .'
-alias dev='tail --lines=+5 ~/repos/devenv/Dockerfile | cat ./Dockerfile - | docker build --tag islasgeci/${PWD##*/}:latest -'
+alias dev='tail --lines=+2 ./Dockerfile | cat ~/repos/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:latest -'
 alias exec='docker exec -it ${PWD##*/} bash'
 alias gd="/usr/bin/git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
