@@ -11,7 +11,7 @@ git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME} checkout
 git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
 
-## Related repos:
+# Related repos
 
 - [Development environment container](https://github.com/devarops/devenv)
 - [Dotfiles](https://github.com/devarops/dotfiles)
