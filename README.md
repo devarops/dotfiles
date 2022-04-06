@@ -15,4 +15,4 @@ git --git-dir=${HOME}/repos/dotfiles.git --work-tree=${HOME} config --local stat
 
 - [Development environment container](https://github.com/devarops/devenv)
 - [Dotfiles](https://github.com/devarops/dotfiles)
-- [Workstation setup via Ansible](https://github.com/IslasGECI/workstation_setup)
+- [Development server setup via Ansible](https://github.com/IslasGECI/development_server_setup)
