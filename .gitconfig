@@ -4,6 +4,7 @@
 
 [alias]
     adog = log --all --decorate --oneline --graph
+    dunk = !git diff | dunk
 
 [init]
     defaultBranch = develop
