@@ -46,8 +46,8 @@ fi
 
 t () {
   if ! tmux has-session -t $1; then
-    if [ -d "/home/evaro/repositorios/$1" ]; then
-      tmux new -c "/home/evaro/repositorios/$1" -d -s $1
+    if [ -d "$HOME/repositorios/$1" ]; then
+      tmux new -c "$HOME/repositorios/$1" -d -s $1
     else
       tmux new -d -s $1
     fi
@@ -58,11 +58,11 @@ t () {
 
 vj () {
   if ! tmux has-session -t journals; then
-    tmux new -c /home/evaro/repositorios/journals -d -s journals
+    tmux new -c $HOME/repositorios/journals -d -s journals
     tmux new-window -t "journals:1"
     tmux new-window -t "journals:2"
-    tmux send-keys -t journals:1 "vim /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
-    tmux send-keys -t journals:2 "lookatme --live /home/evaro/repositorios/journals/trifecta-practice-journal.md" ENTER
+    tmux send-keys -t journals:1 "vim $HOME/repositorios/journals/trifecta-practice-journal.md" ENTER
+    tmux send-keys -t journals:2 "lookatme --live $HOME/repositorios/journals/trifecta-practice-journal.md" ENTER
   fi
   tmux switch -t journals
 }
