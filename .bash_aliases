@@ -6,10 +6,15 @@ alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gd="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
+alias nv=nvim
 alias nvim="/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
+alias pull-ci='docker pull islasgeci/${PWD##*/}:latest'
+alias pull-dev='docker pull islasgeci/${PWD##*/}:develop'
+alias push-ci='docker login && docker push islasgeci/${PWD##*/}:latest'
+alias push-dev='docker login && docker push islasgeci/${PWD##*/}:develop'
 alias py="docker run --rm -it python:latest"
 alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_ci --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
 alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:develop bash'
