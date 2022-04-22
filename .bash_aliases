@@ -1,7 +1,7 @@
 # Agrega alias
 alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
-alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:develop -'
+alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:devel -'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gd="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME}"
@@ -12,12 +12,12 @@ alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
 alias pull-ci='docker pull islasgeci/${PWD##*/}:latest'
-alias pull-dev='docker pull islasgeci/${PWD##*/}:develop'
+alias pull-dev='docker pull islasgeci/${PWD##*/}:devel'
 alias push-ci='docker login && docker push islasgeci/${PWD##*/}:latest'
-alias push-dev='docker login && docker push islasgeci/${PWD##*/}:develop'
+alias push-dev='docker login && docker push islasgeci/${PWD##*/}:devel'
 alias py="docker run --rm -it python:latest"
 alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_ci --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
-alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:develop bash'
+alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:devel bash'
 alias speed="speedtest-cli --no-upload"
 alias tmp="sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp"
 alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gd pull && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
