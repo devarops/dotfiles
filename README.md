@@ -13,6 +13,7 @@ git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME} config --loc
 
 # Related repos
 
-- [Development environment container](https://github.com/devarops/devenv)
-- [Dotfiles](https://github.com/devarops/dotfiles)
+- [Dotfiles del equipo IslasGECI](https://github.com/IslasGECI/dotfiles)
 - [Development server setup via Ansible](https://github.com/IslasGECI/development_server_setup)
+- [Thin client setup](https://github.com/devarops/devenv)
+- [Personal Development Environment (PDE)](https://github.com/devarops/pde)
