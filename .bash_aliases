@@ -4,7 +4,7 @@ alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:devel -'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
-alias gd="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME}"
+alias gdot="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME}"
 alias ls="exa -al --color=always --group-directories-first"
 alias nv=nvim
 alias nvim="/usr/bin/nvim"
