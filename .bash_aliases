@@ -73,6 +73,9 @@ vj () {
   tmux switch -t journals
 }
 
+# Carga credenciales
+source ~/.vault/.secrets
+
 # Muestra información sobre el sitema
 neofetch
 if [ ! -f /.dockerenv ]; then
