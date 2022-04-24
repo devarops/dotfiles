@@ -20,7 +20,7 @@ alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --int
 alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:devel bash'
 alias speed="speedtest-cli --no-upload"
 alias tmp="sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp"
-alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gd pull && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
+alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gdot pull && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
 alias update_tags="cd ~/repositorios && ctags --recurse=yes --exclude=.git && cd -"
 alias v=nvim
 alias vi=nvim
