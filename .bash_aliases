@@ -5,6 +5,7 @@ alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/devenv/Docker
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME}"
+alias lg="$HOME/go/bin/lazygit"
 alias ls="exa -al --color=always --group-directories-first"
 alias nv=nvim
 alias nvim="/usr/bin/nvim"
