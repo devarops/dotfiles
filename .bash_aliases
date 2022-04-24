@@ -8,7 +8,7 @@ alias gdot="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree
 alias lg="$HOME/go/bin/lazygit"
 alias ls="exa -al --color=always --group-directories-first"
 alias nv=nvim
-alias nvim="/usr/bin/nvim"
+alias nvim="$HOME/squashfs-root/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
