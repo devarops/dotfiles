@@ -1,7 +1,7 @@
 # Agrega alias
 alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
-alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/devenv/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:devel -'
+alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/pde/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:devel -'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="/usr/bin/git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME}"
