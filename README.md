@@ -7,7 +7,7 @@ Para instalar los archivos de configuración ejecutamos lo siguiente:
 ```
 git clone https://github.com/devarops/dotfiles.git
 cd dotfiles
-make
+make install
 ```
 
 # Related repos
