@@ -10,6 +10,6 @@ install:
 pde:
 	mkdir --parent /home/devarops/repositorios
 	cd /home/devarops/repositorios && \
-	git clone git@github.com:devarops/pde.git && \
+	git clone https://github.com/devarops/pde.git && \
 	cd pde && \
 	make install
