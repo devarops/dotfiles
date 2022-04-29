@@ -5,8 +5,8 @@
 Para instalar los archivos de configuración ejecutamos lo siguiente:
 
 ```shell
-mkdir --parents ~/repositorios
-git clone --bare git@github.com:devarops/dotfiles.git ~/repositorios/dotfiles.git
+mkdir --parents ${HOME}/repositorios
+git clone --bare git@github.com:devarops/dotfiles.git ${HOME}/repositorios/dotfiles.git
 git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME} checkout
 git --git-dir=${HOME}/repositorios/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
