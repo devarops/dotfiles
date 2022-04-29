@@ -3,8 +3,8 @@ all: pde install
 .PHONY: install pde
 
 install:
-	git clone --bare . $${HOME}/dotfiles.git
-	git --git-dir=$${HOME}/dotfiles.git --work-tree=$${HOME} checkout
-	git --git-dir=$${HOME}/dotfiles.git --work-tree=$${HOME} config --local status.showUntrackedFiles no
+	git clone --bare . /home/devarops/dotfiles.git
+	git --git-dir=/home/devarops/dotfiles.git --work-tree=/home/devarops/ checkout
+	git --git-dir=/home/devarops/dotfiles.git --work-tree=/home/devarops/ config --local status.showUntrackedFiles no
 
 pde:
