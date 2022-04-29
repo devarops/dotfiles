@@ -8,3 +8,8 @@ install:
 	git --git-dir=/home/devarops/dotfiles.git --work-tree=/home/devarops/ config --local status.showUntrackedFiles no
 
 pde:
+	mkdir --parent /home/devarops/repositorios
+	cd /home/devarops/repositorios && \
+	git clone git@github.com:devarops/pde.git && \
+	cd pde && \
+	make install
