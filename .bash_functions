@@ -63,7 +63,7 @@ if [ ! -n "$TMUX" ] && [ ! -f /.dockerenv ]; then
 fi
 
 # Muestra información sobre el sitema
-neofetch
+neofetch --color_blocks off
 
 # Muestra tareas pendientes
-todo
+todo-init && tail +2 ~/todo.md | rich --markdown -
