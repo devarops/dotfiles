@@ -64,6 +64,6 @@ fi
 
 # Muestra información sobre el sitema
 neofetch
-if [ ! -f /.dockerenv ]; then
-    tmux ls
-fi
+
+# Muestra tareas pendientes
+todo
