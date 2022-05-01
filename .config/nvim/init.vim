@@ -19,7 +19,6 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'voldikss/vim-floaterm'
 Plug 'williamboman/nvim-lsp-installer'
 call plug#end()
 
@@ -29,4 +28,3 @@ source ~/.config/nvim/gruvbox.vim
 source ~/.config/nvim/lightline-bufferline.vim
 source ~/.config/nvim/nvim-cmp.vim
 source ~/.config/nvim/telescope.vim
-source ~/.config/nvim/vim-floaterm.vim
