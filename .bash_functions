@@ -49,6 +49,9 @@ vj () {
 # Activa modo Vim
 set -o vi
 
+# Install Neovim plugins
+nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
+
 # After each command, append to the history file and reread it
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; history -a; history -c; history -r}"
 
