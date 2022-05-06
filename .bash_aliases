@@ -2,14 +2,14 @@
 alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/pde/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:devel -'
-alias dev="ssh devserver"
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault $DEVELOPER@islasgeci.dev:/home/$DEVELOPER/.vault && ssh devserver'
+alias dev-lxc="ssh jammy"
+alias dev-vm="ssh jellyfish"
+alias dev="ssh devserver"
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="/usr/bin/git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias gm='echo "# $(git show --format=%B --no-patch develop)" | rich --emoji --markdown -'
-alias jammy="ssh jammy"
-alias jellyfish="ssh jellyfish"
 alias lg="$HOME/go/bin/lazygit"
 alias ls="exa -al --color=always --group-directories-first"
 alias nv=nvim
@@ -21,7 +21,7 @@ alias pull-ci='docker pull islasgeci/${PWD##*/}:latest'
 alias pull-dev='docker pull islasgeci/${PWD##*/}:devel'
 alias push-ci='docker login && docker push islasgeci/${PWD##*/}:latest'
 alias push-dev='docker login && docker push islasgeci/${PWD##*/}:devel'
-alias py="docker run --rm -it python:latest"
+alias py="docker run --rm -it python:latest ipython"
 alias repos="cd ~/repositorios"
 alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_ci --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
 alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:devel bash'
