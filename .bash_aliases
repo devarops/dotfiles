@@ -2,12 +2,14 @@
 alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='tail --lines=+2 ./Dockerfile | cat ~/repositorios/pde/Dockerfile - | docker build --tag islasgeci/${PWD##*/}:devel -'
+alias dev="ssh devserver"
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault $DEVELOPER@islasgeci.dev:/home/$DEVELOPER/.vault && ssh devserver'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="/usr/bin/git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias gm='echo "# $(git show --format=%B --no-patch develop)" | rich --emoji --markdown -'
 alias jammy="ssh jammy"
+alias jellyfish="ssh jellyfish"
 alias lg="$HOME/go/bin/lazygit"
 alias ls="exa -al --color=always --group-directories-first"
 alias nv=nvim
