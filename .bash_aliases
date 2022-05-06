@@ -6,8 +6,9 @@ alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="/usr/bin/git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
-alias lg="$HOME/go/bin/lazygit"
 alias gm='echo "# $(git show --format=%B --no-patch develop)" | rich --emoji --markdown -'
+alias jammy="ssh jammy"
+alias lg="$HOME/go/bin/lazygit"
 alias ls="exa -al --color=always --group-directories-first"
 alias nv=nvim
 alias nvim="$HOME/squashfs-root/usr/bin/nvim"
