@@ -59,7 +59,7 @@ fi
 
 # tmux
 if [ ! -n "$TMUX" ] && [ ! -f /.dockerenv ]; then
-  tmux new-session -A -s home
+  tmux new-session -A -s "🏠 home"
 fi
 
 # Muestra información sobre el sitema
