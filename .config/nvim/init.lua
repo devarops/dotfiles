@@ -1,7 +1,7 @@
 require("keymaps")
 require("plugins")
+vim.cmd("source ~/.vimrc")
 vim.cmd("source ~/.config/nvim/gruvbox.vim")
 vim.cmd("source ~/.config/nvim/lightline-bufferline.vim")
 vim.cmd("source ~/.config/nvim/nvim-cmp.vim")
 vim.cmd("source ~/.config/nvim/telescope.vim")
-vim.cmd("source ~/.vimrc")
