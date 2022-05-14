@@ -11,32 +11,12 @@ require("packer").startup(function()
   use "itchyny/lightline.vim"              --
   use "jalvesaq/Nvim-R"                    --
   use "mengelbrecht/lightline-bufferline"  --
+  use "neovim/nvim-lspconfig"              --
   use "nvim-lua/plenary.nvim"              --
   use "nvim-telescope/telescope.nvim"      --
   use "nvim-treesitter/nvim-treesitter"    --
   use "wbthomason/packer.nvim"             -- Package manager
-
-  -- Language Server Protocol (LSP)
-  use {
-    "williamboman/nvim-lsp-installer",
-    {
-      "neovim/nvim-lspconfig",
-      config = function()
-        require("nvim-lsp-installer").setup {
-          automatic_installation = true, -- automatically detect which servers to install
-        }
-        local servers = {
-          "pyright",
-          "r_language_server",
-          "sumneko_lua",
-        }
-        local lspconfig = require("lspconfig")
-        for _, lsp in pairs(servers) do
-          lspconfig[lsp].setup {}
-        end
-      end
-    }
-  }
+  use "williamboman/nvim-lsp-installer"    --
 
   require("packer").sync()
 end)
