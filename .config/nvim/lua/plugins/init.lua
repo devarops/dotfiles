@@ -20,3 +20,6 @@ require("packer").startup(function()
 
   require("packer").sync()
 end)
+
+require("plugins.treesitter")
+require("plugins.cmp")
