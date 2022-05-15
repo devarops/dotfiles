@@ -8,4 +8,4 @@ for key, value in pairs(options) do
   vim.opt[key] = value
 end
 
-vim.cmd("set iskeyword+=-")
+vim.opt["iskeyword"]:append("-")
