@@ -12,6 +12,7 @@ alias gdot="/usr/bin/git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias gm='echo "# $(git show --format=%B --no-patch develop)" | rich --emoji --markdown -'
 alias lg="$HOME/go/bin/lazygit"
 alias ls="exa -al --color=always --group-directories-first"
+alias lua="lua5.4"
 alias nv=nvim
 alias nvim="$HOME/squashfs-root/usr/bin/nvim"
 alias off="update; sudo shutdown now"
