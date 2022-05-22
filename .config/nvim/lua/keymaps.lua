@@ -3,6 +3,10 @@ local keymap = vim.api.nvim_set_keymap
 
 keymap("n", "<C-j>", "<cmd>bnext<CR>", options)
 keymap("n", "<C-k>", "<cmd>bprevious<CR>", options)
+keymap("n", "<Down>", "<Nop>", options)
+keymap("n", "<Left>", "<Nop>", options)
+keymap("n", "<Right>", "<Nop>", options)
+keymap("n", "<Up>", "<Nop>", options)
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", options)
 keymap("n", "<leader>fc", "<cmd>Telescope command_history<cr>", options)
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", options)
