@@ -1,6 +1,5 @@
 vim.cmd("source ~/.config/nvim/vim/vimrc.vim")
 vim.cmd("source ~/.config/nvim/vim/gruvbox.vim")
-vim.cmd("source ~/.config/nvim/vim/lightline-bufferline.vim")
 require("variables")
 require("options")
 require("keymaps")
