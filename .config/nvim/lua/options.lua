@@ -5,6 +5,8 @@ local options = {
     hidden = true,
     hlsearch = true,
     incsearch = true,
+    list = true,
+    listchars = { tab = "»·", extends = ">", precedes = "<", trail = "·" },
     number = true, -- set numbered lines
     relativenumber = true, -- set relative numbered lines
     scrolloff = 10,
