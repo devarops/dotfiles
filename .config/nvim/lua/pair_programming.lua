@@ -1,4 +1,5 @@
 local _MODULE = {}
+
 function _MODULE.pair()
     vim.opt.relativenumber = false
     vim.cmd("colorscheme slate")
