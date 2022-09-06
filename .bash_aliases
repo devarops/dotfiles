@@ -2,7 +2,7 @@
 alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='{ echo "FROM evaristor/pde:latest" & tail --lines=+2 ./Dockerfile ; } | docker build --tag islasgeci/${PWD##*/}:devel -'
-alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault $DEVELOPER@islasgeci.dev:/home/$DEVELOPER/.vault && ssh devserver'
+alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault devarops@islasgeci.dev:/home/devarops/.vault && ssh devserver'
 alias dev-lxc="ssh jammy"
 alias dev-vm="ssh jellyfish"
 alias dev="ssh devserver"
