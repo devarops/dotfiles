@@ -1,5 +1,6 @@
 local use = require("packer").use
 require("packer").startup(function()
+    use "github/copilot.vim" --
     use "gruvbox-community/gruvbox" --
     use "hrsh7th/cmp-buffer" --
     use "hrsh7th/cmp-cmdline" --
@@ -24,3 +25,6 @@ end)
 require("plugins.treesitter")
 require("plugins.cmp")
 require("plugins.lightline-bufferline")
+require("plugins.copilot")
+
+
