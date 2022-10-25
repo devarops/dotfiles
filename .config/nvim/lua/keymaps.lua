@@ -2,10 +2,6 @@ local options = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<C-j>", "<cmd>bnext<CR>", options)
 vim.keymap.set("n", "<C-k>", "<cmd>bprevious<CR>", options)
-vim.keymap.set("n", "<Down>", "<Nop>", options)
-vim.keymap.set("n", "<Left>", "<Nop>", options)
-vim.keymap.set("n", "<Right>", "<Nop>", options)
-vim.keymap.set("n", "<Up>", "<Nop>", options)
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", options)
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope command_history<cr>", options)
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", options)
