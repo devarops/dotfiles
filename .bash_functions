@@ -24,16 +24,16 @@ t () {
   tmux switch -t $1
 }
 
-# Vim journal
-vj () {
-  if ! tmux has-session -t journals; then
-    tmux new -c $HOME/repositorios/journals -d -s journals
-    tmux new-window -t "journals:1"
-    tmux new-window -t "journals:2"
-    tmux send-keys -t journals:1 "vim $HOME/repositorios/journals/trifecta-practice-journal.md" ENTER
-    tmux send-keys -t journals:2 "lookatme --live $HOME/repositorios/journals/trifecta-practice-journal.md" ENTER
+# Type practice
+tp () {
+  if ! tmux has-session -t type_700_words_per_day; then
+    tmux new -c $HOME/repositorios/type_700_words_per_day -d -s type_700_words_per_day
+    tmux new-window -t "type_700_words_per_day:1"
+    tmux new-window -t "type_700_words_per_day:2"
+    tmux send-keys -t type_700_words_per_day:1 "vim $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
+    tmux send-keys -t type_700_words_per_day:2 "lookatme --live $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
   fi
-  tmux switch -t journals
+  tmux switch -t type_700_words_per_day
 }
 
 #   ____  _   _                                  __ _           
