@@ -24,7 +24,7 @@ t () {
   tmux switch -t $1
 }
 
-# Type practice
+# Typing practice
 tp () {
   if ! tmux has-session -t type_700_words_per_day; then
     tmux new -c $HOME/repositorios/type_700_words_per_day -d -s type_700_words_per_day
