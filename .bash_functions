@@ -32,7 +32,7 @@ tp () {
     tmux new-window -t "type_700_words_per_day:2"
     touch "$HOME/repositorios/type_700_words_per_day/$(date +%F).md"
     tmux send-keys -t type_700_words_per_day:1 "vim $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
-    tmux send-keys -t type_700_words_per_day:2 "lookatme --live $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
+    tmux send-keys -t type_700_words_per_day:2 "lookatme --live --single $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
   fi
   tmux switch -t type_700_words_per_day
 }
