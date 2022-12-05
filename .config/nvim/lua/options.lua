@@ -5,6 +5,7 @@ local options = {
     hidden = true,
     hlsearch = true,
     incsearch = true,
+    linebreak = true,
     list = true,
     listchars = { tab = "»·", extends = ">", precedes = "<", trail = "·" },
     number = true, -- set numbered lines
@@ -18,7 +19,6 @@ local options = {
     swapfile = false,
     tabstop = 4,
     termguicolors = true, -- set terminal GUI colors
-    textwidth = 100,
     wrap = false,
 }
 
