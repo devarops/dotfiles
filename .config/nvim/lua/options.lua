@@ -1,5 +1,5 @@
 local options = {
-    colorcolumn = "100",
+    colorcolumn = "100,120",
     completeopt = { "menu", "menuone", "noselect" },
     expandtab = true,
     hidden = true,
@@ -19,6 +19,7 @@ local options = {
     swapfile = false,
     tabstop = 4,
     termguicolors = true, -- set terminal GUI colors
+    textwidth = 100,
     wrap = false,
 }
 
