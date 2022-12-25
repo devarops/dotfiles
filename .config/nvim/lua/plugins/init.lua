@@ -15,6 +15,7 @@ require("packer").startup(function()
     use "itchyny/lightline.vim" --
     use "jalvesaq/Nvim-R"       --
     use "mengelbrecht/lightline-bufferline" --
+    use "navarasu/onedark.nvim"             -- Theme inspired by Atom
     use "neovim/nvim-lspconfig"             --
     use "nvim-lua/plenary.nvim"             -- Dependencie of nvim-telescope/telescope.nvim
     use "nvim-telescope/telescope.nvim"     --
