@@ -20,6 +20,7 @@ local options = {
     tabstop = 4,
     termguicolors = true, -- set terminal GUI colors
     textwidth = 100,
+    timeoutlen = 500,
     wrap = false,
 }
 
