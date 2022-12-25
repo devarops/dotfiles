@@ -1,6 +1,5 @@
-require("nvim-lsp-installer").setup({
-    automatic_installation = true
-})
+require("mason").setup()
+require("mason-lspconfig").setup()
 local servers = {
     "pyright",
     "r_language_server",
