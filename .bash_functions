@@ -26,15 +26,15 @@ t () {
 
 # Typing practice
 tp () {
-  if ! tmux has-session -t type_700_words_per_day; then
-    tmux new -c $HOME/repositorios/type_700_words_per_day -d -s type_700_words_per_day
-    tmux new-window -t "type_700_words_per_day:1"
-    tmux new-window -t "type_700_words_per_day:2"
-    touch "$HOME/repositorios/type_700_words_per_day/$(date +%F).md"
-    tmux send-keys -t type_700_words_per_day:1 "vim $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
-    tmux send-keys -t type_700_words_per_day:2 "lookatme --live --single $HOME/repositorios/type_700_words_per_day/$(date +%F).md" ENTER
+  if ! tmux has-session -t typing_practice; then
+    tmux new -c $HOME/repositorios/typing_practice -d -s typing_practice
+    tmux new-window -t "typing_practice:1"
+    tmux new-window -t "typing_practice:2"
+    touch "$HOME/repositorios/typing_practice/$(date +%F).md"
+    tmux send-keys -t typing_practice:1 "vim $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
+    tmux send-keys -t typing_practice:2 "lookatme --live --single $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
   fi
-  tmux switch -t type_700_words_per_day
+  tmux switch -t typing_practice
 }
 
 #   ____  _   _                                  __ _           
