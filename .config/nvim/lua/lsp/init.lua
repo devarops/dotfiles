@@ -1,9 +1,9 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
 local servers = {
+    "lua_ls",
     "pyright",
     "r_language_server",
-    "sumneko_lua",
 }
 
 local function is_file(filename)
