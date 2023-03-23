@@ -21,7 +21,7 @@ require("packer").startup(function()
     use "nvim-telescope/telescope.nvim"     --
     use "nvim-treesitter/nvim-treesitter"   --
     use "wbthomason/packer.nvim"            -- Plugin manager
-    use {"whonore/vim-sentencer", branch = "preserve-cursor-fix"} -- One sentence per line and wrap long lines
+    use "whonore/vim-sentencer"             -- One sentence per line and wrap long lines
 
     require("packer").sync()
 end)
