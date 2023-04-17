@@ -30,8 +30,8 @@ tp () {
     tmux new -c $HOME/repositorios/typing_practice -d -s typing_practice
     tmux new-window -t "typing_practice:1"
     tmux new-window -t "typing_practice:2"
-    git pull
-    touch "$HOME/repositorios/typing_practice/$(date +%F).md"
+    tmux send-keys -t typing_practice:1 "git pull" ENTER
+    tmux send-keys -t typing_practice:1 "touch $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
     tmux send-keys -t typing_practice:1 "vim $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
     tmux send-keys -t typing_practice:2 "lookatme --live --single $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
   fi
