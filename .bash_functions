@@ -54,11 +54,6 @@ set -o vi
 # After each command, append to the history file and reread it
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; history -a; history -c; history -r}"
 
-# Powerline Shell
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 # tmux
 if [ ! -n "$TMUX" ] && [ ! -f /.dockerenv ]; then
   tmux new-session -A -s "🏠 home"
