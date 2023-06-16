@@ -1,7 +1,7 @@
 # Agrega alias
 alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
-alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --lines=+2 ./Dockerfile >> ./Dockerfile.dev && docker build --file ./Dockerfile.dev --tag islasgeci/${PWD##*/}:devel .'
+alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --lines=+2 ./Dockerfile >> ./Dockerfile.dev && docker build --file ./Dockerfile.dev --tag islasgeci/${PWD##*/}:develop .'
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault devarops@islasgeci.dev:/home/devarops/.vault && ssh devserver'
 alias dev-lxc="ssh jammy"
 alias dev-vm="ssh jellyfish"
@@ -20,13 +20,13 @@ alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
 alias pull-ci='docker pull islasgeci/${PWD##*/}:latest'
-alias pull-dev='docker pull islasgeci/${PWD##*/}:devel'
+alias pull-dev='docker pull islasgeci/${PWD##*/}:develop'
 alias push-ci='docker login && docker push islasgeci/${PWD##*/}:latest'
-alias push-dev='docker login && docker push islasgeci/${PWD##*/}:devel'
+alias push-dev='docker login && docker push islasgeci/${PWD##*/}:develop'
 alias py="docker run --rm -it python:latest ipython"
 alias repos="cd ~/repositorios"
 alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_ci --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
-alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:devel bash'
+alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:develop bash'
 alias speed="speedtest-cli --no-upload"
 alias tmp="sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp"
 alias todo-edit="vim ~/todo.md"
