@@ -14,7 +14,7 @@ alias lg="$HOME/go/bin/lazygit"
 alias link-share="rm --force --recursive /home/devarops/repositorios && ln --symbolic /tmp/share /home/devarops/repositorios"
 alias ls="exa -al --color=always --group-directories-first"
 alias lua="lua5.4"
-alias nv=nvim
+alias nv="$HOME/squashfs-root/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
