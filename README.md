@@ -14,5 +14,5 @@ git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} config --local status.sho
 
 - [Dotfiles del equipo IslasGECI](https://github.com/IslasGECI/dotfiles)
 - [Development server setup via Ansible](https://github.com/IslasGECI/development_server_setup)
-- [Thin client setup](https://github.com/devarops/devenv)
+- [Thin client setup](https://github.com/devarops/thin_client)
 - [Personal Development Environment (PDE)](https://github.com/IslasGECI/pde)
