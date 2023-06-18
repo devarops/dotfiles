@@ -8,14 +8,13 @@ alias dev-vm="ssh jellyfish"
 alias dev="ssh devserver"
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
-alias gdot="/usr/bin/git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
+alias gdot="git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias gm='echo "# $(git show --format=%B --no-patch develop)" | rich --emoji --markdown -'
 alias lg="$HOME/go/bin/lazygit"
 alias link-share="rm --force --recursive /home/devarops/repositorios && ln --symbolic /tmp/share /home/devarops/repositorios"
 alias ls="exa -al --color=always --group-directories-first"
 alias lua="lua5.4"
 alias nv=nvim
-alias nvim="$HOME/squashfs-root/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
@@ -33,7 +32,7 @@ alias todo-edit="vim ~/todo.md"
 alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]] ; then date +"# %A, %d %B %Y" > "${HOME}/todo.md" ; fi'
 alias todo-show="rich ~/todo.md"
 alias todo="todo-init && todo-show"
-alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gdot pull && update_tags && echo && echo && tmux -V && vim --version | grep 'NVIM v'"
+alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gdot pull && echo && echo && vim --version | grep 'NVIM v'"
 alias update_tags="cd ~/repositorios && ctags --recurse=yes --exclude=.git && cd -"
 alias v=nvim
 alias vi=nvim
