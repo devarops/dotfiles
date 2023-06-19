@@ -16,7 +16,6 @@ alias pull-ci='docker pull islasgeci/${PWD##*/}:latest'
 alias pull-dev='docker pull islasgeci/${PWD##*/}:develop'
 alias push-ci='docker login && docker push islasgeci/${PWD##*/}:latest'
 alias push-dev='docker login && docker push islasgeci/${PWD##*/}:develop'
-alias py="docker run --rm -it python:latest ipython"
 alias repos="cd ~/repositorios"
 alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_ci --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
 alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:develop bash'
