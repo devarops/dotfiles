@@ -1,19 +1,13 @@
 # Agrega alias
-alias alpine="docker run --rm -it alpine"
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --lines=+2 ./Dockerfile >> ./Dockerfile.dev && docker build --file ./Dockerfile.dev --tag islasgeci/${PWD##*/}:develop .'
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault devarops@islasgeci.dev:/home/devarops/.vault && ssh devserver'
-alias dev-lxc="ssh jammy"
-alias dev-vm="ssh jellyfish"
 alias dev="ssh devserver"
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
-alias gm='echo "# $(git show --format=%B --no-patch develop)" | rich --emoji --markdown -'
-alias lg="$HOME/go/bin/lazygit"
 alias link-share="rm --force --recursive /home/devarops/repositorios && ln --symbolic /tmp/share /home/devarops/repositorios"
 alias ls="exa -al --color=always --group-directories-first"
-alias lua="lua5.4"
 alias nv="$HOME/squashfs-root/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
@@ -33,9 +27,7 @@ alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]
 alias todo-show="rich ~/todo.md"
 alias todo="todo-init && todo-show"
 alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gdot pull && echo && echo && vim --version | grep 'NVIM v'"
-alias update_tags="cd ~/repositorios && ctags --recurse=yes --exclude=.git && cd -"
-alias v=nvim
-alias vi=nvim
+alias vi=nv
 alias vim=nvim
 
 # Agrega alias de misctools
