@@ -85,7 +85,7 @@
   users.users.evaro = {
     isNormalUser = true;
     description = "Evaristo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
       exa
       firefox
@@ -119,6 +119,9 @@
     neovim
   #  wget
   ];
+  # This option enables docker to manage linux containers
+  virtualisation.docker.enable = true;
+
   environment.interactiveShellInit = ''
     . /home/evaro/.bash_aliases
   '';
