@@ -14,10 +14,8 @@ end
 local function get_lsp_configuration(lsp)
     local lsp_config_filename = os.getenv("HOME") .. "/.config/nvim/lua/lsp/" .. lsp .. ".lua"
     if is_file(lsp_config_filename) then
-        print("Loaded " .. lsp .. " configuration")
         return require("lsp." .. lsp)
     end
-    print("No configuration found for " .. lsp)
     return {}
 end
 
