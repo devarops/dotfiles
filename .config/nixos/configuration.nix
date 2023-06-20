@@ -97,6 +97,7 @@
       slack
       tmux
       vscode
+      zoom-us
     ];
   };
 
