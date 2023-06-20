@@ -8,7 +8,7 @@ alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias link-share="rm --force --recursive /home/devarops/repositorios && ln --symbolic /tmp/share /home/devarops/repositorios"
 alias ls="exa -al --color=always --group-directories-first"
-alias nv="[ -f /.dockerenv ] && /root/squashfs-root/usr/bin/nvim || echo ERROR: Container not detected"
+alias nv='[ -f /.dockerenv ] && /root/squashfs-root/usr/bin/nvim || echo "ERROR: Please run Neovim inside a container"'
 alias nvim="[ -f /.dockerenv ] && /root/squashfs-root/usr/bin/nvim || docker run --interactive --rm --tty --volume ${PWD}:/workdir islasgeci/pde:latest /root/squashfs-root/usr/bin/nvim"
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
