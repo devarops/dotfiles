@@ -18,6 +18,7 @@ alias pull-dev='docker pull islasgeci/${PWD##*/}:develop'
 alias push-ci='docker login && docker push islasgeci/${PWD##*/}:latest'
 alias push-dev='docker login && docker push islasgeci/${PWD##*/}:develop'
 alias repos="cd ~/repositorios"
+alias rmi='docker container rm $(docker container ls --all --quiet) ; docker image rm $(docker image ls --all --quiet)'
 alias run-ci='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_ci --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:latest bash'
 alias run-dev='docker run --env BITBUCKET_USERNAME --env BITBUCKET_PASSWORD --interactive --name ${PWD##*/}_dev --rm --tty --volume ${PWD}:/workdir islasgeci/${PWD##*/}:develop bash'
 alias speed="speedtest-cli --no-upload"
