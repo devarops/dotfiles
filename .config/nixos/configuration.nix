@@ -117,6 +117,7 @@
   environment.systemPackages = with pkgs; [
     docker
     git
+    gnome.gnome-tweaks
     neovim
   #  wget
   ];
