@@ -10,7 +10,7 @@ alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias link-share="rm --force --recursive /home/evaro/repositorios && ln --symbolic /tmp/share /home/evaro/repositorios"
 alias ls="exa -al --color=always --group-directories-first"
-alias nvim='echo $PATH | tr ":" "\n" | grep "/nix/store" | grep nvim && nvim || echo "ERROR: Please run Neovim inside a development environment"'
+alias nvim='which nvim | grep "/nix/store" && nvim || echo "ERROR: Please run Neovim inside a development environment"'
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
