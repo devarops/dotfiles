@@ -10,8 +10,7 @@ alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot="git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}"
 alias link-share="rm --force --recursive /home/evaro/repositorios && ln --symbolic /tmp/share /home/evaro/repositorios"
 alias ls="exa -al --color=always --group-directories-first"
-alias nv='[ -f /.dockerenv ] && /root/squashfs-root/usr/bin/nvim || echo "ERROR: Please run Neovim inside a container"'
-alias nvim="[ -f /.dockerenv ] && /root/squashfs-root/usr/bin/nvim || docker run --interactive --rm --tty --volume ${PWD}:/workdir islasgeci/pde:latest /root/squashfs-root/usr/bin/nvim"
+alias nvim='echo $PATH | tr ":" "\n" | grep "/nix/store" | grep nvim && nvim || echo "ERROR: Please run Neovim inside a development environment"'
 alias off="update; sudo shutdown now"
 alias open="xdg-open"
 alias out="sudo pkill -u ${USER}"
@@ -31,7 +30,7 @@ alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]
 alias todo-show="rich ~/todo.md"
 alias todo="todo-init && todo-show"
 alias update="sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gdot pull && echo && echo && vim --version | grep 'NVIM v'"
-alias vi=nv
+alias vi=nvim
 alias vim=nvim
 
 # Agrega alias de misctools
