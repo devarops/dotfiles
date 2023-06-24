@@ -121,7 +121,7 @@
     neovim
   #  wget
   ];
-  # This option enables docker to manage linux containers
+  # Enable Docker to manage containers
   virtualisation.docker.enable = true;
 
   environment.interactiveShellInit = ''
