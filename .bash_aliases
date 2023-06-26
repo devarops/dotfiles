@@ -8,6 +8,7 @@ alias dotfiles='git clone --bare --depth 1 https://github.com/devarops/dotfiles.
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot='git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}'
+alias is-devenv='echo $PATH | grep /nix/store > /dev/null && echo "Inside a Nix development environment" || echo "No development environment"'
 alias link-share='rm --force --recursive /home/evaro/repositorios && ln --symbolic /tmp/share /home/evaro/repositorios'
 alias ls='exa -al --color=always --group-directories-first'
 alias nvim='which nvim | grep "/nix/store" && nvim || nix develop "github:IslasGECI/pde" --command nvim'
