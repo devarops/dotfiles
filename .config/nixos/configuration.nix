@@ -87,15 +87,11 @@
     description = "Evaristo";
     extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
-      exa
-      firefox
       gitkraken
+      gnome.gnome-tweaks
       google-chrome
       ibus-engines.typing-booster
-      neofetch
-      rich-cli
       slack
-      tmux
       vscode
       zoom-us
     ];
@@ -116,10 +112,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     docker
+    docker-compose
+    exa
     git
-    gnome.gnome-tweaks
+    neofetch
     neovim
-  #  wget
+    rich-cli
+    tmux
   ];
   # Enable Docker to manage containers
   virtualisation.docker.enable = true;
