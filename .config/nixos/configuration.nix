@@ -119,6 +119,7 @@
     neovim
     rich-cli
     tmux
+    tree
   ];
   # Enable Docker to manage containers
   virtualisation.docker.enable = true;
