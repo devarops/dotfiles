@@ -35,7 +35,6 @@ require("lazy").setup({
   "nvim-lua/plenary.nvim",            -- Dependencie of nvim-telescope/telescope.nvim
   "nvim-telescope/telescope.nvim",    --
   "nvim-treesitter/nvim-treesitter",  --
-  "wbthomason/packer.nvim",           -- Plugin manager
   "whonore/vim-sentencer",            -- One sentence per line and wrap long lines
 })
 
