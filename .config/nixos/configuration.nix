@@ -120,6 +120,7 @@
     rich-cli
     tmux
     tree
+    wget
   ];
   # Enable Docker to manage containers
   virtualisation.docker.enable = true;
