@@ -9,6 +9,14 @@ git clone --bare --depth 1 https://github.com/devarops/dotfiles.git ${HOME}/dotf
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 ```
 
+Otra opción:
+
+```
+git clone --bare https://github.com/devarops/dotfiles.git ${HOME}/dotfiles.git
+git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
+git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
+```
+
 # Related repos
 
 - [Dotfiles del equipo IslasGECI](https://github.com/IslasGECI/dotfiles)
