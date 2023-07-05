@@ -9,10 +9,10 @@ git clone --bare --depth 1 https://github.com/devarops/dotfiles.git ${HOME}/dotf
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 ```
 
-Otra opción:
+Alternativamente, puedes usar SSH:
 
 ```
-git clone --bare https://github.com/devarops/dotfiles.git ${HOME}/dotfiles.git
+git clone --bare git@github.com:devarops/dotfiles.git ${HOME}/dotfiles.git
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
