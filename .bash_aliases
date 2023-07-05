@@ -30,7 +30,7 @@ alias todo-edit='vim ~/todo.md'
 alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]] ; then date +"# %A, %d %B %Y" > "${HOME}/todo.md" ; fi'
 alias todo-show='rich ~/todo.md'
 alias todo='todo-init && todo-show'
-alias update='sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && gdot pull && echo && echo && vim --version | grep "NVIM v"'
+alias update='gdot pull && sudo nixos-rebuild switch --upgrade-all && echo && vim --version | grep "NVIM v"'
 alias vi=nvim
 alias vim=nvim
 
