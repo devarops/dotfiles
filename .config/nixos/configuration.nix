@@ -132,6 +132,7 @@
 
   environment.interactiveShellInit = ''
     . /home/evaro/.bash_aliases
+    eval "$(direnv hook bash)"
   '';
 
   # Some programs need SUID wrappers, can be configured further or are
