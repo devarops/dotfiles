@@ -1,4 +1,5 @@
 # Agrega alias
+alias cat='bat'
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --lines=+2 ./Dockerfile >> ./Dockerfile.dev && docker build --file ./Dockerfile.dev --tag islasgeci/${PWD##*/}:develop .'
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault evaro@islasgeci.dev:/home/evaro/.vault && ssh devserver'
