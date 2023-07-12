@@ -132,6 +132,7 @@
 
   environment.interactiveShellInit = ''
     . /home/evaro/.bash_aliases
+    . /home/evaro/.vault/.secrets
     eval "$(direnv hook bash)"
   '';
 
