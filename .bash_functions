@@ -33,6 +33,7 @@ tp () {
     tmux send-keys -t typing_practice:1 "git pull" ENTER
     tmux send-keys -t typing_practice:1 "touch $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
     tmux send-keys -t typing_practice:1 "vim $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
+    tmux send-keys -t typing_practice:2 "cd $HOME/repositorios/typing_practice" ENTER
     tmux send-keys -t typing_practice:2 "lookatme --live --single $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
   fi
   tmux switch -t typing_practice
