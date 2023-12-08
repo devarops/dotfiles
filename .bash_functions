@@ -31,10 +31,10 @@ fw () {
     tmux new-window -t "free_writing:1"
     tmux new-window -t "free_writing:2"
     tmux send-keys -t free_writing:1 "git pull" ENTER
-    tmux send-keys -t free_writing:1 "touch $HOME/repositorios/free_writing/$(date +%F).md" ENTER
-    tmux send-keys -t free_writing:1 "vim $HOME/repositorios/free_writing/$(date +%F).md" ENTER
-    tmux send-keys -t free_writing:2 "cd $HOME/repositorios/free_writing" ENTER
-    tmux send-keys -t free_writing:2 "lookatme --live --single $HOME/repositorios/free_writing/$(date +%F).md" ENTER
+    tmux send-keys -t free_writing:1 "touch $HOME/repositorios/b00d02_free_writing_2023/$(date +%F).md" ENTER
+    tmux send-keys -t free_writing:1 "vim $HOME/repositorios/b00d02_free_writing_2023/$(date +%F).md" ENTER
+    tmux send-keys -t free_writing:2 "cd $HOME/repositorios/b00d02_free_writing_2023" ENTER
+    tmux send-keys -t free_writing:2 "lookatme --live --single $HOME/repositorios/b00d02_free_writing_2023/$(date +%F).md" ENTER
   fi
   tmux switch -t free_writing
 }
