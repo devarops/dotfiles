@@ -24,19 +24,19 @@ t () {
   tmux switch -t $1
 }
 
-# Typing practice
-tp () {
-  if ! tmux has-session -t typing_practice; then
-    tmux new -c $HOME/repositorios/typing_practice -d -s typing_practice
-    tmux new-window -t "typing_practice:1"
-    tmux new-window -t "typing_practice:2"
-    tmux send-keys -t typing_practice:1 "git pull" ENTER
-    tmux send-keys -t typing_practice:1 "touch $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
-    tmux send-keys -t typing_practice:1 "vim $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
-    tmux send-keys -t typing_practice:2 "cd $HOME/repositorios/typing_practice" ENTER
-    tmux send-keys -t typing_practice:2 "lookatme --live --single $HOME/repositorios/typing_practice/$(date +%F).md" ENTER
+# Free writing
+fw () {
+  if ! tmux has-session -t free_writing; then
+    tmux new -c $HOME/repositorios/b00d02_free_writing_2023 -d -s free_writing
+    tmux new-window -t "free_writing:1"
+    tmux new-window -t "free_writing:2"
+    tmux send-keys -t free_writing:1 "git pull" ENTER
+    tmux send-keys -t free_writing:1 "touch $HOME/repositorios/free_writing/$(date +%F).md" ENTER
+    tmux send-keys -t free_writing:1 "vim $HOME/repositorios/free_writing/$(date +%F).md" ENTER
+    tmux send-keys -t free_writing:2 "cd $HOME/repositorios/free_writing" ENTER
+    tmux send-keys -t free_writing:2 "lookatme --live --single $HOME/repositorios/free_writing/$(date +%F).md" ENTER
   fi
-  tmux switch -t typing_practice
+  tmux switch -t free_writing
 }
 
 #   ____  _   _                                  __ _           
