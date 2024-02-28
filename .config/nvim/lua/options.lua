@@ -1,5 +1,5 @@
 local options = {
-    colorcolumn = "100,120",
+    colorcolumn = "155",
     completeopt = { "menu", "menuone", "noselect" },
     expandtab = true,
     hidden = true,
