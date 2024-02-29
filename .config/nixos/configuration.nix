@@ -118,7 +118,7 @@
     direnv
     docker
     docker-compose
-    exa
+    eza
     git
     neofetch
     neovim
