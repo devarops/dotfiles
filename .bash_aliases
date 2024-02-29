@@ -30,7 +30,7 @@ alias todo-edit='vim ~/todo.md'
 alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]] ; then date +"# %A, %d %B %Y" > "${HOME}/todo.md" ; fi'
 alias todo-show='rich ~/todo.md'
 alias todo='todo-init && todo-show'
-alias update='gdot pull && sudo nixos-rebuild switch --upgrade-all'
+alias update='gdot pull && sudo nix-collect-garbage --delete-older-than 30d && sudo nixos-rebuild switch --upgrade-all'
 alias vi=nvim
 alias vim=nvim
 
