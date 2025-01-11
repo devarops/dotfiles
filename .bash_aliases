@@ -4,7 +4,6 @@ alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --l
 alias cat='bat'
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault evaro@islasgeci.dev:/home/evaro/.vault && ssh devserver'
 alias dev='ssh devserver'
-alias dotfiles='git clone --bare --depth 1 https://github.com/devarops/dotfiles.git ${HOME}/dotfiles.git && git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot='git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}'
