@@ -1,16 +1,13 @@
 # Agrega alias
-alias cat='bat'
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --lines=+2 ./Dockerfile >> ./Dockerfile.dev && docker build --file ./Dockerfile.dev --tag islasgeci/${PWD##*/}:develop .'
+alias cat='bat'
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault evaro@islasgeci.dev:/home/evaro/.vault && ssh devserver'
 alias dev='ssh devserver'
-alias develop='nix develop "github:IslasGECI/pde"'
 alias dotfiles='git clone --bare --depth 1 https://github.com/devarops/dotfiles.git ${HOME}/dotfiles.git && git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot='git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}'
-alias is-devenv='echo $PATH | grep /nix/store > /dev/null && echo "Inside a Nix development environment" || echo "No development environment" ; echo "Shell level: $SHLVL"'
-alias link-share='rm --force --recursive /home/evaro/repositorios && ln --symbolic /tmp/share /home/evaro/repositorios'
 alias ls='exa -al --color=always --group-directories-first'
 alias off='update; sudo shutdown now'
 alias open='xdg-open'
@@ -30,7 +27,7 @@ alias todo-edit='vim ~/todo.md'
 alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]] ; then date +"# %A, %d %B %Y" > "${HOME}/todo.md" ; fi'
 alias todo-show='rich ~/todo.md'
 alias todo='todo-init && todo-show'
-alias update='gdot pull && sudo nix-collect-garbage --delete-older-than 30d && sudo nixos-rebuild switch --upgrade-all'
+alias update='sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes'
 alias vi=nvim
 alias vim=nvim
 
