@@ -1,13 +1,11 @@
 # Agrega alias
 alias build-ci='docker build --tag islasgeci/${PWD##*/}:latest .'
 alias build-dev='echo "FROM islasgeci/pde:latest" > ./Dockerfile.dev && tail --lines=+2 ./Dockerfile >> ./Dockerfile.dev && docker build --file ./Dockerfile.dev --tag islasgeci/${PWD##*/}:develop .'
-alias cat='bat'
 alias dev-init='ssh-keygen -f "$HOME/.ssh/known_hosts" -R "islasgeci.dev" && ssh-keyscan "islasgeci.dev" >> "$HOME/.ssh/known_hosts" && scp -pr ~/.vault evaro@islasgeci.dev:/home/evaro/.vault && ssh devserver'
 alias dev='ssh devserver'
 alias exec-ci='docker exec -it ${PWD##*/}_ci bash'
 alias exec-dev='docker exec -it ${PWD##*/}_dev bash'
 alias gdot='git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME}'
-alias ls='exa -al --color=always --group-directories-first'
 alias off='update; sudo shutdown now'
 alias open='xdg-open'
 alias out='sudo pkill -u ${USER}'
