@@ -64,4 +64,4 @@ fi
 neofetch --color_blocks off
 
 # Muestra tareas pendientes
-todo-init && tail +2 ~/todo.md | batcat --markdown -
+todo-init && batcat ~/todo.md
