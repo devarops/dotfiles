@@ -22,7 +22,7 @@ alias speed='speedtest-cli --no-upload'
 alias tmp='sudo rm --force --recursive ~/tmp && mkdir --parents ~/tmp && cd ~/tmp'
 alias todo-edit='vim ~/todo.md'
 alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]] ; then date +"# %A, %d %B %Y" > "${HOME}/todo.md" ; fi'
-alias todo-show='rich ~/todo.md'
+alias todo-show='batcat ~/todo.md'
 alias todo='todo-init && todo-show'
 alias update='sudo apt update && sudo apt dist-upgrade --yes && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes'
 alias vi=nvim
