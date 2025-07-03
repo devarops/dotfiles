@@ -11,6 +11,16 @@ _update_ps1 () {
     PS1=$(powerline-shell $?)
 }
 
+# Connect to the development server
+dev () {
+  if [ -n "$TMUX" ]; then
+    echo "❌ Please exit tmux before connecting to the development server." >&2
+    return 1
+  fi
+  ssh devserver
+}
+
+
 # tmux
 t () {
   if ! tmux has-session -t $1; then
