@@ -9,3 +9,5 @@ vim.keymap.set("n", "<leader>ps", require("pair_programming").solo, { desc = "[S
 vim.keymap.set("n", "<leader>pt", require("pair_programming").tty, { desc = "[T]eletypewriter" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Leave the pasted string in the registry" })
+vim.keymap.set('n', "gt", ":bnext<CR>", { silent = true, desc = "Go to next buffer" })
+vim.keymap.set('n', "gT", ":bprevious<CR>", { silent = true, desc = "Go to previous buffer" })
