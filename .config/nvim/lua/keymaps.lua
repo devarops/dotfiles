@@ -7,4 +7,5 @@ vim.keymap.set("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { desc = "Fi
 vim.keymap.set("n", "<leader>pp", require("pair_programming").pair, { desc = "[P]air programming" })
 vim.keymap.set("n", "<leader>ps", require("pair_programming").solo, { desc = "[S]olo programming" })
 vim.keymap.set("n", "<leader>pt", require("pair_programming").tty, { desc = "[T]eletypewriter" })
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Leave the pasted string in the registry" })
