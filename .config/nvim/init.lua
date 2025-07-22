@@ -1,6 +1,6 @@
 require("variables")
 require("options")
-require("keymaps")
 require("plugins")
+require("keymaps")
 require("lsp")
 require("vimrc")
