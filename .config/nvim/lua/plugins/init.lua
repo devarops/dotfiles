@@ -41,8 +41,10 @@ require("lazy").setup({
 })
 
 require("plugins.treesitter")
+
 require("plugins.cmp")
 require("plugins.copilot")
+require("plugins.harpoon")
 require("plugins.lightline-bufferline")
 require("plugins.sentencer")
 require("plugins.which-key")
