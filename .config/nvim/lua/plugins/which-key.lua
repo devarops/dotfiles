@@ -1,6 +1,7 @@
 local wk = require("which-key")
 wk.setup {}
 wk.add({
-  { "<leader>p", group = "[P]rogramming environment" },
+  { "<leader>f", group = "[B]uffer navigation" },
   { "<leader>f", group = "[F]ind using Telescope" },
+  { "<leader>p", group = "[P]rogramming environment" },
 })
