@@ -23,15 +23,17 @@ dev () {
 
 # tmux
 t () {
-  if ! tmux has-session -t $1; then
-    if [ -d "$HOME/repositorios/$1" ]; then
-      tmux new -c "$HOME/repositorios/$1" -d -s $1
+  session_name="${1%/}"                # remove trailing slash if present
+  session_name="${session_name//./_}"  # replace dots with underscores
+  if ! tmux has-session -t "$session_name"; then
+    if [ -d "$HOME/repositorios/$session_name" ]; then
+      tmux new -c "$HOME/repositorios/$session_name" -d -s "$session_name"
     else
-      tmux new -d -s $1
+      tmux new -d -s "$session_name"
     fi
-    tmux send-keys -t $1 "vim ." ENTER
+    tmux send-keys -t "$session_name" "vim ." ENTER
   fi
-  tmux switch -t $1
+  tmux switch -t "$session_name"
 }
 
 # Free writing
