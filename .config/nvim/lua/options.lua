@@ -1,5 +1,5 @@
 local options = {
-    colorcolumn = "155",
+    colorcolumn = "80,100", -- Highlight columns at 80 and 100 characters
     completeopt = { "menu", "menuone", "noselect" },
     expandtab = true,
     hidden = true,
