@@ -25,12 +25,11 @@ require("lazy").setup({
   "hrsh7th/cmp-vsnip",                 -- VSnip completion for nvim-cmp
   "hrsh7th/nvim-cmp",                  -- Completion engine for Neovim
   "hrsh7th/vim-vsnip",                 -- Snippet engine for Neovim
-  "itchyny/lightline.vim",             -- Lightweight statusline/tabline
   "jalvesaq/Nvim-R",                   -- R language support
-  "mengelbrecht/lightline-bufferline", -- Bufferline for lightline
   "navarasu/onedark.nvim",             -- Theme inspired by Atom
   "neovim/nvim-lspconfig",             -- LSP configuration for Neovim
   "nvim-lua/plenary.nvim",             -- Dependencie of nvim-telescope/telescope.nvim
+  "nvim-lualine/lualine.nvim",         -- Statusline for Neovim
   "nvim-telescope/telescope.nvim",     -- Fuzzy finder for Neovim
   "nvim-tree/nvim-web-devicons",       -- Icons for Neovim
   "nvim-treesitter/nvim-treesitter",   -- Treesitter support for Neovim
@@ -44,6 +43,6 @@ require("plugins.treesitter")
 
 require("plugins.cmp")
 require("plugins.copilot")
-require("plugins.lightline-bufferline")
+require("plugins.lualine")
 require("plugins.sentencer")
 require("plugins.which-key")
