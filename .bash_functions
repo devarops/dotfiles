@@ -40,7 +40,7 @@ t () {
     tmux send-keys  -t "$session_name:3" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:3" "git pull" ENTER
   fi
-  tmux switch -t "$session_name"
+  tmux switch -t "$session_name:1"
 }
 
 # Free writing
