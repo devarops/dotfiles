@@ -20,3 +20,4 @@ vim.keymap.set("n", "gt", ":bnext<CR>", { silent = true, desc = "Go to next buff
 vim.keymap.set("n", "gT", ":bprevious<CR>", { silent = true, desc = "Go to previous buffer" })
 vim.keymap.set("n", "L", vim.diagnostic.open_float, { desc = "Show diagnostic message" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Leave the pasted string in the registry" })
+vim.keymap.set({ "n", "v" }, "<C-c>", [["+y]], { desc = "Copy to clipboard" })
