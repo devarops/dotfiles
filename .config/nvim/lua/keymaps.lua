@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find [B]uffer" })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope command_history<cr>", { desc = "Find [C]ommand" })
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find [F]ile" })
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope git_files<cr>", { desc = "Find [F]ile" })
 vim.keymap.set("n", "<leader>fF", function() require("telescope.builtin").find_files({ hidden = true }) end, { desc = "Find hidden files" })
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find using [G]rep" })
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Find [H]elp" })
