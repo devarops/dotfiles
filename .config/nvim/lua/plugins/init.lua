@@ -26,6 +26,7 @@ require("lazy").setup({
   "hrsh7th/nvim-cmp",                  -- Completion engine for Neovim
   "hrsh7th/vim-vsnip",                 -- Snippet engine for Neovim
   "jalvesaq/Nvim-R",                   -- R language support
+  "mbbill/undotree",                   -- Persistent undo history
   "navarasu/onedark.nvim",             -- Theme inspired by Atom
   "neovim/nvim-lspconfig",             -- LSP configuration for Neovim
   "nvim-lua/plenary.nvim",             -- Dependencie of nvim-telescope/telescope.nvim
