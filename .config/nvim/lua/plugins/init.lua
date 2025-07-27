@@ -34,6 +34,7 @@ require("lazy").setup({
   "nvim-telescope/telescope.nvim",     -- Fuzzy finder for Neovim
   "nvim-tree/nvim-web-devicons",       -- Icons for Neovim
   "nvim-treesitter/nvim-treesitter",   -- Treesitter support for Neovim
+  "tpope/vim-fugitive",                -- Git integration for Neovim
   "whonore/vim-sentencer",             -- One sentence per line and wrap long lines
   "williamboman/mason-lspconfig.nvim", -- LSP configuration for Mason
   "williamboman/mason.nvim",           -- LSP installer for Neovim
