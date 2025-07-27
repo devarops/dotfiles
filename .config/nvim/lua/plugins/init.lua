@@ -18,13 +18,11 @@ require("lazy").setup({
   "folke/which-key.nvim",              -- Display available keybindings
   "github/copilot.vim",                -- AI code completion
   "gruvbox-community/gruvbox",         -- Gruvbox colorscheme
-  "jalvesaq/Nvim-R",                   -- R language support
   "mbbill/undotree",                   -- Persistent undo history
   "navarasu/onedark.nvim",             -- Theme inspired by Atom
   "nvim-lua/plenary.nvim",             -- Dependencie of nvim-telescope/telescope.nvim
   "nvim-lualine/lualine.nvim",         -- Statusline for Neovim
   "nvim-telescope/telescope.nvim",     -- Fuzzy finder for Neovim
-  "nvim-tree/nvim-web-devicons",       -- Icons for Neovim
   "nvim-treesitter/nvim-treesitter",   -- Treesitter support for Neovim
   "tpope/vim-fugitive",                -- Git integration for Neovim
   "whonore/vim-sentencer",             -- One sentence per line and wrap long lines
