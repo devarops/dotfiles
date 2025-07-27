@@ -1,9 +1,13 @@
 require("nvim-treesitter.configs").setup {
   ensure_installed = {
-      "bash",
-      "lua",
-      "python",
-      "r",
+    "bash",
+    "dockerfile",
+    "gnuplot",
+    "latex",
+    "lua",
+    "make",
+    "python",
+    "r",
   },
   sync_install = true,
 
