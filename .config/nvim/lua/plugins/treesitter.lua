@@ -3,7 +3,6 @@ require("nvim-treesitter.configs").setup {
     "bash",
     "dockerfile",
     "gnuplot",
-    "latex",
     "lua",
     "make",
     "python",
