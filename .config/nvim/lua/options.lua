@@ -21,7 +21,7 @@ local options = {
     termguicolors = true, -- set terminal GUI colors
     textwidth = 100,
     timeoutlen = 500,
-    vim.o.winborder = "rounded",
+    winborder = "rounded",
     wrap = false,
 }
 
