@@ -1,5 +1,5 @@
 vim.lsp.enable(
-    'r_language_server'
+  'r_language_server'
 )
 
 -- Enable LSP complition
@@ -10,4 +10,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
   end,
+})
+
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true,
+  },
 })
