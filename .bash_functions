@@ -6,11 +6,6 @@
 # |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 #                                              
 
-# Powerline Shell
-_update_ps1 () {
-    PS1=$(powerline-shell $?)
-}
-
 # Connect to the development server
 dev () {
   if [ -n "$TMUX" ]; then
