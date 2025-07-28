@@ -1,6 +1,6 @@
 local options = {
     colorcolumn = "100,150",
-    completeopt = { "menu", "menuone", "noselect" },
+    completeopt = { "menu", "menuone", "noselect", "fuzzy", "popup" },
     expandtab = true,
     hidden = true,
     hlsearch = true,
