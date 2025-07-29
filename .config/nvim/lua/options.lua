@@ -1,29 +1,29 @@
 local options = {
     colorcolumn = "100,150",
     completeopt = { "menu", "menuone", "noselect" },
-    expandtab = true,
-    hidden = true,
-    hlsearch = true,
-    incsearch = true,
-    linebreak = true,
-    list = true,
+    expandtab = true,      -- convert tabs to spaces
+    hidden = true,         -- enable background buffers
+    hlsearch = true,       -- highlight search results
+    incsearch = true,      -- show search matches as you type
+    linebreak = true,      -- wrap lines at word boundaries
+    list = true,           -- show whitespace characters
     listchars = { tab = "»·", extends = ">", precedes = "<", trail = "·" },
-    number = true, -- set numbered lines
+    number = true,         -- set numbered lines
     relativenumber = true, -- set relative numbered lines
-    scrolloff = 10,
-    shiftwidth = 2,
-    showmode = false,
-    showtabline = 2,
-    signcolumn = "yes",
-    smartcase = true,
-    softtabstop = 2,
-    swapfile = false,
-    tabstop = 2,
-    termguicolors = true, -- set terminal GUI colors
-    textwidth = 100,
-    timeoutlen = 500,
-    winborder = "rounded",
-    wrap = false,
+    scrolloff = 10,        -- keep 10 lines above and below the cursor
+    shiftwidth = 2,        -- number of spaces to use for each step of (auto)indent
+    showmode = false,      -- disable showing mode in command line
+    showtabline = 2,       -- always show tabline
+    signcolumn = "yes",    -- always show sign column
+    smartcase = true,      -- enable smart case sensitivity in search
+    softtabstop = 2,       -- number of spaces to use for a tab
+    swapfile = false,      -- disable swap file creation
+    tabstop = 2,           -- number of spaces that a <Tab> counts for
+    termguicolors = true,  -- set terminal GUI colors
+    textwidth = 100,       -- maximum width of text before wrapping
+    timeoutlen = 500,      -- time to wait for a mapped sequence to complete (in milliseconds)
+    winborder = "rounded", -- use rounded borders for floating windows
+    wrap = false,          -- disable line wrapping
 }
 
 for key, value in pairs(options) do
