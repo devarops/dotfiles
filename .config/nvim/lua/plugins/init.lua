@@ -24,10 +24,12 @@ require("lazy").setup({
   "nvim-lualine/lualine.nvim",         -- Statusline for Neovim
   "nvim-telescope/telescope.nvim",     -- Fuzzy finder for Neovim
   "nvim-treesitter/nvim-treesitter",   -- Treesitter support for Neovim
+  "saghen/blink.cmp",                  -- Blink.nvim completion source for Neovim
   "tpope/vim-fugitive",                -- Git integration for Neovim
   "whonore/vim-sentencer",             -- One sentence per line and wrap long lines
 })
 
+require("plugins.blink")
 require("plugins.copilot")
 require("plugins.lualine")
 require("plugins.sentencer")
