@@ -1,5 +1,5 @@
 vim.cmd([[
-    colorscheme gruvbox
+    colorscheme retrobox
     highlight ColorColumn ctermbg=238
     set completeopt+=noselect
     set mouse=
