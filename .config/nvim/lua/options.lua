@@ -1,10 +1,7 @@
 local options = {
     colorcolumn = "100,150",
-    completeopt = { "menu", "menuone", "noselect" },
+    completeopt = { "menu", "menuone", "noselect", "popup" },
     expandtab = true,      -- convert tabs to spaces
-    hidden = true,         -- enable background buffers
-    hlsearch = true,       -- highlight search results
-    incsearch = true,      -- show search matches as you type
     linebreak = true,      -- wrap lines at word boundaries
     list = true,           -- show whitespace characters
     listchars = { tab = "»·", extends = ">", precedes = "<", trail = "·" },
@@ -21,7 +18,7 @@ local options = {
     tabstop = 2,           -- number of spaces that a <Tab> counts for
     termguicolors = true,  -- set terminal GUI colors
     textwidth = 100,       -- maximum width of text before wrapping
-    timeoutlen = 500,      -- time to wait for a mapped sequence to complete (in milliseconds)
+    timeoutlen = 300,      -- time to wait for a mapped sequence to complete (in milliseconds)
     winborder = "rounded", -- use rounded borders for floating windows
     wrap = false,          -- disable line wrapping
 }
