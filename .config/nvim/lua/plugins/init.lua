@@ -17,9 +17,7 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
 require("lazy").setup({
   "folke/which-key.nvim",              -- Display available keybindings
   "github/copilot.vim",                -- AI code completion
-  "gruvbox-community/gruvbox",         -- Gruvbox colorscheme
   "mbbill/undotree",                   -- Persistent undo history
-  "navarasu/onedark.nvim",             -- Theme inspired by Atom
   "nvim-lua/plenary.nvim",             -- Dependencie of nvim-telescope/telescope.nvim
   "nvim-lualine/lualine.nvim",         -- Statusline for Neovim
   "nvim-telescope/telescope.nvim",     -- Fuzzy finder for Neovim
