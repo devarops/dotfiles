@@ -4,7 +4,7 @@ local options = {
     expandtab = true,      -- convert tabs to spaces
     linebreak = true,      -- wrap lines at word boundaries
     list = true,           -- show whitespace characters
-    listchars = { tab = "»·", extends = ">", precedes = "<", trail = "·" },
+    listchars = { tab = "» ", extends = ">", precedes = "<", trail = "·" },
     number = true,         -- set numbered lines
     relativenumber = true, -- set relative numbered lines
     scrolloff = 10,        -- keep 10 lines above and below the cursor
