@@ -25,6 +25,7 @@ require("lazy").setup({
   "tpope/vim-fugitive",                -- Git integration for Neovim
   "whonore/vim-sentencer",             -- One sentence per line and wrap long lines
   { import = "plugins.blink" },        -- Autocompletion
+  { import = "plugins.oil" },          -- File explorer
 })
 
 require("plugins.copilot")
