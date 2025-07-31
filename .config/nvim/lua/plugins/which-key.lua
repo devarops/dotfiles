@@ -1,7 +1,20 @@
-local which_key = require("which-key")
-which_key.setup {}
-which_key.add({
-  { "<leader>f", group = "[F]ind using Telescope" },
-  { "<leader>g", group = "[G]it" },
-  { "<leader>p", group = "[P]rogramming environment" },
-})
+return {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+    { "<leader>f", group = "[F]ind using Telescope" },
+    { "<leader>p", group = "[P]rogramming environment" },
+  },
+}
