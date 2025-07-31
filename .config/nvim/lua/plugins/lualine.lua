@@ -8,8 +8,8 @@ return {
           'buffers',
           mode = 2,
           buffers_color = {
-            active = { fg = '#30302c', bg = '#99ad6a' },
-            inactive = { fg = '#99ad6a', bg = '#4e4e43' },
+            active = { fg = '#444444', bg = '#98C379' },
+            inactive = { fg = '#98C379', bg = '#444444' },
           },
         },
       },
