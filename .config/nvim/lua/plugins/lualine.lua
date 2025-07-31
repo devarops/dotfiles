@@ -20,7 +20,7 @@ return {
           'buffers',
           mode = 2,
           buffers_color = {
-            active = { fg = color.gray, bg = colors.green },
+            active = { fg = colors.gray, bg = colors.green },
             inactive = { fg = colors.gree , bg = colors.inactivegray },
           },
         },
