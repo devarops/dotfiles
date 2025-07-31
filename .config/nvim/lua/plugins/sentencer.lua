@@ -1,2 +1,2 @@
-vim.g.sentencer_filetypes={'md', 'markdown', 'tex', 'text', 'txt'}
-vim.g.sentencer_textwidth=-1
+-- One sentence per line and wrap long lines.
+return { "whonore/vim-sentencer" }
