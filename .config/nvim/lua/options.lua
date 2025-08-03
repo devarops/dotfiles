@@ -7,7 +7,7 @@ local options = {
     listchars = { tab = "» ", extends = ">", precedes = "<", trail = "·" },
     number = true,         -- set numbered lines
     relativenumber = true, -- set relative numbered lines
-    scrolloff = 10,        -- keep 10 lines above and below the cursor
+    scrolloff = 8,         -- keep 8 lines above and below the cursor
     shiftwidth = 2,        -- number of spaces to use for each step of (auto)indent
     showmode = false,      -- disable showing mode in command line
     showtabline = 2,       -- always show tabline
