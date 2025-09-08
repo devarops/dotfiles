@@ -1,3 +1,4 @@
+vim.keymap.set("i", "<C-L>", "<Plug>(copilot-accept-word)")
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find [B]uffer" })
 vim.keymap.set("n", "<leader>fc", "<cmd>Telescope command_history<cr>", { desc = "Find [C]ommand" })
 vim.keymap.set("n", "<leader>fe", "<cmd>Oil<cr>", { desc = "File [E]xplorer" })
