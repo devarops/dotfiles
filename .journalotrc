@@ -1,0 +1,8 @@
+# Auto-sync without prompts
+AUTOSYNC=true
+
+# Custom journal directory (optional)
+JOURNAL_DIR="/home/evaro/repositorios/b00d02_free_writing_2023"
+
+# Editor
+EDITOR="nvim -u /home/evaro/.config/nvim/omegadeck.lua"
