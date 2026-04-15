@@ -1,5 +1,6 @@
 ---
 description: Generate concise, well-structured git commit messages from diffs or drafts.
+color: "#A855F7"
 mode: all
 ---
 
