@@ -1,5 +1,6 @@
 ---
 description: Generates a single minimal failing test following strict TDD red-phase principles.
+color: "#EF4444"
 mode: all
 ---
 

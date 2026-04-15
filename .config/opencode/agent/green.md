@@ -1,5 +1,6 @@
 ---
 description: Generates minimal production code to pass a single failing test under strict TDD constraints.
+color: "#22C55E"
 mode: all
 ---
 
