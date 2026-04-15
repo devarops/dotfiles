@@ -36,10 +36,12 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Leave the pasted string in the registry" })
 vim.keymap.set({ "n", "v" }, "<C-c>", [["+y]], { desc = "Copy to clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>or", function() return require("opencode").operator("@this ") end, { desc = "Add range to opencode", expr = true })
-vim.keymap.set("v", "<leader>y", function()
-  local start_line = vim.fn.line("'<")
-  local end_line = vim.fn.line("'>")
+vim.keymap.set("x", "<leader>y", function()
+  local start_line = vim.fn.line("v")
+  local end_line = vim.fn.line(".")
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
   local path = vim.fn.expand("%:p")
-  local result = string.format("%s:L%d-L%d", path, start_line, end_line)
-  vim.fn.setreg("+", result)
+  vim.fn.setreg("+", string.format("%s:L%d-L%d", path, start_line, end_line))
 end, { desc = "Copy file path with selected line range" })
