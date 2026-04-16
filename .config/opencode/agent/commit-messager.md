@@ -41,4 +41,5 @@ The input may include code diffs, summaries, or minimal descriptions of changes.
 * Leave the second line blank.
 * Use subsequent lines only to explain why the change was made.
 * Do not add headings, code fences, or commentary.
+* Plain text only: no backticks, no single quotes, no double quotes.
 * The commit message is written in clear, professional English language.
