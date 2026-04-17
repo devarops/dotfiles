@@ -3,7 +3,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   lazy = false,
-  main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+  main = 'nvim-treesitter.config',
   opts = {
     auto_install = true,
     ensure_installed = {
