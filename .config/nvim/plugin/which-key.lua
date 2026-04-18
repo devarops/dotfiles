@@ -9,5 +9,6 @@ end, { desc = 'Buffer Local Keymaps (which-key)' })
 
 require('which-key').add({
   { '<leader>f', group = '[F]ind using Telescope' },
+  { '<leader>o', group = '[O]penCode AI assistant' },
   { '<leader>p', group = '[P]rogramming environment' },
 })
