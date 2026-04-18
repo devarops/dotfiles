@@ -1,3 +1,4 @@
+-- Blazing fast and easy to configure Neovim statusline written in pure Lua
 vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' })
 
 require('lualine').setup({

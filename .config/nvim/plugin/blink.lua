@@ -1,3 +1,4 @@
+-- Performant, batteries-included completion plugin for Neovim (LSP, cmdline, snippets, signatures)
 vim.pack.add({
   'https://github.com/rafamadriz/friendly-snippets',
   {
