@@ -1,3 +1,4 @@
+-- File explorer that treats directories as buffers (edit files in place without leaving Neovim)
 vim.pack.add({
   -- Optional icon providers used by oil.nvim
   'https://github.com/echasnovski/mini.icons',
