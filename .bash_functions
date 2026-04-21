@@ -33,10 +33,13 @@ t () {
     tmux send-keys  -t "$session_name:2" "run-ci" ENTER
     tmux new-window -t "$session_name:3"
     tmux send-keys  -t "$session_name:3" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:3" "opencode ." ENTER
+    tmux send-keys  -t "$session_name:3" "git pull" ENTER
     tmux new-window -t "$session_name:4"
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:4" "git pull" ENTER
+    tmux send-keys  -t "$session_name:4" "opencode ." ENTER
+    tmux new-window -t "$session_name:5"
+    tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
+    tmux send-keys  -t "$session_name:5" "gemini" ENTER
   fi
   tmux switch -t "$session_name:1"
 }
