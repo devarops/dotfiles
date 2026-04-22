@@ -43,3 +43,38 @@ The input may include code diffs, summaries, or minimal descriptions of changes.
 * Do not add headings, code fences, or commentary.
 * Plain text only: no backticks, no single quotes, no double quotes.
 * The commit message is written in clear, professional English language.
+
+
+---
+
+If the user asks for a commit message, provide four options based on the above criteria.
+If the user asks to commit or push, validate that the codebase is fully consistent, documented, and ready for commit or push.
+
+## Validation Checklist for Commit or Push
+
+1. Confirm all project documentation reflects the current state of the codebase.
+2. Verify comments accurately describe the implemented logic.
+3. Ensure `Makefile` and `analyses.json` are fully synchronized.
+4. Analyze the `Makefile` dependency graph for structural integrity.
+5. Confirm all targets in the `Makefile` are reachable from the `all` target.
+6. Detect and flag any orphaned or dangling targets.
+7. Validate that `README.md` is accurate, complete, and focused on non-technical academic users.
+8. Validate that `AGENTS.md` is accurate, complete, and focused on developers.
+9. Ensure clear separation of concerns between user-facing (README.md) and developer-facing (AGENTS.md) documentation.
+10. Confirm `CHANGELOG.md` includes all relevant updates.
+11. Check consistent application of naming conventions.
+12. Verify adherence to the team’s style guide.
+13. Ensure consistent terminology across code, documentation, and outputs.
+14. Identify dead code, unused scripts, or obsolete configurations.
+
+## Format:
+
+* Output a structured validation report.
+* Use clear section headers for each validation category.
+* For each check, provide:
+  * Status: Pass / Fail / Warning
+  * Explanation: Brief justification
+  * Suggested Fix (if applicable)
+* Keep responses concise and actionable.
+* Do not include conversational language or commentary outside the report.
+
