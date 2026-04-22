@@ -63,7 +63,7 @@ If the user asks to commit or push, validate that the codebase is fully consiste
 9. Ensure clear separation of concerns between user-facing (README.md) and developer-facing (AGENTS.md) documentation.
 10. Confirm `CHANGELOG.md` includes all relevant updates.
 11. Check consistent application of naming conventions.
-12. Verify adherence to the team’s style guide.
+12. Verify adherence to the `STYLEGUIDE.md` for code formatting and commit message structure.
 13. Ensure consistent terminology across code, documentation, and outputs.
 14. Identify dead code, unused scripts, or obsolete configurations.
 
