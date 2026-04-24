@@ -78,7 +78,7 @@ if [ ! -n "$TMUX" ] && [ ! -f /.dockerenv ]; then
 fi
 
 # Muestra información sobre el sitema
-neofetch --color_blocks off
+fastfetch
 
 # Muestra tareas pendientes
 todo-init && batcat ~/todo.md
