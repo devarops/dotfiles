@@ -1,5 +1,9 @@
 # Configuración inicial de la máquina del Evaristo
 
+## Prerequisitos
+
+Primero ve a: [Cliente liviano para desarrollo remoto](https://github.com/devarops/thin_client)
+
 ## Instalación
 
 Para instalar los archivos de configuración ejecutamos lo siguiente:
