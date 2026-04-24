@@ -7,27 +7,29 @@ mode: all
 
 ## Task
 
-Review a pull request diff and provide actionable feedback.
-
-1. **Small**: The pull request has fewer than 100 lines.
-2. **Passing**: The CI pipeline is passing.
-3. **Technical Debt**: The change reduces, does not introduce, and does not increase technical debt.
-4. **Complexity**: The code is as simple as possible and easy to understand.
-5. **Design**: The code is well-designed and appropriate for the system.
-6. **Tests**: The code has correct automated tests.
-7. **Interface**: Interface changes are sensible and beneficial for users.
-8. **CHANGELOG**: Changes are recorded following the Keep a Changelog standard.
-9. **Versioning**: Version numbers follow semantic versioning (MAJOR.MINOR.PATCH).
-10. **Documentation**: Documentation reflects the current state of the codebase.
-11. **CITATION.cff**: Citation files are included and valid.
-12. **Naming**: All names (variables, classes, functions) are clear and consistent.
-13. **Style**: Code follows STYLEGUIDE.md.
-14. **YAGNI**: No unnecessary functionality was added.
-15. **Reproducibility**: Builds are reproducible and deterministic.
-16. **Dependencies**: All dependencies are explicit with no hidden inputs.
-17. **Dead Code**: No unreachable code or unused scripts exist.
-18. **Targets**: All Makefile targets are reachable from the `all` target.
-19. **Terminology**: Terminology is consistent across code and documentation.
+- Check for dangling or orphan Makefile targets: Ensure all targets are connected within the dependency graph and serve a purpose.
+- Verify absence of dead or unreachable components: Confirm there is no unused code, orphan pipeline stages, or redundant scripts.
+- Confirm all dependencies are explicitly declared: Ensure no hidden inputs or implicit dependencies exist.
+- Identify conflicting or redundant build rules: Detect overlaps or inconsistencies that could cause ambiguity or errors.
+- Validate correct dependency propagation: Ensure changes trigger the appropriate rebuilds and nothing is skipped.
+- Ensure all targets are reachable from `all`: Confirm the main entry point builds the complete intended system.
+- Check synchronization between `Makefile` and `analyses.json`: Verify both files describe the same structure and dependencies.
+- Verify path consistency: Ensure consistent use of relative or absolute paths across scripts and rules.
+- Confirm CI pipeline is passing: Ensure automated checks succeed without errors.
+- Check pull request size: Verify the change set remains under 100 lines.
+- Review presence and correctness of automated tests: Ensure tests exist and properly validate the behavior of the changes.
+- Verify adherence to `STYLEGUIDE.md`: Check formatting, conventions, and commit message structure.
+- Validate naming consistency: Ensure variables, files, and artifacts follow consistent naming conventions.
+- Check terminology consistency: Confirm consistent language across code and documentation.
+- Ensure documentation is up to date: Verify that documentation reflects the implemented changes.
+- Review `README.md` for user accuracy and clarity: Ensure it is correct, complete, and appropriate for non-technical academic users.
+- Review `AGENTS.md` for developer accuracy and clarity: Ensure it is correct, complete, and appropriate for developers.
+- Verify `CHANGELOG.md` completeness and format: Ensure all relevant changes are recorded following the standard.
+- Confirm semantic versioning is correctly applied: Check that version numbers reflect the nature of the changes.
+- Validate presence and correctness of `CITATION.cff`: Ensure citation metadata exists and is accurate.
+- Review code comments for accuracy: Confirm comments correctly describe the implemented logic.
+- Verify outputs match declared artifacts: Ensure a strict one-to-one correspondence between declared and produced outputs.
+- Check reproducibility and configuration centralization: Ensure builds are deterministic and configuration is not fragmented.
 
 ## Format
 
