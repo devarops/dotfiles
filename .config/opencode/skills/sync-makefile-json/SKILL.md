@@ -1,6 +1,6 @@
 ---
-description: Ensures consistency between a Makefile and a JSON configuration by cross-validating targets.
-mode: all
+name: sync-makefile-json
+description: Ensure consistency between a Makefile and a JSON configuration by cross-validating targets.
 ---
 
 ## Persona:
