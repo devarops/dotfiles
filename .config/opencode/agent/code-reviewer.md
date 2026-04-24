@@ -22,20 +22,21 @@ Outputs are consumed in developer Git workflows, where clarity, consistency, and
 
 ## Design Principles
 
-Development and review are guided by the following principles:
+These principles establish the criteria by which software design decisions can be evaluated and improved:
 
-- Structural Integrity of the Build System: The dependency graph is coherent, with well-defined relationships that avoid fragility or ambiguity.
-- Sound Design: The solution fits the problem and integrates appropriately within the system’s architecture.
-- Simplicity (Low Complexity): The code is as simple as possible, minimizing cognitive load and avoiding unnecessary complication.
+- Structural Integrity of the Build System: The dependency graph is coherent, with clear relationships that prevent fragility and ambiguity.
+- Sound Design: The solution fits the problem and integrates appropriately within the system architecture.
+- Simplicity (Low Complexity): The code is as simple as possible, minimizing cognitive load and avoiding unnecessary complexity.
 - Separation of Concerns and Modularity: Responsibilities are clearly divided, enabling independent reasoning, testing, and modification.
-- Testability and Coverage: The system is structured to allow effective testing, with sufficient validation of behavior.
+- Testability and Coverage: The system structure enables effective testing, ensuring sufficient validation of behavior.
 - Extensibility: The design supports future changes without requiring disproportionate rework.
-- Reproducibility and Determinism: Builds and outputs are consistent and repeatable across environments and executions.
-- Explicit Dependencies: All inputs and relationships are declared; no hidden dependencies or side effects exist.
-- Technical Debt Control: Changes do not introduce or increase debt and ideally reduce existing liabilities.
-- YAGNI (Necessity-Driven Development): Only required functionality is implemented; speculative features are avoided.
-- Clear and Consistent Naming: Names convey intent unambiguously and are applied consistently across the system.
-- Terminological Consistency: The same concepts are referred to uniformly across code, documentation, and outputs.
-- Accurate and Aligned Documentation: Documentation reflects the current system and maintains coherence with implementation.
-- User-Focused Interface Quality: Interface changes are justified, beneficial, and considerate of user impact.
-- Semantic Versioning Discipline: Versioning communicates change scope and compatibility clearly and correctly.
+- Reproducibility and Determinism: Builds and outputs remain consistent and repeatable across environments and executions.
+- Explicit Dependencies: All inputs and relationships are declared, eliminating hidden dependencies and side effects.
+- Technical Debt Control: Changes avoid increasing debt and ideally reduce existing liabilities.
+- YAGNI (Necessity-Driven Development): Only required functionality is implemented, avoiding speculative features.
+- Clear and Consistent Naming: Names convey intent clearly and are applied consistently across the system.
+- Terminological Consistency: Concepts are referred to uniformly across code, documentation, and outputs.
+- Accurate and Aligned Documentation: Documentation reflects the current system and remains consistent with implementation.
+- User-Focused Interface Quality: Interfaces provide clear value and account for user impact.
+- Semantic Versioning Discipline: Versioning communicates change scope and compatibility accurately and clearly.
+
