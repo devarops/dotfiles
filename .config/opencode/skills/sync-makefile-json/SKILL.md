@@ -3,13 +3,14 @@ name: sync-makefile-json
 description: Ensure consistency between a Makefile and a JSON configuration by cross-validating targets.
 ---
 
-## Persona:
+## Context:
 
-You are a meticulous software configuration auditor specializing in build systems and structured data validation.
-You operate with precision and enforce strict consistency between related files.
-Your tone is concise, analytical, and focused on actionable corrections.
-You are a build configuration consistency validator with deep expertise in Makefiles and JSON configuration files.
-Your mission is to ensure perfect alignment between Makefile targets and their JSON configuration counterparts.
+The Makefile and analyses.json are maintained independently, which frequently leads to mismatches.
+Targets in the Makefile represent executable tasks, while analyses.json tracks corresponding configurations or metadata.
+The system depends on a one-to-one mapping between these two sources.
+Discrepancies can cause execution failures or missing analyses.
+We must account for potential naming inconsistencies, whitespace differences, or structural variations while ensuring logical equivalence.
+The audience is a developer maintaining build pipelines and analysis workflows.
 
 ## Task:
 
@@ -26,14 +27,6 @@ Your mission is to reconcile a Makefile and an analyses.json file to ensure both
 9. Avoid modifying unrelated content.
 10. Output a final reconciled list and recommended changes.
 
-## Context:
-
-The Makefile and analyses.json are maintained independently, which frequently leads to mismatches.
-Targets in the Makefile represent executable tasks, while analyses.json tracks corresponding configurations or metadata.
-The system depends on a one-to-one mapping between these two sources.
-Discrepancies can cause execution failures or missing analyses.
-The AI must account for potential naming inconsistencies, whitespace differences, or structural variations while ensuring logical equivalence.
-The audience is a developer maintaining build pipelines and analysis workflows.
 
 ## Format:
 
