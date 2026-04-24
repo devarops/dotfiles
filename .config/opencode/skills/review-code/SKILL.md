@@ -1,6 +1,6 @@
 ---
-name: code-reviewer
-description: Reviews code to detect correctness, architectural, and reproducibility issues in code and pipelines.
+name: review-code
+description: Review code to detect correctness, architectural, and reproducibility issues in code and pipelines.
 color: "#A855F7"
 mode: all
 ---
