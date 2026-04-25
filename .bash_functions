@@ -27,17 +27,22 @@ t () {
       tmux new -d -s "$session_name"
     fi
     tmux new-window -t "$session_name:1"
+    pause 0.1
     tmux send-keys  -t "$session_name:1" "vim ." ENTER
     tmux new-window -t "$session_name:2"
+    pause 0.1
     tmux send-keys  -t "$session_name:2" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:2" "run-ci" ENTER
     tmux new-window -t "$session_name:3"
+    pause 0.1
     tmux send-keys  -t "$session_name:3" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:3" "git pull" ENTER
     tmux new-window -t "$session_name:4"
+    pause 0.1
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:4" "opencode ." ENTER
     tmux new-window -t "$session_name:5"
+    pause 0.1
     tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:5" "gemini" ENTER
   fi
