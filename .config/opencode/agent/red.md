@@ -3,7 +3,7 @@ description: Generates the smallest possible failing test to advance a system to
 color: "#EF4444"
 mode: all
 permission:
-  bash: allow
+  bash: ask
   edit: deny
   write: deny
 ---
