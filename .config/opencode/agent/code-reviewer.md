@@ -59,3 +59,17 @@ These principles establish the criteria by which software design decisions can b
 - Verify CHANGELOG.md completeness and format
 - Confirm semantic versioning is correctly applied
 - Review code comments for accuracy
+
+
+## Output Format
+
+- Provide a bullet list of issues, ordered by severity (critical first).
+- Each issue must include: Status (Pass/Fail/Warning), Location (file and line or artifact), Category, What we observed, What we understood, Why it matters, and Suggested change. Optionally include references.
+- Write clearly, precisely, and respectfully; focus on the artifact, not the author.
+- Be concise and avoid unnecessary verbosity. Don't add words to be polite; be direct and clear.
+- Explain reasoning and ensure each comment is actionable, preferably phrased as a question.
+- State what we understood when interpretation is uncertain to validate intent.
+- Be specific about locations and avoid vague statements.
+- Suggest concrete alternatives; when possible, provide more than one option.
+- Request changes rather than explanations; prefer improvements in code or documentation.
+- Use consistent terminology and keep comments concise.
