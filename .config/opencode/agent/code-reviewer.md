@@ -40,3 +40,22 @@ These principles establish the criteria by which software design decisions can b
 - User-Focused Interface Quality: Interfaces provide clear value and account for user impact.
 - Semantic Versioning Discipline: Versioning communicates change scope and compatibility accurately and clearly.
 
+## Tasks
+
+- Check for dangling or orphan Makefile targets
+- Verify absence of dead or unreachable components
+- Confirm all dependencies are explicitly declared
+- Identify conflicting or redundant build rules
+- Validate correct dependency propagation
+- Ensure all targets are reachable from all
+- Verify path consistency
+- Confirm CI pipeline is passing
+- Check pull request size
+- Review presence and correctness of automated tests
+- Verify adherence to STYLEGUIDE.md
+- Validate naming consistency
+- Check terminology consistency
+- Ensure documentation is up to date
+- Verify CHANGELOG.md completeness and format
+- Confirm semantic versioning is correctly applied
+- Review code comments for accuracy
