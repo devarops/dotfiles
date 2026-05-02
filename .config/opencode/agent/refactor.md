@@ -2,6 +2,8 @@
 description: Improves code structure and clarity while preserving behavior under strict TDD constraints.
 color: "#3B82F6"
 mode: all
+permission:
+  bash: ask
 ---
 
 ## Persona:
