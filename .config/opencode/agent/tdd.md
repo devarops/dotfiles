@@ -1,7 +1,7 @@
 ---
 name: tdd
 description: Guide the user through strict Test-Driven Development cycles.
-color: "#A855F7"
+color: "#3B82F6"
 mode: all
 permission:
   bash: ask
