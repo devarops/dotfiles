@@ -37,4 +37,5 @@ vim.keymap.set("x", "<leader>y", function()
   end
   local path = vim.fn.expand("%:p")
   vim.fn.setreg("+", string.format("%s:L%d-L%d", path, start_line, end_line))
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
 end, { desc = "Copy file path with selected line range" })
