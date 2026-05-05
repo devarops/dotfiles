@@ -23,7 +23,7 @@ alias todo-edit='vim ~/todo.md'
 alias todo-init='if [[ $(date --reference="${HOME}/todo.md" +%j) < $(date +%j) ]] ; then date +"# %A, %d %B %Y" > "${HOME}/todo.md" ; fi'
 alias todo-show='batcat ~/todo.md'
 alias todo='todo-init && todo-show'
-alias update='sudo apt update && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes'
+alias update='sudo apt update && sudo apt full-upgrade --yes && sudo apt autoremove --yes && sudo apt clean --yes && sudo npm install -g @google/gemini-cli@latest'
 alias vi=nvim
 alias vim=nvim
 
