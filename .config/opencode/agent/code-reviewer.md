@@ -3,6 +3,8 @@ name: code-reviewer
 description: Review code to detect correctness, architectural, and reproducibility issues in code and pipelines.
 color: "#A855F7"
 mode: all
+permission:
+  bash: ask
 ---
 
 ## Persona
