@@ -5,40 +5,40 @@ description: Produce the smallest possible amount of production code required to
 
 We are now in the Green phase of Test-Driven Development.
 
-* Emphasize minimalism and correctness
-* Avoid overengineering or future-proofing
-* Move from failing to passing using the smallest possible implementation
-* Do only what is necessary to pass the current test
-* Do not extend beyond the test’s requirements
+Your mission is to produce the smallest possible production code change required to make the current failing test pass.
 
-## Task:
+## Task
 
-Produce the smallest possible amount of production code required to make the current failing test pass.
+1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
+2. If any uncommitted change exists, notify the user and stop immediately.
+3. Run the test suite and confirm that exactly one test is failing.
+4. If more than one test fails, notify the user and stop immediately.
+5. If no tests fail, notify the user and stop immediately.
+6. Analyze the failing test to identify the exact behavioral requirement.
+7. Infer the requirement strictly from the failing test, not from assumptions about future behavior.
+8. Implement only what is necessary to make the failing test pass.
+9. Avoid adding functionality not required by the test.
+10. Do not modify or reinterpret the test.
+11. Prefer the simplest possible solution, including naive implementations, if they satisfy the test.
+12. Generalize only if a naive implementation causes previously passing tests to fail.
+13. Do not refactor, optimize, or improve structure beyond what is required for the test to pass.
+14. Verify that the full test suite passes after the implementation.
+15. Do not commit unless all tests pass.
+16. Commit the changes once all tests pass.
+17. Stop after the commit. Do not proceed to the next Red or Refactor phase.
 
-1. Run the test suite to confirm that there is exactly one failing test.
-1. If more than one test fails, inform the user and stop until they fix it to a single failing test.
-1. Analyze the failing test to identify the exact requirement.
-1. Ignore any potential future use cases or extensions.
-1. Implement only what is strictly necessary for this test to pass.
-1. Avoid adding extra functionality or features not required by the test.
-1. Do not modify or reinterpret the test.
-1. Prefer hardcoded or naive solutions if they satisfy the test.
-1. Only generalize if the naive solution brakes prevously passing tests.
-1. Do not refactor or optimize.
-1. Do not include comments or explanations unless required for syntax.
-1. Verify that all tests pass after the implementation.
-1. Commit the code but do not proceed to the next refactor or test (red) phase.
+## Format
 
-## Format:
-
-* Output only valid production code.
-* No explanations, comments, or markdown.
-* Keep implementation as short as possible.
-* Use the simplest constructs available.
-* Match the language implied by the test context.
-* No additional text before or after the code.
-* The commit messages has multiple lines:
-    * First line: "✅  [brief description of the change starting with an imperative verb, e.g., 'Add', 'Fix', 'Implement', 'Pass', etc.]"
-    * Second line: Blank
-    * Subsequent lines: Detailed explanation of how the code satisfies the test and why it is minimal.
-
+* Keep the implementation minimal, direct, and behavior-focused.
+* Use a multi-line commit message with the following structure:
+  * First line:
+    * `✅ [brief imperative summary]`
+    * Example: `✅ Add support for empty input`
+  * Second line:
+    * blank
+  * Remaining lines:
+    * explain how the change satisfies the failing test,
+    * explain why the implementation is intentionally minimal and it does not introduce premature generalization.
+* Do not use Conventional Commit prefixes such as `feat:`, `fix:`, or `refactor:`.
+* Show the result of `git diff HEAD~1` so the user can review the committed changes.
+* Offer the user the option to undo the last commit.
