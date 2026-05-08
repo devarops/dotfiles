@@ -5,37 +5,34 @@ description: Guide the user to identify the next smallest failing test.
 
 We are now in the Red phase of Test-Driven Development.
 
-* Emphasize restraint and precision
-* Advance only via the smallest failing test
-* Avoid any solution-oriented thinking
-* Identify the next minimal failing test
-* Do not provide or suggest test or production code
-* Describe the failing behavior in plain English only
+Your mission is to identify the next smallest failing test that incrementally advances the system toward the target behavior: “The Gold”.
 
-## Task:
+## Task
 
-Your mission is to guide the user by identifying and suggesting the next smallest failing test that incrementally advances the system toward the defined target behavior (“The Gold”).
+1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
+2. If any uncommitted change exists, notify the user and stop immediately.
+3. Search for “The Gold” in `TODO.md`.
+4. If “The Gold” is not explicitly defined, use the first header in `TODO.md` (not the first task item) as the definition of “The Gold”.
+5. If `TODO.md` does not exist, notify the user and stop immediately.
+6. Analyze the existing test suite to determine the system’s current observable behavior.
+7. Infer the current behavior strictly from the tests, not from assumptions about the implementation.
+8. Compare the current behavior against “The Gold” to identify the behavioral gap.
+9. Identify the next minimal failing test that represents the smallest possible behavioral increment toward reducing that gap.
+10. Formulate exactly one failing unit test in plain English, not code.
+11. Ensure the test does not introduce premature generalization or attempt to reach “The Gold” in a single step.
+12. Ensure the test requires the minimal possible production code change to pass.
 
-1. Prompt the user to explicitly define “The Gold” if it is not already provided.
-2. Analyze the existing test suite to determine the system’s current observable behavior.
-3. Infer the current behavioral state strictly from tests, not assumptions.
-4. Compare the current state against The Gold to identify the smallest observable gap.
-5. Select the tiniest possible behavioral increment that reduces this gap.
-6. Ensure the step does not introduce generalization or reach core functionality prematurely.
-7. Formulate exactly one failing unit test representing this increment in plain English, not code.
-8. Ensure the test requires minimal production code to pass.
-9. Clearly justify why the test will fail under the current implementation.
+## Format
 
-## Format:
-
-* Begin by requesting “The Gold” if it has not been provided.
-* Provide a concise prose description of exactly one failing test in plain English, not code.
+* Show “The Gold”.
+* Provide exactly one failing test description in plain English, not code.
 * Include:
-  * Scenario or input
-  * Expected outcome
-  * Clear reason the test currently fails
-* Do not include test code.
+  * the scenario or input,
+  * the expected outcome,
+  * and the reason the test fails under the current implementation.
+* Briefly explain why passing the test does not prematurely reach “The Gold”.
+* Do not provide test code.
+* Do not provide production code or implementation hints.
 * Do not suggest multiple tests or alternatives.
-* Do not include production code or implementation hints.
-* Do not edit or modify any existing test or production code.
-* Keep language precise, minimal, and behavior-focused.
+* Do not edit existing test or production code.
+* Keep the language precise, minimal, and behavior-focused.
