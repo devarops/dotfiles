@@ -5,7 +5,7 @@ description: Run the test suite during the Red TDD phase, verify one and only on
 
 ## Task
 
-1. Run the test suite: `docker exec <container_name> make test`
+1. Run the test suite: `docker exec <container_name> make tests`
 2. Verify that exactly one test is failing.
    - If no tests fail, inform the user and stop. Do not commit.
    - If more than one test fails, inform the user and stop. Do not commit.
