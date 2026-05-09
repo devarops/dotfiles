@@ -12,7 +12,9 @@ description: Run the test suite during the Red TDD phase, verify one and only on
 3. Verify that the single failing test fails for the right reason. Confirm the failure aligns with the expected behavioral gap identified in the Red phase.
    - If the test fails for an unexpected or unrelated reason, inform the user and stop. Do not commit.
 4. If exactly one test fails for the right reason, commit the failing test with a message that clearly describes the expected behavior.
-5. Stop after the commit. Do not proceed to the next Green or Refactor TDD phase.
+5. Show the result of `git diff HEAD~1` so the user can review the committed changes.
+6. Offer the user the option to undo the last commit.
+7. Stop. Do not proceed to the next Green or Refactor TDD phase.
 
 ## Format
 
@@ -25,5 +27,3 @@ description: Run the test suite during the Red TDD phase, verify one and only on
     - confirm that the test fails for the expected reason,
     - and confirm that no other tests are broken.
 - Do not use Conventional Commit prefixes such as `feat:`, `fix:`, or `refactor:`.
-- Show the result of `git diff HEAD~1` so the user can review the committed changes.
-- Offer the user the option to undo the last commit.
