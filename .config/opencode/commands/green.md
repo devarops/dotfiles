@@ -1,11 +1,12 @@
 ---
 name: green
-description: Produce the smallest possible amount of production code required to make the current failing test pass.
+description: Produce the smallest possible production code required to make the current failing test pass.
 ---
 
-We are now in the Green phase of Test-Driven Development.
+We are now in the Green phase of Test-Driven Development (TDD).
 
 Your mission is to produce the smallest possible production code change required to make the current failing test pass.
+
 
 ## Task
 
@@ -29,16 +30,14 @@ Your mission is to produce the smallest possible production code change required
 
 ## Format
 
-* Keep the implementation minimal, direct, and behavior-focused.
-* Use a multi-line commit message with the following structure:
-  * First line:
-    * `✅ [brief imperative summary]`
-    * Example: `✅ Add support for empty input`
-  * Second line:
-    * blank
-  * Remaining lines:
-    * explain how the change satisfies the failing test,
-    * explain why the implementation is intentionally minimal and it does not introduce premature generalization.
-* Do not use Conventional Commit prefixes such as `feat:`, `fix:`, or `refactor:`.
-* Show the result of `git diff HEAD~1` so the user can review the committed changes.
-* Offer the user the option to undo the last commit.
+- Keep the implementation minimal, direct, and behavior-focused.
+- Commit message structure:
+  - First line: `✅ [brief imperative summary]`
+    - Example: `✅ Add support for empty input`
+  - Second line: blank
+  - Remaining lines:
+    - explain how the change satisfies the failing test,
+    - and explain why the implementation is intentionally minimal and does not introduce premature generalization.
+- Do not use Conventional Commit prefixes such as `feat:`, `fix:`, or `refactor:`.
+- Show the result of `git diff HEAD~1` so the user can review the committed changes.
+- Offer the user the option to undo the last commit.
