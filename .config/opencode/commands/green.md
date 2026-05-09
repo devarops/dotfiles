@@ -12,7 +12,7 @@ Your mission is to produce the smallest possible production code change required
 
 1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 2. If any uncommitted change exists, notify the user and stop immediately.
-3. Run the test suite and confirm that exactly one test is failing.
+3. Run the test suite with `docker exec <container_name> make tests` and confirm that exactly one test is failing.
 4. If more than one test fails, notify the user and stop immediately.
 5. If no tests fail, notify the user and stop immediately.
 6. Analyze the failing test to identify the exact behavioral requirement.

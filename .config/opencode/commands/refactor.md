@@ -31,7 +31,7 @@ Your mission is to improve the internal structure of the code without changing i
 
 1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 2. If any uncommitted change exists, notify the user and stop immediately.
-3. Run the full test suite and confirm that all tests pass.
+3. Run the full test suite with `docker exec <container_name> make tests` and confirm that all tests pass.
 4. If any test fails, notify the user and stop immediately.
 5. Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 6. Infer refactoring opportunities strictly from the current implementation and tests, not from assumptions about future requirements.
