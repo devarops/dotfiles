@@ -44,7 +44,7 @@ t () {
     tmux new-window -t "$session_name:5"
     sleep 0.1
     tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:5" "aider --chat-mode ask" ENTER
+    tmux send-keys  -t "$session_name:5" "gemini" ENTER
   fi
   tmux switch -t "$session_name:1"
 }
