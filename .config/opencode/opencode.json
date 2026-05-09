@@ -3,7 +3,10 @@
   "default_agent": "plan",
   "agent": {
     "plan": {
-      "color": "#D3D3D3"
+      "color": "#D3D3D3",
+      "permission": {
+        "bash": "none"
+      }
     },
     "build": {
       "color": "#FFC107"
