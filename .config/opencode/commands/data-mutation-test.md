@@ -1,6 +1,6 @@
 ---
 name: data-mutation-test
-description: Mutate a CSV fixture in a data directory and verify validation (e.g., frictionless) catches it.
+description: Mutate a CSV fixture in a given data directory and verify validation (e.g., frictionless) catches it.
 ---
 
 You are executing the "data mutation testing" workflow. This process ensures that the project's data schemas are robust enough to catch invalid data.
@@ -13,7 +13,7 @@ Run `git status --porcelain`.
 - If clean, proceed.
 
 ### Step 2 — Offer three mutation options
-Identify a data directory (typically `tests/data/` or `data/`) and propose exactly three concrete mutations to a CSV file within it.
+Use the data directory provided as the first argument (`$1`) and propose exactly three concrete mutations to a CSV file within it.
 Each option must specify:
   - which file to mutate,
   - what change to make (old value → new value),
@@ -37,7 +37,7 @@ Run the project's data validation command. If the project uses Docker, use:
 
 Expect the command to FAIL (non-zero exit code).
 
-- **If it fails as expected**: Run `git restore <data_directory>` to revert the file to its original state, inform the user that the mutation was successfully caught, and STOP.
+- **If it fails as expected**: Run `git restore $1` to revert the file to its original state, inform the user that the mutation was successfully caught, and STOP.
 - **If it does NOT fail** (exit code 0): The schema is too permissive.
   1. Identify the schema definition file (e.g., `datapackage.json` or similar).
   2. Fix the schema to add the appropriate constraint that would catch this mutation.
