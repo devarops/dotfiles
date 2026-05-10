@@ -3,6 +3,9 @@ name: end
 description: Capture session learnings, update documentation, and perform housekeeping before closing.
 ---
 
+Before starting, use `git status --porcelain` to verify that the working tree is clean.
+If any uncommitted change exists, notify the user and stop immediately.
+
 ## File Registry
 
 | File | Purpose | Audience |
