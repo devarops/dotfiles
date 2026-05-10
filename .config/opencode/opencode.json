@@ -5,7 +5,7 @@
     "plan": {
       "color": "#D3D3D3",
       "permission": {
-        "bash": "none"
+        "bash": "deny"
       }
     },
     "build": {
