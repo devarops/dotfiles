@@ -7,4 +7,4 @@ Read all `./*.md` files in the project root. Based on their contents, explain:
 - The current state of development
 - What the next steps are
 
-Keep the summary to approximately 100 words.
+Keep the summary to approximately 200 words.
