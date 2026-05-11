@@ -61,19 +61,26 @@ Rewrite or update `README.md` for a non-technical audience.
 
 ## 4. Update CHANGELOG.md (SemVer)
 Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
-- **Version Bump:** ([SemVer](https://semver.org/))
-  - **MAJOR:** Incompatible changes (tests of previous version fail under new implementation).
-  - **MINOR:** Compatible new features added (tests of previous version pass under new implementation).
-  - **PATCH:** Compatible bug fixes.
-  - *Note: In `0.y.z`, increment MINOR for every release.*
+
+- **Version bump:** ([Semantic Versioning (SemVer)](https://semver.org/))
+
+  - **MAJOR:** Incompatible changes. Tests from the previous version fail under the new implementation.
+  - **MINOR:** Backward-compatible features added. Tests from the previous version continue to pass under the new implementation.
+  - **PATCH:** Backward-compatible bug fixes.
+  - **Note:** For `0.y.z` versions, increment the MINOR version for every release.
+
 - **Process:**
-  1. **Audit Tags:** Check that every version in the changelog has a corresponding git tag (`vX.Y.Z`) and vice versa. Fix mismatches.
-  2. **Discover Changes:** Run `git diff <last_tag>...HEAD -- <test_directory>/` (e.g., `tests/`) to see modified tests. Infer user-observable features, functions, or data-model changes only from the test, but don't mention tests in the changelog.
-  3. Map changes to categories: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
-  3. **Constraint:** Describe features, not tests. One entry per bullet point. Use backticks for code symbols.
-  4. Move `Unreleased` entries to a new version header with today's date.
-  5. Update comparison links in the footer.
-- **Review:** Present the changes and explain. **Do not commit yet.**
+
+  1. **Audit tags:** Verify that every changelog version has a corresponding Git tag (`vX.Y.Z`) and that every Git tag appears in the changelog. Resolve any mismatches.
+  2. **Discover changes:** Run `git diff <last_tag>..HEAD -- <test_directory>/` (for example, `tests/`) to inspect modified tests. Infer only user-visible behavior, features, functions, or data-model changes from the tests, but do not mention tests in the changelog.
+  3. Consider only user-facing changes at the topmost layer.
+  4. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
+  5. Add all new changes since last vX.Y.Z tag to the `## [Unreleased]` section.
+  6. **Constraint:** Describe features and behavior, not tests. Use one bullet point per entry. Wrap code symbols in backticks.
+  7. Update comparison links in the footer.
+
+- **Review:** Present the proposed changes and explain them. Do not commit yet.
+
 
 ## 5. Clean TODO.md
 - Remove all completed items (`[x]`).
@@ -88,5 +95,6 @@ Once all changes are reviewed:
 2. **Commit with a structured message:**
    - **Header:** `📝 Update documentation and session housekeeping`
    - **Body:** Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and the `CHANGELOG.md` release.
+4. **Release a new version:** Offer the user to move `## [Unreleased]` entries to a new version header with today's date.
 3. **Tag the release:** If a new version was added to the changelog, run `git tag vX.Y.Z`.
-4. **Undo or Push:** Offer the user the option to undo the last commit or push the commit and tags to the remote.
+5. **Undo or Push:** Offer the user the option to undo the last commit or push the commit and tags to the remote.
