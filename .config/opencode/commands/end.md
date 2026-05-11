@@ -21,7 +21,8 @@ If any uncommitted change exists, notify the user and stop immediately.
 ## Phase 1: Internal Knowledge (`AGENTS.md` & `DOCS.md`)
 
 ### 1. Update AGENTS.md
-Identify any patterns, infrastructure changes, or workflow conventions that emerged this session.
+Identify any patterns, infrastructure changes, or workflow conventions that emerged during this session.
+What did you learn in this session that is not currently documented in `@AGENTS.md`?
 - Map findings to the appropriate sections in `AGENTS.md`.
 - Keep additions concise and consistent with the existing tone.
 - **Review:** Present the changes and explain. **Do not commit yet.**
