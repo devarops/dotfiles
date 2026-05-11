@@ -18,35 +18,38 @@ If any uncommitted change exists, notify the user and stop immediately.
 
 ---
 
-## Phase 1: Internal Knowledge (`AGENTS.md` & `DOCS.md`)
-
-### 1. Update AGENTS.md
+## 1. Update AGENTS.md
 Identify any patterns, infrastructure changes, or workflow conventions that emerged during this session.
 What did you learn in this session that is not currently documented in `@AGENTS.md`?
 - Map findings to the appropriate sections in `AGENTS.md`.
 - Keep additions concise and consistent with the existing tone.
 - **Review:** Present the changes and explain. **Do not commit yet.**
 
-### 2. Update DOCS.md
-Update the technical reference with any new or modified interfaces.
-Infer interfaces only from the test, but don't mention tests in DOCS.md.
-- **Format:** Every entry must follow this structure:
-  ### `symbol_name(signature)` or ### GET/POST /endpoint/ or ### cli command --options
+## 2. Update DOCS.md
+
+Update the interface technical reference documentation for any new or modified public interface.
+Infer interfaces exclusively from the tests.
+However, do not mention tests, testing strategy, or implementation details in DOCS.md.
+
+Format: Every entry must follow this structure:
+
+  ### symbol_name(signature)
+  or
+  ### GET/POST /endpoint/
+  or
+  ### cli command --options
+
   One-line description.
-  - **Parameters**: name, type, description
-  - **Returns**: type and description
-  - **Errors**: exception types and triggers (omit if none)
-  - **Notes**: edge cases or limitations (omit if none)
-- **Constraint:** Remove all test-specific language (e.g., "verified by tests"). Correct any inaccuracies in naming or signatures.
-- **Review:** Present the changes and explain. **Do not commit yet.**
 
----
+  - Parameters: name, type, description
+  - Returns: type and description
+  - Errors: exception/error types and triggering conditions (omit if none)
+  - Notes: edge cases, constraints, side effects, or limitations (omit if none)
 
-## Phase 2: Product Documentation (`README.md` & `CHANGELOG.md`)
-
-### 3. Update README.md (End-User Focused)
+## 3. Update README.md (End-User Focused)
 Rewrite or update `README.md` for a non-technical audience.
-- **Constraints:** Zero overlap with internal docs. No jargon, no implementation details, no algorithm explanations.
+- **Constraints:** Zero overlap with AGENTS.md nor DOCS.md.
+  No jargon, no implementation details, no algorithm explanations.
 - **Structure:**
   1. **Tagline:** Memorable phrase below the title.
   2. **How it works:** User journey through the public interface. Use a table for feature status (Ready/Coming soon).
@@ -56,7 +59,7 @@ Rewrite or update `README.md` for a non-technical audience.
   6. **Coming soon:** Bullet list of planned features.
 - **Review:** Present the changes and explain. **Do not commit yet.**
 
-### 4. Update CHANGELOG.md (SemVer)
+## 4. Update CHANGELOG.md (SemVer)
 Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
 - **Version Bump:** ([SemVer](https://semver.org/))
   - **MAJOR:** Incompatible changes (tests of previous version fail under new implementation).
@@ -72,26 +75,18 @@ Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
   5. Update comparison links in the footer.
 - **Review:** Present the changes and explain. **Do not commit yet.**
 
----
-
-## Phase 3: Housekeeping (`TODO.md`)
-
-### 5. Clean TODO.md
+## 5. Clean TODO.md
 - Remove all completed items (`[x]`).
 - Remove items that are now implicitly completed or obsolete.
-- **The Gold:** Ensure within the first few lines there is a clear "The Gold" objective. If the current Gold was removed, set a new one based on the next priority item.
+- **The Gold:** Ensure within the first few lines there is a clear "Gold" objective. If the current Gold was removed, set a new one based on the next priority item.
 - **Inventory:** If an Inventory table exists, keep only "To Do" rows.
 - **Review:** Present the changes and explain. **Do not commit yet.**
 
----
-
-## Phase 4: Finalization
-
-### 6. Commit and Tag
+## 6. Commit and Tag
 Once all changes are reviewed:
 1. **Stage all updated files.**
 2. **Commit with a structured message:**
    - **Header:** `📝 Update documentation and session housekeeping`
    - **Body:** Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and the `CHANGELOG.md` release.
 3. **Tag the release:** If a new version was added to the changelog, run `git tag vX.Y.Z`.
-4. **Push:** Push the commit and tags to the remote.
+4. **Undo or Push:** Offer the user the option to undo the last commit or push the commit and tags to the remote.
