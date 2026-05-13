@@ -48,15 +48,15 @@ Format: Every entry must follow this structure:
 
 ## 3. Update README.md (End-User Focused)
 Rewrite or update `README.md` for a non-technical audience.
-- **Constraints:** Zero overlap with AGENTS.md nor DOCS.md.
+- **Constraints:** Zero overlap with AGENTS.md or DOCS.md.
   No jargon, no implementation details, no algorithm explanations.
 - **Structure:**
-  1. **Tagline:** Memorable phrase below the title.
-  2. **How it works:** User journey through the public interface. Use a table for feature status (Ready/Coming soon).
-  3. **Before you start:** Required configuration or credentials.
-  4. **Run the project:** Setup instructions (Docker preferred, then native).
-  5. **Core concept:** Simple "If you do X → Y happens" explanations.
-  6. **Coming soon:** Bullet list of planned features.
+  1. **Tagline:** Memorable phrase below the title. Explains what it is.
+  2. **What it does:** The problem this project solves.
+  3. **How to use it:** User journey through the public interface.
+  4. **Before you start:** Required configuration or credentials.
+  5. **Run the project:** Setup instructions (Docker preferred, then native).
+  6. **Coming soon:** Bulleted list of planned features.
 - **Review:** Present the changes and explain. **Do not commit yet.**
 
 ## 4. Update CHANGELOG.md (SemVer)
