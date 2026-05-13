@@ -103,20 +103,8 @@ Format: Every entry must follow this structure:
   - Errors: exception/error types and triggering conditions (omit if none)
   - Notes: edge cases, constraints, side effects, or limitations (omit if none)
 
-## 3. Update README.md (End-User Focused)
-Rewrite or update `README.md` for a non-technical audience.
-- **Constraints:** Zero overlap with AGENTS.md or DOCS.md.
-  No jargon, no implementation details, no algorithm explanations.
-- **Structure:**
-  1. **Tagline:** Memorable phrase below the title. Explains what it is.
-  2. **What it does:** The problem this project solves.
-  3. **How to use it:** User journey through the public interface.
-  4. **Before you start:** Required configuration or credentials.
-  5. **Run the project:** Setup instructions (Docker preferred, then native).
-  6. **Coming soon:** Bulleted list of planned features.
-- **Review:** Present the changes and explain. **Do not commit yet.**
+## 3. Update CHANGELOG.md (SemVer)
 
-## 4. Update CHANGELOG.md (SemVer)
 Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
 
 - **Version bump:** ([Semantic Versioning (SemVer)](https://semver.org/))
@@ -129,27 +117,49 @@ Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
 - **Process:**
 
   1. **Audit tags:** Verify that every changelog version has a corresponding Git tag (`vX.Y.Z`) and that every Git tag appears in the changelog. Resolve any mismatches.
-  2. **Discover changes:** Run `git diff <last_tag>..HEAD -- <test_directory>/` (for example, `tests/`) to inspect modified tests. Infer only user-visible behavior, features, functions, or data-model changes from the tests, but do not mention tests in the changelog.
-  3. Consider only user-facing changes at the topmost layer.
-  4. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
-  5. Add all new changes since last vX.Y.Z tag to the `## [Unreleased]` section.
-  6. **Constraint:** Describe features and behavior, not tests. Use one bullet point per entry. Wrap code symbols in backticks.
+  2. **Discover changes:** Run `git diff <last_tag>..HEAD -- tests/` to inspect modified tests. Infer only user-visible behavior, features, functions, or data-model changes from the tests, but do not mention tests in the changelog.
+  3. If we have multiple layers, consider only user-facing changes at the topmost layer.
+  4. Ignore changes that the user cannot access from the topmost layer (CLI, API, etc.).
+  5. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
+  6. Add all new changes since last vX.Y.Z tag to the `## [Unreleased]` section.
+  7. **Constraint:** Describe features and behavior, not tests. Use one bullet point per entry. Wrap code symbols in backticks.
 
 - **Review:** Present the proposed changes and explain them. Do not commit yet.
 
+## 4. Update README.md (End-User Focused)
+
+- Remove from README.md any overlap with AGENTS.md.
+- Remove from README.md any overlap with DOCS.md.
+- Remove from README.md any overlap with CHANGELOG.md.
+- Rewrite or update `README.md` for a non-technical audience.
+  No jargon, no implementation details, no algorithm explanations.
+- **Structure:**
+  1. **Tagline:** Memorable phrase below the title. Explains what it is.
+  2. **What it does:** The problem this project solves.
+  3. **How to use it:** User journey through the public interface.
+  4. **Before you start:** Required configuration or credentials.
+  5. **Run the project:** Setup instructions (Docker preferred, then native).
+  6. **Coming soon:** Bulleted list of planned features.
+
+- **Review:** Present the changes and explain. **Do not commit yet.**
 
 ## 5. Clean TODO.md
+
 - Remove all completed items (`[x]`).
-- Remove items that are now implicitly completed or obsolete.
-- **The Gold:** Ensure within the first few lines there is a clear "Gold" objective. If the current Gold was removed, set a new one based on the next priority item.
-- **Inventory:** If an Inventory table exists, keep only "To Do" rows.
+- Remove items that tests confirm are now completed or obsolete, even if the user didn't mark them as done.
+- **The Gold:** Ensure within the first few lines there is a clear "Gold" objective. If the current Gold was completed or removed, set a new one based on the next priority item.
+- If a list or table exists where each item has a To Do/Done status, keep only "To Do" items.
+
 - **Review:** Present the changes and explain. **Do not commit yet.**
 
 ## 6. Commit and Tag
+
 Once all changes are reviewed:
+
 1. **Stage all updated files.**
 2. **Commit with a structured message:**
-   - **Header:** `📝 Update documentation and session housekeeping`
+   - **Header:** `📝 Update documentation`
+   - Blank second line.
    - **Body:** Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and the `CHANGELOG.md` release.
 4. **Release a new version:** Offer the user to move `## [Unreleased]` entries to a new version header with today's date.
 3. **Tag the release:** If a new version was added to the changelog, update comparison links in the footer, commit and run `git tag vX.Y.Z`.
