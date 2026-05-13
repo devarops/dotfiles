@@ -16,8 +16,8 @@ dev () {
 }
 
 
-# tmux
-t () {
+# start a tmux session for a repo
+start () {
   directory_name="${1%/}"                # remove trailing slash if present
   session_name="${directory_name//./_}"  # replace dots with underscores
   if ! tmux has-session -t "$session_name"; then
