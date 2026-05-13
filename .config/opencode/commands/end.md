@@ -19,11 +19,68 @@ If any uncommitted change exists, notify the user and stop immediately.
 ---
 
 ## 1. Update AGENTS.md
+
+Update or create `AGENTS.md` for this repository.
+
+The goal is a compact instruction file that helps future OpenCode sessions avoid mistakes and ramp up quickly.
+
 Identify any patterns, infrastructure changes, or workflow conventions that emerged during this session.
-What did you learn in this session that is not currently documented in `@AGENTS.md`?
-- Map findings to the appropriate sections in `AGENTS.md`.
-- Keep additions concise and consistent with the existing tone.
-- **Review:** Present the changes and explain. **Do not commit yet.**
+
+Every line should answer:
+"What did you learn in this session that is not currently documented in `AGENTS.md`?"
+"Would an AI agent likely miss this without help?" If not, leave it out.
+
+Read the highest-value sources first:
+- Tests in tests/*
+- Other tests, lint, formatter, typecheck, and codegen config
+- CI workflows and pre-commit / task runner config
+
+Prefer the tests over anything else.
+If architecture is still unclear after reading tests, config, and docs, inspect a small number of representative code files to find the real entrypoints, package boundaries, and execution flow.
+
+Prefer executable sources of truth over prose.
+If docs conflict with config or scripts, trust the executable source and only keep what you can verify.
+
+Look for the highest-signal facts for an agent working in this repo:
+- exact developer commands, especially non-obvious ones
+- how to run a single test, a single package, or a focused verification step
+- required command order when it matters, such as `lint -> typecheck -> test`
+- monorepo or multi-package boundaries, ownership of major directories, and the real app/library entrypoints
+- framework or toolchain quirks: generated code, migrations, codegen, build artifacts, special env loading, dev servers, infra deploy flow
+- repo-specific style or workflow conventions that differ from defaults
+- testing quirks: fixtures, integration test prerequisites, snapshot workflows, required services, flaky or expensive suites
+- important constraints from existing instruction files worth preserving
+
+Good `AGENTS.md` content is usually hard-earned context that took reading multiple files to infer.
+
+Include only high-signal, repo-specific guidance such as:
+- exact commands and shortcuts the agent would otherwise guess wrong
+- architecture notes that are not obvious from filenames
+- conventions that differ from language or framework defaults
+- setup requirements, environment quirks, and operational gotchas
+- references to existing instruction sources that matter
+
+Exclude:
+- generic software advice
+- long tutorials or exhaustive file trees
+- obvious language conventions
+- speculative claims or anything you could not verify
+- content better stored in a separate file and referenced here
+
+When in doubt, omit.
+
+Prefer short sections and bullets.
+If the repo is simple, keep the file simple.
+If the repo is large, summarize the few structural facts that actually change how an agent should work.
+
+If `AGENTS.md` already exists, improve it in place rather than rewriting blindly.
+Map findings to the appropriate sections in `AGENTS.md`.
+Keep additions concise and consistent with the existing tone.
+Preserve verified useful guidance, delete fluff or stale claims, and reconcile it with the current codebase.
+
+If `AGENTS.md` is 200 lines or longer, truncate it to 100 lines by removing the lowest-signal content.
+
+Present the changes and explain. **Do not commit yet.**
 
 ## 2. Update DOCS.md
 
