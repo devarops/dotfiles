@@ -77,7 +77,6 @@ Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
   4. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
   5. Add all new changes since last vX.Y.Z tag to the `## [Unreleased]` section.
   6. **Constraint:** Describe features and behavior, not tests. Use one bullet point per entry. Wrap code symbols in backticks.
-  7. Update comparison links in the footer.
 
 - **Review:** Present the proposed changes and explain them. Do not commit yet.
 
@@ -96,5 +95,5 @@ Once all changes are reviewed:
    - **Header:** `📝 Update documentation and session housekeeping`
    - **Body:** Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and the `CHANGELOG.md` release.
 4. **Release a new version:** Offer the user to move `## [Unreleased]` entries to a new version header with today's date.
-3. **Tag the release:** If a new version was added to the changelog, run `git tag vX.Y.Z`.
+3. **Tag the release:** If a new version was added to the changelog, update comparison links in the footer, commit and run `git tag vX.Y.Z`.
 5. **Undo or Push:** Offer the user the option to undo the last commit or push the commit and tags to the remote.
