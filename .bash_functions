@@ -49,6 +49,24 @@ t () {
   tmux switch -t "$session_name:1"
 }
 
+
+# kill the tmux session for a repo, after syncing it
+kill () {
+  directory_name="${1%/}"                # remove trailing slash if present
+  session_name="${directory_name//./_}"  # replace dots with underscores
+  cd "$HOME/repositorios/$directory_name" || return
+  git pull || return
+  git push || return
+  status=$(git status --porcelain)
+  if [ -n "$status" ]; then
+    echo "$status"
+    echo "tmux session NOT killed ⇐ uncommitted changes"
+    return
+  fi
+  tmux kill-session -t "$session_name"
+}
+
+
 # Free writing
 fw () {
   if ! tmux has-session -t free_writing; then
