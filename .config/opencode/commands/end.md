@@ -41,7 +41,7 @@ If architecture is still unclear after reading tests, config, and docs, inspect 
 Prefer executable sources of truth over prose.
 If docs conflict with config or scripts, trust the executable source and only keep what you can verify.
 
-Look for the highest-signal facts for an agent working in this repo:
+Look for the highest-signal facts for an AI agent working in this repo:
 - exact developer commands, especially non-obvious ones
 - how to run a single test, a single package, or a focused verification step
 - required command order when it matters, such as `lint -> typecheck -> test`
@@ -54,7 +54,7 @@ Look for the highest-signal facts for an agent working in this repo:
 Good `AGENTS.md` content is usually hard-earned context that took reading multiple files to infer.
 
 Include only high-signal, repo-specific guidance such as:
-- exact commands and shortcuts the agent would otherwise guess wrong
+- exact commands and shortcuts the AI agent would otherwise guess wrong
 - architecture notes that are not obvious from filenames
 - conventions that differ from language or framework defaults
 - setup requirements, environment quirks, and operational gotchas
@@ -71,7 +71,7 @@ When in doubt, omit.
 
 Prefer short sections and bullets.
 If the repo is simple, keep the file simple.
-If the repo is large, summarize the few structural facts that actually change how an agent should work.
+If the repo is large, summarize the few structural facts that actually change how an AI agent should work.
 
 If `AGENTS.md` already exists, improve it in place rather than rewriting blindly.
 Map findings to the appropriate sections in `AGENTS.md`.
@@ -118,21 +118,25 @@ Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
 - Process:
   1. Audit tags: Verify that every changelog version has a corresponding Git tag (`vX.Y.Z`) and that every Git tag appears in the changelog. Resolve any mismatches.
   2. Discover changes: Run `git diff <last_tag>..HEAD -- tests/` to inspect modified tests. Infer only user-visible behavior, features, functions, or data-model changes from the tests, but do not mention tests in the changelog.
-  3. If we have multiple layers, consider only user-facing changes at the topmost layer.
+  3. If the project has multiple layers, consider only user-facing changes at the topmost layer.
   4. Ignore changes that the user cannot access from the topmost layer (CLI, API, etc.).
   5. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
-  6. Add all new changes since last vX.Y.Z tag to the `## [Unreleased]` section.
+  6. Add all new changes since the last vX.Y.Z tag to the `## [Unreleased]` section.
   7. Constraint: Describe features and behavior, not tests. Use one bullet point per entry. Wrap code symbols in backticks.
 
 Review: Present the changes and explain. Do not commit yet.
 
 ## 4. Update README.md (End-User Focused)
 
-- Remove from README.md any overlap with AGENTS.md.
-- Remove from README.md any overlap with DOCS.md.
-- Remove from README.md any overlap with CHANGELOG.md.
-- Rewrite or update `README.md` for a non-technical audience.
-  No jargon, no implementation details, no algorithm explanations.
+Rewrite or update `README.md` for a non-technical audience.
+Ensure the final README.md has zero overlap with `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`.
+
+- Constraints:
+  - Remove from README.md any overlap with AGENTS.md.
+  - Remove from README.md any overlap with DOCS.md.
+  - Remove from README.md any overlap with CHANGELOG.md.
+  - No jargon, no implementation details, no algorithm explanations.
+
 - Structure:
   1. Tagline: Memorable phrase below the title. Explains what it is.
   2. What it does: The problem this project solves.
@@ -163,5 +167,5 @@ Once all changes are reviewed and approved:
    - Blank second line.
    - Body: Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and the `CHANGELOG.md` release.
 3. Release a new version: Offer the user to move `## [Unreleased]` entries to a new version header with today's date.
-4. Tag the release: If a new version was added to the changelog, update comparison links in the footer, commit and run `git tag vX.Y.Z`.
+4. Tag the release: If a new version was added to the changelog, update comparison links in the footer, commit the link changes, and run `git tag vX.Y.Z`.
 5. Undo or Push: Offer the user the option to undo the last commit or push the commit and tags to the remote.
