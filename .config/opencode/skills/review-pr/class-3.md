@@ -1,9 +1,4 @@
----
-name: review-class-3
-description: Check reproducibility and artifact integrity in analysis pipelines.
----
-
-## Context:
+## Context
 
 These repositories implement end-to-end analysis workflows that produce results used in conservation decisions, where correctness and traceability are essential.
 They exist to formalize analyses as reproducible pipelines, ensuring results can be regenerated, audited, and trusted over time.
