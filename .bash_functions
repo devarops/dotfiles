@@ -54,10 +54,10 @@ start () {
 kill () {
   directory_name="${1%/}"                # remove trailing slash if present
   session_name="${directory_name//./_}"  # replace dots with underscores
-  cd "$HOME/repositorios/$directory_name" || return
-  git pull || return
-  git push || return
-  status=$(git status --porcelain)
+  repo_path="$HOME/repositorios/$directory_name"
+  git -C "$repo_path" pull || return
+  git -C "$repo_path" push || return
+  status=$(git -C "$repo_path" status --porcelain)
   if [ -n "$status" ]; then
     echo "$status"
     echo "tmux session NOT killed ⇐ uncommitted changes"
