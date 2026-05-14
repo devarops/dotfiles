@@ -16,8 +16,8 @@ dev () {
 }
 
 
-# start a tmux session for a repo
-start () {
+# open a tmux session for a repo
+open () {
   directory_name="${1%/}"                # remove trailing slash if present
   session_name="${directory_name//./_}"  # replace dots with underscores
   if ! tmux has-session -t "$session_name"; then
@@ -50,8 +50,8 @@ start () {
 }
 
 
-# kill the tmux session for a repo, after syncing it
-kill () {
+# close the tmux session for a repo, after syncing it
+close () {
   directory_name="${1%/}"                # remove trailing slash if present
   session_name="${directory_name//./_}"  # replace dots with underscores
   repo_path="$HOME/repositorios/$directory_name"
@@ -60,7 +60,7 @@ kill () {
   status=$(git -C "$repo_path" status --porcelain)
   if [ -n "$status" ]; then
     echo "$status"
-    echo "tmux session NOT killed ⇐ uncommitted changes"
+    echo "tmux session NOT closed ⇐ uncommitted changes"
     return
   fi
   tmux kill-session -t "$session_name"
