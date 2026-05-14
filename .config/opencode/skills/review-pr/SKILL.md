@@ -21,14 +21,7 @@ gh pr view <NUMBER> --json headRefName,baseRefName -q '.headRefName'
 
 Store the branch name and base branch. If base branch is not `develop`, note it for later use.
 
-### 3. Fetch reference documents
-
-Fetch **both** of these URLs:
-
-- `https://islas.dev/guia_de_estilo/comentarios_en_revisiones` — to get the PR Checklist and understand how to write review comments.
-- `https://islas.dev/guia_de_estilo/STYLEGUIDE` — to use as a second checklist for naming, style, and code conventions.
-
-### 4. Get the diff
+### 3. Get the diff
 
 ```bash
 git fetch origin develop
@@ -38,6 +31,15 @@ git diff origin/develop..HEAD --name-only
 ```
 
 Store the list of changed files and the full diff. If `develop` does not exist, ask the user which base branch to use.
+
+### 4. Fetch reference documents
+
+Fetch **both** of these URLs:
+
+- `https://islas.dev/guia_de_estilo/comentarios_en_revisiones` — to get the PR Checklist and understand how to write review comments.
+- `https://islas.dev/guia_de_estilo/STYLEGUIDE` — to use as a second checklist for naming, style, and code conventions.
+
+If the repository has a file named `analyses.json` at its root, also read `class-3.md` and use its task list as an additional reference during review.
 
 ### 5. Create the review file
 
