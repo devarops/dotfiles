@@ -1,8 +1,6 @@
 ---
 name: review-pr
 description: Interactive PR review that walks through git diff changes, classifies findings, and submits a structured GitHub review. Use when a pull request needs review.
-color: "#22C55E"
-mode: all
 ---
 
 # Skill: review-pr
