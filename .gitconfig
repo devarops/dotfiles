@@ -3,7 +3,7 @@
     email = evaristo.rojas@islas.org.mx
 
 [alias]
-    adog = log --all --decorate --oneline --graph
+    adog = log --all --graph --date=short --pretty=format:%C(auto)%h%x20%ad%x20%s%x20%C(auto)%d
     dunk = !git diff | dunk
 
 [init]
