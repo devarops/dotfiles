@@ -165,7 +165,17 @@ Once all changes are reviewed and approved:
 2. Commit with a structured message:
    - Header: `📝 Update documentation`
    - Blank second line.
-   - Body: Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and the `CHANGELOG.md` release.
-3. Release a new version: Offer the user to move `## [Unreleased]` entries to a new version header with today's date.
-4. Tag the release: If a new version was added to the changelog, update comparison links in the footer, commit the link changes, and run `git tag vX.Y.Z`.
-5. Undo or Push: Offer the user the option to undo the last commit or push the commit and tags to the remote.
+   - Body: Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and `CHANGELOG.md`.
+3. Offer the user the option to undo the last commit.
+
+## 7. Release a new version
+
+1. Use `git status --porcelain` to verify that the working tree is clean.
+   If any uncommitted change exists, notify the user and stop immediately.
+2. Ask the user whether to release a new version.
+3. If the user chooses not to release a new version, stop here and end the command.
+4. If the user chooses to release a new version, continue.
+    - Move `## [Unreleased]` entries to a new version header with today's date.
+    - Update comparison links in the footer, commit the link changes, and run `git tag vX.Y.Z`.
+    - Undo or Push: Offer the user the option to undo the last commit or push the commit and tags to the remote.
+5. Use `git status --porcelain` to verify that the working tree is clean.
