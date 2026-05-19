@@ -32,5 +32,13 @@ alias geci-checkanalyses='docker run --rm --volume ${PWD}:/workdir islasgeci/mis
 alias geci-tdp2xls='docker run --rm --volume ${PWD}:/workdir islasgeci/misctools:latest geci-tdp2xls'
 alias geci-validate='docker run --rm --volume ${PWD}:/workdir islasgeci/misctools:latest geci-validate'
 
+
 # Carga funciones
-source ~/.bash_functions
+if [ -f ~/.bash_functions ]; then
+  source ~/.bash_functions
+fi
+
+# Carga secretos de la bóveda
+if [ -f ~/.vault/.secrets ]; then
+  source ~/.vault/.secrets
+fi
