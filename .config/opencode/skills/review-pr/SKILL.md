@@ -32,10 +32,11 @@ Store the list of changed files and the full diff. If `develop` does not exist, 
 
 ### 4. Fetch reference documents
 
-Fetch **both** of these URLs:
+Fetch **all** of these URLs:
 
-- `https://islas.dev/guia_de_estilo/comentarios_en_revisiones` — to get the PR Checklist and understand how to write review comments.
-- `https://islas.dev/guia_de_estilo/STYLEGUIDE` — to use as a second checklist for naming, style, and code conventions.
+- `https://islas.dev/guia_de_estilo/comentarios_en_revisiones`: to get the PR Checklist and understand how to write review comments.
+- `https://islas.dev/guia_de_estilo/STYLEGUIDE`: to use as a second checklist for naming, style, and code conventions.
+- `https://islas.dev/2026/05/15/arquitectura`: to verify the files touched by the PR follow the levels-and-layers architecture.
 
 If the repository has a file named `analyses.json` at its root, also read `class-3.md` and use its task list as an additional reference during review.
 
