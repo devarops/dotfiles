@@ -1,15 +1,15 @@
 ---
 name: review-pr
-description: Interactive PR review that walks through git diff changes, classifies findings, and submits a structured GitHub review. Use when a pull request needs review.
+description: Interactive PR review that walks through git diff changes, classifies findings, and submits a structured GitHub review
 ---
 
-# Skill: review-pr
+You are performing a PR review. Use the PR number provided as the first argument (`$1`).
 
 ## Workflow
 
-### 1. Ask for the PR number
+### 1. Ask for the PR number (if not provided)
 
-Ask the user for the pull request number. Only accept a numeric value.
+If `$1` is empty, ask the user for the pull request number. Only accept a numeric value.
 
 ### 2. Fetch the PR branch
 
@@ -17,7 +17,7 @@ Ask the user for the pull request number. Only accept a numeric value.
 gh pr view <NUMBER> --json headRefName,baseRefName -q '.headRefName'
 ```
 
-Store the branch name and base branch. If base branch is not `develop`, note it for later use.
+Store the branch name and base branch. If the base branch is not `develop`, note it for later use.
 
 ### 3. Get the diff
 
@@ -38,11 +38,38 @@ Fetch **all** of these URLs:
 - `https://islas.dev/guia_de_estilo/STYLEGUIDE`: to use as a second checklist for naming, style, and code conventions.
 - `https://islas.dev/2026/05/15/arquitectura`: to verify the files touched by the PR follow the levels-and-layers architecture.
 
-If the repository has a file named `analyses.json` at its root, also read `class-3.md` and use its task list as an additional reference during review.
+If the repository has a file named `analyses.json` at its root, also use the following task list as an additional reference during review:
 
-### 5. Create the review file
+**Class 3 — analyses.json review tasks:**
 
-Create the directory and file: `.review/PR_<NUMBER>.md`
+- Parse all targets defined in the `Makefile`.
+- Extract all entries listed in `analyses.json`.
+- Normalize naming conventions across both sources to enable accurate comparison.
+- Identify targets present in the `Makefile` but missing in `analyses.json`.
+- Identify entries present in `analyses.json` but missing in the `Makefile`.
+- Flag all inconsistencies and classify them (e.g., missing, extra, mismatched).
+- Propose exact additions or removals required to achieve full alignment between `Makefile` and `analyses.json`.
+- Verify that all declared artifacts in `analyses.json` are actually produced by the corresponding `Makefile` targets.
+- Ensure a strict one-to-one mapping between declared artifacts and generated outputs (no missing or extra outputs).
+- Validate that the pipeline is reproducible: identical inputs and configuration produce identical outputs.
+- Verify that configuration is centralized and not duplicated or fragmented across scripts and files.
+- Preserve original formatting and conventions when suggesting fixes to `Makefile` or `analyses.json`.
+- Avoid modifying unrelated content when proposing changes.
+- Produce a final reconciled view of `Makefile` targets and `analyses.json` entries, including recommended changes.
+- Review `README.md` for accuracy and clarity for academic users.
+- Review `AGENTS.md` for accuracy and clarity for data analysts.
+
+### 5. Create or update the review file
+
+Look for the file `.review/PR_<NUMBER>.md`.
+
+If this is the first review round, the file might not exist yet.
+
+Create the directory and file: `.review/PR_<NUMBER>.md`.
+
+If the file already exists, we might be doing a subsequent review round.
+
+Ask the user to clarify which review round this is.
 
 Initialize it with this structure (checklists, not tables):
 
@@ -52,6 +79,8 @@ Initialize it with this structure (checklists, not tables):
 ## 👍 Hecho
 
 Positive observations / good things first.
+
+- [x] Completed task from previous review round.
 
 ## 🩹 Fix aplicado
 
@@ -87,8 +116,9 @@ For each file in the diff:
 1. Read the current file content.
 2. Show the diff hunk for that file.
 3. Identify opportunities for improvement by comparing against:
-   - The PR Checklist items.
-   - The STYLEGUIDE conventions.
+   - The PR Checklist items (`https://islas.dev/guia_de_estilo/comentarios_en_revisiones`)
+   - The STYLEGUIDE conventions (`https://islas.dev/guia_de_estilo/STYLEGUIDE`)
+   - The levels-and-layers architecture (`https://islas.dev/2026/05/15/arquitectura`)
 4. **Present only one opportunity at a time**.
 5. For each opportunity, offer these **five options**:
 
@@ -100,14 +130,16 @@ For each file in the diff:
    | **Required change** | A functionally incorrect or policy-violating issue. | Contradicts team style guide, is functionally wrong, or breaks standards. |
    | **Ignore** | Skip this opportunity entirely. | Not relevant or not worth addressing. |
 
-6. After the user chooses:
+6. Wait for the user's answer. After the user chooses:
    - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🔧 Fix aplicado. Multiple fixes in the same file accumulate.
    - If **Curious honest question**: add a checklist entry under ❓ Pregunta / Curiosidad.
    - If **Optional suggestion**: add a checklist entry under 💡 Sugerencia opcional.
    - If **Required change**: add a checklist entry under ⚠️ Cambio requerido.
    - If **Ignore**: do nothing, move on.
 
-7. **After finishing all opportunities for the current file**: if there are accumulated "fix and explain" changes, commit and push them as a **single commit per file**:
+Write all entries in `.review/PR_<NUMBER>.md` in Spanish.
+
+**After finishing all opportunities for the current file:** if there are accumulated "fix and explain" changes, commit and push them as a **single commit per file**:
    ```bash
    git add <FILE>
    git commit -m "🩹 Fix <filename>: <summary of all fixes>"
@@ -115,11 +147,11 @@ For each file in the diff:
    ```
    Example: `🩹 Fix CITATION.cff: correct version from 5.0.1 to 1.0.1 and fix typo`
 
-### 8. After all files are processed
+### 7. After all files are processed
 
 Show the user `.review/PR_<NUMBER>.md` and ask for **approval**.
 
-### 9. If approved, submit the review
+### 8. If approved, submit the review
 
 ```bash
 gh pr review <NUMBER> --request-changes --body-file .review/PR_<NUMBER>.md
