@@ -1,5 +1,5 @@
 ---
-name: review-pr
+name: pr-review
 description: Interactive PR review that walks through git diff changes, classifies findings, and submits a structured GitHub review
 ---
 
