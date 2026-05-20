@@ -132,9 +132,9 @@ For each file in the diff:
 
 6. Wait for the user's answer. After the user chooses:
    - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🔧 Fix aplicado. Multiple fixes in the same file accumulate.
-   - If **Curious honest question**: add a checklist entry under ❓ Pregunta / Curiosidad.
-   - If **Optional suggestion**: add a checklist entry under 💡 Sugerencia opcional.
-   - If **Required change**: add a checklist entry under ⚠️ Cambio requerido.
+   - If **Curious honest question**: add a checklist entry under ❓ Pregunta / Curiosidad. Do not fix anything — you are just asking for more information, not requesting changes.
+   - If **Optional suggestion**: add a checklist entry under 💡 Sugerencia opcional. Do not fix anything — it is up to the author of the PR to decide whether to accept the suggestion.
+   - If **Required change**: add a checklist entry under ⚠️ Cambio requerido. Do not fix anything — you are asking the author of the PR to fix it themselves.
    - If **Ignore**: do nothing, move on.
 
 Write all entries in `.review/PR_<NUMBER>.md` in Spanish.
