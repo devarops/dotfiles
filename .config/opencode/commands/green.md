@@ -32,8 +32,8 @@ Your mission is to produce the smallest possible production code change required
 
 - Keep the implementation minimal, direct, and behavior-focused.
 - Commit message structure:
-  - First line: `✅ [brief imperative summary]`
-    - Example: `✅ Add support for empty input`
+  - First line: `✅ 🧪 [brief imperative summary]`
+    - Example: `✅ 🧪 Add support for empty input`
   - Second line: blank
   - Remaining lines:
     - explain how the change satisfies the failing test,
