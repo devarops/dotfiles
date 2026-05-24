@@ -151,8 +151,57 @@ Review: Present the changes and explain. Do not commit yet.
 
 - Remove all completed items (`[x]`).
 - Remove items that tests confirm are now completed or obsolete, even if the user didn't mark them as done.
-- Gold objective: Ensure within the first few lines there is a clear Gold objective. If the current Gold was completed or removed, set a new one based on the next priority item.
-- If a list or table exists where each item has a To Do/Done status, keep only "To Do" items.
+- Ensure `TODO.md` follows this canonical structure:
+
+```
+# The Gold
+- <current gold> or - (None)
+
+## Plan (optional)
+
+---
+
+# Backlog not part of the current Gold
+
+The items listed below are not part of the current Gold. They are backlog items kept for future cycles.
+
+<user-curated content — agent does not touch>
+```
+
+### Rules
+
+1. **Two `# H1` headings only.**
+   The file must have exactly two H1s: `# The Gold` and `# Backlog not part of the current Gold`.
+   - If extra H1s exist → demote them to `## H2` and place below `---` during migration.
+   - If a required heading is missing → create it.
+
+2. **`# The Gold` section.**
+   - Contains exactly one bullet: `- <current gold>` or `- (None)`.
+   - A `## Plan` subsection may optionally appear after the bullet. Do not create it if absent.
+
+3. **Evaluate the Gold.**
+   - If **completed** during this session → replace the bullet with `- (None)`.
+   - If **still active** → leave it; you may rephrase it to reflect progress, but do not replace the objective.
+
+4. **The `---` boundary.**
+   - Agent may write `---` **only during file creation or one-time migration** to establish the canonical structure.
+   - After that commit, the agent never touches `---` or anything below it.
+   - `---` marks the limit of the agent's authority.
+
+5. **User zone (below `---`).**
+   - Must have the `# Backlog not part of the current Gold` heading and the preamble sentence.
+   - All content below `---` is user-curated. Do not add, remove, reorder, or edit it after the initial migration.
+
+6. **One-time migration (old format → canonical structure).**
+   When the existing `TODO.md` does not match the canonical structure:
+   - Preserve the current Gold (apply rule 3).
+   - Place `---`.
+   - Ensure the Backlog heading and preamble exist.
+   - Move all remaining content below `---`.
+   After this commit the boundary is established and rule 4 applies.
+
+7. **Missing TODO.md → create it.**
+   If no `TODO.md` exists, create it in the canonical shape with `- (None)` as the Gold and an empty backlog zone.
 
 Review: Present the changes and explain. Do not commit yet.
 
