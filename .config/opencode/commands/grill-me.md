@@ -9,3 +9,4 @@ For each question, provide options for possible answers and indicate your recomm
 Ask the questions one at a time.
 
 If a question can be answered by exploring the codebase, explore the codebase instead.
+If a question can be answered by exploring the documentation (`./*.md`), explore the documentation instead.
