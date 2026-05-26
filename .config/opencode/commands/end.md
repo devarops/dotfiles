@@ -36,7 +36,8 @@ Read the highest-value sources first:
 - CI workflows and pre-commit / task runner config
 
 Prefer the tests over anything else.
-If architecture is still unclear after reading tests, config, and docs, inspect a small number of representative code files to find the real entrypoints, package boundaries, and execution flow.
+Read Makefile and every file on the root directory.
+If architecture is still unclear after reading the tests and root files, then inspect the entire codebase to find the real entrypoints, package boundaries, and execution flow.
 
 Prefer executable sources of truth over prose.
 If docs conflict with config or scripts, trust the executable source and only keep what you can verify.
@@ -80,6 +81,10 @@ Preserve verified useful guidance, delete fluff or stale claims, and reconcile i
 
 If `AGENTS.md` is 200 lines or longer, truncate it to 100 lines by removing the lowest-signal content.
 
+Exclude from the line count anything below a `---` boundary that the user created to separate the content they maintain from the content the AI agent maintains.
+This allows users to keep an extended set of notes, instructions, or conventions below the boundary without worrying about them being edited or deleted by the agent during future updates to `AGENTS.md`.
+If such a boundary exists, do not edit or remove it, and do not count any lines below it toward the 200-line limit.
+
 Review: Present the changes and explain. Do not commit yet.
 
 ## 2. Update DOCS.md
@@ -109,11 +114,11 @@ Review: Present the changes and explain. Do not commit yet.
 
 Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
 
-- Version bump: (Semantic Versioning (SemVer))
+- Version bump: (Semantic Versioning: SemVer)
   - MAJOR: Incompatible changes. Tests from the previous version fail under the new implementation.
   - MINOR: Backward-compatible features added. Tests from the previous version continue to pass under the new implementation.
   - PATCH: Backward-compatible bug fixes.
-  - Note: For 0.y.z versions, increment the MINOR version for every release.
+  - Note: For 0.y.z versions, increment the MINOR (y) version for every release.
 
 - Process:
   1. Audit tags: Verify that every changelog version has a corresponding Git tag (`vX.Y.Z`) and that every Git tag appears in the changelog. Resolve any mismatches.
@@ -129,7 +134,7 @@ Review: Present the changes and explain. Do not commit yet.
 ## 4. Update README.md (End-User Focused)
 
 Rewrite or update `README.md` for a non-technical audience.
-Ensure the final README.md has zero overlap with `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`.
+Ensure the final README.md does not contain any information that overlaps with `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`.
 
 - Constraints:
   - Remove from README.md any overlap with AGENTS.md.
@@ -141,7 +146,7 @@ Ensure the final README.md has zero overlap with `AGENTS.md`, `DOCS.md`, or `CHA
   1. Tagline: Memorable phrase below the title. Explains what it is.
   2. What it does: The problem this project solves.
   3. How to use it: User journey through the public interface.
-  4. Before you start: Required configuration or credentials.
+  4. Before you start: Required installation, configuration or credentials.
   5. Run the project: Setup instructions (Docker preferred, then native).
   6. Coming soon: Bulleted list of planned features.
 
@@ -177,7 +182,7 @@ The items listed below are not part of the current Gold. They are backlog items 
 
 2. **`# The Gold` section.**
    - Contains exactly one bullet: `- <current gold>` or `- (None)`.
-   - A `## Plan` subsection may optionally appear after the bullet. Do not create it if absent.
+   - A `## Plan` subsection may optionally appear after the single bullet. Do not create it if absent.
 
 3. **Evaluate the Gold.**
    - If **completed** during this session → replace the bullet with `- (None)`.
