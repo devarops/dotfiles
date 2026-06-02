@@ -20,13 +20,13 @@ dev () {
 open () {
   directory_name="${1%/}"                # remove trailing slash if present
   session_name="${directory_name//./_}"  # replace dots with underscores
-  if ! tmux has-session -t "$session_name"; then
+  if ! tmux has-session -t "$session_name" 2>/dev/null; then
+    echo "Creating tmux session '$session_name'..."
     if [ -d "$HOME/repositorios/$directory_name" ]; then
       tmux new -c "$HOME/repositorios/$directory_name" -d -s "$session_name"
     else
       tmux new -d -s "$session_name"
     fi
-    tmux new-window -t "$session_name:1"
     tmux new-window -t "$session_name:2"
     tmux new-window -t "$session_name:3"
     tmux new-window -t "$session_name:4"
