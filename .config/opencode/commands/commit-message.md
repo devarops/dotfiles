@@ -1,5 +1,5 @@
 ---
-name: draft-commit-message
+name: commit-message
 description: Generate concise, well-structured git commit messages from `git status --verbose`.
 ---
 
@@ -8,7 +8,7 @@ description: Generate concise, well-structured git commit messages from `git sta
 1. Run `git status --verbose` to identify changes in the staging area.
 1. If there are no staged changes, inform the user and stop.
 1. Ignore unstaged changes and focus only on the staged ones for commit message generation.
-1. Use `git log --max-count 5` to read the last five commit messages to understand the project's commit style and context.
+1. Use `git log --patch --max-count 5` to understand the project's commit style, context, and the direction of recent changes.
 1. Focus on intent and motivation, not implementation details.
 1. Avoid restating what is obvious from the diff.
 1. Ensure clear, professional English with correct grammar and spelling.
@@ -18,7 +18,8 @@ description: Generate concise, well-structured git commit messages from `git sta
    - Option 3: Concise/Brief
    - Option 4: Creative/Unexpected
 1. Ensure each option varies in tone and structure while remaining relevant.
-1. Use `git log --patch --max-count 5` if insufficient context is provided.
+1. Ask the user to select one of the four options for the final commit message and wait for their input.
+1. After the user selects an option, commit the staged changes with the chosen commit message.
 
 ## Format
 
