@@ -40,7 +40,7 @@ open () {
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:4" "opencode ." ENTER
     tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:5" "pi" ENTER
+    tmux send-keys  -t "$session_name:5" "pi --prompt-template $HOME/.config/opencode/commands/" ENTER
   fi
   tmux switch -t "$session_name:1"
 }
