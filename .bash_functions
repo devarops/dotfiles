@@ -40,7 +40,7 @@ open () {
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:4" "opencode ." ENTER
     tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:5" "aider --no-attribute-author --chat-mode ask" ENTER
+    tmux send-keys  -t "$session_name:5" "pi" ENTER
   fi
   tmux switch -t "$session_name:1"
 }
