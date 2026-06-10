@@ -2,6 +2,8 @@
 description: Produce the smallest possible production code to make the current failing test pass.
 ---
 
+This command executes in non-interactive mode as part of an automated process. Do not expect or request user input.
+
 We are now in the Green phase of Test-Driven Development (TDD).
 
 The Green phase focuses on making the failing test pass with the smallest possible production code change, deferring structural improvements to the Refactor phase.

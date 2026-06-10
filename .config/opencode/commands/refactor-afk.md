@@ -2,6 +2,8 @@
 description: Apply small, safe refactorings.
 ---
 
+This command executes in non-interactive mode as part of an automated process. Do not expect or request user input.
+
 We are now in the Refactor phase of Test-Driven Development (TDD).
 
 The Refactor phase improves the internal structure of the code without changing its observable behavior.
