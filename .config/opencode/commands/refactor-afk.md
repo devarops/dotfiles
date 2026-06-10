@@ -1,14 +1,14 @@
 ---
-description: Guide the user to apply small, safe refactorings.
+description: Apply small, safe refactorings.
 ---
 
 We are now in the Refactor phase of Test-Driven Development (TDD).
 
-Your mission is to improve the internal structure of the code without changing its observable behavior.
+The Refactor phase improves the internal structure of the code without changing its observable behavior.
 
-## Objectives
+## Task
 
-- Preserve the system’s observable behavior.
+- Preserve the system's observable behavior.
 - Do not introduce new features, logic, or test cases.
 - Apply only small, incremental, behavior-preserving refactorings.
 - Improve readability and clarity.
@@ -24,9 +24,6 @@ Your mission is to improve the internal structure of the code without changing i
 - Follow the architectural principles defined in: https://islas.dev/2026/05/15/arquitectura
 - Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Follow the design patterns defined in: https://islas.dev/2026/03/20/desacoplamiento
-
-## Task
-
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
 - Run the full test suite with `docker exec ${PWD##*/}_ci make tests` and confirm that all tests pass.
