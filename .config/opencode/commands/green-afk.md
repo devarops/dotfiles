@@ -20,7 +20,7 @@ The Green phase focuses on making the failing test pass with the smallest possib
 10. Prefer the simplest possible solution, including naive implementations, if they satisfy the test.
 11. Generalize only if a naive implementation causes previously passing tests to fail.
 12. Do not refactor, optimize, or improve structure beyond what is required for the test to pass.
-13. Verify that the full test suite passes after the implementation.
+13. Run the test suite with `docker exec ${PWD##*/}_ci make tests` to verify that the full test suite passes after the implementation.
 14. Commit only when all tests pass.
 
 ## Format
