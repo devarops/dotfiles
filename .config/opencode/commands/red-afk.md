@@ -11,9 +11,9 @@ The Red phase identifies the behavioral gap between the current system and "The 
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
 - Search for "The Gold" (`"gold": "current"`) in `prd.json`.
-- If `prd.json` does not exist, <error>FAIL: prd.json not found</error> and run: exit 1.
+- If `prd.json` does not exist, <error>FAIL: prd.json not found</error> and run: exit 1
 - Do not edit `prd.json`.
-- If "The Gold" is not explicitly defined, output <error>FAIL: The Gold not defined in prd.json</error> and run: exit 1.
+- If "The Gold" is not explicitly defined, output <error>FAIL: The Gold not defined in prd.json</error> and run: exit 1
 - Analyze the existing test suite to determine the system's current observable behavior.
 - Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 - Compare the current behavior against "The Gold" to identify the behavioral gap.
