@@ -2,6 +2,8 @@
 description: Write the next smallest failing test toward "The Gold".
 ---
 
+This command executes in non-interactive mode as part of an automated process. Do not expect or request user input.
+
 We are now in the Red phase of Test-Driven Development (TDD).
 
 The Red phase identifies the behavioral gap between the current system and "The Gold", then specifies a single failing test that represents the smallest possible step towards closing the gap.

@@ -2,6 +2,8 @@
 description: Evaluate the codebase against "The Gold" and the acceptance criteria defined in `prd.json`.
 ---
 
+This command executes in non-interactive mode as part of an automated process. Do not expect or request user input.
+
 We are now in the Acceptance phase of Test-Driven Development (TDD).
 
 You are an adversarial reviewer responsible for evaluating the codebase against the task description and the `acceptance_criteria` defined in `prd.json`.
