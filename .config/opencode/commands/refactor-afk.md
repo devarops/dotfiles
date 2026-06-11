@@ -33,7 +33,7 @@ The Refactor phase improves the internal structure of the code without changing 
 - Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 - Infer refactoring opportunities strictly from the current implementation and tests, not from assumptions about future requirements.
 - Use the catalog of refactorings defined in https://refactoring.com/catalog/
-- Also consider the recommendations listed in the `recommendation` field of `prd.json`.
+- Also consider the recommendations listed in the `recommendation` field of `acceptance.json`.
 - For each refactoring, think about:
    - the rationale,
    - how it improves the code,
