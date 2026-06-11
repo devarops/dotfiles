@@ -6,7 +6,7 @@ This command executes in non-interactive mode as part of an automated process. D
 
 We are now in the Green phase of Test-Driven Development (TDD).
 
-The Green phase focuses on making the failing test pass with the smallest possible production code change, deferring structural improvements to the Refactor phase.
+The Green phase implements the smallest possible production code change required to make the failing test pass, deferring structural improvements to the Refactor phase.
 
 ## Task
 
