@@ -39,7 +39,7 @@ The Red phase identifies the behavioral gap between the current system and the `
   - First line: `🛑 🧪 [brief description of the expected behavior]`
     - Example: `🛑 🧪 Expect support for negative numbers`
   - Second line: blank
-  - Remaining lines:
+  - Remaining lines (each as a separate paragraph):
     - Explain what behavior the failing test specifies.
     - Explain why the test fails under the current implementation.
     - Explain why passing the test does not prematurely reach `acceptance_criteria`.
