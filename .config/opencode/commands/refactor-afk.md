@@ -40,6 +40,7 @@ The Refactor phase improves the internal structure of the code without changing 
    - how behavior is preserved,
    - and the trade-offs, risks, or limitations.
 - Prioritize refactorings that improve readability, clarity, and maintainability over those that reduce line count or add abstraction.
+- Prefer extracting variables, functions, or methods with meaningful, descriptive names to clarify intent and improve readability, rather than inlining code to reduce line count.
 - Prioritize refactorings that offer a clear and immediate improvement with lower risk.
 - Apply only one single refactoring, even if multiple opportunities are identified.
 - Run the full test suite after applying the refactoring to verify that all tests still pass and that no behavior has changed.
