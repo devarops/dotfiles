@@ -29,6 +29,7 @@ You also provide concise, actionable feedback to improve the codebase and meet t
 ## Format
 
 - `acceptance.json` may or may not be tracked by Git. If not tracked, you can edit without committing. If tracked, you must commit the changes.
+- Make sure to leave a clean working tree after making any changes to `acceptance.json`.
 - Commit message structure:
   - First line: `📋 🧪 [brief description of the evaluation result]`
     - Example: `📋 🧪 Verify gold task passes all acceptance criteria`
