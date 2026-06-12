@@ -13,17 +13,17 @@ You also provide concise, actionable feedback to improve the codebase and meet t
 ## Task
 
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
-- If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
+- If any uncommitted changes exist, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
 - Read the full text of the last few commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they provide.
 - Search for `"gold": "current"` in `acceptance.json` to find "The Gold."
 - If no task is set as `"gold": "current"`, scan the backlog tasks (`"gold": "backlog"`) in `acceptance.json`, identify the next most important task (not necessarily the first), and promote it to current gold by setting `"gold": "current"`.
 - If `acceptance.json` does not exist, output <error>FAIL: acceptance.json not found</error> and run: exit 1
-- Assess whether the `evaluation_command` field of the current gold task in `acceptance.json` is still relevant and appropriate for evaluating the acceptance criteria given the current state of the codebase.
-- `evaluation_command` must be a deterministic command (e.g., a specific test suite, static analysis tool, or custom evaluation script).
-- If the `evaluation_command` is no longer relevant or appropriate, update it in `acceptance.json` with a command that is relevant and appropriate for the current state of the codebase.
-- Update the `passes` field of the current gold task in `acceptance.json` to `true` if the codebase meets the acceptance criteria, or `false` if it does not.
+- Use a deterministic command for evaluating whether the codebase meets the `acceptance_criteria` defined in `acceptance.json`.
+- This command should be designed to provide a clear pass/fail result based on the criteria.
+- The specific command will depend on the nature of the acceptance criteria (e.g., running tests, checking code quality metrics, verifying documentation, etc.).
+- Update the `passes` field of the current gold task in `acceptance.json` to `true` if the codebase meets the acceptance criteria, or to `false` if it does not.
 - If the codebase meets the acceptance criteria (`"passes": true`), mark the current gold task as done by setting `"gold": "done"` in `acceptance.json`.
-- If the current gold is done (`"passes": true` and `"gold": "done"`), scan the backlog tasks (`"gold": "backlog"`) in `acceptance.json`, identify the next most important task (not necessarily the first), and promote it to current gold by setting `"gold": "current"`.
+- If the current gold task is done (`"passes": true` and `"gold": "done"`), scan the backlog tasks (`"gold": "backlog"`) in `acceptance.json`, identify the next most important task (not necessarily the first), and promote it to current gold by setting `"gold": "current"`.
 - If there are no backlog or current gold tasks in `acceptance.json`, verify that all tasks are marked as done (`"gold": "done"`). If so, output <promise>COMPLETE</promise>.
 
 ## Format
