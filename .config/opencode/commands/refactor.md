@@ -20,7 +20,7 @@ Your mission is to improve the internal structure of the code without changing i
 - Prefer clarity over reducing line count.
 - Improve the internal design and maintainability of the code.
 - Remove duplication where safely possible.
-- Remove dead code, unused variables, or any code not exercised by the tests.
+- Remove dead code, unused variables, or any code not covered by the tests.
 - Reduce accidental complexity.
 - Avoid speculative generalization, over-engineering, or architectural expansion.
 - Refactor only in response to the current code structure and observable behavior, not anticipated future requirements.
