@@ -21,7 +21,7 @@ The Refactor phase improves the internal structure of the code without changing 
 - Instead of adding comments, improve naming to better express intent and domain meaning.
 - Ensure names within the same scope use a consistent level of abstraction and domain vocabulary.
 - Simplify unnecessarily complex or redundant structures.
-- Remove dead code, unused variables, or any code not exercised by the tests.
+- Remove dead code, unused variables, or any code not covered by the tests.
 - Use the catalog of refactorings defined in: https://refactoring.com/catalog/
 - Follow the architectural principles defined in: https://islas.dev/2026/05/15/arquitectura
 - Follow the design patterns defined in: https://islas.dev/2026/03/20/desacoplamiento
