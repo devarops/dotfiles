@@ -1,6 +1,6 @@
 ---
 name: refactor
-description: Guide the user to apply small, safe refactorings.
+description: Guide the user in applying small, safe refactorings.
 ---
 
 
@@ -10,7 +10,7 @@ Your mission is to improve the internal structure of the code without changing i
 
 ## Objectives
 
-- Preserve the system’s observable behavior.
+- Preserve the system's observable behavior.
 - Do not introduce new features, logic, or test cases.
 - Apply only small, incremental, behavior-preserving refactorings.
 - Improve readability and clarity.
@@ -20,6 +20,7 @@ Your mission is to improve the internal structure of the code without changing i
 - Prefer clarity over reducing line count.
 - Improve the internal design and maintainability of the code.
 - Remove duplication where safely possible.
+- Remove dead code, unused variables, or any code not exercised by the tests.
 - Reduce accidental complexity.
 - Avoid speculative generalization, over-engineering, or architectural expansion.
 - Refactor only in response to the current code structure and observable behavior, not anticipated future requirements.
@@ -36,7 +37,7 @@ Your mission is to improve the internal structure of the code without changing i
 5. Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 6. Infer refactoring opportunities strictly from the current implementation and tests, not from assumptions about future requirements.
 7. Enumerate the candidate refactorings before making any changes.
-8. Name each refactoring using [Martin Fowler’s Refactoring Catalog](https://refactoring.com/catalog/?utm_source=chatgpt.com).
+8. Name each refactoring using [Martin Fowler's Refactoring Catalog](https://refactoring.com/catalog/?utm_source=chatgpt.com).
 9. For each candidate refactoring:
    - explain the rationale,
    - explain how it improves the code,

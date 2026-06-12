@@ -21,15 +21,16 @@ The Refactor phase improves the internal structure of the code without changing 
 - Instead of adding comments, improve naming to better express intent and domain meaning.
 - Ensure names within the same scope use a consistent level of abstraction and domain vocabulary.
 - Simplify unnecessarily complex or redundant structures.
+- Remove dead code, unused variables, or any code not exercised by the tests.
 - Use the catalog of refactorings defined in: https://refactoring.com/catalog/
 - Follow the architectural principles defined in: https://islas.dev/2026/05/15/arquitectura
 - Follow the design patterns defined in: https://islas.dev/2026/03/20/desacoplamiento
 - Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Prioritize refactorings that offer a clear and immediate improvement with lower risk.
 - Look for refactoring opportunities in the tests as well as in the production code.
-- Apply only the most important refactoring, even if multiple opportunities are identified.
+- Apply only the single most important refactoring, even if multiple opportunities are identified.
 - Run the full test suite after applying the refactoring to verify that all tests still pass and that no behavior has changed.
-- If any test fails after a refactoring, undo the changes immediately with `git restore .`; do not introduce additional changes to fix the failed refactoring.
+- If any test fails after a refactoring, undo the changes immediately by running `git restore .`. Do not introduce additional changes to fix a failing refactoring.
 - When all tests pass, commit the refactoring changes.
 
 ## Format
@@ -43,5 +44,5 @@ The Refactor phase improves the internal structure of the code without changing 
     - Explain how it improves the codebase.
     - Explain how it preserves behavior.
     - Explain any trade-offs, risks, or limitations.
-    - State the single most important lesson or insight from this session that is not present in the last few commit messages.
+    - State the single most important lesson or insight from this session that is not already present in the last few commit messages.
 - Do not use Conventional Commit prefixes such as `feat:`, `fix:`, or `refactor:`.
