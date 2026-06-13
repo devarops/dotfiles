@@ -4,14 +4,13 @@ description: Evaluate the codebase against the acceptance criteria defined in `a
 
 This command executes in non-interactive mode as part of an automated process. Do not expect or request user input.
 We are now in the acceptance phase of the development process.
-The goal of this phase is to evaluate the codebase against the acceptance criteria defined in `acceptance.json` and determine whether it meets the requirements for completion.
-Your role is to provide an independent, impartial, and objective assessment of the codebase's quality and alignment with the defined requirements.
+The goal of this phase is to evaluate the codebase against the acceptance criteria defined in `acceptance.json` and to determine whether it meets the requirements for completion.
+Your role is to provide an independent and objective assessment of the codebase's quality and alignment with the defined requirements.
 
 ## Task
 
-- Read the full text of the last few commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they provide.
 - If `acceptance.json` does not exist, output <error>FAIL: acceptance.json not found</error> and run: exit 1
-- Use a deterministic command for evaluating whether the codebase meets the `acceptance_criteria` defined in `acceptance.json`.
+- For each task in `acceptance.json`, use a deterministic command to evaluate whether the codebase meets the `acceptance_criteria`.
 - This command should be designed to provide a clear pass/fail result based on the criteria.
 - The specific command will depend on the nature of the acceptance criteria (e.g., running tests, checking code quality metrics, verifying documentation, etc.).
 - For each task in `acceptance.json`, update the `passes` field to `true` if the codebase meets the acceptance criteria, or to `false` if it does not.
