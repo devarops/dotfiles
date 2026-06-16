@@ -31,7 +31,7 @@ open () {
     tmux new-window -t "$session_name:3"
     tmux new-window -t "$session_name:4"
     tmux new-window -t "$session_name:5"
-    sleep 1
+    sleep 2
     tmux send-keys  -t "$session_name:1" "vim ." ENTER
     tmux send-keys  -t "$session_name:2" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:2" "run-ci" ENTER
