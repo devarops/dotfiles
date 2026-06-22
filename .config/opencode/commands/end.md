@@ -148,7 +148,6 @@ Ensure the final README.md does not contain any information that overlaps with `
   3. How to use it: User journey through the public interface.
   4. Before you start: Required installation, configuration or credentials.
   5. Run the project: Setup instructions (Docker preferred, then native).
-  6. Coming soon: Bulleted list of planned features.
 
 Review: Present the changes and explain. Do not commit yet.
 
