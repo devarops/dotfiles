@@ -6,7 +6,9 @@ description: Ingest a source into the LLM Wiki via structured interview and writ
 
 Ingest a source document (URL or local file) into the LLM Wiki at `$HOME/repositorios/wiki/`.
 
-The process follows a structured interview: 4 constant questions first (type, title, description, tags), then up to 10 free-form questions generated from the source content. After the interview, a valid OKF concept document is written to `bundle/tmp.md` and an entry is appended to `log.md`. The user renames `tmp.md` and commits separately.
+The process follows a structured interview: 4 constant questions first (type, title, description, tags), then up to 10 free-form questions generated from the source content.
+After the interview, a valid OKF concept document is written to `bundle/tmp.md` and an entry is appended to `log.md`.
+The user renames `tmp.md` and commits separately.
 
 The first argument (`$1`) is the source — either a URL (`https?://...`) or a local file path.
 
@@ -24,10 +26,10 @@ Run `git status --porcelain` inside `$HOME/repositorios/wiki/`.
 
 Read the following to understand the wiki's current state and structural rules:
 
+- `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/refs/heads/main/okf/SPEC.md` — the OKF specification
+- `$HOME/repositorios/wiki/AGENTS.md` — OKF conventions and workflow guidance
 - `$HOME/repositorios/wiki/bundle/*.md` — existing concept documents
 - `$HOME/repositorios/wiki/log.md` — existing log entries
-- `$HOME/repositorios/wiki/AGENTS.md` — OKF conventions and workflow guidance
-- `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/refs/heads/main/okf/SPEC.md` — the OKF specification
 
 ### Step 3 — Fetch or read the source
 
@@ -38,10 +40,11 @@ Present a brief summary of the source to the user before starting the interview.
 
 ### Step 4 — 4 constant questions
 
-Ask these four questions **in order, one at a time**. Do not proceed to the next until the user has answered.
+Ask these four questions **in order, one at a time**.
+Do not proceed to the next until the user has answered.
 
 For each question:
-- Offer 3–4 concrete answer options derived from the source content and wiki context.
+- Offer concrete answer options derived from the source content and wiki context.
 - Indicate your recommended option and justify why it fits.
 - Wait for the user's input.
 - If the user rejects your recommendation, let them explain why and try again.
@@ -50,33 +53,38 @@ For each question:
 ```
 What type of concept best describes this source?
 ```
-Consider existing types used in `bundle/*.md` (e.g., Summary, Concept). Propose options the source could plausibly fit.
+Consider existing types used in `bundle/*.md` (e.g., Summary, Concept).
+Propose options the source could plausibly fit.
 
 **Question 2 — Title (≤10 words):**
 ```
 What is a concise title for this concept?
 ```
-Propose short, descriptive titles. Respect the 10-word limit.
+Propose short, descriptive titles.
+Respect the 10-word limit.
 
 **Question 3 — Description (≤20 words):**
 ```
 What is a one-line description of this concept?
 ```
-Propose descriptions that capture the essence. Respect the 20-word limit.
+Propose descriptions that capture the essence.
+Respect the 20-word limit.
 
 **Question 4 — Tags:**
 ```
 What tags or categories should this concept carry?
 ```
-Propose 2–4 tags as a YAML list. Consider cross-cutting categories that help with discovery.
+Propose 2–4 tags as a YAML list.
+Consider cross-cutting categories that help with discovery.
 
 ### Step 5 — Up to 10 free-form questions
 
-Generate questions dynamically based on the source content. The goal is to surface nuances, context, connections, and anything the LLM cannot infer on its own.
+Generate questions dynamically based on the source content.
+The goal is to surface nuances, context, connections, and anything the LLM cannot infer on its own.
 
 Rules:
 - Ask exactly one question at a time.
-- For each question, offer 3–4 concrete answer options, recommend one, and justify.
+- For each question, offer concrete answer options, recommend one, and justify.
 - Wait for user input before the next question.
 - Allow the user to stop early (the 4 constants are already answered).
 - Do not exceed 10 free-form questions.
@@ -108,11 +116,14 @@ Generate a valid OKF concept document at `$HOME/repositorios/wiki/bundle/tmp.md`
 - Do not add cross-links to other wiki pages (they will be added in a separate step).
 - Write to `bundle/tmp.md` (not a permanent filename).
 
-Present the generated content to the user for approval. Show it clearly. Ask:
+Present the generated content to the user for approval.
+Show it clearly.
+Ask:
 - Does the content accurately reflect the source and our discussion?
 - Any edits or refinements?
 
-If the user requests changes, apply them and show the updated version. Repeat until the user approves.
+If the user requests changes, apply them and show the updated version.
+Repeat until the user approves.
 
 ### Step 7 — Append to log.md
 
@@ -120,7 +131,7 @@ After the user approves the content, append one entry to `$HOME/repositorios/wik
 
 ```markdown
 ## YYYY-MM-DD
-* **Creation**: Added "[title]" from [source].
+- **Creation**: Added "[title]" from [source].
 ```
 - `YYYY-MM-DD` — today's date in ISO 8601 format.
 - `[title]` — the approved title from Question 2.
@@ -142,4 +153,6 @@ Remind the user of the next steps (out of scope of this command):
 3. Update `index.md` (if needed — it is auto-generated).
 4. Commit the changes.
 
-Do not commit. Do not stage. Do not modify `index.md`.
+Do not commit.
+Do not stage.
+Do not modify `index.md`.
