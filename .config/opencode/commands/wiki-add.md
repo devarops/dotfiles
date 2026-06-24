@@ -6,7 +6,7 @@ description: Ingest a source into the LLM Wiki via structured interview and writ
 
 Ingest a source document (URL or local file) into the LLM Wiki at `$HOME/repositorios/wiki/`.
 
-The process follows a structured interview: 4 constant questions first (type, title, description, tags), then up to 10 free-form questions generated from the source content.
+The process follows a structured interview: up to 10 free-form questions exploring the source content, then 4 constant questions (type, title, description, tags).
 After the interview, redundancy with existing concepts is checked and resolved.
 A valid OKF concept document is written to `bundle/tmp.md` and an entry is appended to `log.md`.
 The user renames `tmp.md` and commits separately.
@@ -122,9 +122,9 @@ Generate a valid OKF concept document at `$HOME/repositorios/wiki/bundle/tmp.md`
 
 **Frontmatter** (YAML, delimited by `---`):
 - `type` — from Question 1 (non-empty string)
-- `title` — from Question 2 (≤10 words)
-- `description` — from Question 3 (≤20 words)
-- `tags` — from Question 4 (YAML list)
+- `title` — from Question 2 (≤8 words)
+- `description` — from Question 3 (≤16 words)
+- `tags` — from Question 4 (3 tags as a YAML list)
 - `resource` — the source URL (only if `$1` is a URL)
 
 **Body:**
@@ -160,7 +160,15 @@ After the user approves the content, append one entry to `$HOME/repositorios/wik
 - Do not reference the filename `tmp.md` — the user will rename it immediately.
 - Append to the end of `log.md` (or insert under today's heading if one already exists).
 
-### Step 9 — Finish
+
+### Step 9 — Verify OKF compliance
+
+Verify that the generated `bundle/tmp.md` is a valid OKF concept document.
+Use the following reference to check compliance:
+
+- `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/refs/heads/main/okf/SPEC.md` — the OKF specification
+
+### Step 10 — Finish
 
 Summarise what was done:
 - Source ingested.
