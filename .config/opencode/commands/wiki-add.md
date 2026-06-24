@@ -39,13 +39,33 @@ Read the following to understand the wiki's current state and structural rules:
 
 Present a brief summary of the source to the user before starting the interview.
 
-### Step 4 — 4 constant questions
+### Step 4 — Up to 10 free-form questions
+
+Generate questions dynamically based on the source content.
+The goal is to surface nuances, context, connections with other `bundle/*.md` concept documents, and anything the LLM cannot infer on its own.
+
+Rules:
+- Ask exactly one question at a time.
+- For each question, offer concrete answer options, recommend one, and justify.
+- Wait for user input before the next question.
+- Focus on information that is not already covered in the existing concepts.
+- Do not exceed 10 free-form questions.
+
+Topics the LLM might probe:
+- Key claims or arguments in the source
+- Relationships to other concepts for cross-linking
+- Context the user wants to add that the source doesn't capture
+- Areas of disagreement, uncertainty, or nuance
+- Contradictions or tensions with other concepts
+- Practical implications or applications
+
+### Step 5 — 4 constant questions
 
 Ask these four questions **in order, one at a time**.
 Do not proceed to the next until the user has answered.
 
 For each question:
-- Offer concrete answer options derived from the source content and wiki context.
+- Offer concrete answer options derived from the source content, the previous interview answers, and the existing concepts.
 - Indicate your recommended option and justify why it fits.
 - Wait for the user's input.
 - If the user rejects your recommendation, let them explain why and try again.
@@ -54,48 +74,30 @@ For each question:
 ```
 What type of concept best describes this source?
 ```
-Consider existing types used in `bundle/*.md` (e.g., Summary, Concept).
+Consider existing types used in `bundle/*.md` (e.g., Definition, Example, FAQ, How-to, Reference, Summary, Tutorial).
 Propose options the source could plausibly fit.
 
-**Question 2 — Title (≤10 words):**
+**Question 2 — Title (≤8 words):**
 ```
 What is a concise title for this concept?
 ```
 Propose short, descriptive titles.
-Respect the 10-word limit.
+Respect the 8-word limit.
 
-**Question 3 — Description (≤20 words):**
+**Question 3 — Description (≤16 words):**
 ```
 What is a one-line description of this concept?
 ```
 Propose descriptions that capture the essence.
-Respect the 20-word limit.
+Avoid adjectives, superlatives, or marketing language.
+Respect the 16-word limit.
 
 **Question 4 — Tags:**
 ```
 What tags or categories should this concept carry?
 ```
-Propose 2–4 tags as a YAML list.
+Propose 3 tags as a YAML list.
 Consider cross-cutting categories that help with discovery.
-
-### Step 5 — Up to 10 free-form questions
-
-Generate questions dynamically based on the source content.
-The goal is to surface nuances, context, connections, and anything the LLM cannot infer on its own.
-
-Rules:
-- Ask exactly one question at a time.
-- For each question, offer concrete answer options, recommend one, and justify.
-- Wait for user input before the next question.
-- Allow the user to stop early (the 4 constants are already answered).
-- Do not exceed 10 free-form questions.
-
-Topics the LLM might probe:
-- Key claims or arguments in the source
-- Relationships to other concepts for cross-linking
-- Context the user wants to add that the source doesn't capture
-- Areas of disagreement, uncertainty, or nuance
-- Practical implications or applications
 
 ### Step 6 — Check for redundancy with existing concepts
 
@@ -130,7 +132,7 @@ Generate a valid OKF concept document at `$HOME/repositorios/wiki/bundle/tmp.md`
   - One sentence per line
   - Each sentence ≤25 words
   - Total body ≤200 words (excluding frontmatter)
-- Synthesize content from both the source document and the interview answers.
+- Synthesise content from both the source document and the interview answers.
 - Do not duplicate content that is already present in other concepts.
   Reference existing concepts with standard markdown links instead.
 - Write to `bundle/tmp.md` (not a permanent filename).
