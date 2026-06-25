@@ -9,17 +9,16 @@ Your mission is to identify the next smallest failing test that incrementally ad
 
 ## Task
 
-1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
-2. If any uncommitted change exists, notify the user and stop immediately.
-3. Search for "The Gold" in `TODO.md`.
-4. If "The Gold" is not explicitly defined, run: `docker exec <container_name> make verify` and use the first failing criterion as the definition of "The Gold".
-6. Analyze the existing test suite to determine the system's current observable behavior.
-7. Infer the current behavior strictly from the tests, not from assumptions about the implementation.
-8. Compare the current behavior against "The Gold" to identify the behavioral gap.
-9. Identify the next minimal failing test that represents the smallest possible behavioral increment toward reducing that gap.
-10. Formulate exactly one failing unit test in plain English, not code.
-11. Ensure the test does not introduce premature generalization or attempt to reach "The Gold" in a single step.
-12. Ensure the test requires the minimal possible production code change to pass.
+- Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
+- If any uncommitted change exists, notify the user and stop immediately.
+- Run `docker exec <container_name> make verify` and use the first failing criterion as the definition of "The Gold".
+- Analyze the existing test suite to determine the system's current observable behavior.
+- Infer the current behavior strictly from the tests, not from assumptions about the implementation.
+- Compare the current behavior against "The Gold" to identify the behavioral gap.
+- Identify the next minimal failing test that represents the smallest possible behavioral increment toward reducing that gap.
+- Formulate exactly one failing unit test in plain English, not code.
+- Ensure the test does not introduce premature generalization or attempt to reach "The Gold" in a single step.
+- Ensure the test requires the minimal possible production code change to pass.
 
 ## Format
 
