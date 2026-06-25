@@ -12,8 +12,7 @@ Your mission is to identify the next smallest failing test that incrementally ad
 1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 2. If any uncommitted change exists, notify the user and stop immediately.
 3. Search for "The Gold" in `TODO.md`.
-4. If "The Gold" is not explicitly defined, use the first header in `TODO.md` (not the first task item) as the definition of "The Gold".
-5. If `TODO.md` does not exist, notify the user and stop immediately.
+4. If "The Gold" is not explicitly defined, run: `docker exec <container_name> make verify` and use the first failing criterion as the definition of "The Gold".
 6. Analyze the existing test suite to determine the system's current observable behavior.
 7. Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 8. Compare the current behavior against "The Gold" to identify the behavioral gap.
