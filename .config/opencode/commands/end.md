@@ -11,10 +11,10 @@ If any uncommitted change exists, notify the user and stop immediately.
 | File | Purpose | Audience |
 | :--- | :--- | :--- |
 | `AGENTS.md` | Internal guidelines, patterns, and infrastructure conventions. | Developers |
+| `CHANGELOG.md` | Record of public interface changes (visible to the end user) following SemVer and Keep a Changelog. | End Users |
 | `DOCS.md` | Technical reference for APIs, CLI commands, and data models. | Developers |
 | `README.md` | High-level project overview and usage instructions. | End Users |
-| `CHANGELOG.md` | Record of interface changes (visible from the tests) following SemVer and Keep a Changelog. | Developers |
-| `TODO.md` | Active backlog and session-to-session focus ("The Gold"). | Developers |
+| `TODO.md` | Current backlog. | Developers |
 
 ---
 
@@ -22,7 +22,7 @@ If any uncommitted change exists, notify the user and stop immediately.
 
 Update or create `AGENTS.md` for this repository.
 
-The goal is a compact instruction file that helps future OpenCode sessions avoid mistakes and ramp up quickly.
+The goal is a compact instruction file that helps future AI agents avoid mistakes and ramp up quickly.
 
 Identify any patterns, infrastructure changes, or workflow conventions that emerged during this session.
 
@@ -84,6 +84,8 @@ If `AGENTS.md` is 200 lines or longer, truncate it to 100 lines by removing the 
 Exclude from the line count anything below a `---` boundary that the user created to separate the content they maintain from the content the AI agent maintains.
 This allows users to keep an extended set of notes, instructions, or conventions below the boundary without worrying about them being edited or deleted by the agent during future updates to `AGENTS.md`.
 If such a boundary exists, do not edit or remove it, and do not count any lines below it toward the 200-line limit.
+Don't remove, edit, add or touch any content below the boundary `---`.
+Do not add a boundary if one does not already exist.
 
 Review: Present the changes and explain. Do not commit yet.
 
@@ -110,7 +112,7 @@ Format: Every entry must follow this structure:
 
 Review: Present the changes and explain. Do not commit yet.
 
-## 3. Update CHANGELOG.md (SemVer)
+## 3. Update CHANGELOG.md (SemVer; End-User Focused)
 
 Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
 
@@ -127,7 +129,10 @@ Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
   4. Ignore changes that the user cannot access from the topmost layer (CLI, API, etc.).
   5. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
   6. Add all new changes since the last vX.Y.Z tag to the `## [Unreleased]` section.
-  7. Constraint: Describe features and behavior, not tests. Use one bullet point per entry. Wrap code symbols in backticks.
+  7. Describe features and behavior from the perspective of the end user.
+  8. Avoid mentioning implementation details, internal changes, or tests.
+  9. Focus on what the user can observe and experience.
+ 10. Use one bullet point per entry. Wrap code symbols in backticks.
 
 Review: Present the changes and explain. Do not commit yet.
 
@@ -155,57 +160,6 @@ Review: Present the changes and explain. Do not commit yet.
 
 - Remove all completed items (`[x]`).
 - Remove items that tests confirm are now completed or obsolete, even if the user didn't mark them as done.
-- Ensure `TODO.md` follows this canonical structure:
-
-```
-# The Gold
-- <current gold> or - (None)
-
-## Plan (optional)
-
----
-
-# Backlog not part of the current Gold
-
-The items listed below are not part of the current Gold. They are backlog items kept for future cycles.
-
-<user-curated content — agent does not touch>
-```
-
-### Rules
-
-1. **Two `# H1` headings only.**
-   The file must have exactly two H1s: `# The Gold` and `# Backlog not part of the current Gold`.
-   - If extra H1s exist → demote them to `## H2` and place below `---` during migration.
-   - If a required heading is missing → create it.
-
-2. **`# The Gold` section.**
-   - Contains exactly one bullet: `- <current gold>` or `- (None)`.
-   - A `## Plan` subsection may optionally appear after the single bullet. Do not create it if absent.
-
-3. **Evaluate the Gold.**
-   - If **completed** during this session → replace the bullet with `- (None)`.
-   - If **still active** → leave it; you may rephrase it to reflect progress, but do not replace the objective.
-
-4. **The `---` boundary.**
-   - Agent may write `---` **only during file creation or one-time migration** to establish the canonical structure.
-   - After that commit, the agent never touches `---` or anything below it.
-   - `---` marks the limit of the agent's authority.
-
-5. **User zone (below `---`).**
-   - Must have the `# Backlog not part of the current Gold` heading and the preamble sentence.
-   - All content below `---` is user-curated. Do not add, remove, reorder, or edit it after the initial migration.
-
-6. **One-time migration (old format → canonical structure).**
-   When the existing `TODO.md` does not match the canonical structure:
-   - Preserve the current Gold (apply rule 3).
-   - Place `---`.
-   - Ensure the Backlog heading and preamble exist.
-   - Move all remaining content below `---`.
-   After this commit the boundary is established and rule 4 applies.
-
-7. **Missing TODO.md → create it.**
-   If no `TODO.md` exists, create it in the canonical shape with `- (None)` as the Gold and an empty backlog zone.
 
 Review: Present the changes and explain. Do not commit yet.
 
