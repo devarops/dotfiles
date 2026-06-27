@@ -1,0 +1,1 @@
+- Read the knowledge base at: /home/evaro/repositorios/wiki/bundle/*.md
