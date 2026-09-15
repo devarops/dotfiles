@@ -13,9 +13,6 @@ You will also identify missing content and insert placeholders for the author to
 
 ## Rules
 
-- You can move sentences within a `##` (level 2) heading.
-- You cannot move sentences across `##` (level 2) headings.
-- You may ignore `###` (level 3) and deeper headings.
 - Existing `[[ question ]]` and `XXX` placeholders are kept verbatim but moved to the correct paragraph and position.
 - You may insert new `[[ question ]]` or `XXX` placeholders as needed to indicate missing content.
 - You may not rewrite, edit, or delete any existing sentences.
@@ -31,16 +28,12 @@ The `<INPUT>` Markdown file is provided as `$ARGUMENTS`.
 - Verify the file exists and is readable.
 - Verify the file has a `.md` extension and is a text file.
 - Verify every sentence is on its own line. If not, notify the user and stop.
-- If the file has no `##` headings, treat the whole file as a single `##` section.
 
 Perform all checks. If validation fails, notify the user and stop. Otherwise proceed.
 
-For each `##` section in the file, starting from the first and proceeding top to bottom, apply one step, stop, ask the user to review and approve, commit if approved, and then move to the next step in the same `##` section.
-Apply all steps below to each `##` section before moving to the next.
-
 ### Step 1 — Identify main ideas
 
-Read every sentence under the `##` heading.
+Read every sentence in the file.
 Identify the distinct main ideas present.
 Each main idea will become one paragraph.
 Present alternative lists of main ideas for the user to review and choose from.
@@ -48,7 +41,7 @@ Indicate your recommended option and justify it.
 Wait for the user to select one option before proceeding to the next step.
 If the user rejects your recommendation, let them explain why and try again.
 
-Write the selected list of main ideas under the `##` heading.
+Write the selected list of main ideas.
 Write each main idea in its own line as a concise phrase that captures the essence of the idea, not as a full sentence.
 Write each main idea in a HTML comment `<!-- Main idea -->` to indicate that it is a structural element, not part of the final prose.
 
@@ -61,7 +54,7 @@ Write each main idea in a HTML comment `<!-- Main idea -->` to indicate that it 
 ```
 
 Order the main ideas in a way that creates a logical flow of ideas.
-Ask the user to review and approve, commit if approved, and then move to the next step in the same `##` section.
+Ask the user to review and approve, commit only if approved.
 
 ### Step 2 — Group sentences by main idea
 
@@ -71,7 +64,7 @@ If a sentence supports none of the identified main ideas, add a new `<!-- Main i
 Move sentences as needed to group them under the main idea they support.
 Each group of sentences assigned to the same main idea will become one paragraph.
 Add a blank line between groups to indicate paragraph breaks.
-Ask the user to review and approve, commit if approved, and then move to the next step in the same `##` section.
+Ask the user to review and approve, commit only if approved.
 
 ### Step 3 — Classify and sort within each paragraph
 
@@ -85,7 +78,7 @@ Within each group, classify every sentence by its role:
 Reorder sentences within each paragraph: Topic → Evidence → Explanation → Link.
 If a role is missing from the group, insert `[[ Natural language question? ]]` at the appropriate position.
 The question should be written as a properly formed interrogative sentence that prompts the author to provide the missing content.
-Ask the user to review and approve, commit if approved, and then move to the next step in the same `##` section.
+Ask the user to review and approve, commit only if approved.
 
 ### Step 4 — Verify logical flow
 
@@ -99,12 +92,11 @@ Ask the user to review and approve, commit if approved, and then move to the nex
 
 For each issue found, offer the user options for how to resolve it, indicate your recommended option and justify it.
 Resolve one issue at a time.
-When no issues remain, ask the user to review and approve, commit if approved, and then move to Step 1 of the next `##` section.
-Repeat until all `##` sections have been processed.
+When no issues remain, ask the user to review and approve, commit only if approved.
 
 ## Final check — Verify logical flow across paragraphs
 
-After all `##` sections have been processed, perform a final check of the logical flow across the entire file:
+After all the file has been processed, perform a final check of the logical flow across the entire file:
 
 - Read all paragraphs in sequence
   - Does the order of main ideas create a logical flow of ideas?
@@ -116,8 +108,8 @@ After all `##` sections have been processed, perform a final check of the logica
 
 For each issue found, offer the user options for how to resolve it, indicate your recommended option and justify it.
 Resolve one issue at a time.
-When no issues remain, ask the user to review and approve, commit if approved.
+When no issues remain, ask the user to review and approve, commit only if approved.
 
 Print a summary of what was processed: sections handled, placeholders created, and any issues resolved.
 
-Ask the user if they are ready to proceed to Phase 2 and wait for their response. If yes, hand off context. If no, stop.
+Ask the user if they are ready to proceed to the next Phase and wait for their response. If yes, hand off context. If no, stop.
