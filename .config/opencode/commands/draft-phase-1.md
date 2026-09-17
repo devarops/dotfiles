@@ -13,7 +13,7 @@ description: Replace placeholders in a Markdown file by interviewing the user an
   - wait for their input.
 - Present one placeholder at a time. Only move to the next one after the user has provided input for the current one.
 - The user speaks English and Spanish. Speak to the user in English.
-  - Present the options in the opposite language of the file.
+  - Present the options in the opposite language of the file: if the file is in English, present the options in Spanish, and vice versa.
   - The user should answer in the language of the file.
   - If the user answers in the wrong language, reject it and ask them to answer in the correct language.
 - The options for each placeholder should be concise phrases that capture the essence of the answer, not full sentences.
