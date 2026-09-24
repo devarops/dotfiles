@@ -1,27 +1,54 @@
 ---
-description: Replace placeholders in a Markdown file by interviewing the user and refining their answers
+description: Resolve annotations by interviewing the author, adding content to gaps or rewriting text the annotation points at.
 ---
 
-# Phase 1: Replace Placeholders
+# Phase 1: Resolve Annotations
 
 - The target Markdown file is provided as `$ARGUMENTS`.
-- For each `[[ ... ]]` or `XXX` placeholder found in the file:
-  - ask the user the corresponding question implied by its context,
+- An annotation is any `[[ ... ]]` or `XXX` marker. Every annotation requires the author's input; none is resolved without it.
+
+## Two kinds of annotation
+
+- **Add content.** The annotation marks a gap. The author's answer is written in place of the annotation.
+- **Rewrite content.** The annotation points at existing text. The author's answer replaces that text, and the annotation is removed with it.
+
+## Asking
+
+- For each annotation found in the file:
+  - state your reading of the annotation and the exact text you take to be its target,
+  - ask the corresponding question,
   - offer options for answers,
   - indicate your recommended answer,
   - justify your recommendation, and
-  - wait for their input.
-- Present one placeholder at a time. Only move to the next one after the user has provided input for the current one.
-- The user speaks English and Spanish. Speak to the user in English.
+  - wait for the author's input.
+- Locate the annotation's target as best you can. If it is not found, or found more than once, say so and ask the author to confirm which text is meant. Never resolve an annotation against a target the author has not confirmed.
+- If an annotation names more than one target, confirm each, and apply one answer to all of them.
+- Present one annotation at a time. Move to the next one only after the author has provided input for the current one.
+- The author speaks English and Spanish. Speak to the author in English.
   - Present the options in the opposite language of the file: if the file is in English, present the options in Spanish, and vice versa.
-  - The user should answer in the language of the file.
-  - If the user answers in the wrong language, reject it and ask them to answer in the correct language.
-- The options for each placeholder should be concise phrases that capture the essence of the answer, not full sentences.
-- Fix grammar and spelling in the user's answer before writing it in place of the placeholder, but limit changes to only those necessary for clarity and correctness.
-  - If the user's answer is a fragment, add the minimum number of words needed to make it a complete sentence.
+  - The author should answer in the language of the file.
+  - If the author answers in the wrong language, reject it and ask them to answer in the correct language.
+- The options for each annotation should be concise phrases that capture the essence of the answer, not full sentences.
+- Fix grammar and spelling in the author's answer before writing it in place, but limit changes to only those necessary for clarity and correctness.
+  - If the author's answer is a fragment, add the minimum number of words needed to make it a complete sentence.
   - Do not add more than is necessary.
-- If the user rejects your recommendation, let them explain why and try again.
-- After reaching the end of the file, print a pass summary:
-  - Pass N complete. X placeholders replaced, Y placeholders still remain. Start pass N+1?
-- If 0 placeholders were replaced or 0 placeholders remain, print a completion message and stop. Otherwise, wait for the user to confirm the next pass.
+- If the author rejects your recommendation, let them explain why and try again.
+
+## Applying an answer
+
+- **Add content:** write the answer where the annotation is, replacing the annotation.
+- **Rewrite content:** write the answer in place of the confirmed target, and remove the annotation.
+- Change nothing else.
+
+## What this phase does not do
+
+- Do not generate content. Apply the author's words; do not supply your own.
+- Do not create new annotations.
+- Do not alter, reorder, merge, rephrase, or delete anything outside the confirmed target.
+
+## Pass summary
+
+- After reaching the end of the file, print:
+  - `Pass N complete. X annotations resolved, Y annotations still remain. Start pass N+1?`
+- If 0 annotations were resolved or 0 annotations remain, print a completion message and stop. Otherwise, wait for the author to confirm the next pass.
 - Commit after each pass.
