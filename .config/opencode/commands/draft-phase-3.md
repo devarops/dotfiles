@@ -21,13 +21,13 @@ In scope:
 
 Out of scope, handled by other phases:
 
-- Reordering sentences or paragraphs, regrouping, restructuring. (Phase 2)
-- Supplying missing content, answering placeholders. (Phase 1)
-- Headings, titles, abstracts, register, OCAR, argument structure. (Phase 2)
+- Reordering sentences or paragraphs, regrouping, restructuring.
+- Supplying missing content, answering placeholders.
+- Headings, titles, abstracts, register, OCAR, argument structure.
 
 Every phase is independent and complementary. This phase runs standalone on the
 file. Findings it cannot resolve under its own rules are handed forward as `[[ ]]`
-annotations, to be handled by the author in the next Phase 1 pass.
+annotations, to be handled by the author in the next phase.
 
 ## The two tiers
 
@@ -72,7 +72,7 @@ author rejects your recommendation, let them explain why and try again.
 ## Blocked edits
 
 When an issue cannot be resolved under these rules, add a new `[[ ]]` annotation
-for the author to handle in the next Phase 1 pass. Do not approximate the fix, do
+for the author to handle in the next phase. Do not approximate the fix, do
 not apply it partially, and do not widen your own rules. A reported block is a
 success.
 
