@@ -2,7 +2,7 @@
 description: Resolve annotations by interviewing the author, adding content to gaps or rewriting text the annotation points at.
 ---
 
-# Phase 1: Resolve Annotations
+# Phase 2: Resolve Annotations
 
 - The target Markdown file is provided as `$ARGUMENTS`.
 - An annotation is any `[[ ... ]]` or `XXX` marker. Every annotation requires the author's input; none is resolved without it.
