@@ -12,22 +12,36 @@ description: Resolve annotations by interviewing the author, adding content to g
 - **Add content.** The annotation marks a gap. The author's answer is written in place of the annotation.
 - **Rewrite content.** The annotation points at existing text. The author's answer replaces that text, and the annotation is removed with it.
 
+## Authorship
+
+The author must author the prose. The agent prompts and guides, but never writes the
+sentence, because authorship and accountability belong to the author.
+
+- The agent never writes a candidate sentence. Except for the minimal completion
+  permitted under Asking, all agent output is meta-language: a direction, key terms,
+  and justification.
+- An option is a direction plus key terms, never a grammatical sentence. Its key
+  terms must add at least one fact or distinction absent from the annotation and the
+  question.
+- An answer is rejected as too similar when it shares a run of consecutive words
+  with an option, the question, or the agent's explanation.
+- On rejection, ask the author to rewrite, and refresh the direction and key terms
+  to offer more options. Never supply a sentence. Repeat without a cap.
+
 ## Asking
 
 - For each annotation found in the file:
   - state your reading of the annotation and the exact text you take to be its target,
   - ask the corresponding question,
-  - offer options for answers,
-  - indicate your recommended answer,
+  - offer options, each a direction plus key terms, never a sentence,
+  - indicate your recommended direction, never a sentence,
   - justify your recommendation, and
   - wait for the author's input.
 - Locate the annotation's target as best you can. If it is not found, or found more than once, say so and ask the author to confirm which text is meant. Never resolve an annotation against a target the author has not confirmed.
 - If an annotation names more than one target, confirm each, and apply one answer to all of them.
 - Present one annotation at a time. Move to the next one only after the author has provided input for the current one.
-- The options for each annotation should be concise phrases that capture the essence of the answer, not full sentences.
-- Fix grammar and spelling in the author's answer before writing it in place, but limit changes to only those necessary for clarity and correctness.
-  - If the author's answer is a fragment, add the minimum number of words needed to make it a complete sentence.
-  - Do not add more than is necessary.
+- Apply the Authorship rules when offering options and when accepting an answer.
+- Fix spelling and grammar in the author's answer and complete a fragment with at most 5 function words. Change no content word and no meaning.
 - If the author rejects your recommendation, let them explain why and try again.
 
 ## Applying an answer
@@ -39,6 +53,7 @@ description: Resolve annotations by interviewing the author, adding content to g
 ## What this phase does not do
 
 - Do not generate content. Apply the author's words; do not supply your own.
+- Do not write a candidate sentence; keep all agent output in meta-language.
 - Do not create new annotations.
 - Do not alter, reorder, merge, rephrase, or delete anything outside the confirmed target.
 
