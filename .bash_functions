@@ -40,7 +40,7 @@ open () {
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:4" "opencode --model opencode/big-pickle ." ENTER
     tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:5" "pi --model opencode/deepseek-v4-flash-free --prompt-template /home/evaro/.config/opencode/commands/" ENTER
+    tmux send-keys  -t "$session_name:5" "pi --model deepseek-flash --prompt-template /home/evaro/.config/opencode/commands/" ENTER
   fi
   tmux switch -t "$session_name:1"
 }
