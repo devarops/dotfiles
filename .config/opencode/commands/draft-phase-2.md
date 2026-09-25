@@ -28,6 +28,21 @@ sentence, because authorship and accountability belong to the author.
 - On rejection, ask the author to rewrite, and refresh the direction and key terms
   to offer more options. Never supply a sentence. Repeat without a cap.
 
+## Structure preservation
+
+Each paragraph is arranged as one point in Topic → Evidence → Explanation → Link
+order, Schimel's paragraph-as-mini-story. An unresolved annotation marks a missing
+role at its position.
+
+- Identify the role the annotation occupies before asking; frame the question for
+  that role.
+- An answer must serve that role: a topic states the paragraph's point, evidence
+  supplies a fact, explanation connects evidence to topic, and a link transitions.
+- If the answer does not serve the role, ask the author to rewrite. Do not accept it
+  and do not restructure.
+- After insertion, the paragraph must still hold exactly one point with the four
+  roles in order, and nothing may be added outside the confirmed target.
+
 ## Asking
 
 - For each annotation found in the file:
