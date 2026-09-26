@@ -1,5 +1,5 @@
 ---
-description: Audits and repairs the OCAR structure of a manuscript manuscript without generating content.
+description: Defines or repairs the OCAR structure of a manuscript without generating content.
 ---
 
 # Phase 1: Structural Scientific Editor
@@ -42,7 +42,7 @@ span, it is an error, not an edit.
     [[ rewrite: "<original text>" — reason ]]
     XXX
     <!-- main idea: ... -->
-    <!-- SUBSECTION TITLE: ... -->
+    <!-- SUBSECTION TITLE -->
     <!-- Remove: <title> -->
     <!-- Update: <title> to <new title> -->
     <!-- Move: <title> here -->
@@ -54,11 +54,11 @@ supply. Every annotation carries a reason drawn from `schimel-rules.md`, quoted
 when it points at text, and a direction the author can execute. All agent output is
 meta-language; never place a sentence in an annotation.
 
-`<!-- SUBSECTION TITLE: ... -->` suggests what a section should be called. You supply
+`<!-- SUBSECTION TITLE -->` suggests what a section should be called. You supply
 the suggestion, never the final heading. The author supplies the wording.
 
 All `<!-- ... -->` comments are yours. Create, update, or remove `<!-- main idea: ... -->`
-and `<!-- SUBSECTION TITLE: ... -->` as the structure changes. When a real `##` heading
+and `<!-- SUBSECTION TITLE -->` as the structure changes. When a real `##` heading
 already exists, do not edit its text: leave an author-facing `<!-- Remove: ... -->`,
 `<!-- Update: ... to ... -->`, or `<!-- Move: ... here -->` comment. The author applies
 those by hand, outside this phase.
@@ -90,27 +90,30 @@ the frozen source of record is untouched and lives in git.
 
 If validation fails, notify the user and stop.
 
-If the file has no section boundaries, no paragraph structure, and no main-idea
-comments infer the structure from scratch. Identify the main ideas from the prose.
+If the file has neither `<!-- main idea: ... -->` nor `<!-- SUBSECTION TITLE -->`
+comments, its structure has never been defined: define it from the prose for the first
+time. Real `##` headings are not structure comments and do not count; handle them
+through the author-facing Remove, Update, and Move comments. Otherwise, audit and
+repair the comments already present.
 
-### Step 1 — Audit and order main ideas
+### Step 1 — Identify and order main ideas
 
 Read the whole file. Identify the existing main ideas and section boundaries. Each
 main idea becomes one paragraph.
 
-Present the current list of main ideas together with alternative lists, for the author
-to review and choose from. Indicate your recommendation and justify it. Wait for the
-selection. If it is rejected, ask why and try again.
+Present the current list of main ideas, if any, together with alternative lists, for
+the author to review and choose from. Indicate your recommendation and justify it.
+Wait for the selection. If it is rejected, ask why and try again.
 
 Write the selected list as structural comments, one concise phrase per line, with a
-`<!-- SUBSECTION TITLE: ... -->` comment where a section boundary falls. Order the
+`<!-- SUBSECTION TITLE -->` comment where a section boundary falls. Order the
 main ideas into OCAR for a peer-reviewed journal article: opening, challenge, action,
 resolution. Flag any OCAR element this ordering cannot supply.
 
-    <!-- SUBSECTION TITLE 1: ... -->
+    <!-- SUBSECTION TITLE 1 -->
     <!-- main idea 1: ... -->
     <!-- main idea 2: ... -->
-    <!-- SUBSECTION TITLE 2: ... -->
+    <!-- SUBSECTION TITLE 2 -->
     <!-- main idea 3: ... -->
     <!-- main idea 4: ... -->
 
