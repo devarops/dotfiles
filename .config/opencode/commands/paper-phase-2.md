@@ -5,9 +5,80 @@ description: Resolve annotations by interviewing the author, adding content to g
 # Phase 2: Resolve Annotations
 
 - The target Markdown file is provided as `$ARGUMENTS`.
-- Read `schimel-rules.md`. It is your only source of Schimel's principles.
 - An annotation is any `[[ ]]` or `XXX` marker. Every annotation requires the
   author's input. None is resolved without it.
+
+## The book
+
+- The text is `~/repositorios/wiki/raw/schimel2012writing.pdf`, derived to
+  `~/repositorios/wiki/raw/schimel2012writing.txt`. If the PDF is missing or
+  unreadable, stop. Never check against a book you have not read.
+- The `.txt` holds one line per paragraph, with running heads, page numbers, and
+  blank pages removed. Create it once if it is missing. Never regenerate it.
+
+  ```bash
+  set -euo pipefail
+  PDF=~/repositorios/wiki/raw/schimel2012writing.pdf
+  TXT=~/repositorios/wiki/raw/schimel2012writing.txt
+  [ -r "$PDF" ] || { echo "missing: $PDF" >&2; exit 1; }
+  if [ ! -s "$TXT" ]; then
+    pdftotext "$PDF" /tmp/schimel.raw.txt 2>/dev/null
+    python3 - /tmp/schimel.raw.txt "$TXT" <<'PY'
+import re, sys
+
+HEADS = {"Writing in Science", "Science Writing as Storytelling",
+         "Making a Story Sticky", "Story Structure", "The Opening",
+         "The Funnel: Connecting O and C", "The Challenge", "Action",
+         "The Resolution", "Internal Structure", "Paragraphs", "Sentences",
+         "Flow", "Energizing Writing", "Words", "Condensing",
+         "Putting it All Together: Real Editing", "Dealing with Limitations",
+         "Writing Global Science", "Writing for the Public"}
+PAGE = re.compile(r"^\d{1,3}$")
+BLANK = re.compile(r"^(This page intentionally left blank|Contents|Index)$")
+HEAD = re.compile(r"^(?:\d+\.\d+)*\.? ")
+EXAMPLE = re.compile(r"^(Example|Figure|\d+\. )")
+LOWER = re.compile("^[a-z(“'–—]")
+
+out, block = [], []
+for raw in open(sys.argv[1], encoding="utf-8").read().replace("­", "").split("\n"):
+    s = raw.strip()
+    if not s or PAGE.match(s) or s in HEADS or BLANK.match(s):
+        if block: out.append(" ".join(block)); block = []
+        continue
+    if HEAD.match(s):
+        if block: out.append(" ".join(block)); block = []
+        out.append(s)
+        continue
+    if EXAMPLE.match(s) or (block and LOWER.match(raw)):
+        block.append(s)
+        continue
+    if block: out.append(" ".join(block))
+    block = [s]
+if block: out.append(" ".join(block))
+open(sys.argv[2], "w", encoding="utf-8").write("\n".join(out) + "\n")
+PY
+  rm -f /tmp/schimel.raw.txt
+  fi
+  ```
+
+- Section numbers survive extraction, so cite them as locators. Section 4.1 holds
+  the four story structures, 10 the nesting of arcs, 11 the paragraph types, 12 the
+  sentence roles, and 13 flow.
+
+  ```bash
+  TXT=~/repositorios/wiki/raw/schimel2012writing.txt
+  grep -n '^11\.' "$TXT"   # every paragraph-type section, by line
+  grep -n '^12\.' "$TXT"   # every sentence section, by line
+  ```
+
+- Open the section in `$TXT` before you act on it, and read the examples with it.
+  The book's examples decide cases the prose leaves open; a rule you have only read
+  in summary has not been read.
+- These phases target a peer-reviewed journal article, so the structure is OCAR at
+  the paper's level. Schimel offers ABDCE, LD, and LDR there too, and they are not
+  used. SUCCES (chapter 3) and word choice by etymology (15.3) are likewise out of
+  scope: the second is a register change, and these phases preserve the author's
+  voice.
 
 ## Two kinds of annotation
 
@@ -16,21 +87,42 @@ description: Resolve annotations by interviewing the author, adding content to g
 - **Rewrite content.** The annotation points at existing text. The author's answer
   replaces that text, and the annotation is removed with it.
 
-## Arc elements
+## Paragraph roles
 
-Each paragraph is one point carried by an arc: **O** names the topic, **C-A** carries
-the event, **R** delivers the outcome. An unresolved annotation marks a missing
-element of that arc at its position.
+A paragraph is made of three roles: the **opening** sets the stage, the
+**development** carries the event, the **resolution** resolves by making the
+paragraph's point. A paragraph must have an opening and a resolution, and the two
+may be the same sentence.
 
-- Identify which element the annotation occupies before asking, and frame the question
-  for it.
-- An answer must serve that element. An opening sets the topic and should be something
-  the reader already holds; a challenge-action supplies the event; a resolution
-  delivers the outcome, and in a point-last paragraph it states the paragraph's point.
-- If the answer does not serve the element, ask the author to rewrite. Do not accept it
-  and do not restructure.
-- After insertion the paragraph must still carry exactly one point with its arc in
-  order, and nothing may be added outside the confirmed target.
+An unresolved annotation marks a missing element at its position. Before asking,
+infer the paragraph's type from the sentences around it, because the type decides
+what the answer must be:
+
+- **TS-D** — a one-sentence lead that both sets the stage and makes the point. A
+  gap before any development is a missing point-and-opening; a gap after
+  development is a missing resolution.
+- **LD** — a lead of several sentences that ends on the point. The point sits early
+  and everything after develops it.
+- **LDR** — a lead that argues, development, then a closing synthesis. The point
+  sits in the last sentence.
+- **OCAR** — an opening that sets the stage without arguing, development, then a
+  closing synthesis. The point sits in the last sentence.
+
+Schimel treats these as a spectrum, not a set of categories. Report the dominant
+position of the point; a paragraph may sit anywhere between point-first and
+point-last, and some are hard to classify. What matters is that the paragraph
+opens, resolves by making a point, and carries exactly one point.
+
+- Identify which element the annotation occupies before asking, and frame the
+  question for it.
+- An answer must serve that element. An opening sets the stage with something the
+  reader already holds; a resolution states the outcome, and in a point-last
+  paragraph it synthesises what came before into the paragraph's point.
+- If the answer does not serve the element, ask the author to rewrite. Do not
+  accept it and do not restructure.
+- After insertion the paragraph must still carry exactly one point, with its
+  opening and resolution in the positions its type calls for, and nothing may be
+  added outside the confirmed target.
 
 ## Authorship
 
@@ -52,12 +144,9 @@ sentence, because authorship and accountability belong to the author.
 For each annotation found in the file, in order:
 
 - state your reading of the annotation and the exact text you take to be its target;
-- name the arc element the annotation occupies;
+- name the paragraph element the annotation occupies;
 - ask the question that element calls for;
 - offer options, each a direction plus key terms, never a sentence;
-- indicate your recommended direction, never a sentence;
-- justify the recommendation, citing the rule from `schimel-rules.md` that prompted
-  it;
 - wait for the author's input.
 
 Locate the annotation's target as best you can. If it is not found, or is found more
