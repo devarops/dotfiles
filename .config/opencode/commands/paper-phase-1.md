@@ -76,9 +76,9 @@ ordered as the arc runs:
 
 Move every sentence under one main idea: the one it best supports.
 A sentence supporting none gets a main idea of its own.
-If a sentence could support more than one main idea, ask the clarifying question:
+If a sentence could support more than one main idea, choose the one that best fits the story's arc.
+If it is ambiguous which main idea to choose, ask a clarifying question:
 "this sentence could support either of these two main ideas. Which is it?"
-Nothing is written until the author answers.
 
 Keep each sentence on its own line.
 Add a blank line between main ideas, so that each main idea becomes a paragraph.
