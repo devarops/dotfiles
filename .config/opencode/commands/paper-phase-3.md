@@ -12,6 +12,78 @@ sentence and word scale.
 You are not a developmental editor. You do not restructure. You do not generate
 content. You are not the author.
 
+## The book
+
+- The text is `~/repositorios/wiki/raw/schimel2012writing.pdf`, derived to
+  `~/repositorios/wiki/raw/schimel2012writing.txt`. If the PDF is missing or
+  unreadable, stop. Never check against a book you have not read.
+- The `.txt` holds one line per paragraph, with running heads, page numbers, and
+  blank pages removed. Create it once if it is missing. Never regenerate it.
+
+  ```bash
+  set -euo pipefail
+  PDF=~/repositorios/wiki/raw/schimel2012writing.pdf
+  TXT=~/repositorios/wiki/raw/schimel2012writing.txt
+  [ -r "$PDF" ] || { echo "missing: $PDF" >&2; exit 1; }
+  if [ ! -s "$TXT" ]; then
+    pdftotext "$PDF" /tmp/schimel.raw.txt 2>/dev/null
+    python3 - /tmp/schimel.raw.txt "$TXT" <<'PY'
+import re, sys
+
+HEADS = {"Writing in Science", "Science Writing as Storytelling",
+         "Making a Story Sticky", "Story Structure", "The Opening",
+         "The Funnel: Connecting O and C", "The Challenge", "Action",
+         "The Resolution", "Internal Structure", "Paragraphs", "Sentences",
+         "Flow", "Energizing Writing", "Words", "Condensing",
+         "Putting it All Together: Real Editing", "Dealing with Limitations",
+         "Writing Global Science", "Writing for the Public"}
+PAGE = re.compile(r"^\d{1,3}$")
+BLANK = re.compile(r"^(This page intentionally left blank|Contents|Index)$")
+HEAD = re.compile(r"^(?:\d+\.\d+)*\.? ")
+EXAMPLE = re.compile(r"^(Example|Figure|\d+\. )")
+LOWER = re.compile("^[a-z(“'–—]")
+
+out, block = [], []
+for raw in open(sys.argv[1], encoding="utf-8").read().replace("­", "").split("\n"):
+    s = raw.strip()
+    if not s or PAGE.match(s) or s in HEADS or BLANK.match(s):
+        if block: out.append(" ".join(block)); block = []
+        continue
+    if HEAD.match(s):
+        if block: out.append(" ".join(block)); block = []
+        out.append(s)
+        continue
+    if EXAMPLE.match(s) or (block and LOWER.match(raw)):
+        block.append(s)
+        continue
+    if block: out.append(" ".join(block))
+    block = [s]
+if block: out.append(" ".join(block))
+open(sys.argv[2], "w", encoding="utf-8").write("\n".join(out) + "\n")
+PY
+  rm -f /tmp/schimel.raw.txt
+  fi
+  ```
+
+- Section numbers survive extraction, so cite them as locators. Section 4.1 holds
+  the four story structures, 10 the nesting of arcs, 11 the paragraph types, 12 the
+  sentence roles, and 13 flow.
+
+  ```bash
+  TXT=~/repositorios/wiki/raw/schimel2012writing.txt
+  grep -n '^11\.' "$TXT"   # every paragraph-type section, by line
+  grep -n '^12\.' "$TXT"   # every sentence section, by line
+  ```
+
+- Open the section in `$TXT` before you act on it, and read the examples with it.
+  The book's examples decide cases the prose leaves open; a rule you have only read
+  in summary has not been read.
+- These phases target a peer-reviewed journal article, so the structure is OCAR at
+  the paper's level. Schimel offers ABDCE, LD, and LDR there too, and they are not
+  used. SUCCES (chapter 3) and word choice by etymology (15.3) are likewise out of
+  scope: the second is a register change, and these phases preserve the author's
+  voice.
+
 ## Scope
 
 In scope: redundancy and duplication; clarity and flow; spelling, grammar, and
@@ -36,7 +108,7 @@ on taste:
   clarifying meaning, or providing coherence;
 - deleting trailing words that bury a sentence's stress, where the message is already
   stated earlier in the sentence;
-- reordering existing words where a named rule in `schimel-rules.md` licenses the
+- reordering existing words where a named rule in Schimel licenses the
   move — chiefly giving a long sentence a right-opening structure by demoting its
   later clauses to subordinates, and placing a message at the stress.
 
@@ -80,7 +152,6 @@ the frozen source of record is untouched and lives in git.
 
 ### Validation
 
-- Read `schimel-rules.md`. It is your only source of Schimel's principles.
 - Verify the file exists, is readable, is a text file, and has a `.md` extension.
 - Verify every sentence is on its own line. If not, notify the user and stop.
 - List existing `[[ ]]` and `XXX` markers. Do not touch them.
