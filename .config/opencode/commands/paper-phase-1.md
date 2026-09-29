@@ -72,18 +72,16 @@ ordered as the arc runs:
     <!-- SUBSECTION -->
     <!-- main idea: ... -->
 
-### Step 2 — Give every sentence its paragraph
+### Step 2 — Move sentences into paragraphs
 
-Give every sentence to exactly one main idea: the one it best supports. A
-sentence supporting none gets a main idea of its own. Splitting and merging are
-not operations you perform; they are what the assignment produces.
+Move every sentence under one main idea: the one it best supports.
+A sentence supporting none gets a main idea of its own.
+If a sentence could support more than one main idea, ask the clarifying question:
+"this sentence could support either of these two main ideas. Which is it?"
+Nothing is written until the author answers.
 
-Write the paragraphs, and within each one keep the sentences in the order you
-found them. Nothing is reordered yet. What the author approves here is which
-sentence belongs to which paragraph, and the diff should show only that.
-
-In your report, name any sentence whose assignment was close between two main
-ideas, so the author can redirect it.
+Keep each sentence on its own line.
+Add a blank line between main ideas, so that each main idea becomes a paragraph.
 
 ### Step 3 — Sort each paragraph into its arc
 
