@@ -80,8 +80,8 @@ merges are permitted, so you propose none.
   each other and together hold the place the original sentence had. No other sentence
   moves.
 - **Merging.** Merge only adjacent sentences in the same paragraph that hold the same
-  role. Two sentences in adjacent paragraphs are not adjacent. A merge is permitted
-  only if the result is 25 words or fewer.
+  role. Two sentences in adjacent paragraphs are not adjacent. A merge is applied
+  without asking only if the result is 25 words or fewer.
 - **Preserve the argument.** Never break a paragraph's single point or the order of
   its roles. Do not merge across a role, and do not split one role across sentences;
   request it instead.
@@ -115,10 +115,10 @@ not produce a change list.
 
 ### Step 2 — Sentence length
 
-For each sentence over 25 words, in order, do one of two things. Where a named
-rule licenses an edit that brings it under the limit without a decision, apply
-it. Otherwise, identify the distinct points at which it can be split and request
-the author's choice.
+For each sentence over 25 words, in order. Where a rule in Schimel licenses an
+edit that brings it under the limit without a decision, apply that edit.
+Otherwise, offer the author the points at which it can be split and request
+their choice.
 
 ### Step 3 — Flow
 
@@ -134,8 +134,9 @@ removes the action — request it with the rule that prompted it.
 
 ### Step 5 — Merges
 
-For each pair of adjacent sentences that hold the same role, request the merge and
-apply it only if the result is 25 words or fewer.
+For each pair of adjacent sentences that hold the same role, apply the merge
+without asking when the result is 25 words or fewer. Otherwise, request it as
+an `[[ ]]` annotation.
 
 ## Completion
 
