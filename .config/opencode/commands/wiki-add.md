@@ -125,7 +125,7 @@ Generate a valid OKF concept document at `$HOME/repositorios/wiki/bundle/tmp.md`
 - `title` — from Question 2 (≤8 words)
 - `description` — from Question 3 (≤16 words)
 - `tags` — from Question 4 (3 tags as a YAML list)
-- `resource` — the source URL (only if `$1` is a URL)
+- `resource` — always set. A URL if `$1` is a web source, or a wiki-root-relative path (e.g. `raw/foo.pdf`) if `$1` is a local file. Refuse absolute or `~` paths: ask the user to copy the file into `raw/` or supply a relative one.
 
 **Body:**
 - Conform to the OKF spec and `AGENTS.md` rules:
