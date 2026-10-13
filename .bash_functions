@@ -38,7 +38,7 @@ open () {
     tmux send-keys  -t "$session_name:3" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:3" "git pull" ENTER
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:4" "opencode --model opencode/big-pickle ." ENTER
+    tmux send-keys  -t "$session_name:4" "opencode ." ENTER
     tmux send-keys  -t "$session_name:5" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:5" "pi --model deepseek-flash --prompt-template /home/evaro/.config/opencode/commands/" ENTER
   fi
