@@ -117,12 +117,12 @@ For each file in the diff:
    | Option | Meaning | When to use |
    |--------|---------|-------------|
    | **Curious honest question** | Ask "why?" without assuming intent. | When you don't understand the reasoning. |
-   | **Fix and explain** | Apply the change directly, commit, and push. | Typos, factual errors, formatting — low pedagogical value, just fix. |
-   | **Optional suggestion** | A subjective improvement, not required. | Personal preference, nice-to-haves. |
    | **Required change** | A functionally incorrect or policy-violating issue. | Contradicts the style guide, is functionally wrong, or breaks standards. |
+   | **Optional suggestion** | A subjective improvement, not required. | Personal preference, nice-to-haves. |
+   | **Fix and explain** | Apply the change directly, commit, and push. | Typos, factual errors, formatting — low pedagogical value, just fix. |
    | **Ignore** | Skip this opportunity entirely. | Not relevant or not worth addressing. |
 
-6. Wait for the user's answer. After the user chooses:
+7. Wait for the user's answer. After the user chooses:
    - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🩹 Fix applied. Multiple fixes in the same file accumulate.
    - If **Curious honest question**: add a checklist entry under ❓ Question / Curiosity. Do not fix anything — you are asking for more information, not requesting changes.
    - If **Optional suggestion**: add a checklist entry under 💡 Optional suggestion. Do not fix anything — the author decides whether to accept it.
