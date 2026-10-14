@@ -106,16 +106,13 @@ PY
   grep -n '^12\.' "$TXT"   # every sentence section, by line
   ```
 
-- Open the section in `$TXT` before you act on it, and read the examples with it. The
-  book's examples decide cases the prose leaves open; a rule you have only read in summary
-  has not been read.
+- Open the section in `$TXT` before you act on it, and read the examples with it.
 - Ordering inside a node is Schimel's paragraph arc (§11): a paragraph opens by setting the
   stage, resolves by making a point, and fills the space between with development. The
   point sits at one end or the other, and where it sits sets the type. Point-first (TS-D,
   LD) is the default and should dominate; point-last (LDR) belongs at openings,
   resolutions, and transitions. Order the development run by chaining stress to topic, so
-  each sentence's topic is drawn from the one before it (§13). Chaining topic to topic
-  instead yields a list of facts, not a story.
+  each sentence's topic is drawn from the one before it (§13).
 
 ## Constraints
 
