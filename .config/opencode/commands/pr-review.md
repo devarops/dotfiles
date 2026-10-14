@@ -1,18 +1,18 @@
 ---
 name: pr-review
-description: Interactive PR review that walks through git diff changes, classifies findings, and produces a structured review to post on the hosting platform
+description: Interactive PR review that walks git diff changes, classifies findings, and posts a structured review
 ---
 
-You are performing a PR review. The branch under review is provided as the first argument (`$1`).
+You are performing a PR review. The branch under review is provided as `$1`.
 
 ## Workflow
 
 ### 1. Prepare the repository
 
-Before anything else, confirm both prerequisites. If either fails, stop and ask the user to fix it before continuing.
+Confirm both prerequisites; if either fails, stop and ask the user to fix it.
 
-- `.review/` is ignored: run `git check-ignore .review/`. If it exits non-zero, ask the user to add `.review/` to `.gitignore`.
-- The working tree is clean: run `git status --porcelain`. If it returns anything, ask the user to commit or stash.
+- `.review/` is ignored: `git check-ignore .review/`. If it exits non-zero, ask the user to add `.review/` to `.gitignore`.
+- The working tree is clean: `git status --porcelain`. If it returns anything, ask the user to commit or stash.
 
 ### 2. Fetch and choose the branch
 
@@ -20,9 +20,7 @@ Before anything else, confirm both prerequisites. If either fails, stop and ask 
 git fetch --prune origin
 ```
 
-If `$1` is set, treat it as the branch under review and verify it exists on `origin`. Otherwise, list the `origin` branches except `develop` and `origin/HEAD`, and ask the user which branch is under review.
-
-Switch to the chosen branch:
+If `$1` is set, verify it exists on `origin` and use it. Otherwise list the `origin` branches except `develop` and `origin/HEAD` and ask the user which branch is under review.
 
 ```bash
 git switch <BRANCH>
@@ -35,101 +33,67 @@ git diff origin/develop...HEAD
 git diff origin/develop...HEAD --name-only
 ```
 
-The base branch is `develop`. If `origin/develop` does not exist, ask the user which base branch to use and use it instead.
-
-The three-dot range is deliberate. It compares from the merge base, so the diff shows only what the branch changed, regardless of how far `develop` has moved ahead.
+The base branch is `develop`; if `origin/develop` is missing, ask the user which base to use. The three-dot range is deliberate: it starts at the merge base, so the diff shows only what the branch changed however far `develop` has moved ahead.
 
 ### 4. Read the guides and choose the checklist
 
-Fetch `https://islas.dev/guia_de_estilo/` and read every guide page it links to.
+Fetch `https://islas.dev/guia_de_estilo/` and read every page it links to.
 
-Always review every file against:
-
-- `STYLEGUIDE`: the conventions for naming, style, and code.
-- One checklist from `review_checklists`: the Class 1 or Class 3 list, chosen below.
-
-Apply any other guide page where it is relevant to the file, such as the levels-and-layers architecture, the comment-writing guide, or the prose guide.
+Review every file against `STYLEGUIDE` and one checklist from `review_checklists` (Class 1 or Class 3, chosen below). Apply any other guide page where relevant: levels and layers, comment writing, prose.
 
 #### Choose the repository class
 
-Guess the class from the remote and the repository contents:
+Guess from the remote and the repository contents:
 
-- GitHub remote without `analyses.json` at the repository root: Class 1.
-- Bitbucket remote with `analyses.json` at the repository root: Class 3.
-- Anything else: no guess.
+- GitHub remote without `analyses.json` at the root: Class 1.
+- Bitbucket remote with `analyses.json` at the root: Class 3.
+- Otherwise: no guess.
 
-Confirm the guess with the user. If there is no guess, ask the user to choose Class 1 or Class 3. Use the matching checklist from `review_checklists` for the rest of the review.
+Confirm the guess, or ask the user to choose Class 1 or Class 3 if there is none. Use the matching checklist for the rest of the review.
 
 ### 5. Create or update the review file
 
-The review file is `.review/<BRANCH>.md`, with each `/` in the branch name replaced by `-`.
+The file is `.review/<BRANCH>.md`, with each `/` in the branch name replaced by `-`. Create the directory if needed.
 
-Create the directory and the file. If it already exists, ask the user which review round this is.
+Each invocation is one round. If the file does not exist, this is Round 1 and you write the title and context line. If it exists, find the highest `## Round N` and append round N+1 at the end. If it has no `## Round N` heading, treat the contents as Round 1 (add the heading above them, leaving the date blank if unknown) and append Round 2; ask only if they cannot be read as the five sections. Never overwrite or delete an earlier round.
 
-Initialize it with this structure (checklists, not tables):
+Reconstruct the tracked set: every unchecked item (`- [ ]`) in the most recent block. These are what you re-verify in step 6.
+
+Blocks run oldest first, so the newest — the one posted in step 8 — is last. Use this structure:
 
 ```markdown
 # Review of <BRANCH>
 
-## 👍 Done
+Base: <BASE> · Class <N> (<host>) · Checklist: review_checklists
 
-Positive observations / good things first.
+## Round N — <YYYY-MM-DD>
 
-- [x] Completed task from a previous review round.
-
-## ❓ Question / Curiosity
-
-Checklist of questions for the author.
-
-- [ ] <file>: <question>
-
-## ⚠️ Required change
-
-Checklist of required changes.
-
-- [ ] <file>: <required change>
-
-## 💡 Optional suggestion
-
-Checklist of optional suggestions.
-
-- [ ] <file>: <suggestion>
-
-## 🩹 Fix applied
-
-Checklist of changes that were fixed directly.
-
-- [x] <file>: <description of what was fixed>
-
----
+### 👍 Done
+### ❓ Question / Curiosity
+### ⚠️ Required change
+### 💡 Optional suggestion
+### 🩹 Fix applied
 ```
+
+Sections are checklists, not tables: good findings first, then questions for the author, required changes, optional suggestions, and changes fixed directly. Items read `- [ ] <file>: <text>`, checked `- [x]` once resolved; write `(none)` when a section is empty. From Round 2, move resolved items to 👍 Done (`- [x] <file>: addressed from Round 1 — <what changed>`), close moot ones with a note, and re-list still-open items tagged `(carried from Round 1)`.
 
 ### 6. Iterate through each changed file
 
 For each file in the diff:
 
-1. Read the current file content.
-2. Show the diff hunk for that file.
-3. Identify opportunities for improvement against the guides from step 4: the `STYLEGUIDE`, the chosen checklist from `review_checklists`, and any other guide page relevant to the file.
-4. **Present only one opportunity at a time**.
-5. For each opportunity, offer these **five options**:
+On round 2 and later, first re-verify the tracked set from step 5 against the current code: move resolved items to 👍 Done, close moot ones with a note, and re-list the rest tagged `(carried from Round N)`. Carried items are never offered the five options again; ask the user for a status only when the code cannot settle it, such as a ❓ answered in the pull request thread.
 
-   | Option | Meaning | When to use |
-   |--------|---------|-------------|
-   | **Curious honest question** | Ask "why?" without assuming intent. | When you don't understand the reasoning. |
-   | **Required change** | A functionally incorrect or policy-violating issue. | Contradicts the style guide, is functionally wrong, or breaks standards. |
-   | **Optional suggestion** | A subjective improvement, not required. | Personal preference, nice-to-haves. |
-   | **Fix and explain** | Apply the change directly, commit, and push. | Typos, factual errors, formatting — low pedagogical value, just fix. |
-   | **Ignore** | Skip this opportunity entirely. | Not relevant or not worth addressing. |
+1. Read the current file content and show its diff hunk.
+2. Identify good findings (anything praiseworthy: clear naming, a simpler design, solid tests, helpful docstrings) and opportunities, against the guides from step 4.
+3. Handle good findings first, one at a time: offer **Keep / Drop / Reword** and record kept ones under 👍 Done as `- [x] <file>: <what is good>`.
+4. Then handle opportunities, one at a time: wait for the answer and record it. The five options:
+   - **Curious honest question** — you don't understand the reasoning: ask "why?" without assuming intent; add it under ❓ and fix nothing.
+   - **Required change** — functionally wrong or against the guide: add it under ⚠️; don't fix; the author applies it.
+   - **Optional suggestion** — subjective, a nice-to-have: add it under 💡; don't fix; the author decides.
+   - **Fix and explain** — typo, factual error, formatting: edit in place and add it under 🩹; don't commit yet.
+   - **Ignore** — skip it.
 
-7. Wait for the user's answer. After the user chooses:
-   - If **Curious honest question**: add a checklist entry under ❓ Question / Curiosity. Do not fix anything — you are asking for more information, not requesting changes.
-   - If **Required change**: add a checklist entry under ⚠️ Required change. Do not fix anything — the author applies it.
-   - If **Optional suggestion**: add a checklist entry under 💡 Optional suggestion. Do not fix anything — the author decides whether to accept it.
-   - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🩹 Fix applied. Multiple fixes in the same file accumulate.
-   - If **Ignore**: do nothing, move on.
-
-**After finishing all opportunities for the current file:** if there are accumulated "fix and explain" changes, commit and push them as a **single commit per file**:
+After finishing a file, if "fix and explain" changes accumulated, commit and push them as a single commit per file:
 
 ```bash
 git add <FILE>
@@ -137,20 +101,16 @@ git commit -m "🩹 Fix <filename>: <summary of all fixes>"
 git push
 ```
 
-Example: `🩹 Fix CITATION.cff: correct version from 5.0.1 to 1.0.1 and fix typo`
-
 ### 7. After all files are processed
 
-Show the user `.review/<BRANCH>.md` and ask for **approval**.
+Show the user `.review/<BRANCH>.md` and ask for approval.
 
 ### 8. Post the review
 
-Once the user approves, tell them to paste the contents of `.review/<BRANCH>.md` into the pull request on the hosting platform and select request changes. This command posts nothing itself.
+Once approved, tell the user to paste the newest `## Round N` block (the last one) into the pull request and request changes — or to approve the pull request when the round has no open items. This command posts nothing itself.
 
 ## Important notes
 
-- Always start the review file with positive observations (👍 Done) before listing issues.
-- Be kind and respectful. Follow the comment-writing guide: https://islas.dev/guia_de_estilo/comentarios_en_revisiones
+- Be kind and respectful; follow the comment-writing guide: https://islas.dev/guia_de_estilo/comentarios_en_revisiones
 - Write requests as questions and use "we" rather than "you".
 - If a question can be answered by exploring the codebase, explore instead of asking.
-- One commit per file for fixes.
