@@ -123,10 +123,10 @@ For each file in the diff:
    | **Ignore** | Skip this opportunity entirely. | Not relevant or not worth addressing. |
 
 7. Wait for the user's answer. After the user chooses:
-   - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🩹 Fix applied. Multiple fixes in the same file accumulate.
    - If **Curious honest question**: add a checklist entry under ❓ Question / Curiosity. Do not fix anything — you are asking for more information, not requesting changes.
-   - If **Optional suggestion**: add a checklist entry under 💡 Optional suggestion. Do not fix anything — the author decides whether to accept it.
    - If **Required change**: add a checklist entry under ⚠️ Required change. Do not fix anything — the author applies it.
+   - If **Optional suggestion**: add a checklist entry under 💡 Optional suggestion. Do not fix anything — the author decides whether to accept it.
+   - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🩹 Fix applied. Multiple fixes in the same file accumulate.
    - If **Ignore**: do nothing, move on.
 
 **After finishing all opportunities for the current file:** if there are accumulated "fix and explain" changes, commit and push them as a **single commit per file**:
