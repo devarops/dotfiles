@@ -1,106 +1,101 @@
 ---
 name: pr-review
-description: Interactive PR review that walks through git diff changes, classifies findings, and submits a structured GitHub review
+description: Interactive PR review that walks through git diff changes, classifies findings, and produces a structured review to post on the hosting platform
 ---
 
-You are performing a PR review. Use the PR number provided as the first argument (`$1`).
+You are performing a PR review. The branch under review is provided as the first argument (`$1`).
 
 ## Workflow
 
-### 1. Ask for the PR number (if not provided)
+### 1. Prepare the repository
 
-If `$1` is empty, ask the user for the pull request number. Only accept a numeric value.
+Before anything else, confirm both prerequisites. If either fails, stop and ask the user to fix it before continuing.
 
-### 2. Fetch the PR branch
+- `.review/` is ignored: run `git check-ignore .review/`. If it exits non-zero, ask the user to add `.review/` to `.gitignore`.
+- The working tree is clean: run `git status --porcelain`. If it returns anything, ask the user to commit or stash.
+
+### 2. Fetch and choose the branch
 
 ```bash
-gh pr view <NUMBER> --json headRefName,baseRefName -q '.headRefName'
+git fetch --prune origin
 ```
 
-Store the branch name and base branch. If the base branch is not `develop`, note it for later use.
+If `$1` is set, treat it as the branch under review and verify it exists on `origin`. Otherwise, list the `origin` branches except `develop` and `origin/HEAD`, and ask the user which branch is under review.
+
+Switch to the chosen branch:
+
+```bash
+git switch <BRANCH>
+```
 
 ### 3. Get the diff
 
 ```bash
-git fetch origin develop
-gh pr checkout <NUMBER>
-git diff origin/develop..HEAD
-git diff origin/develop..HEAD --name-only
+git diff origin/develop...HEAD
+git diff origin/develop...HEAD --name-only
 ```
 
-Store the list of changed files and the full diff. If `develop` does not exist, ask the user which base branch to use.
+The base branch is `develop`. If `origin/develop` does not exist, ask the user which base branch to use and use it instead.
 
-### 4. Fetch reference documents
+The three-dot range is deliberate. It compares from the merge base, so the diff shows only what the branch changed, regardless of how far `develop` has moved ahead.
 
-Fetch **all** of these URLs:
+### 4. Read the guides and choose the checklist
 
-- `https://islas.dev/guia_de_estilo/comentarios_en_revisiones`: to get the PR Checklist and understand how to write review comments.
-- `https://islas.dev/guia_de_estilo/STYLEGUIDE`: to use as a second checklist for naming, style, and code conventions.
-- `https://islas.dev/2026/05/15/arquitectura`: to verify the files touched by the PR follow the levels-and-layers architecture.
+Fetch `https://islas.dev/guia_de_estilo/` and read every guide page it links to.
 
-If the repository has a file named `analyses.json` at its root, also use the following task list as an additional reference during review:
+Always review every file against:
 
-**Class 3 — analyses.json review tasks:**
+- `STYLEGUIDE`: the conventions for naming, style, and code.
+- One checklist from `review_checklists`: the Class 1 or Class 3 list, chosen below.
 
-- Parse all targets defined in the `Makefile`.
-- Extract all entries listed in `analyses.json`.
-- Normalize naming conventions across both sources to enable accurate comparison.
-- Identify targets present in the `Makefile` but missing in `analyses.json`.
-- Identify entries present in `analyses.json` but missing in the `Makefile`.
-- Flag all inconsistencies and classify them (e.g., missing, extra, mismatched).
-- Propose exact additions or removals required to achieve full alignment between `Makefile` and `analyses.json`.
-- Verify that all declared artifacts in `analyses.json` are actually produced by the corresponding `Makefile` targets.
-- Ensure a strict one-to-one mapping between declared artifacts and generated outputs (no missing or extra outputs).
-- Validate that the pipeline is reproducible: identical inputs and configuration produce identical outputs.
-- Verify that configuration is centralized and not duplicated or fragmented across scripts and files.
-- Preserve original formatting and conventions when suggesting fixes to `Makefile` or `analyses.json`.
-- Avoid modifying unrelated content when proposing changes.
-- Produce a final reconciled view of `Makefile` targets and `analyses.json` entries, including recommended changes.
-- Review `README.md` for accuracy and clarity for academic users.
-- Review `AGENTS.md` for accuracy and clarity for data analysts.
+Apply any other guide page where it is relevant to the file, such as the levels-and-layers architecture, the comment-writing guide, or the prose guide.
+
+#### Choose the repository class
+
+Guess the class from the remote and the repository contents:
+
+- GitHub remote without `analyses.json` at the repository root: Class 1.
+- Bitbucket remote with `analyses.json` at the repository root: Class 3.
+- Anything else: no guess.
+
+Confirm the guess with the user. If there is no guess, ask the user to choose Class 1 or Class 3. Use the matching checklist from `review_checklists` for the rest of the review.
 
 ### 5. Create or update the review file
 
-Look for the file `.review/PR_<NUMBER>.md`.
+The review file is `.review/<BRANCH>.md`, with each `/` in the branch name replaced by `-`.
 
-If this is the first review round, the file might not exist yet.
-
-Create the directory and file: `.review/PR_<NUMBER>.md`.
-
-If the file already exists, we might be doing a subsequent review round.
-
-Ask the user to clarify which review round this is.
+Create the directory and the file. If it already exists, ask the user which review round this is.
 
 Initialize it with this structure (checklists, not tables):
 
 ```markdown
-# Review of PR #<NUMBER>
+# Review of <BRANCH>
 
-## 👍 Hecho
+## 👍 Done
 
 Positive observations / good things first.
 
-- [x] Completed task from previous review round.
+- [x] Completed task from a previous review round.
 
-## 🩹 Fix aplicado
+## 🩹 Fix applied
 
 Checklist of changes that were fixed directly.
 
 - [x] <file>: <description of what was fixed>
 
-## ❓ Pregunta / Curiosidad
+## ❓ Question / Curiosity
 
 Checklist of questions for the author.
 
 - [ ] <file>: <question>
 
-## 💡 Sugerencia opcional
+## 💡 Optional suggestion
 
 Checklist of optional suggestions.
 
 - [ ] <file>: <suggestion>
 
-## ⚠️ Cambio requerido
+## ⚠️ Required change
 
 Checklist of required changes.
 
@@ -115,10 +110,7 @@ For each file in the diff:
 
 1. Read the current file content.
 2. Show the diff hunk for that file.
-3. Identify opportunities for improvement by comparing against:
-   - The PR Checklist items (`https://islas.dev/guia_de_estilo/comentarios_en_revisiones`)
-   - The STYLEGUIDE conventions (`https://islas.dev/guia_de_estilo/STYLEGUIDE`)
-   - The levels-and-layers architecture (`https://islas.dev/2026/05/15/arquitectura`)
+3. Identify opportunities for improvement against the guides from step 4: the `STYLEGUIDE`, the chosen checklist from `review_checklists`, and any other guide page relevant to the file.
 4. **Present only one opportunity at a time**.
 5. For each opportunity, offer these **five options**:
 
@@ -127,40 +119,38 @@ For each file in the diff:
    | **Curious honest question** | Ask "why?" without assuming intent. | When you don't understand the reasoning. |
    | **Fix and explain** | Apply the change directly, commit, and push. | Typos, factual errors, formatting — low pedagogical value, just fix. |
    | **Optional suggestion** | A subjective improvement, not required. | Personal preference, nice-to-haves. |
-   | **Required change** | A functionally incorrect or policy-violating issue. | Contradicts team style guide, is functionally wrong, or breaks standards. |
+   | **Required change** | A functionally incorrect or policy-violating issue. | Contradicts the style guide, is functionally wrong, or breaks standards. |
    | **Ignore** | Skip this opportunity entirely. | Not relevant or not worth addressing. |
 
 6. Wait for the user's answer. After the user chooses:
-   - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🔧 Fix aplicado. Multiple fixes in the same file accumulate.
-   - If **Curious honest question**: add a checklist entry under ❓ Pregunta / Curiosidad. Do not fix anything — you are just asking for more information, not requesting changes.
-   - If **Optional suggestion**: add a checklist entry under 💡 Sugerencia opcional. Do not fix anything — it is up to the author of the PR to decide whether to accept the suggestion.
-   - If **Required change**: add a checklist entry under ⚠️ Cambio requerido. Do not fix anything — you are asking the author of the PR to fix it themselves.
+   - If **Fix and explain**: edit the file in-place (do not commit yet). Add a checklist entry under 🩹 Fix applied. Multiple fixes in the same file accumulate.
+   - If **Curious honest question**: add a checklist entry under ❓ Question / Curiosity. Do not fix anything — you are asking for more information, not requesting changes.
+   - If **Optional suggestion**: add a checklist entry under 💡 Optional suggestion. Do not fix anything — the author decides whether to accept it.
+   - If **Required change**: add a checklist entry under ⚠️ Required change. Do not fix anything — the author applies it.
    - If **Ignore**: do nothing, move on.
 
-Write all entries in `.review/PR_<NUMBER>.md` in Spanish.
-
 **After finishing all opportunities for the current file:** if there are accumulated "fix and explain" changes, commit and push them as a **single commit per file**:
-   ```bash
-   git add <FILE>
-   git commit -m "🩹 Fix <filename>: <summary of all fixes>"
-   git push
-   ```
-   Example: `🩹 Fix CITATION.cff: correct version from 5.0.1 to 1.0.1 and fix typo`
+
+```bash
+git add <FILE>
+git commit -m "🩹 Fix <filename>: <summary of all fixes>"
+git push
+```
+
+Example: `🩹 Fix CITATION.cff: correct version from 5.0.1 to 1.0.1 and fix typo`
 
 ### 7. After all files are processed
 
-Show the user `.review/PR_<NUMBER>.md` and ask for **approval**.
+Show the user `.review/<BRANCH>.md` and ask for **approval**.
 
-### 8. If approved, submit the review
+### 8. Post the review
 
-```bash
-gh pr review <NUMBER> --request-changes --body-file .review/PR_<NUMBER>.md
-```
+Once the user approves, tell them to paste the contents of `.review/<BRANCH>.md` into the pull request on the hosting platform and select request changes. This command posts nothing itself.
 
 ## Important notes
 
-- Always start the review file with positive observations (👍 Hecho) before listing issues.
-- Be kind and respectful. Follow the review writing guidelines from: https://islas.dev/guia_de_estilo/comentarios_en_revisiones
-- Use "nosotros" and interrogative form when asking questions.
+- Always start the review file with positive observations (👍 Done) before listing issues.
+- Be kind and respectful. Follow the comment-writing guide: https://islas.dev/guia_de_estilo/comentarios_en_revisiones
+- Write requests as questions and use "we" rather than "you".
 - If a question can be answered by exploring the codebase, explore instead of asking.
 - One commit per file for fixes.
