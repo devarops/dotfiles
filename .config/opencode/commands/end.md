@@ -1,106 +1,121 @@
 ---
-name: end
 description: Capture session learnings, update documentation, and perform housekeeping before closing.
 ---
 
 Before starting, use `git status --porcelain` to verify that the working tree is clean.
 If any uncommitted change exists, notify the user and stop immediately.
 
+## The external surface
+
+Every entry you write to `DOCS.md` or `CHANGELOG.md` must belong to the repository's
+external surface: the outermost interface the end user consumes. The chain is:
+
+- `AGENTS.md` defines the surface: it states the criterion for what counts as user-facing,
+  but it does not list the elements. The definition changes rarely.
+- `DOCS.md` lists the current elements that satisfy that definition. It is a snapshot.
+- `CHANGELOG.md` records only changes that touched an element listed in `DOCS.md`. It is a
+  history.
+
+A change the end user cannot reach through the surface is not user-facing and belongs in
+neither file. Developer-facing helpers, internal functions, code reachable only through
+internal code, and behaviour-preserving refactors are excluded even when tests cover them.
+When a test is the only evidence for a symbol, ask whether an end user can reach that
+symbol; if not, leave it out.
+
+If `AGENTS.md` does not define the surface, infer the criterion from the outermost
+entrypoints, present it for approval, and record it in `AGENTS.md` once approved. Preserve
+the definition as written: revise it only when the criterion itself changes, not to reflect
+changes to the elements. Keep the definition, `DOCS.md`, and `CHANGELOG.md` in sync whenever
+elements are added, deprecated, or removed.
+
 ## File Registry
 
-| File | Purpose | Audience |
-| :--- | :--- | :--- |
-| `AGENTS.md` | Internal guidelines, patterns, and infrastructure conventions. | Developers |
-| `CHANGELOG.md` | Record of public interface changes (visible to the end user) following SemVer and Keep a Changelog. | End Users |
-| `DOCS.md` | Technical reference for APIs, CLI commands, and data models. | Developers |
-| `README.md` | High-level project overview and usage instructions. | End Users |
-| `TODO.md` | Current backlog. | Developers |
+| File | Purpose | Audience | When |
+| :--- | :--- | :--- | :--- |
+| `AGENTS.md` | Defines the external surface and holds internal guidelines, patterns, and conventions. | Maintainers | Always create or update |
+| `DOCS.md` | Interface reference: every element of the external surface, current state. | End users | Only if it exists |
+| `CHANGELOG.md` | History of changes to elements in `DOCS.md`, following SemVer and Keep a Changelog. | End users | Only if it exists |
+| `README.md` | High-level project overview and usage. | End users | Always create or update |
+| `TODO.md` | Work in progress and backlog: completed items are cleaned, and future work found this session is added. | Maintainers | Only if it exists; create only on request |
+
+The five files are complementary: each has one job and must not repeat another. In
+particular, `README.md` must not overlap `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`.
 
 ---
 
 ## 1. Update AGENTS.md
 
-Update or create `AGENTS.md` for this repository.
+Update or create `AGENTS.md`: a compact instruction file that helps future AI agents avoid
+mistakes and ramp up quickly, and that defines the repository's external surface.
 
-The goal is a compact instruction file that helps future AI agents avoid mistakes and ramp up quickly.
+Identify the patterns, infrastructure, and workflow conventions that emerged this session.
+Every line should answer: what did you learn that is not yet documented, and would an agent
+likely miss it without help? If not, leave it out.
 
-Identify any patterns, infrastructure changes, or workflow conventions that emerged during this session.
+Read the strongest sources that exist, in this order:
 
-Every line should answer:
-"What did you learn in this session that is not currently documented in `AGENTS.md`?"
-"Would an AI agent likely miss this without help?" If not, leave it out.
+- the tests, when the repository has them;
+- otherwise the repo's real verification: `Makefile` targets such as `format` and `check`,
+  plus lint, formatter, typecheck, and codegen config;
+- CI workflows and pre-commit or task-runner config;
+- `Makefile` and every file at the root;
+- if architecture is still unclear, the entrypoints, package boundaries, and execution flow.
 
-Read the highest-value sources first:
-- Tests in tests/*
-- Other tests, lint, formatter, typecheck, and codegen config
-- CI workflows and pre-commit / task runner config
+Prefer executable sources of truth over prose. Where docs and config disagree, trust the
+executable source and keep only what you can verify.
 
-Prefer the tests over anything else.
-Read Makefile and every file on the root directory.
-If architecture is still unclear after reading the tests and root files, then inspect the entire codebase to find the real entrypoints, package boundaries, and execution flow.
+High-signal facts to record:
 
-Prefer executable sources of truth over prose.
-If docs conflict with config or scripts, trust the executable source and only keep what you can verify.
+- exact developer commands, especially non-obvious ones;
+- how to run a single test, a single package, or a focused verification step;
+- required command order when it matters, such as `lint -> typecheck -> test`;
+- monorepo or multi-package boundaries, ownership of major directories, and the real
+  app or library entrypoints;
+- toolchain quirks: generated code, migrations, codegen, build artefacts, env loading,
+  dev servers, deploy flow;
+- conventions that differ from the defaults;
+- testing quirks: fixtures, prerequisites, required services, or expensive suites;
+- constraints from existing instruction files worth preserving.
 
-Look for the highest-signal facts for an AI agent working in this repo:
-- exact developer commands, especially non-obvious ones
-- how to run a single test, a single package, or a focused verification step
-- required command order when it matters, such as `lint -> typecheck -> test`
-- monorepo or multi-package boundaries, ownership of major directories, and the real app/library entrypoints
-- framework or toolchain quirks: generated code, migrations, codegen, build artifacts, special env loading, dev servers, infra deploy flow
-- repo-specific style or workflow conventions that differ from defaults
-- testing quirks: fixtures, integration test prerequisites, snapshot workflows, required services, flaky or expensive suites
-- important constraints from existing instruction files worth preserving
+Exclude generic software advice, tutorials and exhaustive file trees, obvious language
+conventions, anything you could not verify, and content better stored elsewhere and
+referenced.
 
-Good `AGENTS.md` content is usually hard-earned context that took reading multiple files to infer.
+When in doubt, omit. Prefer short sections and bullets. A simple repository gets a simple
+file; a large one gets the few structural facts that change how an agent works.
 
-Include only high-signal, repo-specific guidance such as:
-- exact commands and shortcuts the AI agent would otherwise guess wrong
-- architecture notes that are not obvious from filenames
-- conventions that differ from language or framework defaults
-- setup requirements, environment quirks, and operational gotchas
-- references to existing instruction sources that matter
+If `AGENTS.md` already exists, improve it in place: map findings to its existing sections,
+keep the tone, preserve verified guidance, delete fluff and stale claims, and reconcile it
+with the current codebase. Preserve the external-surface definition unless the criterion
+itself has changed; it is expected to be stable.
 
-Exclude:
-- generic software advice
-- long tutorials or exhaustive file trees
-- obvious language conventions
-- speculative claims or anything you could not verify
-- content better stored in a separate file and referenced here
+Keep `AGENTS.md` under 2,000 words. If it reaches 2,000, truncate it to 1,000 by removing
+the lowest-signal content.
 
-When in doubt, omit.
+A `---` boundary separates the content you maintain from the content the agent maintains. Do
+not add one if it does not exist. If one exists, never edit or remove it or anything below
+it, and exclude everything below it from the word count.
 
-Prefer short sections and bullets.
-If the repo is simple, keep the file simple.
-If the repo is large, summarize the few structural facts that actually change how an AI agent should work.
+Review: present the changes and explain. Do not commit yet.
 
-If `AGENTS.md` already exists, improve it in place rather than rewriting blindly.
-Map findings to the appropriate sections in `AGENTS.md`.
-Keep additions concise and consistent with the existing tone.
-Preserve verified useful guidance, delete fluff or stale claims, and reconcile it with the current codebase.
+## 2. Update DOCS.md (only if it exists)
 
-If `AGENTS.md` is 200 lines or longer, truncate it to 100 lines by removing the lowest-signal content.
+If `DOCS.md` does not exist, skip this step and report that it was skipped.
 
-Exclude from the line count anything below a `---` boundary that the user created to separate the content they maintain from the content the AI agent maintains.
-This allows users to keep an extended set of notes, instructions, or conventions below the boundary without worrying about them being edited or deleted by the agent during future updates to `AGENTS.md`.
-If such a boundary exists, do not edit or remove it, and do not count any lines below it toward the 200-line limit.
-Don't remove, edit, add or touch any content below the boundary `---`.
-Do not add a boundary if one does not already exist.
+Update the interface reference so that it lists every element of the external surface and
+nothing else. Infer each element from the interface: the tests when the repo has them,
+otherwise the public entrypoints, exported symbols, CLI definitions, and routes.
 
-Review: Present the changes and explain. Do not commit yet.
+- Include only elements the end user can reach through the external surface. Never document
+  internal functions, helpers, or developer-only utilities.
+- Remove every entry whose element is no longer exposed. An element that still exists but is
+  discouraged is marked Deprecated; it stays until it is removed.
+- Do not mention tests, testing strategy, or implementation details.
 
-## 2. Update DOCS.md
-
-Update the interface technical reference documentation for any new or modified public interface.
-Infer interfaces exclusively from the tests.
-However, do not mention tests, testing strategy, or implementation details in DOCS.md.
-
-Format: Every entry must follow this structure:
+Format: every entry follows one of these shapes.
 
   ### symbol_name(signature)
-  or
   ### GET/POST /endpoint/
-  or
   ### cli command --options
 
   One-line description.
@@ -110,79 +125,112 @@ Format: Every entry must follow this structure:
   - Errors: exception/error types and triggering conditions (omit if none)
   - Notes: edge cases, constraints, side effects, or limitations (omit if none)
 
-Review: Present the changes and explain. Do not commit yet.
+Review: present the changes and explain. Do not commit yet.
 
-## 3. Update CHANGELOG.md (SemVer; End-User Focused)
+## 3. Update CHANGELOG.md (only if it exists)
 
-Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
+If `CHANGELOG.md` does not exist, skip this step and report that it was skipped.
 
-- Version bump: (Semantic Versioning: SemVer)
-  - MAJOR: Incompatible changes. Tests from the previous version fail under the new implementation.
-  - MINOR: Backward-compatible features added. Tests from the previous version continue to pass under the new implementation.
-  - PATCH: Backward-compatible bug fixes.
-  - Note: For 0.y.z versions, increment the MINOR (y) version for every release.
+Update `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/). Include
+only changes that touched an element listed in `DOCS.md`; a change no end user can reach
+through the surface is not an entry.
+
+- Version bump (SemVer):
+  - MAJOR: incompatible changes.
+  - MINOR: backward-compatible features added.
+  - PATCH: backward-compatible bug fixes.
+  - For 0.y.z versions, increment the MINOR for every release.
 
 - Process:
-  1. Audit tags: Verify that every changelog version has a corresponding Git tag (`vX.Y.Z`) and that every Git tag appears in the changelog. Resolve any mismatches.
-  2. Discover changes: Run `git diff <last_tag>..HEAD -- tests/` to inspect modified tests. Infer only user-visible behavior, features, functions, or data-model changes from the tests, but do not mention tests in the changelog.
-  3. If the project has multiple layers, consider only user-facing changes at the topmost layer.
-  4. Ignore changes that the user cannot access from the topmost layer (CLI, API, etc.).
-  5. Categorize changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
-  6. Add all new changes since the last vX.Y.Z tag to the `## [Unreleased]` section.
-  7. Describe features and behavior from the perspective of the end user.
-  8. Avoid mentioning implementation details, internal changes, or tests.
-  9. Focus on what the user can observe and experience.
- 10. Use one bullet point per entry. Wrap code symbols in backticks.
+  1. Audit tags: every changelog version has a tag (`vX.Y.Z`) and every tag appears in the
+     changelog; resolve mismatches.
+  2. Discover changes with `git diff <last_tag>..HEAD` over the whole tree. When tests
+     exist, they are the preferred evidence for what changed; otherwise read the diff
+     against the external surface.
+  3. Consider only the topmost external layer; ignore anything the end user cannot access.
+  4. Categorise under `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, and `Security`.
+  5. Add new changes to `## [Unreleased]`.
+  6. Describe behaviour from the end user's perspective; one bullet per entry, code symbols
+     in backticks.
+  7. State the version in which an element was deprecated and the version in which it was
+     removed.
 
-Review: Present the changes and explain. Do not commit yet.
+Review: present the changes and explain. Do not commit yet.
 
-## 4. Update README.md (End-User Focused)
+## 4. Update README.md
 
-Rewrite or update `README.md` for a non-technical audience.
-Ensure the final README.md does not contain any information that overlaps with `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`.
+Rewrite or update `README.md` for a non-technical audience, with no overlap with `AGENTS.md`,
+`DOCS.md`, or `CHANGELOG.md`.
 
-- Constraints:
-  - Remove from README.md any overlap with AGENTS.md.
-  - Remove from README.md any overlap with DOCS.md.
-  - Remove from README.md any overlap with CHANGELOG.md.
-  - No jargon, no implementation details, no algorithm explanations.
-
+- Constraints: no jargon, no implementation details, no algorithm explanations.
 - Structure:
-  1. Tagline: Memorable phrase below the title. Explains what it is.
-  2. What it does: The problem this project solves.
-  3. How to use it: User journey through the public interface.
-  4. Before you start: Required installation, configuration or credentials.
-  5. Run the project: Setup instructions (Docker preferred, then native).
+  1. Tagline: a memorable phrase below the title explaining what it is.
+  2. What it does: the problem this project solves.
+  3. How to use it: the user journey through the external surface.
+  4. Before you start: required installation, configuration, or credentials.
+  5. Run the project: setup instructions (Docker preferred, then native).
 
-Review: Present the changes and explain. Do not commit yet.
+Review: present the changes and explain. Do not commit yet.
 
-## 5. Clean TODO.md
+## 5. Update TODO.md (only if it exists)
 
-- Remove all completed items (`[x]`).
-- Remove items that tests confirm are now completed or obsolete, even if the user didn't mark them as done.
+If `TODO.md` exists, clean it and add the future work this session produced.
 
-Review: Present the changes and explain. Do not commit yet.
+Clean:
+- Remove completed items (`[x]`).
+- Remove items the current state confirms are done or obsolete, even if unmarked.
 
-## 6. Commit and Tag
+Discover future work. Look only at what this session revealed and at what the last five
+commits show (`git log --patch --max-count 5`). Propose a candidate only with concrete
+evidence:
 
-Ask the user to review and approve the changes. Stop and wait for approval.
-Once all changes are reviewed and approved:
+- a task the user declared out of scope for this session;
+- work the session left unfinished, or the direction it was heading when it stopped;
+- a gap the recent-commit diff makes visible.
 
-1. Stage all updated files.
-2. Commit with a structured message:
-   - Header: `📝 Update documentation`
-   - Blank second line.
-   - Body: Summarize key additions to `AGENTS.md`, `DOCS.md`, `README.md`, `TODO.md`, and `CHANGELOG.md`.
+Omit anything merely plausible. Before proposing a candidate, check the file: if it
+duplicates an existing open item, do not propose it again, and say it was already present.
+
+Then, one candidate at a time: explain the item and why it qualifies, and wait. Add it when
+the user approves and discard it when they do not. Respect the file's existing structure and
+style: write into its own backlog section, and where the file separates in-progress from
+backlog, put unfinished main-goal work in the in-progress section and deferrals or sideline
+gaps in the backlog. Never impose a template or add a section the file does not have.
+
+If `TODO.md` does not exist, present the candidates and ask whether to create it. Create it
+only on approval, as a minimal `# Backlog` list.
+
+Review: present the changes and explain. Do not commit yet.
+
+## 6. Check surface consistency
+
+Before committing, verify the chain is coherent and report any mismatch instead of leaving
+it in place:
+
+- every entry in `DOCS.md` fits the definition of the external surface in `AGENTS.md`, and
+  every element that fits that definition and is reachable has an entry — verify against the
+  surface itself, never against a list in `AGENTS.md`, which does not hold one;
+- every entry in `CHANGELOG.md` touched an element listed in `DOCS.md`;
+- no element that is no longer exposed remains in `DOCS.md`.
+
+## 7. Commit and Tag
+
+Ask the user to review and approve the changes. Stop and wait for approval. Once approved:
+
+1. Stage the updated files.
+2. Commit with a structured message: header `📝 Update documentation`, a blank second line,
+   then a body summarising the key additions to `AGENTS.md`, `DOCS.md`, `README.md`,
+   `TODO.md`, and `CHANGELOG.md` (omit any file you skipped).
 3. Offer the user the option to undo the last commit.
 
-## 7. Release a new version
+## 8. Release a new version
 
-1. Use `git status --porcelain` to verify that the working tree is clean.
-   If any uncommitted change exists, notify the user and stop immediately.
-2. Ask the user whether to release a new version.
-3. If the user chooses not to release a new version, stop here and end the command.
-4. If the user chooses to release a new version, continue.
-    - Move `## [Unreleased]` entries to a new version header with today's date.
-    - Update comparison links in the footer, commit the link changes, and run `git tag vX.Y.Z`.
-    - Undo or Push: Offer the user the option to undo the last commit or push the commit and tags to the remote.
-5. Use `git status --porcelain` to verify that the working tree is clean.
+1. Verify the working tree is clean with `git status --porcelain`; if any uncommitted change
+   exists, notify the user and stop.
+2. Ask whether to release a new version. If not, stop here.
+3. If so:
+   - Move `## [Unreleased]` entries to a new version header with today's date.
+   - Update the comparison links in the footer, commit the link changes, and run
+     `git tag vX.Y.Z`.
+   - Offer the user the option to undo the last commit, or to push the commit and tags.
+4. Verify the working tree is clean with `git status --porcelain`.
