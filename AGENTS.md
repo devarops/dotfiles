@@ -1,0 +1,52 @@
+# Dotfiles
+
+Configuration for a Linux development machine. Every tracked path installs into
+`$HOME`, so the repository root is the home directory: `.bash_aliases` becomes
+`~/.bash_aliases`, `.config/opencode/commands/` becomes `~/.config/opencode/commands/`.
+Adding or renaming a file at the root therefore changes the home directory, not just
+the repository.
+
+## Deployment
+
+Installed as a bare Git repository whose work-tree is `$HOME` — see `README.md` and
+the `install` target in `Makefile`:
+
+```bash
+git clone --bare . "$HOME/dotfiles.git"
+git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME" checkout --force
+```
+
+The `gdot` alias wraps the same `--git-dir`/`--work-tree` pair. There is no build
+step; files take effect when they are checked out.
+
+## Layout
+
+- **Shell**: `.bash_aliases` (aliases; sources `.bash_functions` and `~/.vault/.secrets`),
+  `.bash_functions` (`devserver`, `open`, `close`, `fw`).
+- **Terminal**: `.tmux.conf`.
+- **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
+  `.journalotrc`.
+- **OpenCode**: `.config/opencode/` — `agent/`, `commands/`, `opencode.json`, and the
+  global `AGENTS.md`.
+- **Other**: `.gitconfig` (default branch `develop`, editor `nvim`), `.ssh/config`,
+  `.lintr` (R, 100-character lines), `.journalotrc`.
+
+## Conventions
+
+- **Commits**: a gitmoji followed by an imperative English summary under 72 characters,
+  a blank second line, then a short body explaining why. Recent commits use 📝, ♻️, 🔧,
+  and 📐.
+- **Verification**: there is no test suite, CI, or build. Check a change by reading the
+  affected file; for shell code, `bash -n` catches syntax errors.
+- **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
+  Never commit secrets, tokens, or private keys.
+
+## OpenCode commands
+
+`.config/opencode/commands/` holds prompt templates, one command per file, each with a
+`description` in YAML frontmatter.
+
+- Keep each command under 2,000 words.
+- If a command crosses 2,000 words, trim it to under 1,000.
+- When condensing a command, preserve every rule and change no behaviour.
+- Commands do not commit; staging and committing are the user's decision.
