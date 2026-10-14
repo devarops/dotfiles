@@ -180,8 +180,8 @@ Clean:
 - Remove completed items (`[x]`).
 - Remove items the current state confirms are done or obsolete, even if unmarked.
 
-Discover future work. Look only at what this session revealed and at what the last five
-commits show (`git log --patch --max-count 5`). Propose a candidate only with concrete
+Discover future work. Look only at what this session revealed and at what the last eight
+commits show (`git log --patch --max-count 8`). Propose a candidate only with concrete
 evidence:
 
 - a task the user declared out of scope for this session;
