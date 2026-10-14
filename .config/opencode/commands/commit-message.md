@@ -1,36 +1,40 @@
 ---
-name: commit-message
-description: Generate concise, well-structured git commit messages from `git status --verbose`.
+description: Generate a commit message that carries the session's signal, from git status --verbose.
 ---
 
 ## Task
 
 1. Run `git status --verbose` to identify changes in the staging area.
 1. If there are no staged changes, inform the user and stop.
-1. Ignore unstaged changes and focus only on the staged ones for commit message generation.
-1. Use `git log --patch --max-count 5` to understand the project's commit style, context, and the direction of recent changes.
-1. Focus on intent and motivation, not implementation details.
-1. Avoid restating what is obvious from the diff.
-1. Ensure clear, professional English with correct grammar and spelling.
-1. Generate four distinct options:
-   - Option 1: Conventional/Structured
-   - Option 2: Descriptive/Detailed
-   - Option 3: Concise/Brief
-   - Option 4: Creative/Unexpected
-1. Ensure each option varies in tone and structure while remaining relevant.
-1. Ask the user to select one of the four options for the final commit message and wait for their input.
-1. After the user selects an option, commit the staged changes with the chosen commit message.
+1. Ignore unstaged changes and describe only the staged changes.
+1. Read the last eight commits with `git log --patch --max-count 8` to learn the project's commit style and the direction of the recent work.
+1. Write one commit message from this session: what was decided, what a future reader must know, and what comes next.
+1. Present the message and wait for the user to approve it, edit it, or ask for a change. Do not commit before approval.
+1. After approval, commit the staged changes with the approved message.
+
+## Body
+
+Give a group to each of the following that carries signal, and omit any group that does not:
+
+1. The decision: what was chosen and why, including what was rejected.
+2. The context: facts a future reader cannot recover from the code or the diff.
+3. The next step: the follow-up this change creates. Include it only when there is concrete
+   evidence of the intended next step; in doubt, omit it.
+
+Write free prose, one sentence per line, and separate the groups with a blank line. Add no
+labels and no Markdown. Each group is one to four sentences, each of at most
+25 words.
+
+Keep only the signal. Less is better than more: a small change earns a small body. Prefer
+intent and motivation over implementation detail, and do not restate what the diff makes
+obvious.
 
 ## Format
 
-- Output only the commit message text.
 - Start with a gitmoji followed by an imperative verb.
-- Do not add headings, code fences, or commentary.
+- Do not use the Conventional Commits prefixes (feat:, fix:, refactor:, and so on).
+- Keep the first line under 72 characters.
+- Leave the second line blank.
+- Then write the body, using the groups above.
 - Plain text only: no backticks, no single quotes, no double quotes.
-- Select an appropriate gitmoji representing the change type.
-- Don't use the Conventional Commits specification prefixes (feat:, fix:, etc.).
-- Ensure each message starts with the gitmoji followed by an imperative verb.
-- Keep the first line concise and under 72 characters.
-- Insert a blank second line after the summary.
-- Add additional lines to explain the reason for the change.
-- The commit message is written in clear, professional English language.
+- Write clear, professional English with correct grammar and spelling.
