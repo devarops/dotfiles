@@ -77,17 +77,17 @@ Positive observations / good things first.
 
 - [x] Completed task from a previous review round.
 
-## 🩹 Fix applied
-
-Checklist of changes that were fixed directly.
-
-- [x] <file>: <description of what was fixed>
-
 ## ❓ Question / Curiosity
 
 Checklist of questions for the author.
 
 - [ ] <file>: <question>
+
+## ⚠️ Required change
+
+Checklist of required changes.
+
+- [ ] <file>: <required change>
 
 ## 💡 Optional suggestion
 
@@ -95,11 +95,11 @@ Checklist of optional suggestions.
 
 - [ ] <file>: <suggestion>
 
-## ⚠️ Required change
+## 🩹 Fix applied
 
-Checklist of required changes.
+Checklist of changes that were fixed directly.
 
-- [ ] <file>: <required change>
+- [x] <file>: <description of what was fixed>
 
 ---
 ```
