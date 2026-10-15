@@ -55,24 +55,32 @@ statement, node, theme, heading, or title; editing `$1`.
 
 ## The outline file
 
-`OUTLINE.md` holds the story statement, then the outline:
+`OUTLINE.md` holds the story arc and the document outline in clean Markdown:
 
-    <!-- OCAR: Opening -->
-    <!-- SECTION: Introduction -->
-    <!-- SUBSECTION: Background -->
-    <!-- main idea: ... -->
+    # STORY
 
-- `<!-- OCAR: <part> -->` — Opening, Challenge, Action, Resolution, in order.
-- `<!-- SECTION: <paper section> -->` — the IMRaD sections: Introduction, Methods, Results,
-  Discussion, or the field's variant. A section may appear under more than one OCAR part
-  (4.3).
-- `<!-- SUBSECTION: <heading> -->` — a heading inside a section, such as Study Area or Data
-  Analysis.
-- `<!-- main idea: <phrase> -->` — a leaf: one paragraph's point.
+    - OPENING — <author's opening summary>
+    - CHALLENGE — <author's challenge summary>
+    - ACTION — <author's action summary>
+    - RESOLUTION — <author's resolution summary>
 
-Nesting runs OCAR, section, subsection, main idea. Order nodes as the story tells them. A
-node's text is the author's wording; add none. Write no annotations, questions, or
-placeholders.
+    ## <SECTION> — <OCAR part>
+
+    ### <SUBSECTION>
+
+    - <Leaf Name> — <main idea phrase>
+
+- `# STORY` states the four OCAR parts in order.
+- `## <SECTION> — <OCAR part>` maps each paper section (Introduction, Methods, Results,
+  Discussion) to its OCAR role (4.3). A section may appear under more than one OCAR part.
+- `### <SUBSECTION>` names an internal heading, such as Study Area or Data Analysis.
+- `- <Leaf Name> — <main idea phrase>` names one paragraph's core point.
+
+Nesting runs Story, Section, Subsection, and main idea leaves. Order nodes as the story tells
+them. A node's text is the author's wording; add none.
+
+Phase 0 writes zero `<!-- ... -->` comments, zero `[[ ... ]]` annotations, and zero `XXX`
+placeholders into `OUTLINE.md`. It outputs only clean Markdown.
 
 ## Actions
 
@@ -113,8 +121,8 @@ for approval.
 
 ### Step 3 — Write the file
 
-On approval, write `OUTLINE.md`: the story statement in the author's words, then the comment
-tree.
+On approval, write `OUTLINE.md`: the `# STORY` section, then the section, subsection, and
+leaf structure in clean Markdown.
 
 Do not commit. Staging and committing are the author's decision.
 
