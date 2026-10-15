@@ -49,10 +49,17 @@ step; files take effect when they are checked out.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - When condensing a command, preserve every rule and change no behaviour.
-- Commands do not commit; staging and committing are the user's decision (multi-step editing pipeline steps like paper-phase-1 through 3 commit after user approval per step).
+- Commands do not commit; staging and committing are the user's decision. Multi-step
+  editing pipelines (paper-phase-1 through 3) commit after each approved step.
 - Author-facing commands preserve authorship: state the rule inline and read
   `~/repositorios/wiki/bundle/4a.md` before interviewing the author.
 - A command that interviews the author shows the real artifact of each option, not a
   description of it, and gates extra help on whether the product is external or internal.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
+- The paper-phase family is a four-scale ladder: phase 0 owns the story and document
+  (`OUTLINE.md`), phase 1 the paragraph, phase 2 the sentence, and phase 3 the word. Keep
+  each phase inside its scale.
+- In a paper draft, `<!-- ... -->` are structural comments (phase 1 owns them), `[[ ... ]]`
+  are annotations resolved later by quickfix-list, and `XXX` are author-only placeholders.
+  Phase 0 writes none; phases 2 and 3 leave all three untouched.
