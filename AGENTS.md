@@ -49,8 +49,10 @@ step; files take effect when they are checked out.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - When condensing a command, preserve every rule and change no behaviour.
-- Commands do not commit; staging and committing are the user's decision.
+- Commands do not commit; staging and committing are the user's decision (multi-step editing pipeline steps like paper-phase-1 through 3 commit after user approval per step).
 - Author-facing commands preserve authorship: state the rule inline and read
   `~/repositorios/wiki/bundle/4a.md` before interviewing the author.
 - A command that interviews the author shows the real artifact of each option, not a
   description of it, and gates extra help on whether the product is external or internal.
+- For judgment calls in paper editing commands, follow Schimel's principles and ideas
+  first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
