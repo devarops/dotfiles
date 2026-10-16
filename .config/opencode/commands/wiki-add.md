@@ -74,7 +74,12 @@ For each question:
 ```
 What type of concept best describes this source?
 ```
-Consider existing types used in `bundle/*.md` (e.g., Definition, Example, FAQ, How-to, Reference, Summary, Tutorial).
+Consider existing types used in `bundle/*.md`:
+- `Definition` — states what a term or quantity means.
+- `How-to` — tells the reader how to perform a task.
+- `Pattern` — describes a recurring arrangement and why it holds.
+- `Summary` — overviews an artifact or an idea.
+
 Propose options the source could plausibly fit.
 
 **Question 2 — Title (≤8 words):**
