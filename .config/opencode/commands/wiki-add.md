@@ -1,17 +1,17 @@
 ---
-description: Ingest a source into the LLM Wiki via structured interview and write to bundle/tmp.md
+description: Ingest a source or idea into the LLM Wiki via structured interview and write to bundle/tmp.md
 ---
 
 ## Overview
 
-Ingest a source document (URL or local file) into the LLM Wiki at `$HOME/repositorios/wiki/`.
+Ingest a source or capture an idea into the LLM Wiki at `$HOME/repositorios/wiki/`.
 
-The process follows a structured interview: up to 10 free-form questions exploring the source content, then 4 constant questions (type, title, description, tags).
+The process follows a structured interview: 10 to 20 free-form questions exploring the source or the idea, then 4 constant questions (type, title, description, tags).
 After the interview, redundancy with existing concepts is checked and resolved.
 A valid OKF concept document is written to `bundle/tmp.md` and an entry is appended to `log.md`.
 The user renames `tmp.md` and commits separately.
 
-The first argument (`$1`) is the source — either a URL (`https?://...`) or a local file path.
+The first argument (`$1`) is optional: a URL (`https?://...`), a local file path, or the idea itself.
 
 ---
 
@@ -32,24 +32,33 @@ Read the following to understand the wiki's current state and structural rules:
 - `$HOME/repositorios/wiki/log.md` — existing log entries
 - `$HOME/repositorios/wiki/bundle/*.md` — existing concept documents
 
-### Step 3 — Fetch or read the source
+### Step 3 — Fetch, read, or capture the source
 
-- If `$1` matches `https?://*`, fetch the URL content with `webfetch`.
-- Otherwise, read the local file at `$1`.
+`$1` is optional, and takes three forms:
+- A URL (`https?://*`): fetch it with `webfetch`.
+- A path to an existing, readable file: read it.
+- Absent, or free text that is neither: treat the text as the idea itself.
 
-Present a brief summary of the source to the user before starting the interview.
+If a URL or path cannot be fetched or read, report the failure, then offer to find a source or to continue without one.
 
-### Step 4 — Up to 10 free-form questions
+When there is no source, ask whether the user wants help finding a source:
+- If yes, search the web (`websearch`) and `raw/`, and propose one to three real candidates — each a title, URL, and one-line reason it fits.
+- Never invent a title or URL. If nothing credible is found, continue without a source.
+- The user picks a candidate or declines.
+
+Present a brief summary of the source — or, without one, of the idea — before starting the interview.
+
+### Step 4 — 10 to 20 free-form questions
 
 Generate questions dynamically based on the source content.
 The goal is to surface nuances, context, connections with other `bundle/*.md` concept documents, and anything the LLM cannot infer on its own.
 
 Rules:
 - Ask exactly one question at a time.
-- For each question, offer concrete answer options, recommend one, and justify.
+- For each question, offer concrete answer options and justify each.
 - Wait for user input before the next question.
 - Focus on information that is not already covered in the existing concepts.
-- Do not exceed 10 free-form questions.
+- Ask at least 10 and at most 20 free-form questions.
 
 Topics the LLM might probe:
 - Key claims or arguments in the source
@@ -74,12 +83,13 @@ For each question:
 ```
 What type of concept best describes this source?
 ```
-Consider existing types used in `bundle/*.md`:
+Consider these defined types:
 - `Definition` — states what a term or quantity means.
 - `How-to` — tells the reader how to perform a task.
 - `Pattern` — describes a recurring arrangement and why it holds.
 - `Summary` — overviews an artifact or an idea.
 
+Also list every type currently used in `bundle/*.md`, and prefer a type already in use.
 Propose options the source could plausibly fit.
 
 **Question 2 — Title (≤8 words):**
@@ -101,7 +111,8 @@ Respect the 16-word limit.
 ```
 What tags or categories should this concept carry?
 ```
-Propose 3 tags as a YAML list.
+List every tag already used in `bundle/*.md` before proposing.
+Then propose alternative options, each a set of exactly 3 tags as a YAML list, preferring an existing tag to a new one, and recommend one.
 Consider cross-cutting categories that help with discovery.
 
 ### Step 6 — Check for redundancy with existing concepts
@@ -130,16 +141,16 @@ Generate a valid OKF concept document at `$HOME/repositorios/wiki/bundle/tmp.md`
 - `title` — from Question 2 (≤8 words)
 - `description` — from Question 3 (≤16 words)
 - `tags` — from Question 4 (3 tags as a YAML list)
-- `resource` — always set. A URL if `$1` is a web source, or a wiki-root-relative path (e.g. `raw/foo.pdf`) if `$1` is a local file. Refuse absolute or `~` paths: ask the user to copy the file into `raw/` or supply a relative one.
+- `resource` — the OKF field holding the source; always set. A URL if `$1` is a web source, a wiki-root-relative path (e.g. `raw/foo.pdf`) if `$1` is a local file, or `None` when there is no source. Refuse absolute or `~` paths: ask the user to copy the file into `raw/` or supply a relative one.
 
 **Body:**
 - Conform to the OKF spec and `AGENTS.md` rules:
   - One sentence per line
   - Each sentence ≤25 words
   - Total body ≤200 words (excluding frontmatter)
-- Synthesise content from both the source document and the interview answers.
+- Synthesise content from the source document (if any) and the interview answers.
 - Do not duplicate content that is already present in other concepts.
-  Reference existing concepts with standard markdown links instead.
+  Link to existing concepts with standard markdown links instead.
 - Write to `bundle/tmp.md` (not a permanent filename).
 
 Present the generated content to the user for approval.
@@ -161,15 +172,15 @@ After the user approves the content, append one entry to `$HOME/repositorios/wik
 ```
 - `YYYY-MM-DD` — today's date in ISO 8601 format.
 - `[title]` — the approved title from Question 2.
-- `[source]` — the URL or file path provided as `$1`.
-- Do not reference the filename `tmp.md` — the user will rename it immediately.
+- `[source]` — the URL or file path provided as `$1`, or `None` when there is no source.
+- Do not name the filename `tmp.md` — the user will rename it immediately.
 - Append to the end of `log.md` (or insert under today's heading if one already exists).
 
 
 ### Step 9 — Verify OKF compliance
 
 Verify that the generated `bundle/tmp.md` is a valid OKF concept document.
-Use the following reference to check compliance:
+Use the following specification to check compliance:
 
 - `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/refs/heads/main/okf/SPEC.md` — the OKF specification
 
