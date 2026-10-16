@@ -1,5 +1,5 @@
 ---
-description: Generate a commit message that carries the session's signal, from git status --verbose.
+description: Generate a commit message that carries the session's intent and signal, from git status --verbose.
 ---
 
 ## Task
@@ -7,7 +7,7 @@ description: Generate a commit message that carries the session's signal, from g
 1. Run `git status --verbose` to identify changes in the staging area.
 1. If there are no staged changes, inform the user and stop.
 1. Ignore unstaged changes and describe only the staged changes.
-1. Read the last eight commits with `git log --patch --max-count 8` to learn the project's commit style and the direction of the recent work.
+1. Read the last eight commits with `git log --patch --max-count 8` to learn the project's commit style and the direction of the recent work, and to see the intent they already state.
 1. Write one commit message from this session: what was decided, what a future reader must know, and what comes next.
 1. Present the message and wait for the user to approve it, edit it, or ask for a change. Do not commit before approval.
 1. After approval, commit the staged changes with the approved message.
@@ -16,9 +16,13 @@ description: Generate a commit message that carries the session's signal, from g
 
 Give a group to each of the following that carries signal, and omit any group that does not:
 
-1. The decision: what was chosen and why, including what was rejected.
-2. The context: facts a future reader cannot recover from the code or the diff.
-3. The next step: the follow-up this change creates. Include it only when there is concrete
+1. The intent: the user's intent and the principles that guided the user, which no diff can
+   show. Take them from this session, and add only what the recent commits do not already
+   state: a new principle, or an updated intent. Never repeat, and never restate the intent
+   you replace.
+2. The decision: what was chosen and why, including what was rejected.
+3. The context: facts a future reader cannot recover from the code or the diff.
+4. The next step: the follow-up this change creates. Include it only when there is concrete
    evidence of the intended next step; in doubt, omit it.
 
 Write free prose, one sentence per line, and separate the groups with a blank line. Add no
