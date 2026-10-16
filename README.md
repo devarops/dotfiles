@@ -1,6 +1,13 @@
 # Configuración inicial de la máquina del Evaristo
 
-## Prerequisitos
+Mantiene el entorno de desarrollo listo en una máquina nueva.
+
+## Qué hace
+
+Guarda la configuración personal de shell, terminal, editor y asistentes en un repositorio.
+Instalarla en otra máquina reproduce el mismo entorno.
+
+## Antes de empezar
 
 Primero ve a: [Cliente liviano para desarrollo remoto](https://github.com/devarops/thin_client)
 

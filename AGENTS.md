@@ -63,3 +63,5 @@ step; files take effect when they are checked out.
 - In a paper draft, `<!-- ... -->` are structural comments (phase 1 owns them), `[[ ... ]]`
   are annotations resolved later by quickfix-list, and `XXX` are author-only placeholders.
   Phase 0 writes none; phases 2 and 3 leave all three untouched.
+- The authorship rule does not bind `wiki-add`; it synthesises the concept body, which the
+  author approves.
