@@ -28,7 +28,7 @@ git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
 
-# Related repos
+## Related repos
 
 - [Dotfiles del equipo IslasGECI](https://github.com/IslasGECI/dotfiles)
 - [Development server setup via Ansible](https://github.com/IslasGECI/development_server_setup)
