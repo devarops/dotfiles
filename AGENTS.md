@@ -65,3 +65,8 @@ step; files take effect when they are checked out.
   Phase 0 writes none; phases 2 and 3 leave all three untouched.
 - The authorship rule does not bind `wiki-add`; it synthesises the concept body, which the
   author approves.
+- `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last
+  eight commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
+  pathspec, which filters before the limit.
+- The `/start` pre-flight catches a missing `/end`, not one overtaken by later work; the
+  narrow detector is deliberate.
