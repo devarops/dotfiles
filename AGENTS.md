@@ -55,6 +55,9 @@ step; files take effect when they are checked out.
   precondition. A durable action must leave that precondition false, so repeated runs converge.
 - Commands do not commit; staging and committing are the user's decision. Multi-step
   editing pipelines (paper-phase-1 through 3) commit after each approved step.
+- `/release-version` commits the release changes the user has staged, after the user
+  approves the commit message. It never stages or unstages, amends, or pushes a branch;
+  it pushes the release tag and syncs tags.
 - Author-facing commands preserve authorship: state the rule inline and read
   `~/repositorios/wiki/bundle/4a.md` before interviewing the author.
 - A command that interviews the author shows the real artifact of each option, not a
