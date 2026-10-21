@@ -1,10 +1,10 @@
 ---
-description: Tidy one command: repair provable defects and stay under 1000 words.
+description: Tidy one command: repair provable defects, check idempotency and convergence, stay under 1000 words.
 ---
 
 # Tidy a Command
 
-Tidy one command per run. Preserve its behavior, repair only provable defects, and keep the file at 1000 words or fewer. The target is `$1`; if `$1` is empty, report the missing argument and stop.
+Tidy one command per run. Preserve its behavior, repair only provable defects, check idempotency and convergence, and keep the file at 1000 words or fewer. The target is `$1`; if `$1` is empty, report the missing argument and stop.
 
 ## Gate
 
@@ -30,13 +30,19 @@ Repair without asking:
 - a rule stated twice, or a redundancy that says the same thing;
 - a structural error: broken frontmatter, malformed heading, empty section, or malformed table.
 
+Check congruence with the other commands: shared terms, markers, conventions, and rules. Repair the target's term or rule when the other commands have clearly replaced it; ask when the conflict is a choice.
+
 Ask one question at a time when two rules contradict, when two commands appear to claim the same job or artifact, or when a judgment call remains. Quote the conflicting passages verbatim. For each option, give a one-line label, the exact replacement text, and a one-sentence justification. Wait for the answer before the next question. Do not ask what the files already settle.
 
 Check the target's name against the AGENTS.md naming rule. Report a violation; never rename the file.
 
+## Idempotency and convergence
+
+For each durable action, assume the work is already done unless the target's instructions prove otherwise. The action must have a named precondition tied to the unit of work the target owns. Examine writes, appends, creates, deletes, renames, commits, and external changes. A vague condition is not evidence. After the action, the precondition must be false; a target with no durable effects passes. Ask about an action with no named precondition, or one that leaves its precondition true, offering guard options in the Audit format.
+
 ## Overlap
 
-Resolve a confirmed overlap inside the target only. Add or update one durable bullet under OpenCode commands in `AGENTS.md`, stating which command owns the job and which must not repeat it. If the resolution leaves work for another command, add the pending task as described in Scope. Never edit another command.
+Resolve a confirmed overlap inside the target only. Add or update one durable bullet under OpenCode commands in `AGENTS.md`, stating which command owns the job and which must not repeat it. Add it when absent, update it only when the resolution changed, and leave it otherwise. If it already records this boundary, do not ask again. If the resolution leaves work for another command, add the pending task as described in Scope. Never edit another command.
 
 ## Rewrite
 
@@ -46,13 +52,13 @@ Keep every optional frontmatter field already present and named in the OpenCode 
 
 ## Verify
 
-Compare each rule in the numbered inventory file with the rewrite. Every rule must survive or be removed as a proven defect. If a rule is missing, restore it. If it cannot fit, follow the stop-and-ask rule above.
+Compare each rule in the numbered inventory file with the rewrite. Every rule must survive or be removed as a proven defect. If a rule is missing, restore it. If it cannot fit, follow the stop-and-ask rule above. Then rerun the audit and the convergence check on the rewrite; it must pass with no repairable defect or convergence gap.
 
 ## Write and report
 
-Write once after all answers. If the target is already under 1000 words and has no repairable defect, change nothing and report that result. This is a successful run.
+Write once after all answers. If the target is already under 1000 words and has no repairable defect or convergence gap, change nothing and report that result. This is a successful run.
 
-Report the target, the word count before and after, each automatic repair with its evidence, every naming violation, each clarification and answer, any `AGENTS.md` or `TODO.md` change, every unresolved rule and its reason, and whether the tree is dirty. State that nothing was staged or committed.
+Report the target, the word count before and after, each automatic repair with its evidence, every naming violation, the idempotency and convergence verdict, each clarification and answer, any `AGENTS.md` or `TODO.md` change, every unresolved rule and its reason, and whether the tree is dirty. State that nothing was staged or committed.
 
 ## Boundaries
 
