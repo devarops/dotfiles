@@ -26,9 +26,13 @@ Find the longest prefix of field names shared, in the same order, by at least ha
 
 A field on at least half the records is a house field. Report the house set with counts and every record that lacks one. You add nothing.
 
+## Guard
+
+Before writing, build the intended file in memory from the sorted entries, the inferred field prefix, the house field set, and the syntax and spacing the Write section requires. Compare it with the current file. If they are identical, report that the bibliography already matches the house style and stop without writing. Only a real difference reaches Write.
+
 ## Write
 
-Write the whole file once:
+Write the guarded result once:
 
 - one entry per block, one blank line between blocks;
 - fields as `field = {value}`, one space each side of `=`;
@@ -36,7 +40,7 @@ Write the whole file once:
 - fields reordered to the inferred prefix, and no further;
 - entries in the sorted order.
 
-Verify after writing that every field line opens with `field = {` and closes with `},` on the same line, and that the file parses; if either fails, stop, report, and restore the file with `git restore`. If every check already holds, change nothing and say so.
+Verify after writing that every field line opens with `field = {` and closes with `},` on the same line, and that the file parses; if either fails, stop, report, and restore the file with `git restore`.
 
 ## Smoke test
 
@@ -50,7 +54,7 @@ Assert: pandoc exits zero with no parse warning; the document renders; the refer
 
 ## Report
 
-Give the inventory, the prefix and its support, the field set with counts, the records that lack a house field, the entries changed by kind of change, and the smoke-test result. Show the diff. State whether the tree is dirty and that you staged and committed nothing. If the tree is dirty, the user commits; a second run before that commit is refused by the clean-tree check.
+Give the inventory, the prefix and its support, the field set with counts, the records that lack a house field, the entries changed by kind of change, and the smoke-test result. If the guard stopped, report that the file already matched and show no diff; the smoke test does not run. Otherwise show the diff. State whether the tree is dirty and that you staged and committed nothing. If the tree is dirty, the user commits; a second run before that commit is refused by the clean-tree check.
 
 ## Constraints
 
