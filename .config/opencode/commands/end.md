@@ -6,19 +6,19 @@ Before starting, verify a clean tree with `git status --porcelain`; if dirty, no
 
 ## The public interface
 
-Applies only when `DOCS.md` or `CHANGELOG.md` exists; otherwise skip it and do not ask for an interface.
+Applies only when `DOCS.md` or `CHANGELOG.md` exists; otherwise skip it; do not ask for an interface.
 
 Every entry must belong to the public interface, the outermost one the end user consumes. `AGENTS.md` defines it, `DOCS.md` lists its elements, and `CHANGELOG.md` records only changes to those elements. Exclude unreachable changes: developer-only code and behaviour-preserving refactors, even when tests cover them; when a test is the only evidence, ask whether the symbol is reachable; if not, omit it. If `AGENTS.md` lacks the definition, infer it from the outermost entrypoints, present it for approval, and record it. Preserve it; revise only when the criterion changes. Sync the definition, `DOCS.md`, and `CHANGELOG.md` whenever elements are added, deprecated, or removed.
 
 ## Files
 
-Always update `AGENTS.md` (guidelines; the interface definition when in use) and `README.md`. Update `DOCS.md`, `CHANGELOG.md`, and `TODO.md` only if they exist; create `TODO.md` only after confirmation. Report missing files. Files are complementary; `README.md` must not overlap them.
+Review `AGENTS.md` (guidelines; the interface definition when in use) and `README.md` on every run, and write only when the intended content differs from the current file. Update `DOCS.md`, `CHANGELOG.md`, and `TODO.md` only if they exist; create `TODO.md` only after confirmation. Report missing files. Files are complementary; `README.md` must not overlap them.
 
 ---
 
 ## 1. Update AGENTS.md
 
-If `AGENTS.md` exists, audit every repo-visible claim in the whole file against the repo (files, configs, commands, git history). Conduct rules need evidence of a violation. Check claims, not just this session's; cite the commit that introduced the divergence. Omit mismatches already tracked by an open `TODO.md` item.
+If `AGENTS.md` exists, audit every repo-visible claim in the file against the repo (files, configs, commands, git history). Conduct rules need evidence of a violation. Check all claims; cite the commit that introduced the divergence. Omit mismatches already tracked by an open `TODO.md` item.
 
 List the rest numbered: claim, location, evidence, cost of fixing `AGENTS.md` versus the repo.
 
@@ -36,7 +36,7 @@ Improve it in place: map findings to its sections, keep the tone, preserve verif
 
 ## 2. Update DOCS.md
 
-List every public-interface element and nothing else, inferred from tests, entrypoints, CLI definitions, and routes. Include only reachable elements; exclude internal functions, helpers, and developer-only utilities. Remove entries for elements no longer exposed; mark discouraged elements Deprecated until removed. Do not mention tests, testing strategy, or implementation details.
+List every public-interface element and nothing else, inferred from tests, entrypoints, CLI definitions, and routes. Include only reachable elements; exclude internal functions, helpers, and developer-only utilities. Remove entries for elements no longer exposed; mark discouraged elements Deprecated until removed. Do not mention testing or implementation details.
 
 Entries use `### symbol_name(signature)`, `### GET/POST /endpoint/`, or `### cli command --options`; then one-line description; Parameters, Returns, Errors (omit if none), Notes (omit if none).
 
@@ -46,17 +46,17 @@ Follow [Keep a Changelog](https://keepachangelog.com/). Include only changes to 
 
 ## 4. Update README.md
 
-Rewrite `README.md` for non-technical readers, with no overlap with `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`; no jargon, implementation details, or algorithms. Structure: tagline; what it does; usage; before you start; run the project (Docker preferred, then native).
+Update `README.md` for non-technical readers, with no overlap with `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`; no jargon, implementation details, or algorithms. Structure: tagline; what it does; usage; before you start; run the project (Docker preferred, then native).
 
 ## 5. Update TODO.md
 
 Clean `TODO.md`: remove completed items (`[x]`) and items the current state proves done or obsolete, even if unmarked.
 
-Find gaps from this session and the last eight commits (`git log --patch --max-count 8`), with evidence: an out-of-scope task; a parked task; unfinished work; a gap in the recent diff. Omit the merely plausible; if an open item duplicates it, skip it and say it was already present.
+Find gaps from this session and the last eight commits (`git log --patch --max-count 8`), with evidence: an out-of-scope task; a parked task; unfinished work; a gap in the recent diff. Omit the merely plausible; if an open item duplicates it, skip it and say so.
 
 Present all candidates numbered: task, evidence, why it qualifies. Wait. The user names the numbers to add; `all` means all. Unnamed candidates are not added. An invalid selection gets one correction.
 
-Add selected items to the section that best fits the file's structure. Never impose a template or add a missing section; explain each placement. If `TODO.md` is absent, present the candidates, ask once whether to create, and create only on approval as a minimal `# Backlog`. If creation was declined, report instead.
+Add selected items to the best-fitting section. Never impose a template or add a missing section; explain each placement. If `TODO.md` is absent, present the candidates, ask once whether to create, and create only on approval as a minimal `# Backlog`. If creation was declined, report instead.
 
 ## 6. Verify and tidy
 
