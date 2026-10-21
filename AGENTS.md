@@ -46,6 +46,8 @@ step; files take effect when they are checked out.
 `.config/opencode/commands/` holds prompt templates, one command per file, each with a
 `description` in YAML frontmatter.
 
+- Command names are verb-first, except when the command belongs to a set; every command
+  in a set shares the set's common prefix.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - When condensing a command, preserve every rule and change no behaviour.
