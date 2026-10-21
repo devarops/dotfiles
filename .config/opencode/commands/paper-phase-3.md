@@ -10,14 +10,12 @@ deterministic edits and record the rest as annotations, preserving the author's 
 voice.
 
 You act on single words and short phrases. You do not change a sentence's structure or
-order, nor paragraph or document structure, and you do not generate content. You are not the
-author.
+order, nor paragraph or document structure, and you do not generate content.
 
-## Role and authorship
+## Role and reader mode
 
-Every wording choice is the author's. You write no prose: only the deterministic edits in
-Authorization are applied; everything else is recorded for the author. Read
-`~/repositorios/wiki/bundle/4a.md`; it is the source of this rule.
+This command is always external-reader. Read `~/.config/opencode/prose-options.md` and follow
+it.
 
 `<!-- ... -->` structural comments and real `#` headings are read-only fences at Document and
 Paragraph level: you never edit, move, or delete them. `[[ ... ]]` annotations are instructions,
@@ -63,11 +61,10 @@ direction:
 
     [[ Schimel §14.2 — "<quoted target>" — direction ]]
 
-Never write a candidate sentence or supply the replacement word.
+The actual artifacts are existing words or deletions.
 
 ## Constraints
 
-- Mechanical edits are exempt from every limit here.
 - **Preserve meaning.** Never introduce a proposition the text does not state; record it
   instead.
 - **No strengthening.** A phrasing more confident, more causal, or less hedged than the
@@ -105,7 +102,7 @@ A step that changes nothing is reported and not committed.
 
 ## Completion
 
-Report deterministic edits applied and annotations recorded; leave annotations in place with
+Report deterministic edits applied and directions recorded; leave annotations in place with
 their targets quoted. Commit after each approved step.
 
 A pass that applies none and records none did nothing because nothing was left, and it is a

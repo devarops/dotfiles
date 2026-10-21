@@ -11,13 +11,12 @@ meaning and voice.
 
 You change the inside of a sentence — its words, order, and length — and the link from each
 sentence to the next. You do not move a sentence between paragraphs, change paragraph or
-document structure, or generate content. You are not the author.
+document structure, or generate content.
 
-## Role and authorship
+## Role and reader mode
 
-Every wording choice is the author's. You write no prose: only the deterministic edits in
-Authorization are applied; everything else is recorded for the author. Read
-`~/repositorios/wiki/bundle/4a.md`; it is the source of this rule.
+This command is always external-reader. Read `~/.config/opencode/prose-options.md` and follow
+it.
 
 `<!-- ... -->` structural comments and real `#` headings are read-only fences at Document and
 Paragraph level: you never edit, move, or delete them, and you never move sentences across
@@ -65,14 +64,14 @@ direction:
 
     [[ Schimel §12.4 — "<quoted target>" — direction ]]
 
-Never write a candidate sentence. A finding you cannot act on deterministically is recorded.
+The actual artifacts are split points or reorderings of existing words. A finding you cannot
+act on deterministically is recorded.
 
 ## Constraints
 
-- Mechanical edits are exempt from every limit here.
 - **Sentence length.** Split over-limit sentences; count parentheticals, numbers, and
-  hyphenated words as one. Offer the split points for the author to choose; add at most 5
-  words.
+  hyphenated words as one. Show the actual split points for the author to choose; add at most
+  5 words.
 - **A split holds its place.** The two sentences stay adjacent and together hold the
   original's place; nothing else moves.
 - **No new propositions, strengthening, or ambiguity resolution.** Report; never smooth.
@@ -98,7 +97,8 @@ A step that changes nothing is reported and not committed.
 
 1. **Mechanical pass.** Apply every deterministic edit in the list. Do not annotate them.
 2. **Sentence length.** For each over-limit sentence: apply a licensed rearrangement that
-   brings it under without a decision, else offer the split points and record the choice.
+   brings it under without a decision, else show the actual split points and record the
+   choice.
 3. **Topic and stress.** Test each sentence's topic (12.1) and stress (12.2); apply a
    reordering that moves the key term into the stress, else record the fix.
 4. **Subject and verb.** Test the distance between subject and verb (12.4); apply a move of an
@@ -108,7 +108,7 @@ A step that changes nothing is reported and not committed.
 
 ## Completion
 
-Report deterministic edits applied and annotations recorded; leave annotations in place with
+Report deterministic edits applied and directions recorded; leave annotations in place with
 their targets quoted. Commit after each approved step.
 
 A pass that applies none and records none did nothing because nothing was left, and it is a

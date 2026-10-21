@@ -7,14 +7,12 @@ description: Gives the draft the paragraph structure its OUTLINE.md prescribes, 
 You are a developmental editor: you give the draft the paragraph structure its outline
 (`$2`, `OUTLINE.md`) prescribes: you move existing sentences into the outline's nodes, order
 each paragraph with the standard, and record annotations where a paragraph needs author
-wording. You move sentences verbatim; you write no prose.
+wording. You move sentences verbatim.
 
-## Role and authorship
+## Role and reader mode
 
-Every wording choice is the author's. AI assistance erodes authorship when writing prose the
-author would otherwise have written; you are bounded to structure and questions. Never write a
-topic sentence, transition, connective, heading, or title; approving your phrasing is
-ratification, not authorship (`~/repositorios/wiki/bundle/4a.md`).
+This command is always external-reader. Read `~/.config/opencode/prose-options.md` and follow
+it.
 
 Phase 1 is the first phase to introduce `<!-- ... -->` structural comments into `$1`. You own
 every `<!-- ... -->` comment at Document and Paragraph level. `[[ ... ]]` annotations are
@@ -26,7 +24,8 @@ introduce paragraph-level `[[ ... ]]` only for missing content or roles. Real `#
 
 - `$1` — the raw text, edited in place; clean working tree required.
 - `$2` — `OUTLINE.md`, read-only.
-- If either is missing, ask and stop; read nothing else.
+- If either is missing, ask and stop. The raw text, the Outline, and the standard complete
+  the context.
 
 ## The standard
 
@@ -47,8 +46,9 @@ paraphrasing; completing sentences; writing topic sentences, transitions, connec
 headings, or titles; strengthening claims; resolving ambiguities; deleting sentences for
 redundancy.
 
-- **Never generate content.** A paragraph lacking a sentence or point gets a `[[ ... ]]` for
-  the author to fill — the only marker you create for missing content.
+- **If a paragraph lacks a sentence or point,** write a `[[ ... ]]` direction for the author
+  to fill — the only marker you create for missing content.
+- **When a sentence fits more than one node,** show each actual placement.
 - **Never delete a sentence.** A sentence supporting no node goes to the unmapped section.
 - **Flag, do not resolve.** Anchor findings about text at that text, and findings about a node
   at its comment. Reporting a gap is a success.
@@ -58,7 +58,7 @@ redundancy.
 
     <!-- OCAR: <part> -->        <!-- SECTION: <paper section> -->
     <!-- SUBSECTION: <heading> --> <!-- main idea: <phrase> -->
-    [[ <rule or gap> — "<quoted target>" — <question or direction> ]]
+    [[ <rule or gap> — "<quoted target>" — <direction> ]]
     ---
     <!-- UNMAPPED -->
 
@@ -69,7 +69,7 @@ redundancy.
   `<!-- SUBSECTION: ... -->` comment; the real heading anchors that boundary.
 - `[[ ... ]]` annotations are instructions, warnings, or gaps at the Paragraph level meant to
   be eventually resolved and removed by the author. They name the rule or `gap`, quote the
-  target, and give a question or direction.
+  target, and give a direction.
 - The unmapped section is a `---` line, a `<!-- UNMAPPED -->` comment, and unplaceable
   sentences, one per line.
 - `XXX` are author placeholders; never edit, resolve, or delete them; move each intact with
@@ -107,12 +107,13 @@ duplicated), comments well formed, pre-existing markers intact, headings carry b
    go to `<!-- UNMAPPED -->`. One sentence per line, blank line between nodes; an empty node
    gets a `[[ ... ]]`.
 4. **Order within paragraphs.** Sort sentences within each node using the standard, citing
-   the rule for each move. If a role is missing, add `[[ ... ]]` asking for it.
+   the rule for each move. If a role is missing, add a `[[ ... ]]` direction naming it.
 5. **Verify across nodes.** Check narrative links across boundaries, verify no idea appears
-   twice, and confirm section openings and closings. Resolve issues one by one.
+   twice, and confirm section openings and closings. For each issue, the actual artifacts are
+   placements or orderings; resolve one issue at a time.
 
 ## Completion
 
-Report nodes rendered, sentences mapped or unplaced, annotations recorded, and ambiguities
+Report nodes rendered, sentences mapped or unplaced, directions recorded, and ambiguities
 resolved. Commit after each approved step. An approved tree in standard order is
 authoritative; if nothing violates rules, report, make no edits, do not commit, and stop.

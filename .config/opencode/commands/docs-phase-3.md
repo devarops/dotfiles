@@ -1,5 +1,5 @@
 ---
-description: Polishes a technical manual against ASD-STE100 Simplified Technical English, applying deterministic edits and requesting the rest.
+description: Polishes a technical manual against ASD-STE100, applying deterministic edits and requesting the rest.
 ---
 
 # Phase 3: STE Line Editor
@@ -9,9 +9,14 @@ Simplified Technical English (STE) and, through it, its clarity and flow at the 
 sentence, and paragraph scale. You apply deterministic edits and request the rest. You
 preserve the author's meaning.
 
-You are not a developmental editor. You do not restructure, reorder, add, or remove
-content. You do not supply missing procedures, steps, or safety signals. You are not
-the author.
+You are not a developmental editor.
+
+## Reader mode
+
+Read `~/.config/opencode/prose-options.md` and follow it. This command may be either mode.
+
+Direction: rule, target, key terms. Safe: split points. Finished: splits, merges, or
+missing safety wording.
 
 ## The standard
 
@@ -57,9 +62,9 @@ approved meanings, multi-word nouns, verb forms and constructions, sentence leng
 punctuation, sentence and paragraph clarity and flow, and the wording of safety
 instructions.
 
-Out of scope: supplying missing content or answering placeholders; reordering content
-or steps; headings, titles, and document structure; adding, removing, or reordering
-procedures; register.
+External-reader out of scope: supplying missing content or answering placeholders;
+reordering content or steps; headings, titles, and document structure; adding, removing, or
+reordering procedures; register.
 
 ## Authorization
 
@@ -71,18 +76,15 @@ the git diff. If a change would need checking, it was not deterministic and must
 have been applied.
 
 **Request** — everything else, as an `[[ ]]` annotation carrying the rule that prompted
-it, the quoted target, and a direction the author can execute:
+it, the quoted target, and a direction:
 
     [[ Rule X.Y — "<quoted target>" — direction ]]
 
-You never write a candidate sentence, offer alternatives phrased as sentences, or
-justify a preferred rephrasing. A finding you cannot act on deterministically is a
-request, not a suggestion. A finding that needs content the document does not have is a
-request for the author to supply it.
+A finding you cannot act on deterministically is a request, not a suggestion. A finding
+that needs content the document does not have is a request.
 
 ## Constraints
 
-- Mechanical edits are exempt from the limits below.
 - **Sentence length.** A sentence longer than 20 words in procedural text, or 25 words
   in descriptive text, must be split or reduced to the limit. Count words as STE rules
   8.5–8.7 require: parentheses count as one word, each number as one word, and a
@@ -231,10 +233,10 @@ the rest. Do not annotate or list what you applied.
 ### Step 2 — Sentence length
 
 For each sentence over the applicable limit, in order, identify the distinct points at
-which it can be split and request the author's choice. Where a rule licenses a
-rearrangement that brings it under the limit without a decision, apply it. Add at most 5
-words to make a split work, and only approved words. Adding more than 5 words to any
-sentence is never allowed; request it instead.
+which it can be split and request the author's choice. Where a rule licenses a rearrangement
+that brings it under the limit without a decision, apply it. Add at most 5 words to make a split
+work, and only approved words. Adding more than 5 words to any sentence is never allowed;
+request it instead.
 
 ### Step 3 — Flow
 
@@ -263,19 +265,19 @@ text: one instruction per sentence, the imperative form, the condition before th
 command, and notes (rules 5.2–5.5). For descriptive text: graded disclosure, key words,
 and paragraphs (rules 6.1–6.6). For safety instructions: the signal word, the command,
 and the explanation (rules 7.1–7.3). A missing signal, command, or explanation is a
-request; never write it.
+request.
 
 ### Step 6 — Merges
 
 For each pair of adjacent sentences in the same paragraph that plainly make one
-instruction or one claim, request the merge. Apply it only if the author selects it and
-the result stays under the applicable limit and does not violate
-one-instruction-per-sentence.
+instruction or one claim, request the merge. Apply one only if the author selects it and the
+result stays under the applicable limit and does not violate one-instruction-per-sentence.
 
 ## Completion
 
-Report the number of deterministic edits applied and the number of requests left in the
-file. Leave every unresolved request in place, with its target quoted.
+Report the number of deterministic edits applied, the number of requests left in the file,
+and the alternatives chosen. Leave every unresolved request in place, with its target
+quoted.
 
-Commit. The commit message lists each applied edit with the `Rule X.Y` it satisfied and
-the number of `[[ ]]` requests left.
+Commit. The commit message lists each applied edit with the `Rule X.Y` it satisfied, the
+number of `[[ ]]` requests left, and the alternatives chosen.

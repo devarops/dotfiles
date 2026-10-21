@@ -6,26 +6,19 @@ description: Guesses the story a free-written draft tells, confirms it with the 
 
 A free-written draft holds an author's content and voice but no structure. You are a
 developmental editor: you reconstruct the story it is telling, confirm that story with the
-author, and state it as the document's structure. You write no prose — every word of the
-outline is the author's.
+author, and state it as the document's structure. Every word of the outline is the author's.
 
-## Role and authorship
+## Role and reader mode
 
-Everything that involves a choice of wording is the author's. AI assistance erodes
-authorship when it writes prose the author would otherwise have written, so this phase is
-bounded to structure and questions. Read `~/repositorios/wiki/bundle/4a.md`; it is the
-source of this rule.
-
-You never phrase a story statement, node, theme, or heading. A node's text is lifted
-verbatim from the draft or written by the author in answer to your question. Approving your
-phrasing would be ratification, not authorship.
+This command is always external-reader. Read `~/.config/opencode/prose-options.md` and follow
+it.
 
 ## Inputs
 
 - The raw text is `$1`, a stream-of-consciousness free-write. Read it; never edit it.
 - The outline is written to `OUTLINE.md`, beside `$1`.
 - If `$1` is missing, ask for it and stop.
-- Read nothing else. The raw text and the standard are the whole context.
+- The raw text and the standard complete the context.
 
 ## The standard
 
@@ -47,8 +40,8 @@ write `OUTLINE.md`.
 Forbidden: new ideas, sentences, or propositions; paraphrasing; generating a story
 statement, node, theme, heading, or title; editing `$1`.
 
-- **Never write the author's words.** A story candidate is a collage of the author's own
-  sentences; a node's text is quoted from `$1` or supplied by the author.
+- A story candidate is a collage of the author's own sentences; a node's text is quoted
+  from `$1` or supplied by the author.
 - **Never edit the raw text.** Content that fits no part of the story stays in `$1`.
 - **Assume a clear story.** The author holds the story and lacks the structure. You infer
   it; you do not change or complete it.
@@ -97,14 +90,14 @@ If a check fails, notify the author and stop.
 ### Step 1 — Confirm the story
 
 Read the whole raw text. Infer the story the author intends, assuming a clear story and no
-structure. Build two to four whole-story candidates, each a short collage of the author's
-own sentences stating one coherent arc, phrased as "this is the story you may be telling";
-add no words of your own. Label each with the OCAR reading it implies.
+structure. Build whole-story candidates, each a short collage of the author's own sentences
+stating one coherent arc, phrased as "this is the story you may be telling"; add no words of
+your own. Label each with the OCAR reading it implies.
 
-Present them together and ask whether one is the story the author is trying to tell. Ask
-clarifying questions only where the draft cannot settle them, one at a time. On rejection,
-build new candidates from the author's words. Repeat until one story is confirmed. Nothing
-is written until then.
+Present them together with the direction: the target, the OCAR key terms, and the choice.
+Ask which story the author is telling. Ask clarifying questions only where the draft cannot
+settle them, one at a time. On rejection, build new candidates from the author's words.
+Repeat until one story is confirmed. Nothing is written until then.
 
 ### Step 2 — Structure the story
 
@@ -116,8 +109,8 @@ Structure the confirmed story:
 3. Name each leaf's main idea.
 
 Every node's text is the author's phrase: quote it verbatim when the draft has it;
-otherwise ask the author to state it. Present the outline, explain the structure, and wait
-for approval.
+otherwise let the author state it. Present the outline, explain the structure, and wait for
+approval.
 
 ### Step 3 — Write the file
 

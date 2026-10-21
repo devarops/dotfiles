@@ -1,1 +1,2 @@
 - Read the knowledge base at: /home/evaro/repositorios/wiki/bundle/*.md
+- Read `~/.config/opencode/prose-options.md` when a command points to it.
