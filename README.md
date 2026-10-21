@@ -1,26 +1,26 @@
-# Configuración inicial de la máquina del Evaristo
+# Initial setup for Evaristo's machine
 
-Mantiene el entorno de desarrollo listo en una máquina nueva.
+Keeps the development environment ready on a new machine.
 
-## Qué hace
+## What it does
 
-Guarda la configuración personal de shell, terminal, editor y asistentes en un repositorio.
-Instalarla en otra máquina reproduce el mismo entorno.
+Stores the personal configuration for the shell, terminal, editor, and assistants in one repository.
+Installing it on another machine reproduces the same environment.
 
-## Antes de empezar
+## Before you start
 
-Primero ve a: [Cliente liviano para desarrollo remoto](https://github.com/devarops/thin_client)
+First, go to: [Lightweight client for remote development](https://github.com/devarops/thin_client)
 
-## Instalación
+## Installation
 
-Para instalar los archivos de configuración ejecutamos lo siguiente:
+To install the configuration files, run the following:
 
 ```shell
 git clone --bare --depth 1 https://github.com/devarops/dotfiles.git ${HOME}/dotfiles.git
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 ```
 
-Alternativamente, puedes usar SSH:
+Alternatively, you can use SSH:
 
 ```shell
 git clone --bare git@github.com:devarops/dotfiles.git ${HOME}/dotfiles.git
@@ -28,14 +28,14 @@ git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
 
-## Cómo usarlo
+## How to use it
 
-Después de instalar, abre una terminal nueva para cargar la configuración. Desde ahí puedes
-usar los alias y funciones del equipo, y los comandos de OpenCode con `/nombre`.
+After installing, open a new terminal to load the configuration. From there you can use the
+team's aliases and functions, and the OpenCode commands with `/name`.
 
 ## Related repos
 
-- [Dotfiles del equipo IslasGECI](https://github.com/IslasGECI/dotfiles)
+- [IslasGECI team dotfiles](https://github.com/IslasGECI/dotfiles)
 - [Development server setup via Ansible](https://github.com/IslasGECI/development_server_setup)
 - [Thin client setup](https://github.com/devarops/thin_client)
 - [Portable Development Environment (PDE)](https://github.com/IslasGECI/pde)
