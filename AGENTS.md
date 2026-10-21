@@ -51,6 +51,8 @@ step; files take effect when they are checked out.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - When condensing a command, preserve every rule and change no behaviour.
+- A command with durable effects assumes its work is already done and acts only on a named
+  precondition. A durable action must leave that precondition false, so repeated runs converge.
 - Commands do not commit; staging and committing are the user's decision. Multi-step
   editing pipelines (paper-phase-1 through 3) commit after each approved step.
 - Author-facing commands preserve authorship: state the rule inline and read
@@ -72,3 +74,6 @@ step; files take effect when they are checked out.
   pathspec, which filters before the limit.
 - The `/start` pre-flight catches a missing `/end`, not one overtaken by later work; the
   narrow detector is deliberate.
+- `/tidy-command` takes one command name, requires a clean tree, and edits only that command.
+  It records an overlap boundary in `AGENTS.md` and leaves work for another command as a
+  `TODO.md` task or a report.

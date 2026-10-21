@@ -28,6 +28,11 @@ git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} checkout --force
 git --git-dir=${HOME}/dotfiles.git --work-tree=${HOME} config --local status.showUntrackedFiles no
 ```
 
+## Cómo usarlo
+
+Después de instalar, abre una terminal nueva para cargar la configuración. Desde ahí puedes
+usar los alias y funciones del equipo, y los comandos de OpenCode con `/nombre`.
+
 ## Related repos
 
 - [Dotfiles del equipo IslasGECI](https://github.com/IslasGECI/dotfiles)
