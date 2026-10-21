@@ -34,8 +34,7 @@ step; files take effect when they are checked out.
 ## Conventions
 
 - **Commits**: a gitmoji followed by an imperative English summary under 72 characters,
-  a blank second line, then a short body explaining why. Recent commits use 📝, ♻️, 🔧,
-  and 📐.
+  a blank second line, then a short body explaining why.
 - **Verification**: there is no test suite, CI, or build. Check a change by reading the
   affected file; for shell code, `bash -n` catches syntax errors.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
@@ -47,21 +46,18 @@ step; files take effect when they are checked out.
 `description` in YAML frontmatter.
 
 - Command names are verb-first, except when the command belongs to a set; every command
-  in a set shares the set's common prefix.
+  in a set shares the set's common prefix. A built-in command name is also an exception;
+  `pr-review` avoids the built-in `/review`.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - When condensing a command, preserve every rule and change no behaviour.
-- A command with durable effects assumes its work is already done and acts only on a named
-  precondition. A durable action must leave that precondition false, so repeated runs converge.
-- Commands do not commit; staging and committing are the user's decision. Multi-step
-  editing pipelines (paper-phase-1 through 3) commit after each approved step.
+- A command that writes, creates, deletes, or renames checks whether the target already
+  matches the intended result before acting; a second run with the same input changes nothing.
 - `/release-version` commits the release changes the user has staged, after the user
   approves the commit message. It never stages or unstages, amends, or pushes a branch;
   it pushes the release tag and syncs tags.
 - Author-facing commands preserve authorship: state the rule inline and read
   `~/repositorios/wiki/bundle/4a.md` before interviewing the author.
-- A command that interviews the author shows the real artifact of each option, not a
-  description of it, and gates extra help on whether the product is external or internal.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
 - The paper-phase family is a four-scale ladder: phase 0 owns the story and document
