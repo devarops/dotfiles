@@ -37,7 +37,7 @@ Follow in order; the first match wins.
 3. **Similar work** — it addresses the same question, system, species, or methodology as the reference it is compared against.
 4. **State of the art** — it is under 10 years old and synthesises recent advances, current knowledge, or unresolved debates.
 5. **Justification** — it establishes the importance, scale, or urgency of a problem, or identifies gaps, risks, or unsolved problems.
-6. **Classic** — it is foundational or historically influential and established a widely used theory, method, or paradigm.
+6. **Classic** — it is foundational or historically influential, has established a widely used theory, method, or paradigm, and is over 10 years old.
 7. **Background** — it provides general descriptive or contextual information. This is also the catch-all.
 
 The gate is applied against the current year when a category is written. A filled category is not revisited unless a key is given.
