@@ -21,7 +21,7 @@ The first argument (`$1`) is optional: a URL (`https?://...`), a local file path
 
 Run `git status --porcelain` inside `$HOME/repositorios/wiki/`.
 - If any uncommitted change exists, notify the user and stop immediately.
-- If clean, proceed.
+- If clean, check `bundle/tmp.md`; if it exists, report the pending draft and stop.
 
 ### Step 2 — Read context
 
@@ -45,6 +45,8 @@ When there is no source, ask whether the user wants help finding a source:
 - If yes, search the web (`websearch`) and `raw/`, and propose one to three real candidates — each a title, URL, and one-line reason it fits.
 - Never invent a title or URL. If nothing credible is found, continue without a source.
 - The user picks a candidate or declines.
+
+After resolving `$1`, trim it and compare it with every `resource` field in `bundle/*.md` and every source in `log.md`. If the same source already appears, report the existing title and file and stop; do not interview or write. Skip this check when `$1` is absent or free text.
 
 Present a brief summary of the source — or, without one, of the idea — before starting the interview.
 
