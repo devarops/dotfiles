@@ -52,10 +52,8 @@ The goal of this phase is to evaluate the codebase against some quality assuranc
 - For each code smell, assign a score from 0 to 100 (integer) based on how well the codebase adheres to best practices in that area.
 - A score of 0 indicates that the codebase is severely affected by that code smell (0 is the worst).
 - A score of 100 indicates that the codebase is completely free of that code smell (100 is the best).
-- Append the five scores to the last row of `score_detail.csv`
-- `score_detail.csv` has the following columns: `sha,reviewer,bloaters,object_orientation_abusers,change_preventers,dispensables,couplers`
-- Ignore the first two columns (`sha` and `reviewer`) since they are already filled.
-- The last row currently has empty values for the last five columns: `bloaters,object_orientation_abusers,change_preventers,dispensables,couplers`
-- Populate those five columns with the scores you assigned for each code smell category.
-- Use frictionless goodtables to validate the CSV file after appending the scores to ensure that the data is correctly formatted and adheres to the specified schema.
+- Read the last row of `score_detail.csv` before writing. If its five score columns already hold values, report those scores and stop without writing.
+- Otherwise fill the five empty score columns of that row with the scores you assigned. Never append a row.
+- `score_detail.csv` has the columns `sha,reviewer,bloaters,object_orientation_abusers,change_preventers,dispensables,couplers`; ignore `sha` and `reviewer`, which are already filled.
+- Validate the file with frictionless goodtables after writing.
 

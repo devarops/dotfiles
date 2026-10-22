@@ -28,10 +28,10 @@ The Refactor phase improves the internal structure of the code without changing 
 - Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Prioritize refactorings that offer a clear and immediate improvement with lower risk.
 - Look for refactoring opportunities in the tests as well as in the production code.
-- Apply only the single most important refactoring, even if multiple opportunities are identified.
+- Apply only the single most important refactoring, even if multiple opportunities are identified. If no safe, behavior-preserving refactoring remains, report that and stop without writing or committing.
 - Run the full test suite after applying the refactoring to verify that all tests still pass and that no behavior has changed.
 - If any test fails after a refactoring, undo the changes immediately by running `git restore .`. Do not introduce additional changes to fix a failed refactoring.
-- When all tests pass, commit the refactoring changes.
+- When a refactoring was applied and all tests pass, commit the refactoring changes.
 
 ## Format
 
