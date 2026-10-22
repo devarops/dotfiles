@@ -1,8 +1,8 @@
 ---
-description: Fill a bibliography's screening fields one reference at a time from its own source, and stop for approval after each record.
+description: Extract a bibliography's screening fields one reference at a time from its own source, and stop for approval after each record.
 ---
 
-# Screen References
+# Extract References
 
 Fill the screening fields of one reference at a time from that reference's own source. Write the record, explain it, and stop. Every value must trace to the source; a value you cannot trace, ask about instead of guessing.
 
