@@ -50,8 +50,6 @@ step; files take effect when they are checked out.
   `pr-review` avoids the built-in `/review`.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
-- A command that writes, creates, deletes, or renames checks whether the target already
-  matches the intended result before acting; a second run with the same input changes nothing.
 - `/release-version` commits the release changes the user has staged, after the user
   approves the commit message. It never stages or unstages, amends, or pushes a branch;
   it pushes the release tag and syncs tags.
@@ -81,3 +79,12 @@ step; files take effect when they are checked out.
 - `/tidy-command` takes one command name, requires a clean tree, and edits only that command.
   It records an overlap boundary in `AGENTS.md` and leaves work for another command as a
   `TODO.md` task or a report.
+
+### Idempotency and convergence
+
+A command is idempotent and convergent. Every durable action — a write, append, create,
+delete, rename, commit, tag, push, or remote sync whose effect survives the run — names the
+precondition, a state of a file, the tree, the index, a tag, or the remote, that makes a
+second run on the same unit of work a no-op; after the action that precondition is false. An
+action the command reverses leaves no durable effect, and a command with no durable action
+passes. When the work is already done, the command reports it and stops without writing.
