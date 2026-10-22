@@ -27,7 +27,9 @@ step; files take effect when they are checked out.
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
 - **OpenCode**: `.config/opencode/` — `agent/`, `commands/`, `opencode.json`,
-  `prose-options.md`, and the global `AGENTS.md`.
+  `prose-options.md`, and the global `AGENTS.md`, a separate short file that only points to
+  the wiki bundle and `prose-options.md`; the root `AGENTS.md` is this repository's guide.
+  OpenCode loads both.
 - **Other**: `.gitconfig` (default branch `develop`, editor `nvim`), `.ssh/config`,
   `.lintr` (R, 100-character lines), `.journalotrc`.
 
@@ -39,6 +41,8 @@ step; files take effect when they are checked out.
   affected file; for shell code, `bash -n` catches syntax errors.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
+- **Release**: there is no `DOCS.md`, no `CHANGELOG.md`, and no version tag, so `/end` skips
+  its interface steps and `/release-version` stops at its gate.
 
 ## OpenCode commands
 
@@ -47,7 +51,8 @@ step; files take effect when they are checked out.
 
 - Command names are verb-first, except when the command belongs to a set; every command
   in a set shares the set's common prefix. A built-in command name is also an exception;
-  `pr-review` avoids the built-in `/review`.
+  `pr-review` avoids the built-in `/review`. Read a hyphenated name as an imperative
+  phrase: `commit-message` is `commit a message`, so it is verb-first.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - `/release-version` commits the release changes the user has staged, after the user
