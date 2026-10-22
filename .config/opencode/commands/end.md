@@ -8,27 +8,27 @@ Before starting, verify a clean tree with `git status --porcelain`; if dirty, no
 
 Applies only when `DOCS.md` or `CHANGELOG.md` exists; otherwise skip it; do not ask for an interface.
 
-Every entry must belong to the public interface, the outermost one the end user consumes. `AGENTS.md` defines it, `DOCS.md` lists its elements, and `CHANGELOG.md` records only changes to those elements. Exclude unreachable changes: developer-only code and behaviour-preserving refactors, even when tests cover them; when only a test is evidence, ask whether the symbol is reachable; if not, omit it. If `AGENTS.md` lacks the definition, infer it from the outermost entrypoints, present it for approval, and record it. Preserve it; revise only when the criterion changes. Sync the definition, `DOCS.md`, and `CHANGELOG.md` whenever elements are added, deprecated, or removed.
+Every entry must belong to the outermost interface the end user consumes. `AGENTS.md` defines it, `DOCS.md` lists its elements, and `CHANGELOG.md` records only changes to those elements. Exclude developer-only code and behaviour-preserving refactors, even when tests cover them; when only a test is evidence, ask whether the symbol is reachable; if not, omit it. If `AGENTS.md` lacks the definition, infer it from the outermost entrypoints, present it for approval, and record it. Preserve it unless the criterion changes. Sync the definition, `DOCS.md`, and `CHANGELOG.md` whenever elements are added, deprecated, or removed.
 
 ## Files
 
-Review `AGENTS.md` (guidelines; the interface definition when in use) and `README.md` on every run, and write only when the intended content differs from the current file. Update `DOCS.md`, `CHANGELOG.md`, and `TODO.md` only if they exist; create `TODO.md` only after confirmation. Report missing files. Files are complementary; `README.md` must not overlap them. To avoid redundancy, do not add an entry a file already covers, even if worded differently. No change is a success.
+Review `AGENTS.md` (guidelines; the interface definition when in use) and `README.md` on every run, and write only when the intended content differs from the current file. Update `DOCS.md`, `CHANGELOG.md`, and `TODO.md` only if they exist; create `TODO.md` only after confirmation. Report missing files. Files are complementary; `README.md` must not overlap them. Do not add an entry another file covers, even if reworded. No change is a success.
 
 ---
 
 ## 1. Update AGENTS.md
 
-If `AGENTS.md` exists, audit every repo-visible claim in the file against the repo (files, configs, commands, git history). Conduct rules need evidence of a violation. Check all claims; cite the commit that introduced the divergence. Omit mismatches already tracked by an open `TODO.md` item.
+If `AGENTS.md` exists, audit every repo-visible claim against the repo (files, configs, commands, git history). Conduct rules need evidence of a violation. Cite the commit that introduced the divergence. Omit mismatches already tracked by an open `TODO.md` item.
 
-List the rest numbered: claim, location, evidence, cost of fixing `AGENTS.md` versus the repo.
+List the rest numbered: claim, location, evidence, cost of fixing each side.
 
-Ask in the form: `AGENTS: ...`; `TODO: ...`; `Ignore the rest.` Unnamed numbers are ignored; invalid placements get one correction. AGENTS fixes or removes the rule in `AGENTS.md`; TODO writes a future task in `TODO.md` to fix or remove the repo pattern; Ignore leaves both files unchanged.
+Ask `AGENTS: ...`; `TODO: ...`; `Ignore the rest.` Unnamed numbers are ignored; invalid placements get one correction. AGENTS fixes or removes the rule; TODO writes a future task to fix or remove the repo pattern; Ignore leaves both files unchanged.
 
 Write assigned `TODO.md` items immediately into the best-fitting section. If `TODO.md` is absent, ask whether to create; on confirmation, create a minimal `# Backlog` with them. If declined, report; do not ask again.
 
-If `AGENTS.md` was absent, create it and skip the triage. Add this session's learnings and the repo's patterns, conventions, and facts that `AGENTS.md` lacks and an agent would miss—without asking. Never duplicate an explicit rule, add one on a triaged subject, or add a conflicting one; conflicts belong in the list.
+If absent, create it and skip the triage. Add this session's learnings and the repo's patterns, conventions, and facts that `AGENTS.md` lacks and an agent would miss—without asking. Never duplicate a rule, add one on a triaged subject, or add a conflict; conflicts belong in the list.
 
-Keep `AGENTS.md` compact: every line must be new and missed by an agent; if not, omit. Read tests; if none, read the repo's verification (`Makefile`, lint, typecheck, codegen, CI, pre-commit), root files, entrypoints, and execution flow. Prefer executable evidence; keep only verifiable facts; it never decides a conflict.
+Keep `AGENTS.md` compact: every line must be new and missed by an agent. Read tests; if none, read the repo's verification (`Makefile`, lint, typecheck, codegen, CI, pre-commit), root files, entrypoints, and execution flow. Prefer executable evidence; keep only verifiable facts; it never decides a conflict.
 
 Record developer commands, focused checks, command order, boundaries, entrypoints, toolchain quirks, conventions, testing quirks, and preserved constraints. Exclude generic advice, tutorials, exhaustive trees, obvious conventions, unverifiable claims, and better-placed content. When in doubt, omit; prefer bullets.
 
@@ -42,7 +42,7 @@ Entries use `### symbol_name(signature)`, `### GET/POST /endpoint/`, or `### cli
 
 ## 3. Update CHANGELOG.md
 
-Follow [Keep a Changelog](https://keepachangelog.com/). Include only changes to a `DOCS.md` element. Use `git diff <last_tag>..HEAD`; prefer tests; otherwise, read the diff against the interface. Categorise under Added, Changed, Deprecated, Removed, Fixed, Security; add to `## [Unreleased]` unless that section already covers the change. Describe end-user behaviour, one bullet per entry, code symbols in backticks. State deprecation and removal versions.
+Follow [Keep a Changelog](https://keepachangelog.com/). Include only changes to a `DOCS.md` element. Use `git diff <last_tag>..HEAD`; prefer tests; otherwise read the diff. Categorise under Added, Changed, Deprecated, Removed, Fixed, Security; add to `## [Unreleased]` unless it covers the change. Describe end-user behaviour, one bullet per entry, code symbols in backticks. State deprecation and removal versions.
 
 ## 4. Update README.md
 
@@ -66,7 +66,7 @@ Verify and report any mismatch.
 `DOCS.md` lists all public-interface elements and nothing else.
 `CHANGELOG.md` records all changes to `DOCS.md` elements, and nothing else.
 
-Then list numbered `AGENTS.md` claims with ambiguous or vague phrasing: quote, location, why uncheckable. Ask in the form `Clarify: ...`; `Delete: ...`; `Ignore the rest.` Unnamed numbers are ignored; invalid replies get one correction. `Clarify` rewrites only enough to be checkable without changing meaning, or reports if impossible. `Delete` removes; the interface definition is never deleted.
+Then list numbered `AGENTS.md` propositions this repo cannot confirm or refute. Search the repo, its history, and cited paths; drop any that an artifact settles, even by judgment; omit doubtful cases; report none if empty. Quote each with its location, the artifact checked or absent, and why it fails. Ask `Clarify: ...`; `Delete: ...`; `Ignore the rest.` Unnamed numbers are ignored; invalid replies get one correction. `Clarify` rewrites only enough that an artifact can confirm or refute it, without changing meaning, or reports if impossible. `Delete` removes; the interface definition is never deleted.
 
 Finally, remove duplicate and redundant `TODO.md` items, merging same-work items and keeping distinct tasks. Report every removal and merge.
 
