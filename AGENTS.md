@@ -50,7 +50,6 @@ step; files take effect when they are checked out.
   `pr-review` avoids the built-in `/review`.
 - Keep each command under 2,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
-- When condensing a command, preserve every rule and change no behaviour.
 - A command that writes, creates, deletes, or renames checks whether the target already
   matches the intended result before acting; a second run with the same input changes nothing.
 - `/release-version` commits the release changes the user has staged, after the user
