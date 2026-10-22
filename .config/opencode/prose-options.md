@@ -42,9 +42,9 @@ deterministic edits are not gated: apply them without asking.
    directions; this rule governs the item's replacement direction.
 2. **Alternatives (internal-reader only).** After the direction, ask:
 
-   > Do you want me to show you alternatives, or would you like to fix it yourself?
+   > Do you want me to show you (k) alternatives, or would you like to (j) fix it yourself?
 
-   If the author chooses alternatives, show finished artifacts, ready to apply.
+   If the author chooses alternatives (k), show finished artifacts, ready to apply.
 
 External-reader stops after the direction. Internal-reader may use both steps.
 

@@ -15,16 +15,17 @@ and the project's documentation (`./*.md`). Ask only what exploration cannot set
 
 ## Preconditions
 
-- The working tree is clean: `git status --porcelain`. If it returns anything, tell the author
+- The working tree is clean: `git status --porcelain`. If it returns anything, tell the user
   and continue only if they explicitly confirm. A clean start makes every write undoable one
   item at a time.
 - Identify the list to walk in this order:
   1. A file path argument (`$1`): scan the file top-to-bottom for `[[ ... ]]` and `XXX`
      markers.
-  2. Text pasted into the author's message.
+  2. Text pasted into the user's message.
   3. The latest previous list or completion report found in the session context.
   If none is found, ask for the file or list and stop.
-- The author is present. Never resolve an item without the author's input.
+- The user is present. Never resolve an item without the user's input unless the fix is
+  deterministic.
 
 ## Setup (one round)
 
@@ -35,19 +36,25 @@ Before the first item, in a single round:
 - If items are markers in a file, note that each marker defines its own target and will be
   replaced or removed when resolved. Otherwise, split the text heuristically (bullets,
   numbers, error blocks) and report the split without asking confirmation.
-- Judge whether the artifacts are authorship-bearing — prose or code involving a choice of
-  content — or mechanical, where content is fixed by a rule.
 - This command may be either mode.
-- Wait for the author's agreement before starting. Clarifying questions are allowed here.
+- Wait for the user's agreement before starting. Clarifying questions are allowed here.
+
+## Deterministic fixes
+
+A fix is deterministic when the item has one way to be solved and no alternative, or when
+alternative solutions exist but independent, competent, adversarial agents would agree on one
+as best. A fix is not deterministic when independent, competent, adversarial agents might
+choose different options. Apply deterministic fixes without asking and report them in the
+completion.
 
 ## Artifacts
 
 Name the exact file and span before offering a direction. If confidence is low, confirm the
-span before the author chooses.
+span before the user chooses.
 
 - **Direction.** The target, the issue, and the key terms or constraints.
-- **Safe.** The author's existing text, structure, or mapping choices.
-- **Finished.** Fixes; mechanical items may show them in either mode.
+- **Safe.** The user's existing text, structure, or mapping choices.
+- **Finished.** Fixes.
 
 ## Reply and applying
 
@@ -55,25 +62,21 @@ span before the author chooses.
   the edit to the quoted target and delete the marker. If an item is skipped or handed back
   unresolved, leave its marker in place.
 
-Add only minimal punctuation and grammar needed to make the author's text correct.
+Add only minimal punctuation and grammar needed to make the user's text correct.
 
-Perform the write after the reply, before the next item. Do not commit and do not run
-`git add`; staging is the author's decision.
+Perform each write before the next item. Do not commit and do not run
+`git add`; staging is the user's decision.
 
-## Authorship guard
+## Guard
 
 Follow the guard in `prose-options.md`.
 
-If the author asks a question, comment, or gives instructions about an earlier item, address
-that before continuing. Stay on the current item until the author decides.
-
-## Mixed items
-
-If an item belongs to the other mode or a different kind, say so at that item and report it
-as an outlier; do not switch the list.
+If the user asks a question, comment, or gives instructions about an earlier item, address
+that before continuing. Stay on the current item until the user decides.
 
 ## Completion
 
-After the last item, report the run: items handled, the choice for each, writes made,
-markers remaining, and outliers flagged. If told to stop early, report progress so far and
-stop without touching remaining items.
+After the last item, report the run: items handled, the user's choice for each item that
+required one, the deterministic fixes applied without asking, writes made, and markers
+remaining. If told to stop early, report progress so far and stop without touching remaining
+items.
