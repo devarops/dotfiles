@@ -9,7 +9,7 @@ You are performing a PR review. The branch under review is provided as `$1`.
 
 ### 1. Prepare the repository
 
-Confirm both prerequisites; if either fails, stop and ask the user to fix it.
+If either prerequisite fails, stop and ask the user to fix it.
 
 - `.review/` is ignored: `git check-ignore .review/`. If it exits non-zero, ask the user to add `.review/` to `.gitignore`.
 - The working tree is clean: `git status --porcelain`. If it returns anything, ask the user to commit or stash.
@@ -20,7 +20,7 @@ Confirm both prerequisites; if either fails, stop and ask the user to fix it.
 git fetch --prune origin
 ```
 
-If `$1` is set, verify it exists on `origin` and use it. Otherwise list the `origin` branches except `develop` and `origin/HEAD` and ask the user which branch is under review.
+If `$1` is set, verify it exists on `origin` and use it. Otherwise list the `origin` branches except `develop` and `origin/HEAD` and ask which branch is under review.
 
 ```bash
 git switch <BRANCH>
@@ -33,7 +33,9 @@ git diff origin/develop...HEAD
 git diff origin/develop...HEAD --name-only
 ```
 
-The base branch is `develop`; if `origin/develop` is missing, ask the user which base to use. The three-dot range is deliberate: it starts at the merge base, so the diff shows only what the branch changed however far `develop` has moved ahead.
+The base branch is `develop`; if `origin/develop` is missing, ask which base to use. The three-dot range starts at the merge base, so the diff shows only what the branch changed however far `develop` has moved ahead.
+
+Hash the same diff with `git diff <BASE>...HEAD | git hash-object --stdin`; keep the first 12 characters.
 
 ### 4. Read the guides and choose the checklist
 
@@ -53,9 +55,9 @@ Confirm the guess, or ask the user to choose Class 1 or Class 3 if there is none
 
 ### 5. Create or update the review file
 
-The file is `.review/<BRANCH>.md`, with each `/` in the branch name replaced by `-`. Create the directory if needed.
+The file is `.review/<BRANCH>.md`, with each `/` replaced by `-`. Create the directory if needed.
 
-Each invocation is one round. If the file does not exist, this is Round 1 and you write the title and context line. If it exists, find the highest `## Round N` and append round N+1 at the end. If it has no `## Round N` heading, treat the contents as Round 1 (add the heading above them, leaving the date blank if unknown) and append Round 2; ask only if they cannot be read as the five sections. Never overwrite or delete an earlier round.
+Each invocation is one round. If the file does not exist, this is Round 1 and you write the title and context line. If it exists, find the highest `## Round N`. If that heading carries the current diff hash, report that round as already reviewed and stop without writing. If the heading has no hash, append one round. Otherwise append the next round. If it has no `## Round N` heading, treat the contents as Round 1 (add the heading above them, leaving the date blank if unknown) and append Round 2; ask only if they cannot be read as the five sections. Never overwrite or delete an earlier round.
 
 Reconstruct the tracked set: every unchecked item (`- [ ]`) in the most recent block. These are what you re-verify in step 6.
 
@@ -66,7 +68,7 @@ Blocks run oldest first, so the newest — the one posted in step 8 — is last.
 
 Base: <BASE> · Class <N> (<host>) · Checklist: review_checklists
 
-## Round N — <YYYY-MM-DD>
+## Round N — <YYYY-MM-DD> — diff <short-hash>
 
 ### 👍 Done
 ### ❓ Question / Curiosity

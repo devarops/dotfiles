@@ -21,8 +21,7 @@ for the whole list; if any item is external or the list is mixed, the list is ex
 ## The external-reader rule
 
 Before interviewing the author about wording, an external-reader command reads
-`~/repositorios/wiki/bundle/4a.md` and every `4a.*.md` child concept and states this rule
-inline:
+`~/repositorios/wiki/bundle/4a.md` and every `4a.*.md` child concept and follows this rule:
 
 > The author writes every word that involves a choice of wording. The command is bounded
 > to structure, questions, directions, and deterministic edits. Approving the command's

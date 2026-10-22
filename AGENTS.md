@@ -59,10 +59,11 @@ step; files take effect when they are checked out.
 - **External-reader commands** modify prose for readers outside the team; they guard against
   dispossession. **Internal-reader commands** modify team-internal prose and may use more help.
   `paper-*` and `blog-*` are always external-reader. `docs-*` and `quickfix-list` determine the
-  reader from the artifact. External-reader commands state the rule inline and read
-  `~/repositorios/wiki/bundle/4a.md` and its `4a.*.md` children before interviewing about
-  wording. Follow `~/.config/opencode/prose-options.md` for the direction step, safe
-  alternatives, finished alternatives, and the authorship guard.
+  reader from the artifact. External-reader commands read and follow
+  `~/.config/opencode/prose-options.md`, which carries the authorship rule, direction step,
+  safe alternatives, finished alternatives, and authorship guard. Following it includes
+  reading `~/repositorios/wiki/bundle/4a.md` and its `4a.*.md` children before interviewing
+  about wording.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
 - The paper-phase family has four scales: phase 0 owns the story and document
