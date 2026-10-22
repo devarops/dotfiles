@@ -140,4 +140,5 @@ If validation fails, notify the user and stop.
 ## Completion
 
 Report the audience inferred, the edits applied, and the directions left with their targets
-quoted. Commit; list each applied edit with its rule, ending with the direction count.
+quoted. Commit; list each applied edit with its rule, ending with the direction count. An
+unchanged file re-runs to no change.

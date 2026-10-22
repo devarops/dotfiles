@@ -6,12 +6,12 @@ description: Run the test suite during the Red TDD phase, verify one and only on
 ## Task
 
 1. Run the test suite: `docker exec <container_name> make tests`
-2. Verify that exactly one test is failing.
+2. Verify that exactly one test is failing, and that the uncommitted changes are what make it fail. Everything else is committed, so committing those changes is what this command does.
    - If no tests fail, inform the user and stop. Do not commit.
    - If more than one test fails, inform the user and stop. Do not commit.
 3. Verify that the single failing test fails for the right reason. Confirm the failure aligns with the expected behavioral gap identified in the Red phase.
    - If the test fails for an unexpected or unrelated reason, inform the user and stop. Do not commit.
-4. If exactly one test fails for the right reason, commit the failing test with a message that clearly describes the expected behavior.
+4. If exactly one test fails for the right reason, commit the uncommitted changes, which hold the failing test, with a message that clearly describes the expected behavior.
 5. Show the result of `git diff HEAD~1` so the user can review the committed changes.
 6. Offer the user the option to undo the last commit.
 7. Stop. Do not proceed to the next Green or Refactor TDD phase.

@@ -4,7 +4,7 @@ description: Generate beginner-friendly, linear R scripts with strict naming con
 
 ## Task
 
-Your mission is to generate or fix composable, linear R scripts that function as individual modules in a data pipeline, strictly avoiding loops, functions, and control structures.
+Your mission is to generate or fix composable, linear R scripts that function as individual modules in a data pipeline, strictly avoiding loops, functions, and control structures. Before writing a script, read the target; if it already satisfies every rule below, report that and stop without editing.
 
 Structure the script into five specific sections separated by comments: Header, CONFIGURACIÓN, ENTRADAS, PROCESAMIENTO / ANÁLISIS, and SALIDA.
 

@@ -280,4 +280,5 @@ and the alternatives chosen. Leave every unresolved request in place, with its t
 quoted.
 
 Commit. The commit message lists each applied edit with the `Rule X.Y` it satisfied, the
-number of `[[ ]]` requests left, and the alternatives chosen.
+number of `[[ ]]` requests left, and the alternatives chosen. An unchanged file re-runs to
+no change.
