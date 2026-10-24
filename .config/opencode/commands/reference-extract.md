@@ -1,20 +1,20 @@
 ---
-description: Extract a bibliography's screening fields and fill existing NA fields one reference at a time from its own source, and stop for approval after each record.
+description: Extract a bibliography's screening fields and fill existing NA fields other than `category`, one reference at a time from its own source, and stop for approval after each record.
 ---
 
 # Extract References
 
-Fill the screening fields and any existing NA fields of one reference at a time from that reference's own source. Write the record, explain it, and stop. Every value must trace to the source; a value you cannot trace, ask about instead of guessing.
+Fill the screening fields of one reference at a time, and any existing NA field other than `category`, from that reference's own source. Write the record, explain it, and stop. Every value must trace to the source; a value you cannot trace, ask about instead of guessing.
 
 ## Scope
 
-Own the thirteen screening fields below, plus any existing field whose value is `NA`, `na`, `N/A`, or empty, one reference per round trip. Change nothing else: entry types, entry order, and well-formed populated fields stay as they are. Add a missing screening field when you fill it; never add a non-screening field that was not already present. For non-screening fields, infer formatting conventions from the other references in the bibliography. If a record contradicts its own source, report it and leave it.
+Own the thirteen screening fields below, plus any existing field other than `category` whose value is `NA`, `na`, `N/A`, or empty, one reference per round trip. Change nothing else: entry types, entry order, and well-formed populated fields stay as they are. Add a missing screening field when you fill it; never add a non-screening field that was not already present. For non-screening fields, infer formatting conventions from the other references in the bibliography. If a record contradicts its own source, report it and leave it.
 
 ## Inputs
 
 - The bibliography: the single `.bib` in the git top level; zero or several, report and stop.
 - `$ARGUMENTS`, a citekey: process that reference even if complete. No argument: process the file in order, one reference at a time.
-- Skip a reference whose screening fields are all present and well formed, and has no existing field containing `NA`, `na`, `N/A`, or an empty value; report it as skipped, not re-verified.
+- Skip a reference whose screening fields are all present and well formed, and has no existing field other than `category` containing `NA`, `na`, `N/A`, or an empty value; report it as skipped, not re-verified.
 - The source: `<citekey>.pdf`, anywhere in the repository, with its `.txt` beside it. No source: report it and leave that reference.
 - The working tree must be clean at the start. Stop and report otherwise.
 - Run `pdftotext` in the project container. Discover the one running container; zero or several: stop and ask.
@@ -59,7 +59,7 @@ No field exceeds 100 words. Cut provenance and mechanical detail before procedur
 
 ## Filled values
 
-Empty, or placeholder (`NA`, `na`, `N/A`): fill. Well formed: leave. Breaking a rule above: repair and report. Disagreeing with the source: report and ask, never overwrite. If an existing NA field cannot be traced with certainty in the source, ask the author with options instead of guessing.
+Empty, or placeholder (`NA`, `na`, `N/A`): fill, except in `category`. Well formed: leave. Breaking a rule above: repair and report. Disagreeing with the source: report and ask, never overwrite. If an existing NA field other than `category` cannot be traced with certainty in the source, ask the author with options instead of guessing.
 
 ## Steps
 
@@ -77,5 +77,6 @@ State which fields are verbatim and which composed, every number with its source
 
 - One reference per round trip; no batching.
 - Never write a value you did not read in the source or the author chose.
+- Never write, repair, or use `category` as evidence: leave it exactly as found, whatever its value.
 - Never carry a value between references because they resemble each other.
 - No `git add`, no `git commit`, no staging.
