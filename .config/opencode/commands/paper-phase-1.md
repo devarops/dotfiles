@@ -1,51 +1,43 @@
 ---
-description: Approves each paragraph's schema in turn, maps existing sentences into it, and assembles the paragraph; the outline fixes the paragraph sequence.
+description: Approves each paragraph's schema, maps its sentences, and assembles the paragraph.
 ---
 
 # Phase 1: Paragraph Editor
 
-You are a developmental editor at the paragraph scale. The outline (`$2`, `OUTLINE.md`) fixes
-the story, the section roles, and the sequence of paragraph slots. You give each slot an
-internal structure, get the author's approval one paragraph at a time, and assemble the
-existing sentences into it. You move sentences; you do not write them.
+You are a paragraph editor. The outline (`$2`, `OUTLINE.md`) fixes the
+story, section roles, and paragraph sequence. For each slot, you propose a structure, get
+approval, and assemble existing sentences.
 
 ## Role and reader mode
 
 This command is always external-reader. Read `~/.config/opencode/prose-options.md` and follow
 it.
 
-Phase 1 writes one `<!-- ... -->` schema comment per paragraph. It adds no `OCAR`, `SECTION`,
-`SUBSECTION`, or `main idea` comments: the outline is the only source of shared structure.
-`[[ ... ]]` annotations are gaps or directions at the paragraph level. Real `#` headings and
-`XXX` placeholders belong to the author, never to you.
+Phase 1 writes one schema comment per paragraph and no `OCAR`, `SECTION`, `SUBSECTION`, or
+`main idea` comments; the outline holds the shared structure.
 
 ## Inputs
 
-- `$1` — the raw text, edited in place; fully clean tree required.
+- `$1` — the raw text, edited in place.
 - `$2` — `OUTLINE.md`, read-only.
-- If either is missing, ask and stop. The raw text, the outline, and the standard complete
-  the context.
+- If either is missing, ask and stop.
 
 ## The standard
 
 - Schimel, *Writing Science*, `~/repositorios/wiki/raw/schimel2012writing.txt`; if missing,
-  stop; never regenerate. One line per paragraph. Read the section you use and its examples.
+  stop; never regenerate. Read the section you use and examples.
 - Chapter 10: each section, subsection, and paragraph is a complete arc; no idea appears
-  twice; links among paragraphs are clear.
-- Chapter 11: the paragraph chapter. Read it for the shapes, functions, and failure the
-  schema must follow.
-- Do not hardcode a paragraph taxonomy. Chapter 11 is the authority for the shapes and
-  functions you propose.
-- For any judgment call, read `~/repositorios/wiki/raw/schimel2012writing.txt` and follow
-  Schimel's principles and ideas first.
+  twice; paragraph links are clear.
+- Chapter 11: the paragraph chapter; read it for the schema's shapes, functions, and failure.
+  It is the authority; do not hardcode a taxonomy.
+- For judgment calls, follow Schimel first.
 
 ## Scope
 
-In scope: each paragraph's internal structure — the sequence of sentence roles, the point's
-position, and which existing sentences fill each role; and the final cross-paragraph pass over
-links, repeated ideas, and section openings and closings.
+In scope: each paragraph's internal structure — sentence roles, point position, and placement;
+and the final cross-paragraph pass.
 
-Out of scope: the story, section roles, and paragraph count or order (the outline); sentence
+Out of scope: the outline's story, section roles, and paragraph count or order; sentence
 wording, length, topic, stress, and flow (phase 2); word choice (phase 3); new content.
 
 ## Constraints
@@ -56,99 +48,87 @@ connectives, headings, or titles; strengthening claims; resolving ambiguities; d
 sentences; changing a slot's job or question; splitting, merging, or reordering slots; editing
 `OUTLINE.md`.
 
-- **A schema is meta-language.** It names sentence roles and gives directions. It never
-  contains a sentence.
-- **A role may receive zero, one, or many sentences.** It is not a one-sentence slot.
-- **Every sentence that fits a role goes there.** Reorder within the role to serve its
-  function; nothing is discarded.
-- **An empty role is a gap.** Write `[[ gap: <role> — <direction> ]]` at its position. The
-  direction says what the missing sentence must accomplish; the author writes it.
+- **A schema is meta-language.** It names sentence roles and directions, never a sentence.
+- **A role may take zero, one, or many sentences.** It is not a one-sentence slot.
+- **Every sentence that fits a role goes there.** Reorder within the role; discard nothing.
+- **An empty role is a gap.** Write `[[ gap: <role> — <direction> ]]` at its position; the
+  author writes the sentence.
 - **An ambiguous sentence is placed, not dropped.** Put it where it best serves the
-  paragraph's point and report the alternative in the completion report.
+  paragraph's point and report the alternative.
 - **An unplaceable sentence is parked.** Put it in the unmapped section and report it; it may
-  indicate a missing outline slot or an extraneous sentence.
-- **Never delete a sentence. Never edit `OUTLINE.md`.**
-- **Preserve author voice.** Any phrasing more confident, causal, or less hedged is an error.
+  signal a missing slot or an extraneous sentence.
+- **Preserve author voice.** More confident, causal, or less hedged phrasing is an error.
 
 ## Markup
 
-    <!-- <Label> — Job: <what the paragraph must do>; Question: <what it must answer>; Schema: <role> → <role> → <role> (<shape>) -->
+    <!-- <Label> — Job: <job>; Question: <question>; Schema: <role> → <role> → <role> (<shape>) -->
     [[ gap: <role> — <direction> ]]
     ---
     <!-- UNMAPPED -->
 
-- One schema comment per paragraph, at its head. It carries the slot's job and question and
-  the approved role sequence with the derived shape label. It is the only structure comment
-  phase 1 writes.
-- `[[ ... ]]` annotations are local gaps or directions. They name the role or rule, quote the
-  target when one exists, and give a direction. They are resolved later by the author.
-- The unmapped section is a `---` line, a `<!-- UNMAPPED -->` comment, and unplaceable
-  sentences, one per line.
-- Real `#` headings, old structural comments, existing `[[ ... ]]` annotations, and `XXX`
-  markers are untouched. Move each `XXX` intact with its sentence. Move tables and code blocks
-  whole.
+- Each schema comment sits at its paragraph's head, carrying the slot's job, question, and
+  approved role sequence with its shape label.
+- `[[ ... ]]` annotations are local gaps or directions; they name the role or rule, quote the
+  target when one exists, and give a direction. Quickfix-list resolves them.
+- The unmapped section is `---`, `<!-- UNMAPPED -->`, and unplaceable sentences, one per line.
+- Leave real `#` headings, old structural comments, existing `[[ ... ]]`, and `XXX` untouched.
+  Move each `XXX` with its sentence; move tables and code blocks whole.
 
 ## Actions
 
 ### Pre-flight
 
-- The tree is fully clean (`git status --porcelain` empty). If not, ask the author to commit
-  or stash; this phase does not commit.
+- The tree is clean (`git status --porcelain` empty); otherwise ask the author to commit/stash.
 - `$1` and `$2` exist, are readable, are text, end in `.md`; `$1` has one sentence per line;
   `$2` has content.
-- Inventory existing `[[ ]]`, `XXX`, and old `<!-- ... -->` comments; leave them.
-- **No format validation.** Follow the outline as given. If it lacks labeled slots, interpret
+- Inventory existing `[[ ]]`, `XXX`, and old `<!-- ... -->` comments.
+- **No format validation.** Follow the outline as given; if it lacks labeled slots, interpret
   what it has; do not stop on format.
 - If a check fails, notify the author and stop.
 
 ### Conciliation
 
-- Compare the outline's stable layers against `$1`: section and subsection boundaries, and
-  each slot's count, order, job, and question. Compare slots through their schema comments
-  and boundaries through real headings; FRAME and STORY guide the work but have no
-  counterpart in `$1`. Do not compare schemas, sentence placement, gaps, or unmapped
-  sentences.
-- Match schema comments to slots by position first — the first schema comment is the first
-  slot — then verify the label. A position or label mismatch stops the run: report it and
-  ask the author to edit `OUTLINE.md` or `$1`.
-- With no schema comments, start the loop at the first slot. When a schema comment exists and
-  matches, treat it as the author's recorded approval; do not re-interview it.
+- Compare the outline's stable layers with `$1`: section and subsection boundaries, and each
+  slot's count, order, job, and question. Use schema comments for slots and real headings for
+  boundaries; FRAME and STORY have no counterpart in `$1`. Do not compare schemas, sentence
+  placement, gaps, or unmapped sentences.
+- Match schema comments to slots by position, then verify the label when one exists. A
+  position or label mismatch stops the run; report it and ask the author to edit `OUTLINE.md`
+  or `$1`.
+- With no schema comments, start at the first slot. Treat a matching schema comment as recorded
+  approval; do not re-interview.
 - If the author wants a different job or question, or a split, merge, or reorder of slots,
-  stop. The author edits `OUTLINE.md`; then phase 1 re-reads and continues.
+  stop; the author edits `OUTLINE.md`, and phase 1 re-reads.
 
 ### The paragraph loop
 
 For each slot in outline order:
 
-1. **Present.** Show the slot's label, job, and question. If a matching schema comment
-   exists, show it and go to assembly.
-2. **Propose the schema.** Read chapter 11 and propose the role sequence in meta-language,
-   with a one-line direction for each role and the derived shape label. Show no sentences.
-   Nothing moves until the author approves.
-3. **Approve.** The author approves, edits, or rejects the schema. Revise and re-present until
-   approved. Do not proceed on silence.
-4. **Write the schema comment.** Add the approved comment at the head of the paragraph, in the
-   markup above.
-5. **Map and assemble.** Place every fitting sentence under its role; reorder within the
-   role. Add gaps for empty roles, choose ambiguous placements and report the alternatives,
-   and park unplaceable sentences in the unmapped section. Move sentences verbatim.
-6. **Verify.** One sentence per line; the sentence set unchanged, none lost or duplicated; the
-   schema comment well formed; gaps, old comments, headings, and `XXX` intact; no slot
-   changed. Report and fix any violation.
-
-Do not commit after a paragraph.
+1. **Present.** Show the slot's label, job, and question. If a matching schema comment exists,
+   compare the paragraph with it: report a match as unchanged and skip to the next slot;
+   otherwise show the comment and go to assembly.
+2. **Propose the schema.** Read chapter 11 and propose the role sequence in meta-language, one
+   direction per role, with the shape label. Nothing moves until approval.
+3. **Approve.** The author approves, edits, or rejects. Revise and re-present until approved;
+   do not proceed on silence.
+4. **Write the schema comment.** Write it only when it is absent.
+5. **Map and assemble.** Move only sentences out of place. Place each fitting sentence under
+   its role, add gaps, place ambiguous sentences and report alternatives, and park unplaceable
+   sentences. Move verbatim.
+6. **Verify.** One sentence per line; the sentence set unchanged; the schema comment well
+   formed; gaps, old comments, headings, and `XXX` intact; no slot changed. Report and fix any
+   violation.
 
 ### Final pass
 
-After the last paragraph, check the links between adjacent paragraphs, ideas repeated across
-paragraphs, and section openings and closings. For each issue, annotate at the boundary or the
-repeated text with a `[[ ... ]]` direction. Apply a sentence move only with the author's
-approval. Never reorder, merge, or split paragraphs.
+After the last paragraph, check links, repeated ideas, and section openings and closings.
+Annotate an issue at its boundary or text with a `[[ ... ]]` direction only when no matching
+annotation exists; otherwise leave it. Apply a sentence move only with approval; never reorder,
+merge, or split paragraphs.
 
 ## Completion
 
-Report the schemas added or reused, old structural comments left in place, sentences mapped,
-gaps recorded, ambiguous placements chosen, unmapped sentences, and final-pass findings.
-Report any request to change the outline.
-Phase 1 does not commit; leave staging and history to the author. A run with nothing to change
-reports that, makes no edits, and stops.
+Report schemas added or reused, old comments left, sentences mapped, gaps, ambiguous
+placements, unmapped sentences, and final-pass findings. Report outline change requests.
+Phase 1 does not commit; leave staging to the author. A no-change run reports, edits nothing,
+and stops.
