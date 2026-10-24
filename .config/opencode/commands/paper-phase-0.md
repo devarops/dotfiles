@@ -38,6 +38,9 @@ Forbidden: new ideas, sentences, or propositions; paraphrasing; writing the pape
 or a heading or title for it; editing `$1`.
 
 - FRAME and STORY stay in the author's words: quote `$1` or let the author supply them.
+- **FRAME and STORY state structure and claims, not evidence.** They may name the case, but
+  not numbers, units, sources, citations, formulas, instrument names, or site designations.
+  If changing a datum would force an edit here, the line is too specific.
 - Content that fits no part of the story stays in `$1`.
 - **Assume a clear story and no structure.** Infer it; do not change or complete it.
 - **The map is structural.** Derive section, subsection, and slot `Job:`/`Question:` lines
