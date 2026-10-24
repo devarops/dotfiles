@@ -37,8 +37,8 @@ Follow in order; the first match wins. The subject of a work is what it presents
 2. **Similar work** — it addresses the same question or objectives as the repository's.
 3. **Justification** — it establishes the importance, scale, or urgency of a problem, or identifies gaps, risks, or unsolved problems that a repository question or objective addresses, fully or partially.
 4. **State of the art** — it is under 10 years old and either a review or a synthesis of recent advances, current knowledge, or unresolved debates.
-5. **Classic** — its subject is a concept, paradigm, standard, or theory, it is at least 10 years old, and at least two other works in the set cite it.
-6. **Key concepts** — its subject is a concept, paradigm, standard, or theory, and it is under 10 years old or cited by fewer than two other works in the set.
+5. **Classic** — its subject is a concept, paradigm, standard, or theory, it is at least 10 years old, and at least three other works in the set cite it.
+6. **Key concepts** — its subject is a concept, paradigm, standard, or theory, and it is under 10 years old or cited by fewer than three other works in the set.
 7. **Background** — it provides general descriptive or contextual information. This is also the catch-all.
 
 Count citations only for a work that passes the content and the age tests. A work cites another when that work's first author surname and year appear anywhere in its text; check the title when the match is uncertain.
