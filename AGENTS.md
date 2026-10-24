@@ -87,6 +87,10 @@ step; files take effect when they are checked out.
 - `/tidy-command` takes one command name, requires a clean tree, and edits only that command.
   It records an overlap boundary in `AGENTS.md` and leaves work for another command as a
   `TODO.md` task or a report.
+- Field ownership in the `reference-*` family: `reference-normalize` owns structure, ordering,
+  and field presence; `reference-extract` owns the thirteen screening fields and placeholders
+  in every other field except `category`; `reference-classify` owns `category`. The commands do
+  not name one another.
 
 ### Idempotency and convergence
 
