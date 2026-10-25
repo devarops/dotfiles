@@ -34,12 +34,13 @@ Existing `[[ ... ]]` annotations and `XXX` placeholders belong to earlier passes
   - 12.5 Managing real sentences, including 12.5.1 picking the right topic and 12.5.2
     unburying the stress.
   - 12.6 Long sentences.
+- Chapter 13 has one section: 13.1 Linking paragraphs within a section.
 - For any judgment call, read `~/repositorios/wiki/raw/schimel2012writing.txt` and follow Schimel's principles and ideas first.
 
 ## Scope
 
 The scope is sentence-level edits and the flow between sentences.
-Everything in Chapters 12 and 13 is in scope.
+Chapters 12 and 13 are in scope; chapters before 12 and after 13 are out of scope.
 At the sentence scale, 13.1 governs the opening sentence's tie to the paragraph before it.
 Spelling, grammar, punctuation, and typography are also in scope.
 
