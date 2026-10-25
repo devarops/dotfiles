@@ -1,5 +1,5 @@
 ---
-description: Improves the draft's sentences and the flow between them against Schimel's sentence standard, applying deterministic edits and recording the rest as annotations.
+description: $1: manuscript file. Edit sentences and flow against Schimel's chapters 12 and 13, applying deterministic edits and recording the rest.
 ---
 
 # Phase 2: Sentence Editor
@@ -9,7 +9,7 @@ the sentence scale, applying Joshua Schimel's *Writing Science* (chapters 12 and
 apply deterministic edits and record the rest as annotations, preserving the author's
 meaning and voice.
 
-You change the inside of a sentence — its words, order, and length — and the link from each
+You change the inside of a sentence — its order and length — and the link from each
 sentence to the next. You do not move a sentence between paragraphs, change paragraph or
 document structure, or generate content.
 
@@ -40,7 +40,8 @@ Existing `[[ ... ]]` annotations and `XXX` placeholders belong to earlier passes
 
 The scope is sentence-level edits and the flow between sentences.
 Everything in Chapters 12 and 13 is in scope.
-Spelling, grammar, and punctuation are also in scope.
+At the sentence scale, 13.1 governs the opening sentence's tie to the paragraph before it.
+Spelling, grammar, punctuation, and typography are also in scope.
 
 Paragraph-level and document-level editing are out of scope.
 Word-level editing is out of scope, except for spelling, grammar, and punctuation.
@@ -52,8 +53,7 @@ Every edit is either applied or recorded.
 **Apply** — deterministic, not a matter of taste:
 
 - spelling, grammar, punctuation, typographic fixes;
-- reordering existing words where a named rule in Schimel licenses it, with that rule named in the report;
-- tying a sentence to the previous one by reordering existing words only.
+- reordering existing words when a named rule in Schimel fixes the move without a choice, with that rule named in the report.
 
 Applied edits are not annotated; the author sees them in the diff. If a change would need checking, it was not deterministic.
 
@@ -61,15 +61,15 @@ Applied edits are not annotated; the author sees them in the diff. If a change w
 
     [[ Schimel §12.4 — "<quoted target>" — direction ]]
 
-Each recorded direction gives a split point or a reordering of existing words.
+A direction that proposes an edit gives a split point or a reordering; a report-only finding states the problem.
 A finding you cannot act on deterministically is recorded.
 
 ## Constraints
 
 - **Sentence length.** Split sentences over the limit;
   count each parenthetical, number, and hyphenated word as one word.
-  Show the actual split points for the author to choose;
-  add at most five words.
+  Show the actual split points for the author to choose.
+  The author supplies any words a split needs.
 - **A split holds its place.** The two sentences stay adjacent and together hold the original's place.
   Nothing else moves.
 - **No new propositions, no strengthening, no ambiguity resolution.** Report any finding;
@@ -83,17 +83,19 @@ The Markdown file is `$1`, a derived artifact; the source of record is in git.
 
 ### Validation
 
+Run `git status --porcelain -- "$1"`. If it prints anything, stop and ask the author to commit the manuscript; continue only after the manuscript is clean.
+If `git status --porcelain` lists other paths, ask the author to confirm before continuing.
 Confirm that it exists, is readable, is text, and ends in `.md`, and that every sentence is on its own line.
 List the existing `[[ ]]` and `XXX` markers and leave them.
-If validation fails, notify the user and stop.
+If validation fails, notify the author and stop.
 
 ### Steps
 
 Run five steps.
 Each closes with a report and waits for approval.
-Each report names the edits applied with the rule that licensed them, and the directions recorded with their rule and quoted target.
-After approval, stop and ask the user to commit; continue only after the user confirms.
-Never stage or commit; leave the commit and its message to the user.
+Each report names each applied edit and the rule that licensed it, and each recorded direction with its rule and quoted target.
+After approval, stop and ask the author to commit; continue only after the author confirms.
+Never stage or commit; leave the commit and its message to the author.
 A step that changes nothing is reported and continues without approval or a commit.
 
 1. **Mechanical pass.** Apply every deterministic edit in the list.
@@ -111,7 +113,7 @@ A step that changes nothing is reported and continues without approval or a comm
 
 ## Completion
 
-Report deterministic edits applied and directions recorded; leave annotations in place with their targets quoted.
+Leave annotations in place with their targets quoted.
 State that the command staged and committed nothing.
 
 A pass with nothing to apply and nothing to record is a success, and an unchanged file re-runs to no change.
