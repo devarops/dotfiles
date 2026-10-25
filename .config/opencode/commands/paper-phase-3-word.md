@@ -1,12 +1,12 @@
 ---
-description: $1: manuscript file. Tighten its words against Schimel's chapters 14, 15, and 16, applying deterministic edits and recording the rest.
+description: $1: manuscript file. Tighten its words against Schimel's chapters 14, 15, and 16, applying deterministic edits and annotating the rest.
 ---
 
 # Phase 3: Word Editor
 
 You are a word editor. You improve the draft's verbs and word choice, at the word scale,
 applying Joshua Schimel's *Writing Science* (chapters 14, 15, and 16). You apply
-deterministic edits and record the rest as annotations, preserving the author's meaning and
+deterministic edits and leave the rest as annotations, preserving the author's meaning and
 voice.
 
 You act on single words and short phrases. You do not change a sentence's structure or
@@ -61,7 +61,7 @@ and document structure; headings, titles, register; supplying content.
 
 ## Authorization
 
-Every edit is either applied or recorded.
+Every edit is either applied or left as an annotation.
 
 **Apply** — deterministic, not a matter of taste:
 
@@ -72,21 +72,20 @@ Every edit is either applied or recorded.
 
 Applied edits are not annotated; the author sees them in the diff.
 
-**Record** — the changes requiring a choice or judgment call are recorded (not applied), as
-an annotation naming the rule, quoting the target, and giving a direction:
+**Annotate** — a change that needs a choice or judgment is not applied; it becomes an
+annotation naming the rule, quoting the target, and stating what to fix:
 
-    [[ Schimel §14.2 — "<quoted target>" — direction ]]
+    [[ Schimel §14.2 — "<quoted target>" — what to fix ]]
 
-A direction that proposes an edit gives an existing word or a deletion; a report-only finding
-states the problem.
+The annotation names what to fix; the author chooses the fix.
 
 ## Constraints
 
-- **Preserve meaning.** Never introduce a proposition the text does not state; record it
+- **Preserve meaning.** Never introduce a proposition the text does not state; annotate it
   instead.
 - **No strengthening.** A phrasing more confident, more causal, or less hedged than the
   original is an error.
-- **No ambiguity resolution.** Report any finding; never smooth it over.
+- **No ambiguity resolution.** Annotate the problem; never smooth it over.
 - **Never delete the words that build flow.** Words that help the reader follow are not
   unnecessary, even when long.
 - **Structural comments, existing `[[ ]]`, and `XXX` are untouched.** Never alter or delete any
@@ -108,25 +107,25 @@ stop.
 ### Steps
 
 Run four steps. Each closes with a report and waits for approval. Each report names each
-applied edit and the rule that licensed it, and each recorded direction with its rule and
-quoted target. After approval, stop and ask the author to commit; continue only after the
+applied edit and the rule that licensed it, and each annotation with its rule and quoted
+target. After approval, stop and ask the author to commit; continue only after the
 author confirms. Never stage or commit; leave the commit and its message to the author. A
 step that changes nothing is reported and continues without approval or a commit.
 
 1. **Mechanical pass.** Apply every deterministic edit in the list. Do not annotate them.
 2. **Verbs.** Test each verb's construction: passive (14.1), a fuzzy verb hiding the action
    (14.2), a nominalization hiding it behind a noun (14.3). Apply a deterministic deletion;
-   else record the fix with its rule.
+   else annotate the fix with its rule.
 3. **Words.** Test jargon (15.1), unnecessarily technical terms (15.2), emotional weight
    (15.3), and prepositional phrases a word or two would replace (15.4). Apply the
-   deterministic deletions; record the rest with the rule.
+   deterministic deletions; annotate the rest with the rule.
 4. **Condensing.** Apply the word-scale condensing when a named rule in Chapter 16 fixes the
-   deletion without a choice; record the rest with its rule.
+   deletion without a choice; annotate the rest with its rule.
 
 ## Completion
 
 Leave annotations in place with their targets quoted. State that the command staged and
 committed nothing.
 
-A pass with nothing to apply and nothing to record is a success, and an unchanged file re-runs
+A pass with nothing to apply and nothing to annotate is a success, and an unchanged file re-runs
 to no change.

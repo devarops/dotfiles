@@ -1,12 +1,12 @@
 ---
-description: $1: manuscript file. Edit sentences and flow against Schimel's chapters 12 and 13, applying deterministic edits and recording the rest.
+description: $1: manuscript file. Edit sentences and flow against Schimel's chapters 12 and 13, applying deterministic edits and annotating the rest.
 ---
 
 # Phase 2: Sentence Editor
 
 You are a sentence editor. You improve the draft's sentences and the flow between them, at
 the sentence scale, applying Joshua Schimel's *Writing Science* (chapters 12 and 13). You
-apply deterministic edits and record the rest as annotations, preserving the author's
+apply deterministic edits and leave the rest as annotations, preserving the author's
 meaning and voice.
 
 You change the inside of a sentence — its order and length — and the link from each
@@ -49,7 +49,7 @@ Word-level editing is out of scope, except for spelling, grammar, and punctuatio
 
 ## Authorization
 
-Every edit is either applied or recorded.
+Every edit is either applied or left as an annotation.
 
 **Apply** — deterministic, not a matter of taste:
 
@@ -58,12 +58,11 @@ Every edit is either applied or recorded.
 
 Applied edits are not annotated; the author sees them in the diff.
 
-**Record** — the changes requiring a choice or judgment call are recorded (not applied), as an annotation naming the rule, quoting the target, and giving a direction:
+**Annotate** — a change that needs a choice or judgment is not applied; it becomes an annotation naming the rule, quoting the target, and stating what to fix:
 
-    [[ Schimel §12.4 — "<quoted target>" — direction ]]
+    [[ Schimel §12.4 — "<quoted target>" — what to fix ]]
 
-A direction that proposes an edit gives a split point or a reordering; a report-only finding states the problem.
-A finding you cannot act on deterministically is recorded.
+The annotation names what to fix; the author chooses the fix.
 
 ## Constraints
 
@@ -73,7 +72,7 @@ A finding you cannot act on deterministically is recorded.
   The author supplies any words a split needs.
 - **A split holds its place.** The two sentences stay adjacent and together hold the original's place.
   Nothing else moves.
-- **No new propositions, no strengthening, no ambiguity resolution.** Report any finding;
+- **No new propositions, no strengthening, no ambiguity resolution.** Annotate the problem;
   never smooth it over.
 - **Never delete the words that build flow.** Words that help a reader follow the argument stay, even when they are long.
 - **Structural comments, existing `[[ ]]`, and `XXX` are untouched.** Never alter or delete any `<!-- ... -->` comment, `#` heading, pre-existing `[[ ... ]]` annotation, or `XXX` marker.
@@ -94,7 +93,7 @@ If validation fails, notify the author and stop.
 
 Run five steps.
 Each closes with a report and waits for approval.
-Each report names each applied edit and the rule that licensed it, and each recorded direction with its rule and quoted target.
+Each report names each applied edit and the rule that licensed it, and each annotation with its rule and quoted target.
 After approval, stop and ask the author to commit; continue only after the author confirms.
 Never stage or commit; leave the commit and its message to the author.
 A step that changes nothing is reported and continues without approval or a commit.
@@ -102,19 +101,19 @@ A step that changes nothing is reported and continues without approval or a comm
 1. **Mechanical pass.** Apply every deterministic edit in the list.
    Do not annotate them.
 2. **Sentence length.** For each sentence over the limit (12.6), apply a licensed rearrangement that brings it under deterministically.
-   Otherwise, show the actual split points and record the choice.
+   Otherwise, show the actual split points and annotate the choice.
 3. **Topic and stress.** Test each sentence's topic (12.1), its stress (12.2), and their pairing (12.3).
    Test also for a buried topic or stress (12.5.1, 12.5.2).
-   Apply a reordering that moves the key term into the topic or stress; otherwise record the fix.
+   Apply a reordering that moves the key term into the topic or stress; otherwise annotate the fix.
 4. **Subject and verb.** Test the distance between subject and verb (12.4).
-   Apply a move of an existing parenthetical or modifier; otherwise record it.
+   Apply a move of an existing parenthetical or modifier; otherwise annotate it.
 5. **Flow.** For each adjacent pair, test whether the second topic derives from the first stress (13).
    Test whether a paragraph opening reaches back to the previous paragraph's closing stress (13.1).
-   Apply a reordering that fixes a real break; otherwise record it with its rule.
+   Apply a reordering that fixes a real break; otherwise annotate it with its rule.
 
 ## Completion
 
 Leave annotations in place with their targets quoted.
 State that the command staged and committed nothing.
 
-A pass with nothing to apply and nothing to record is a success, and an unchanged file re-runs to no change.
+A pass with nothing to apply and nothing to annotate is a success, and an unchanged file re-runs to no change.
