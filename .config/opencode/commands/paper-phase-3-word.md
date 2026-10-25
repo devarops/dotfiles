@@ -27,26 +27,6 @@ and `XXX` placeholders belong to earlier passes or the author; they are never yo
   `~/repositorios/wiki/raw/schimel2012writing.txt`. If missing or unreadable, stop; never
   regenerate it.
 - Read Chapter 14 Energizing Writing, Chapter 15 Words, and Chapter 16 Condensing in full.
-- Chapter 14 has three sections:
-  - 14.1 Active versus passive voice.
-  - 14.2 Fuzzy verbs.
-  - 14.3 Nominalizations.
-- Chapter 15 has four sections:
-  - 15.1 Jargon.
-  - 15.2 Unnecessarily technical terms.
-  - 15.3 Emotional weight.
-  - 15.4 Prepositional phrases versus compound nouns.
-- Chapter 16 has ten sections:
-  - 16.1 A strategy for condensing.
-  - 16.2 Redundancies.
-  - 16.3 Obvious ideas.
-  - 16.4 Modifiers: adverbs and adjectives.
-  - 16.5 Metadiscourse.
-  - 16.6 Verbosity.
-  - 16.7 Verbs and action.
-  - 16.8 A full paragraph example.
-  - 16.9 Condensing to clarify.
-  - 16.10 When not to kill every possible word.
 - For any judgment call, read `~/repositorios/wiki/raw/schimel2012writing.txt` and follow
   Schimel's principles and ideas first.
 
@@ -56,12 +36,12 @@ Chapters 14, 15, and 16 are in scope: verb constructions, word choice, redundanc
 condensation at the word scale, spelling, and typography. Chapters before 14 and after 16
 are out of scope.
 
-Out of scope: sentence structure, length, order, topic, stress, and flow (phase 2); paragraph
+Out of scope: sentence structure, length, order, topic, stress, and flow; paragraph
 and document structure; headings, titles, register; supplying content.
 
 ## Authorization
 
-Every edit is either applied or left as an annotation.
+Every edit is either applied without asking or left as an annotation.
 
 **Apply** — deterministic, not a matter of taste:
 
@@ -113,14 +93,17 @@ author confirms. Never stage or commit; leave the commit and its message to the 
 step that changes nothing is reported and continues without approval or a commit.
 
 1. **Mechanical pass.** Apply every deterministic edit in the list. Do not annotate them.
-2. **Verbs.** Test each verb's construction: passive (14.1), a fuzzy verb hiding the action
-   (14.2), a nominalization hiding it behind a noun (14.3). Apply a deterministic deletion;
-   else annotate the fix with its rule.
-3. **Words.** Test jargon (15.1), unnecessarily technical terms (15.2), emotional weight
-   (15.3), and prepositional phrases a word or two would replace (15.4). Apply the
-   deterministic deletions; annotate the rest with the rule.
-4. **Condensing.** Apply the word-scale condensing when a named rule in Chapter 16 fixes the
-   deletion without a choice; annotate the rest with its rule.
+2. **Verbs (Chapter 14).** Test 14.1 active versus passive voice, 14.2 fuzzy verbs, and 14.3
+   nominalizations. Apply a deletion when a named rule fixes it without a choice; annotate
+   the rest with its rule.
+3. **Words (Chapter 15).** Test 15.1 jargon, 15.2 unnecessarily technical terms, 15.3
+   emotional weight, and 15.4 prepositional phrases versus compound nouns. Apply the
+   deletions a named rule fixes; annotate the rest with the rule.
+4. **Condensing (Chapter 16).** Apply the 16.1 strategy and use 16.8 as the model. Test each
+   passage for 16.2 redundancies, 16.3 obvious ideas, 16.4 modifiers, 16.5 metadiscourse,
+   16.6 verbosity, 16.7 verbs and action, and 16.9 condensing to clarify. Keep every word
+   16.10 protects. Apply a deletion only when a named rule fixes it without a choice;
+   annotate the rest with its rule.
 
 ## Completion
 
