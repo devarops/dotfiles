@@ -55,9 +55,9 @@ Every edit is either applied or recorded.
 - spelling, grammar, punctuation, typographic fixes;
 - reordering existing words when a named rule in Schimel fixes the move without a choice, with that rule named in the report.
 
-Applied edits are not annotated; the author sees them in the diff. If a change would need checking, it was not deterministic.
+Applied edits are not annotated; the author sees them in the diff.
 
-**Record** — the rest, as an annotation naming the rule, quoting the target, and giving a direction:
+**Record** — the changes requiring a choice or judgment call are recorded (not applied), as an annotation naming the rule, quoting the target, and giving a direction:
 
     [[ Schimel §12.4 — "<quoted target>" — direction ]]
 
@@ -85,7 +85,7 @@ The Markdown file is `$1`, a derived artifact; the source of record is in git.
 
 Run `git status --porcelain -- "$1"`. If it prints anything, stop and ask the author to commit the manuscript; continue only after the manuscript is clean.
 If `git status --porcelain` lists other paths, ask the author to confirm before continuing.
-Confirm that it exists, is readable, is text, and ends in `.md`, and that every sentence is on its own line.
+Confirm that `$1` exists, is readable, is text, and ends in `.md`, and that every sentence is on its own line.
 List the existing `[[ ]]` and `XXX` markers and leave them.
 If validation fails, notify the author and stop.
 
