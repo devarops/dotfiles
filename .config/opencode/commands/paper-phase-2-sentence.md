@@ -91,25 +91,23 @@ If validation fails, notify the author and stop.
 
 ### Steps
 
-Run five steps.
-Each closes with a report and waits for approval.
-Each report names each applied edit and the rule that licensed it, and each annotation with its rule and quoted target.
-After approval, stop and ask the author to commit; continue only after the author confirms.
-Never stage or commit; leave the commit and its message to the author.
-A step that changes nothing is reported and continues without approval or a commit.
+Run three steps. Each closes with a report and waits for approval. Each report names each
+applied edit and the rule that licensed it, and each annotation with its rule and quoted
+target. After approval, stop and ask the author to commit; continue only after the
+author confirms. Never stage or commit; leave the commit and its message to the author. A
+step that changes nothing is reported and continues without approval or a commit.
 
-1. **Mechanical pass.** Apply every deterministic edit in the list.
-   Do not annotate them.
-2. **Sentence length.** For each sentence over the limit (12.6), apply a licensed rearrangement that brings it under deterministically.
-   Otherwise, show the actual split points and annotate the choice.
-3. **Topic and stress.** Test each sentence's topic (12.1), its stress (12.2), and their pairing (12.3).
-   Test also for a buried topic or stress (12.5.1, 12.5.2).
-   Apply a reordering that moves the key term into the topic or stress; otherwise annotate the fix.
-4. **Subject and verb.** Test the distance between subject and verb (12.4).
-   Apply a move of an existing parenthetical or modifier; otherwise annotate it.
-5. **Flow.** For each adjacent pair, test whether the second topic derives from the first stress (13).
-   Test whether a paragraph opening reaches back to the previous paragraph's closing stress (13.1).
-   Apply a reordering that fixes a real break; otherwise annotate it with its rule.
+1. **Mechanical pass.** Apply every deterministic edit in the list. Do not annotate them.
+2. **Sentences (Chapter 12).** Test 12.1 the opening topic, 12.2 the closing stress, and 12.3
+   their pairing. Test 12.4 the subject–verb connection and 12.5 managing real sentences,
+   including 12.5.1 picking the right topic and 12.5.2 unburying the stress. For 12.6 long
+   sentences, apply a licensed rearrangement that brings a sentence under the limit;
+   otherwise show the actual split points and annotate the choice. Apply a reordering only
+   when a named rule fixes the move without a choice; annotate the rest with its rule.
+3. **Flow (Chapter 13).** For each adjacent pair, test whether the second topic derives from
+   the first stress. Test whether a paragraph opening reaches back to the previous
+   paragraph's closing stress (13.1). Apply a reordering only when a named rule fixes the
+   move without a choice; annotate the rest with its rule.
 
 ## Completion
 
