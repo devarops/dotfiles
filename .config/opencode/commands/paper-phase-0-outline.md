@@ -34,10 +34,12 @@ Permitted: read the raw text; present story candidates; ask questions; write `OU
 Forbidden: new ideas, sentences, or propositions; paraphrasing; writing the paper's prose,
 or a heading or title for it; editing `$1`.
 
-- FRAME and STORY stay in the author's words: quote `$1` or let the author supply them.
-- **FRAME and STORY state structure and claims, not evidence.** They may name the case, not
-  numbers, citations, formulas, instrument names, or site designations. If changing a datum
-  would force an edit here, the line is too specific.
+- The story and its frame stay in the author's words, except the fixed OCAR shape: quote `$1`
+  or let the author supply them.
+- **`# STORY` states structure and claims, not evidence.** It may name the case, not numbers,
+  citations, formulas, instrument names, or site designations. If changing a datum would force
+  an edit here, the line is too specific.
+- **The story shape is always OCAR.** LDR and ABDCE are out of scope.
 - Content that fits no part of the story stays in `$1`.
 - **Assume a clear story and no structure.** Infer it; do not change or complete it.
 - **The map is structural.** Derive section headings and outline items from the confirmed
@@ -52,14 +54,11 @@ or a heading or title for it; editing `$1`.
 
 `OUTLINE.md` is nested Markdown:
 
-    # FRAME                        (optional)
-
-    - Audience — <who reads it, and how patient they are>
-    - Story shape — <OCAR, LDR, or ABDCE>
-    - Hourglass — <how wide the opening is and how local the resolution is>
-
     # STORY
 
+    - Audience — <who reads it>
+    - Story shape — OCAR
+    - Hourglass — <how wide the opening is and how local the resolution is>
     - OPENING — <author's opening summary>
     - CHALLENGE — <author's challenge summary>
     - ACTION — <author's action summary>
@@ -72,8 +71,8 @@ or a heading or title for it; editing `$1`.
 
     - <Label> — Job: <what the item must do>; Question: <what it must answer>; Arc: <opening|development|resolution>
 
-- `# FRAME` records audience, patience, story shape, and scope; `# STORY` states the four OCAR
-  parts in order.
+- `# STORY` records audience, story shape, and hourglass, then states the four OCAR parts in
+  order.
 - `## <SECTION> — <OCAR part>` maps each section (Introduction, Methods, Results, Discussion,
   Conclusion) to its OCAR role (4.3). A section may appear under more than one part.
 - `- <Label> — Job: ...; Question: ...; Arc: ...` is one outline item, in document order. The
@@ -106,7 +105,7 @@ author is telling. Ask only what the draft cannot settle, one question at a time
 On rejection, build new candidates from the author's words. Repeat until one story is
 confirmed. Nothing is written until then.
 
-If `# FRAME` is used, ask for audience and patience, story shape, and scope.
+Ask the author for the audience and the hourglass; the story shape is always OCAR.
 
 ### Step 2 — Map the story
 
@@ -122,13 +121,13 @@ per item.
 
 ### Step 3 — Write the file
 
-On approval, check each item against the terseness rule, then write `OUTLINE.md`: optional
-FRAME, STORY, each section heading with Job and Question, and the item bullets in order.
+On approval, check each item against the terseness rule, then write `OUTLINE.md`: STORY, each
+section heading with Job and Question, and the item bullets in order.
 
 Do not stage or commit; those decisions are the author's.
 
 ## Completion
 
-Report the confirmed story, FRAME decisions, OCAR parts, sections, outline items, and the
-questions asked. Phase 1 requires a clean tree, so the author must commit `OUTLINE.md`
-before running it.
+Report the confirmed story, the audience, the hourglass, the OCAR parts, sections, outline
+items, and the questions asked. Phase 1 requires a clean tree, so the author must commit
+`OUTLINE.md` before running it.
