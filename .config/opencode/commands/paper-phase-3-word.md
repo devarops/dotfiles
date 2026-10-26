@@ -43,7 +43,7 @@ and document structure; headings, titles, register; supplying content.
 
 Every edit is either applied without asking or left as an annotation.
 
-**Apply** — deterministic, not a matter of taste:
+**Apply** — deterministic, as `prose-options.md` defines it:
 
 - spelling and typographic fixes;
 - deleting a redundant modifier, half of a doubled pair, a word the reader can infer,

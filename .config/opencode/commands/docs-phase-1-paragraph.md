@@ -13,7 +13,7 @@ This command is always internal-reader. Read `~/.config/opencode/prose-options.m
 it.
 
 Direction: slot, target sentence, missing role, STE key terms. Safe: placements or orderings.
-Finished: a sentence for a gap or a transition.
+Finished: a sentence for a gap or a transition. Both are defined in `prose-options.md`.
 
 Write one schema comment per paragraph; no `SUBSECTION` or `main idea` comments. The outline
 holds document structure.

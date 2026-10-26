@@ -17,7 +17,8 @@ This command is always internal-reader. Read `~/.config/opencode/prose-options.m
 it.
 
 Direction: rule, target, key terms. Safe: choices among the author's existing words.
-Finished: dictionary-approved replacements and word-level rewrites.
+Finished: dictionary-approved replacements and word-level rewrites. Both are defined in
+`prose-options.md`.
 
 `<!-- ... -->` structural comments and real `#` headings are read-only fences: you never
 edit, move, or delete them. `[[ ... ]]` annotations are directions at the Word level;
@@ -48,12 +49,12 @@ instruction structure and missing safety wording, and supplying content.
 
 Every edit is either applied or recorded.
 
-**Deterministic** means one way to make the change, or independent, competent, adversarial
-editors would agree on one best choice. If they might choose different options, record it.
+**Deterministic** edits, as defined in `prose-options.md`, are applied; every other edit is
+recorded.
 
 **Apply** — spelling, typos, contractions, a dictionary replacement when the source gives
-one approved alternative and the meaning does not change, and a verb-form fix when the
-source gives one clear alternative and the meaning does not change. Do not annotate an
+one approved replacement and the meaning does not change, and a verb-form fix when the
+source gives one clear replacement and the meaning does not change. Do not annotate an
 applied edit; the author sees it in the diff.
 
 **Record** — technical nouns and verbs, multi-word nouns, approved-meaning conflicts,
@@ -103,11 +104,11 @@ without approval or a commit.
 
 1. **Mechanical.** Apply spelling, typos, and contractions. Do not annotate them.
 2. **Dictionary.** Read the dictionary entry for each candidate word. Apply a replacement
-   only when the source gives one approved alternative and the meaning does not change;
+   only when the source gives one approved replacement and the meaning does not change;
    record the rest, including approved-meaning conflicts and words absent from the
    dictionary.
 3. **Technical terms.** Read the rules for technical nouns, technical verbs, and multi-word
-   nouns. Record each finding and the alternative the source names; do not apply it.
+   nouns. Record each finding and the replacement the source names; do not apply it.
 4. **Verbs.** Read the verb-form rules, including passive. Use the sentence's text type when
    the rule depends on it. Apply a clear verb-form fix; record the rest.
 

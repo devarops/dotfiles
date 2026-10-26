@@ -41,11 +41,8 @@ Before the first item, in a single round:
 
 ## Deterministic fixes
 
-A fix is deterministic when the item has one way to be solved and no alternative, or when
-alternative solutions exist but independent, competent, adversarial agents would agree on one
-as best. A fix is not deterministic when independent, competent, adversarial agents might
-choose different options. Apply deterministic fixes without asking and report them in the
-completion.
+Apply a deterministic fix without asking and report it in the completion. Every other fix
+waits for the user's choice.
 
 ## Artifacts
 
@@ -53,7 +50,7 @@ Name the exact file and span before offering a direction. If confidence is low, 
 span before the user chooses.
 
 - **Direction.** The target, the issue, and the key terms or constraints.
-- **Safe.** The user's existing text, structure, or mapping choices.
+- **Safe.** A safe alternative, as defined in `prose-options.md`.
 - **Finished.** Fixes.
 
 ## Reply and applying

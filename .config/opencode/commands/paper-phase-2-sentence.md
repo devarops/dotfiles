@@ -51,7 +51,7 @@ Word-level editing is out of scope, except for spelling, grammar, and punctuatio
 
 Every edit is either applied or left as an annotation.
 
-**Apply** — deterministic, not a matter of taste:
+**Apply** — deterministic, as `prose-options.md` defines it:
 
 - spelling, grammar, punctuation, typographic fixes;
 - reordering existing words when a named rule in Schimel fixes the move without a choice, with that rule named in the report.
