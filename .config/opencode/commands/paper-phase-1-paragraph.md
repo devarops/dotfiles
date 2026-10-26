@@ -59,7 +59,7 @@ A first run is a draft with zero `<!-- ... -->` comments.
 1. Pre-flight: the tree is clean (`git status --porcelain` empty), otherwise ask the author to
    commit or stash. `$1` and `$2` exist, are readable, are text, end in `.md`; `$1` has one
    sentence per line; `$2` has content.
-2. Read the outline in order; FRAME and STORY set the context but have no counterpart in `$1`.
+2. Read the outline in order; `# STORY` sets the context but has no counterpart in `$1`.
    Follow the outline as given: if an item lacks a job, question, or arc role, derive it from
    the item's text, report the derivation, and leave `OUTLINE.md` unchanged. For each item,
    collect the sentences in `$1` that serve it. Assign each sentence once; one already placed

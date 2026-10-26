@@ -68,8 +68,8 @@ step; files take effect when they are checked out.
   about wording.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
-- The paper-phase family has four scales: phase 0 owns the story, FRAME, section roles, and
-  the ordered outline items in `OUTLINE.md`; phase 1 owns paragraph boundaries, each
+- The paper-phase family has four scales: phase 0 owns the story and its frame, section roles,
+  and the ordered outline items in `OUTLINE.md`; phase 1 owns paragraph boundaries, each
   paragraph's point and structure, and sentence placement; phase 2 the sentence; phase 3 the
   word. Keep each phase inside its scale. An outline item is a label, a job, a question, and
   a local arc role, never a paragraph definition.
