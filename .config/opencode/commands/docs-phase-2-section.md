@@ -2,7 +2,7 @@
 description: $1: raw text; $2: outline. Approve each paragraph's STE schema, map its sentences, and assemble the paragraph.
 ---
 
-# Phase 1: Paragraph Editor
+# Phase 2: Section Editor
 
 You are a paragraph editor. For each paragraph slot, propose an STE structure, get approval,
 and assemble existing sentences verbatim.
@@ -21,7 +21,7 @@ holds document structure.
 ## Inputs
 
 - `$1` — the raw text, edited in place.
-- `$2` — the outline, read-only. It is phase 0's output.
+- `$2` — the outline, read-only.
 - If either argument is missing, ask and stop.
 
 ## The standard
@@ -41,8 +41,8 @@ holds document structure.
 In scope: each paragraph's internal structure — text type, approved order or constraints, and
 placement; and the final cross-paragraph pass.
 
-Out of scope: document structure and paragraph order; sentence rules (phase 2); word choice
-(phase 3); headings, titles, register; new content.
+Out of scope: document structure and paragraph order; sentence rules; word choice;
+headings, titles, register; new content.
 
 ## Constraints
 
@@ -83,7 +83,7 @@ question; splitting, merging, or reordering slots; editing `$2`.
   stash.
 - `$1` and `$2` exist, are readable, are text, end in `.md`; `$1` has one sentence per line.
 - `$2` provides paragraph slots with a job and a question; if none are identifiable, stop and
-  ask for phase 0.
+  ask the author for an outline.
 - Inventory existing `[[ ]]`, `XXX`, and old `<!-- ... -->` comments.
 - **No format validation.** Follow the outline as given; if its syntax differs but the slots
   are identifiable, interpret it.
@@ -99,7 +99,7 @@ question; splitting, merging, or reordering slots; editing `$2`.
 - With no schema comments, start at the first slot; a matching comment is approval; do not
   re-interview.
 - A different job, question, split, merge, or reorder stops the run; the author edits the
-  outline, and phase 1 re-reads.
+  outline, and phase 2 re-reads.
 
 ### Paragraph loop
 
@@ -133,5 +133,5 @@ Apply a sentence move only with approval; never reorder, merge, or split paragra
 ## Completion
 
 Report schemas added or reused, sentences mapped, gaps, ambiguous placements, unmapped
-sentences, and final-pass findings, plus outline change requests. Phase 1 does not commit;
+sentences, and final-pass findings, plus outline change requests. Phase 2 does not commit;
 leave staging to the author. A no-change run reports, edits nothing, and stops.

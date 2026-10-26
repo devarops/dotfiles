@@ -2,7 +2,7 @@
 description: $1: blog post. Tighten its verbs and word choice against Williams and Strunk, applying deterministic edits and recording the rest.
 ---
 
-# Phase 3: Word Editor
+# Phase 5: Word Editor
 
 You are a word editor. You improve a blog post's verbs and word choice, at the word scale,
 applying Joseph M. Williams' *Style: Lessons in Clarity and Grace* and William Strunk Jr.'s
@@ -46,7 +46,7 @@ not applied.
 In scope: verb choice and nominalizations; word choice; redundancy and concision at the word
 scale; spelling and typographic fixes.
 
-Out of scope: sentence structure, length, order, topic, stress, and flow (phase 2); paragraph
+Out of scope: sentence structure, length, order, topic, stress, and flow; paragraph
 and document structure; headings, titles, register; grammar; punctuation; supplying content.
 
 ## Authorization
