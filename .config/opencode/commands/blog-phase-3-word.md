@@ -53,7 +53,7 @@ and document structure; headings, titles, register; grammar; punctuation; supply
 
 Every edit is either applied or recorded.
 
-**Apply** — deterministic, not a matter of taste:
+**Apply** — deterministic, as `prose-options.md` defines it:
 
 - spelling and typographic fixes;
 - an accidental doubled or tripled word;
@@ -73,8 +73,8 @@ giving a direction:
     [[ Williams §9 — "<quoted target>" — direction ]]
     [[ Strunk §13 — "<quoted target>" — direction ]]
 
-The actual artifacts are existing words or deletions. A finding you cannot act on
-deterministically is recorded.
+The artifacts are the safe and finished kinds `prose-options.md` defines. A finding you
+cannot act on deterministically is recorded.
 
 ## Constraints
 

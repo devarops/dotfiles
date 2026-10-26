@@ -30,6 +30,13 @@ Before interviewing the author about wording, an external-reader command reads
 If 4a is missing or unreadable, stop. An internal-reader command does not read 4a or its
 children.
 
+## Deterministic edits
+
+A change is deterministic when it has one way to be made and no alternative, or when
+alternative solutions exist but independent, competent, adversarial agents would agree on one
+as best. It is not deterministic when independent, competent, adversarial agents might choose
+different options. Apply a deterministic change without asking and report it.
+
 ## Steps
 
 For each authorship-bearing item, follow the steps the reader mode allows. Mechanical or
@@ -51,9 +58,10 @@ External-reader stops after the direction. Internal-reader may use both steps.
 ## Safe alternatives
 
 A safe alternative uses only the author's existing words, structure, or meta-language. It
-does not compose new prose. Story collages, actual mapping choices, and split points are
-safe. External-reader may show them because they do not write the author's prose. They must
-be distinct from each other: different, complementary, or opposite, never too similar.
+does not compose new prose. The author's existing text, structure, and mapping choices,
+story collages, split points, and directions are safe. External-reader may show them because
+they do not write the author's prose. They must be distinct from each other: different,
+complementary, or opposite, never too similar.
 
 ## Finished alternatives
 
