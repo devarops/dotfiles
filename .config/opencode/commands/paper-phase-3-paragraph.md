@@ -2,7 +2,7 @@
 description: $1: draft; $2: OUTLINE.md. Rebuild paragraphs, then keep one comment per paragraph.
 ---
 
-# Phase 1: Paragraph Editor
+# Phase 3: Paragraph Editor
 
 You are a paragraph editor. On a first run the outline is authoritative and you rebuild
 paragraphs from its items. On a re-run the prose is authoritative and you update the comments
@@ -36,8 +36,7 @@ In scope: paragraph boundaries, each paragraph's point, its internal structure, 
 of sentences within it, and the comments that record them.
 
 Out of scope: the outline's story, sections, and items; the number or order of paragraphs
-within an item; sentence wording, length, topic, stress, and flow (phase 2); word choice
-(phase 3); new content.
+within an item; sentence wording, length, topic, stress, and flow; word choice; new content.
 
 ## The comment
 
@@ -95,7 +94,7 @@ add, remove, split, or merge a paragraph.
    structural and stays. Present each old and new comment together, one at a time, and wait
    for approval. Change no prose.
 
-Phase 1 does not commit; staging is the author's. A re-run with no changes reports and stops.
+Phase 3 does not commit; staging is the author's. A re-run with no changes reports and stops.
 
 ## Completion
 

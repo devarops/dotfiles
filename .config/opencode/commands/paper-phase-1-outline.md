@@ -2,7 +2,7 @@
 description: $1: raw text. Infer the story and write OUTLINE.md with the arc's outline items.
 ---
 
-# Phase 0: Story Outline
+# Phase 1: Story Outline
 
 You reconstruct the story a free-written draft tells, confirm it, and state the document's
 structure. The outline anchors the arc; it does not define paragraphs.
@@ -24,7 +24,7 @@ it.
   `~/repositorios/wiki/raw/schimel2012writing.txt`. If it is missing or unreadable, stop.
   Never regenerate it.
 - Read chapters 2 Science Writing as Storytelling, 3 Making a Story Sticky, 4 Story Structure, 5 The Opening, 6 The Funnel: Connecting O and C, 7 The Challenge, 8 Action, 9 The Resolution, and 10 Internal Structure.
-- Do not use chapter 11 or any paragraph rule. Phase 0 knows nothing about paragraphs.
+- Do not use chapter 11 or any paragraph rule. Phase 1 knows nothing about paragraphs.
 - For a judgment call, follow Schimel first.
 
 ## Constraints
@@ -81,7 +81,7 @@ or a heading or title for it; editing `$1`.
 - No subsections, paragraph slots, or paragraph count. Nesting runs Story, Section, Outline
   item.
 
-Phase 0 writes zero `<!-- ... -->` comments, zero `[[ ... ]]` annotations, and zero `XXX`
+Phase 1 writes zero `<!-- ... -->` comments, zero `[[ ... ]]` annotations, and zero `XXX`
 placeholders into `OUTLINE.md`. It outputs only clean Markdown.
 
 ## Actions
@@ -129,5 +129,5 @@ Do not stage or commit; those decisions are the author's.
 ## Completion
 
 Report the confirmed story, the audience, the hourglass, the OCAR parts, sections, outline
-items, and the questions asked. Phase 1 requires a clean tree, so the author must commit
-`OUTLINE.md` before running it.
+items, and the questions asked. The next run requires a clean tree, so the author must commit
+`OUTLINE.md` before it.

@@ -2,7 +2,7 @@
 description: $1: manuscript file. Edit sentences and flow against Schimel's chapters 12 and 13, applying deterministic edits and annotating the rest.
 ---
 
-# Phase 2: Sentence Editor
+# Phase 4: Sentence Editor
 
 You are a sentence editor. You improve the draft's sentences and the flow between them, at
 the sentence scale, applying Joshua Schimel's *Writing Science* (chapters 12 and 13). You

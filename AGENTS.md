@@ -68,16 +68,18 @@ step; files take effect when they are checked out.
   about wording.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
-- The paper-phase family has four scales: phase 0 owns the story and its frame, section roles,
-  and the ordered outline items in `OUTLINE.md`; phase 1 owns paragraph boundaries, each
-  paragraph's point and structure, and sentence placement; phase 2 the sentence; phase 3 the
-  word. Keep each phase inside its scale. An outline item is a label, a job, a question, and
-  a local arc role, never a paragraph definition.
-- In a paper draft, `<!-- ... -->` are structural comments (phase 1 writes one comment per
-  paragraph: item label, point, and structure), `[[ ... ]]` are gaps or directions resolved
-  later by quickfix-list, and `XXX` are author-only placeholders. Phase 0 writes none; phases
-  2 and 3 leave all three untouched. Phase 1 does not commit; the author commits between
-  runs, since phase 1 requires a clean tree.
+- The paper-phase family has five scales: the outline phase owns the story and its frame,
+  section roles, and the ordered outline items in `OUTLINE.md`; the section phase owns
+  section boundaries and the paragraphs they group; the paragraph phase owns paragraph
+  boundaries, each paragraph's point and structure, and sentence placement; the sentence
+  phase owns the sentence; the word phase owns the word. Keep each phase inside its scale.
+  An outline item is a label, a job, a question, and a local arc role, never a paragraph
+  definition.
+- In a paper draft, `<!-- ... -->` are structural comments (the paragraph phase writes one
+  comment per paragraph: item label, point, and structure), `[[ ... ]]` are gaps or directions
+  resolved later by quickfix-list, and `XXX` are author-only placeholders. The outline phase
+  writes none; the sentence and word phases leave all three untouched. The paragraph phase
+  does not commit; the author commits between runs, since that phase requires a clean tree.
 - The external-reader rule does not bind `wiki-add`; it synthesises the concept body, which
   the author approves.
 - `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last

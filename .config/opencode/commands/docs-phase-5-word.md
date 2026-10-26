@@ -2,7 +2,7 @@
 description: $1: manual. Tighten its words against ASD-STE100, applying deterministic edits and recording the rest as annotations.
 ---
 
-# Phase 3: Simple English Word Editor
+# Phase 5: Simple English Word Editor
 
 You are a word editor. You improve a technical manual's words against ASD-STE100 Simplified
 Technical English, at the word scale. You apply deterministic edits and record the rest as

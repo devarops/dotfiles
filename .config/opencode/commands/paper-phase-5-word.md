@@ -2,7 +2,7 @@
 description: $1: manuscript file. Tighten its words against Schimel's chapters 14, 15, and 16, applying deterministic edits and annotating the rest.
 ---
 
-# Phase 3: Word Editor
+# Phase 5: Word Editor
 
 You are a word editor. You improve the draft's verbs and word choice, at the word scale,
 applying Joshua Schimel's *Writing Science* (chapters 14, 15, and 16). You apply
