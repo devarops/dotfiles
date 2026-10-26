@@ -23,9 +23,7 @@ it.
 - The standard is Schimel, *Writing Science*,
   `~/repositorios/wiki/raw/schimel2012writing.txt`. If it is missing or unreadable, stop.
   Never regenerate it.
-- Read chapters 2 (finding the story), 4 (story structure; 4.3 maps OCAR onto IMRaD), 5
-  through 9 (opening, funnel, challenge, action, resolution), and 10 (internal structure:
-  the nested arc of sections and outline items).
+- Read chapters 2 Science Writing as Storytelling, 3 Making a Story Sticky, 4 Story Structure, 5 The Opening, 6 The Funnel: Connecting O and C, 7 The Challenge, 8 Action, 9 The Resolution, and 10 Internal Structure.
 - Do not use chapter 11 or any paragraph rule. Phase 0 knows nothing about paragraphs.
 - For a judgment call, follow Schimel first.
 
