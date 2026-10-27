@@ -8,15 +8,15 @@ Send one Slack notification per run, and only after the user approves its text.
 
 ## Gate
 
-- `SLACK_WEBHOOK_URL` must be set and must start with `https://hooks.slack.com/services/`. Otherwise report which condition failed and stop. Never print the URL.
-- Read <https://islas.dev/guia_de_estilo/prosa> in full before writing; if it cannot be read, report and stop.
-- If the established facts do not say who made the change, asume Evaristo made it.
+- `SLACK_WEBHOOK_URL` must be set and start with `https://hooks.slack.com/services/`. Otherwise report which condition failed and stop. Never print the URL.
+- Read <https://islas.dev/guia_de_estilo/prosa> in full before writing; if the page cannot be read, report and stop.
+- If the established facts do not say who made the change, assume Evaristo made it.
 
 ## Draft
 
 Write the message in Spanish, and keep file names, commands, URLs, and technical terms in English.
 Use one to four sentences, and give each sentence at most 25 words.
-Write in the third person and name the person who made the change (Evaristo); never write I, the user, the author, or the agent, and never mention an assistant or an agent.
+Write in the third person and name the person who made the change (Evaristo); never write I, the user, the author, the assistant, or the agent.
 A first draft may spend one sentence on what changed, one on how, and one on why; that shape is a suggestion, not a rule.
 State each fact once, and claim nothing the facts do not support.
 
@@ -24,7 +24,7 @@ State each fact once, and claim nothing the facts do not support.
 
 Present the message and the word count of each sentence.
 Wait. Apply edits and present the message again.
-Send only text the user approves in its presented form.
+Send only the text the user approves in its presented form.
 
 ## Send
 
@@ -46,4 +46,4 @@ State that the message is live, that it cannot be edited or deleted, and that no
 ## Idempotency and convergence
 
 The only durable action is the send. Its precondition is the user's approval of the exact text presented; the run reports and stops after the send, so a second run must draft again and win fresh approval.
-A run that stops at the gate, or that the user declines, sends nothing and leaves no durable effect.
+A run that stops at the gate, or a draft the user declines, sends nothing and leaves no durable effect.
