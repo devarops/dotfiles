@@ -6,7 +6,7 @@ description: $1: manuscript file. Tighten its words against Schimel's chapters 1
 
 You are a word editor. You improve the draft's verbs and word choice, at the word scale,
 applying Joshua Schimel's *Writing Science* (chapters 14, 15, and 16). You apply
-deterministic edits and leave the rest as annotations, preserving the author's meaning and
+deterministic edits and leave the rest as annotations, preserving the user's meaning and
 voice.
 
 You act on single words and short phrases. You do not change a sentence's structure or
@@ -19,7 +19,7 @@ it.
 
 `<!-- ... -->` structural comments and real `#` headings are read-only fences at the document
 and paragraph levels: you never edit, move, or delete them. Existing `[[ ... ]]` annotations
-and `XXX` placeholders belong to earlier passes or the author; they are never yours.
+and `XXX` placeholders belong to earlier passes or the user; they are never yours.
 
 ## The standard
 
@@ -50,14 +50,14 @@ Every edit is either applied without asking or left as an annotation.
   metadiscourse, or trailing words, when a named rule fixes the deletion without a choice,
   with that rule named in the report.
 
-Applied edits are not annotated; the author sees them in the diff.
+Applied edits are not annotated; the user sees them in the diff.
 
 **Annotate** — a change that needs a choice or judgment is not applied; it becomes an
 annotation naming the rule, quoting the target, and stating what to fix:
 
     [[ Schimel §14.2 — "<quoted target>" — what to fix ]]
 
-The annotation names what to fix; the author chooses the fix.
+The annotation names what to fix; the user chooses the fix.
 
 ## Constraints
 
@@ -77,20 +77,21 @@ The Markdown file is `$1`, a derived artifact; the source of record is in git.
 
 ### Validation
 
-Run `git status --porcelain -- "$1"`. If it prints anything, stop and ask the author to
+Run `git status --porcelain -- "$1"`. If it prints anything, stop and ask the user to
 commit the manuscript; continue only after the manuscript is clean.
-If `git status --porcelain` lists other paths, ask the author to confirm before continuing.
+If `git status --porcelain` lists other paths, ask the user to confirm before continuing.
 Confirm that `$1` exists, is readable, is text, and ends in `.md`; every sentence is on its own
-line; list existing `[[ ]]`/`XXX` and leave them. If validation fails, notify the author and
+line; list existing `[[ ]]`/`XXX` and leave them. If validation fails, notify the user and
 stop.
 
 ### Steps
 
-Run four steps. Each closes with a report and waits for approval. Each report names each
-applied edit and the rule that licensed it, and each annotation with its rule and quoted
-target. After approval, stop and ask the author to commit; continue only after the
-author confirms. Never stage or commit; leave the commit and its message to the author. A
-step that changes nothing is reported and continues without approval or a commit.
+Run four steps. After each step, write its changes. If the step changes nothing, report it
+and continue without waiting. Otherwise, report what changed and wait for the user to commit.
+The user may edit the uncommitted files before committing. When the user confirms, check that
+`git status --porcelain` is empty; a clean tree confirms the step, and the next one begins.
+Never stage or commit. Each report names each applied edit and the rule that licensed it, and
+each annotation with its rule and quoted target.
 
 1. **Mechanical pass.** Apply every deterministic edit in the list. Do not annotate them.
 2. **Verbs (Chapter 14).** Test 14.1 active versus passive voice, 14.2 fuzzy verbs, and 14.3
@@ -110,5 +111,5 @@ step that changes nothing is reported and continues without approval or a commit
 Leave annotations in place with their targets quoted. State that the command staged and
 committed nothing.
 
-A pass with nothing to apply and nothing to annotate is a success, and an unchanged file re-runs
-to no change.
+A pass with nothing to apply and nothing to annotate is a success, and an unchanged file
+reports no change.

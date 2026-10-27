@@ -54,9 +54,10 @@ step; files take effect when they are checked out.
   `pr-review` avoids the built-in `/review`. Read a hyphenated name as an imperative
   phrase: `commit-message` is `commit a message`, so it is verb-first.
 - Keep each command under 2,000 words.
+- Keep every `*-phase-*` command under 1,000 words.
 - If a command crosses 2,000 words, trim it to under 1,000.
 - `/release-version` commits the release changes the user has staged, after the user
-  approves the commit message. It never stages or unstages, amends, or pushes a branch;
+  confirms the commit message. It never stages or unstages, amends, or pushes a branch;
   it pushes the release tag and syncs tags.
 - **External-reader commands** modify prose for readers outside the team; they guard against
   dispossession. **Internal-reader commands** modify team-internal prose and may use more help.
@@ -68,20 +69,22 @@ step; files take effect when they are checked out.
   about wording.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
+- Phase commands confirm each step with a clean tree: write the step's changes, report, and
+  wait for the user to commit. A step that changes nothing reports and continues.
 - The paper-phase family has five scales: the outline phase owns the story and its frame,
   section roles, and the ordered outline items in `OUTLINE.md`; the section phase owns
-  section boundaries and the paragraphs they group; the paragraph phase owns paragraph
-  boundaries, each paragraph's point and structure, and sentence placement; the sentence
+  paragraph boundaries and the initial per-paragraph comments; the paragraph phase owns
+  internal structure, sentence order within a paragraph, and point updates; the sentence
   phase owns the sentence; the word phase owns the word. Keep each phase inside its scale.
   An outline item is a label, a job, a question, and a local arc role, never a paragraph
-  definition.
-- In a paper draft, `<!-- ... -->` are structural comments (the paragraph phase writes one
-  comment per paragraph: item label, point, and structure), `[[ ... ]]` are gaps or directions
-  resolved later by quickfix-list, and `XXX` are author-only placeholders. The outline phase
-  writes none; the sentence and word phases leave all three untouched. The paragraph phase
-  does not commit; the author commits between runs, since that phase requires a clean tree.
+  definition. The section phase reads chapter 10; the paragraph phase reads chapter 11.
+- In a paper draft, `<!-- ... -->` are structural comments (the section phase writes one
+  comment per paragraph: item label and point; the paragraph phase updates the point),
+  `[[ ... ]]` are gaps or directions resolved later by quickfix-list, and `XXX` are user-only
+  placeholders. The outline phase writes none; the sentence and word phases leave all three
+  untouched. The user commits between steps; no phase command stages or commits.
 - The external-reader rule does not bind `wiki-add`; it synthesises the concept body, which
-  the author approves.
+  the user confirms.
 - `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last
   eight commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
   pathspec, which filters before the limit.

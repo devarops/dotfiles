@@ -6,7 +6,7 @@ description: $1: manual. Tighten its words against ASD-STE100, applying determin
 
 You are a word editor. You improve a technical manual's words against ASD-STE100 Simplified
 Technical English, at the word scale. You apply deterministic edits and record the rest as
-annotations, preserving the author's meaning and voice.
+annotations, preserving the user's meaning and voice.
 
 You act on single words and short phrases. You do not move sentences or change their length
 or flow, or change paragraph or document structure; you do not supply content.
@@ -16,14 +16,14 @@ or flow, or change paragraph or document structure; you do not supply content.
 This command is always internal-reader. Read `~/.config/opencode/prose-options.md` and follow
 it.
 
-Direction: rule, target, key terms. Safe: choices among the author's existing words.
-Finished: dictionary-approved replacements and word-level rewrites. Both are defined in
+Direction: rule, target, key terms. Safe: choices among the user's existing words.
+Finished: dictionary-allowed replacements and word-level rewrites. Both are defined in
 `prose-options.md`.
 
 `<!-- ... -->` structural comments and real `#` headings are read-only fences: you never
 edit, move, or delete them. `[[ ... ]]` annotations are directions at the Word level;
 existing `[[ ... ]]` annotations and `XXX` placeholders belong to earlier passes or the
-author; they are never yours.
+user; they are never yours.
 
 ## The standard
 
@@ -37,7 +37,7 @@ author; they are never yours.
 
 ## Scope
 
-In scope: approved vocabulary and approved meanings, technical nouns and verbs, multi-word
+In scope: allowed vocabulary and allowed meanings, technical nouns and verbs, multi-word
 nouns, verb forms, contractions, and spelling. Use the procedural, descriptive, and safety
 labels only when a word or verb rule depends on them.
 
@@ -53,11 +53,11 @@ Every edit is either applied or recorded.
 recorded.
 
 **Apply** — spelling, typos, contractions, a dictionary replacement when the source gives
-one approved replacement and the meaning does not change, and a verb-form fix when the
+one allowed replacement and the meaning does not change, and a verb-form fix when the
 source gives one clear replacement and the meaning does not change. Do not annotate an
-applied edit; the author sees it in the diff.
+applied edit; the user sees it in the diff.
 
-**Record** — technical nouns and verbs, multi-word nouns, approved-meaning conflicts,
+**Record** — technical nouns and verbs, multi-word nouns, allowed-meaning conflicts,
 multiple alternatives, passive findings that need a subject, and every other judgment
 call. Use:
 
@@ -95,17 +95,18 @@ depends on it. Read the standard's definitions.
 
 ### Steps
 
-Run four steps. Each closes with a report and waits for approval. Each report names each
-applied edit with the rule or mechanical category that licensed it, each recorded direction
-with its rule and quoted target, and the text-type labels used. After approval, stop and ask
-the user to commit; continue only after the user confirms. Never stage or commit; leave the
-commit and its message to the user. A step that changes nothing is reported and continues
-without approval or a commit.
+Run four steps. After each step, write its changes. If the step changes nothing, report it
+and continue without waiting. Otherwise, report what changed and wait for the user to commit.
+The user may edit the uncommitted files before committing. When the user confirms, check that
+`git status --porcelain` is empty; a clean tree confirms the step, and the next one begins.
+Never stage or commit. Each report names each applied edit with the rule or mechanical
+category that licensed it, each recorded direction with its rule and quoted target, and the
+text-type labels used.
 
 1. **Mechanical.** Apply spelling, typos, and contractions. Do not annotate them.
 2. **Dictionary.** Read the dictionary entry for each candidate word. Apply a replacement
-   only when the source gives one approved replacement and the meaning does not change;
-   record the rest, including approved-meaning conflicts and words absent from the
+   only when the source gives one allowed replacement and the meaning does not change;
+   record the rest, including allowed-meaning conflicts and words absent from the
    dictionary.
 3. **Technical terms.** Read the rules for technical nouns, technical verbs, and multi-word
    nouns. Record each finding and the replacement the source names; do not apply it.
@@ -117,4 +118,4 @@ without approval or a commit.
 Report the four steps, the counts of applied edits and recorded directions, the text-type
 labels used, and any unresolved item. State that the command staged and committed nothing.
 A pass that applies none and records none did nothing because nothing was left, and it is a
-success; an unchanged file re-runs to no change.
+success; an unchanged file reports no change.
