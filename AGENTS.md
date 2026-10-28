@@ -53,9 +53,7 @@ step; files take effect when they are checked out.
   in a set shares the set's common prefix. A built-in command name is also an exception;
   `pr-review` avoids the built-in `/review`. Read a hyphenated name as an imperative
   phrase: `commit-message` is `commit a message`, so it is verb-first.
-- Keep each command under 2,000 words.
-- Keep every `*-phase-*` command under 1,000 words.
-- If a command crosses 2,000 words, trim it to under 1,000.
+- Keep each command under 1,000 words.
 - `/release-version` commits the release changes the user has staged, after the user
   confirms the commit message. It never stages or unstages, amends, or pushes a branch;
   it pushes the release tag and syncs tags.
