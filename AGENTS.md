@@ -71,18 +71,23 @@ step; files take effect when they are checked out.
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
 - Phase commands confirm each step with a clean tree: write the step's changes, report, and
   wait for the user to commit. A step that changes nothing reports and continues.
-- The paper-phase family has five scales: the outline phase owns the story and its frame,
-  section roles, and the ordered outline items in `OUTLINE.md`; the section phase owns
-  paragraph boundaries and the initial per-paragraph comments; the paragraph phase owns
-  internal structure, sentence order within a paragraph, and point updates; the sentence
-  phase owns the sentence; the word phase owns the word. Keep each phase inside its scale.
-  An outline item is a label, a job, a question, and a local arc role, never a paragraph
-  definition. The section phase reads chapter 10; the paragraph phase reads chapter 11.
+- The paper-phase family has five scales and one closing pass. The outline phase owns the
+  story and its frame, section roles, and the ordered outline items in `OUTLINE.md`; the
+  section phase owns paragraph boundaries and the initial per-paragraph comments; the
+  paragraph phase owns internal structure, sentence order within a paragraph, and point
+  updates; the sentence phase owns the sentence; the word phase owns the word; the manuscript
+  phase owns the whole manuscript and the issues that span scales. Keep each phase inside its
+  scale, except the manuscript phase, which is whole-manuscript and cross-scale by design: it
+  applies deterministic fixes everywhere and annotates structure, clarity, flow, and language,
+  auditing delivery and never selecting the story. An outline item is a label, a job, a
+  question, and a local arc role, never a paragraph definition. The section phase reads
+  chapter 10; the paragraph phase reads chapter 11; the manuscript phase reads chapter 17.
 - In a paper draft, `<!-- ... -->` are structural comments (the section phase writes one
   comment per paragraph: item label and point; the paragraph phase updates the point),
   `[[ ... ]]` are gaps or directions resolved later by quickfix-list, and `XXX` are user-only
   placeholders. The outline phase writes none; the sentence and word phases leave all three
-  untouched. The user commits between steps; no phase command stages or commits.
+  untouched; the manuscript phase ignores the comments, writes `[[ ... ]]`, and never writes
+  `XXX`. The user commits between steps; no phase command stages or commits.
 - The external-reader rule does not bind `wiki-add`; it synthesises the concept body, which
   the user confirms.
 - `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last
