@@ -61,17 +61,23 @@ step; files take effect when they are checked out.
   it pushes the release tag and syncs tags.
 - **External-reader commands** modify prose for readers outside the team; they guard against
   dispossession. **Internal-reader commands** modify team-internal prose and may use more help.
-  `paper-*` and `blog-*` are always external-reader. `docs-*` and `quickfix-list` determine the
-  reader from the artifact. External-reader commands read and follow
+  `paper-*` commands except the outline phase, and `blog-*` commands, are always external-reader;
+  the outline phase has no reader mode and does not read `prose-options.md`.
+  `docs-*` and `quickfix-list` determine the reader from the artifact.
+  External-reader commands read and follow
   `~/.config/opencode/prose-options.md`, which carries the authorship rule, direction step,
   safe alternatives, finished alternatives, and authorship guard. Following it includes
   reading `~/repositorios/wiki/bundle/4a.md` and its `4a.*.md` children before interviewing
   about wording.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
-- Phase commands confirm each step with a clean tree: write the step's changes, report, and
-  wait for the user to commit. A step that changes nothing reports and continues.
-- The paper-phase family has five scales and one closing pass. The outline phase owns the
+- Phase commands confirm each step against their declared inputs: write the step's changes,
+  report, and wait for the user to commit when an input changed; if no input changed, continue.
+  Phase 1 checks `OUTLINE.md` instead, because that is the file it writes.
+- The paper-phase family has five scales and one closing pass. The common shape is Role,
+  Inputs, The standard, The outline file (phase 1), Scope, Permissions, Selection (phase 1),
+  Constraints, Actions, and Completion. Phase 1 is the only Selection command and the only
+  command without a reader mode; phases 2–6 are external-reader. The outline phase owns the
   story and its frame, section roles, and the ordered outline items in `OUTLINE.md`; the
   section phase owns paragraph boundaries and the initial per-paragraph comments; the
   paragraph phase owns internal structure, sentence order within a paragraph, and point
@@ -85,9 +91,10 @@ step; files take effect when they are checked out.
 - In a paper draft, `<!-- ... -->` are structural comments (the section phase writes one
   comment per paragraph: item label and point; the paragraph phase updates the point),
   `[[ ... ]]` are gaps or directions resolved later by quickfix-list, and `XXX` are user-only
-  placeholders. The outline phase writes none; the sentence and word phases leave all three
-  untouched; the manuscript phase ignores the comments, writes `[[ ... ]]`, and never writes
-  `XXX`. The user commits between steps; no phase command stages or commits.
+  placeholders. The outline phase writes none; the sentence, word, and manuscript phases ignore
+  the comments and leave them in place even when stale, with headings as their only fences. The
+  manuscript phase never writes `XXX`. The user commits between steps; no phase command stages
+  or commits.
 - The external-reader rule does not bind `wiki-add`; it synthesises the concept body, which
   the user confirms.
 - `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last
