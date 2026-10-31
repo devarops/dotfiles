@@ -2,5 +2,8 @@
 font-family = Hack Nerd Font Mono
 font-size = 20
 
+# Color
+theme = Gruvbox Dark
+
 # Window
 maximize = true
