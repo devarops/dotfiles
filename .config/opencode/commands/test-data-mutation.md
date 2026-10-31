@@ -1,5 +1,5 @@
 ---
-name: data-mutation-test
+name: test-data-mutation
 description: Mutate a CSV fixture in a given data directory and verify validation (e.g., frictionless) catches it.
 ---
 

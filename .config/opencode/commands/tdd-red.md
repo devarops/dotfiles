@@ -1,5 +1,5 @@
 ---
-name: red
+name: tdd-red
 description: Identify the next smallest failing test that incrementally advances the system toward "The Gold".
 ---
 
