@@ -2,19 +2,13 @@
 
 Configuration for a Linux development machine. Every tracked path installs into
 `$HOME`, so the repository root is the home directory: `.bash_aliases` becomes
-`~/.bash_aliases`, `.config/opencode/commands/` becomes `~/.config/opencode/commands/`.
-Adding or renaming a file at the root therefore changes the home directory, not just
+`~/.bash_aliases`. Adding or renaming a root file changes the home directory, not just
 the repository.
 
 ## Deployment
 
-Installed as a bare Git repository whose work-tree is `$HOME` — see `README.md` and
-the `install` target in `Makefile`:
-
-```bash
-git clone --bare . "$HOME/dotfiles.git"
-git --git-dir="$HOME/dotfiles.git" --work-tree="$HOME" checkout --force
-```
+Installed as a bare Git repository whose work-tree is `$HOME`; the `install` target in
+`Makefile` runs the clone, the forced checkout, and the untracked-file setting.
 
 The `gdot` alias wraps the same `--git-dir`/`--work-tree` pair. There is no build
 step; files take effect when they are checked out.
@@ -23,7 +17,8 @@ step; files take effect when they are checked out.
 
 - **Shell**: `.bash_aliases` (aliases; sources `.bash_functions` and `~/.vault/.secrets`),
   `.bash_functions` (`devserver`, `open`, `close`, `fw`).
-- **Terminal**: `.tmux.conf`.
+- **Terminal**: `.tmux.conf`; `.config/ghostty/config.ghostty` (font, theme, window
+  options; Ghostty reads it at launch).
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
 - **OpenCode**: `.config/opencode/` — `agent/`, `commands/`, `opencode.json`,
@@ -38,7 +33,9 @@ step; files take effect when they are checked out.
 - **Commits**: a gitmoji followed by an imperative English summary under 72 characters,
   a blank second line, then a short body explaining why.
 - **Verification**: there is no test suite, CI, or build. Check a change by reading the
-  affected file; for shell code, `bash -n` catches syntax errors.
+  affected file; for shell code, `bash -n` catches syntax errors. Ghostty validates another
+  copy with `ghostty +validate-config --config-file=<path>`, and lists theme names with
+  `ghostty +list-themes`.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
 - **Release**: there is no `DOCS.md`, no `CHANGELOG.md`, and no version tag, so `/end` skips
@@ -49,10 +46,10 @@ step; files take effect when they are checked out.
 `.config/opencode/commands/` holds prompt templates, one command per file, each with a
 `description` in YAML frontmatter.
 
-- Command names are verb-first, except when the command belongs to a set; every command
-  in a set shares the set's common prefix. A built-in command name is also an exception;
-  `pr-review` avoids the built-in `/review`. Read a hyphenated name as an imperative
-  phrase: `commit-message` is `commit a message`, so it is verb-first.
+- Command names are verb-first, except when the command belongs to a set, which shares one
+  prefix; `pr-review` also avoids the built-in `/review`. Read a hyphenated name as an
+  imperative: `commit-message` is `commit a message`. A `name:` field, when present,
+  repeats the filename, so rename both.
 - Keep each command under 1,000 words.
 - `/release-version` commits the release changes the user has staged, after the user
   confirms the commit message. It never stages or unstages, amends, or pushes a branch;
@@ -61,10 +58,10 @@ step; files take effect when they are checked out.
   dispossession. **Internal-reader commands** modify team-internal prose and may use more help.
   `paper-*` commands except the outline phase, and `blog-*` commands, are always external-reader;
   the outline phase has no reader mode and does not read `prose-options.md`.
-  `docs-*` and `quickfix-list` determine the reader from the artifact.
+  `docs-*` and `iterate-quickfix-list` determine the reader from the artifact.
   External-reader commands read and follow
-  `~/.config/opencode/prose-options.md`, which carries the authorship rule, direction step,
-  safe alternatives, finished alternatives, and authorship guard. Following it includes
+  `~/.config/opencode/prose-options.md`, which carries the reader modes, direction step,
+  safe and finished alternatives, and authorship guard. Following it includes
   reading `~/repositorios/wiki/bundle/4a.md` and its `4a.*.md` children before interviewing
   about wording.
 - For judgment calls in paper editing commands, follow Schimel's principles and ideas
@@ -72,23 +69,19 @@ step; files take effect when they are checked out.
 - Phase commands confirm each step against their declared inputs: write the step's changes,
   report, and wait for the user to commit when an input changed; if no input changed, continue.
   Phase 1 checks `OUTLINE.md` instead, because that is the file it writes.
-- The paper-phase family has five scales and one closing pass. The common shape is Role,
-  Inputs, The standard, The outline file (phase 1), Scope, Permissions, Selection (phase 1),
-  Constraints, Actions, and Completion. Phase 1 is the only Selection command and the only
+- The paper-phase family has five scales and one closing pass, and all six share one section
+  order. Phase 1 is the only Selection command and the only
   command without a reader mode; phases 2–6 are external-reader. The outline phase owns the
   story and its frame, section roles, and the ordered outline items in `OUTLINE.md`; the
   section phase owns paragraph boundaries and the initial per-paragraph comments; the
   paragraph phase owns internal structure, sentence order within a paragraph, and point
   updates; the sentence phase owns the sentence; the word phase owns the word; the manuscript
   phase owns the whole manuscript and the issues that span scales. Keep each phase inside its
-  scale, except the manuscript phase, which is whole-manuscript and cross-scale by design: it
-  applies deterministic fixes everywhere and annotates structure, clarity, flow, and language,
-  auditing delivery and never selecting the story. An outline item is a label, a job, a
-  question, and a local arc role, never a paragraph definition. The section phase reads
-  chapter 10; the paragraph phase reads chapter 11; the manuscript phase reads chapter 17.
-- In a paper draft, `<!-- ... -->` are structural comments (the section phase writes one
-  comment per paragraph: item label and point; the paragraph phase updates the point),
-  `[[ ... ]]` are gaps or directions resolved later by quickfix-list, and `XXX` are user-only
+  scale, except the manuscript phase, which crosses scales by design: it applies deterministic
+  fixes everywhere and annotates the rest, auditing delivery and never selecting the story.
+  An outline item is never a paragraph definition.
+- In a paper draft, `<!-- ... -->` are structural comments (item label and point),
+  `[[ ... ]]` are gaps resolved later by iterate-quickfix-list, and `XXX` are user-only
   placeholders. The outline phase writes none; the sentence, word, and manuscript phases ignore
   the comments and leave them in place even when stale, with headings as their only fences. The
   manuscript phase never writes `XXX`. The user commits between steps; no phase command stages
@@ -97,9 +90,8 @@ step; files take effect when they are checked out.
   the user confirms.
 - `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last
   eight commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
-  pathspec, which filters before the limit.
-- The `/start` pre-flight catches a missing `/end`, not one overtaken by later work; the
-  narrow detector is deliberate.
+  pathspec, which filters before the limit. The detector is deliberately narrow: it catches a
+  missing `/end`, not one overtaken by later work.
 - `/tidy-command` takes one command name, requires a clean tree, and edits only that command.
   It records an overlap boundary in `AGENTS.md` and leaves work for another command as a
   `TODO.md` task or a report.
