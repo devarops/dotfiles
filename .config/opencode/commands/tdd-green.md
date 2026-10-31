@@ -1,5 +1,5 @@
 ---
-name: green
+name: tdd-green
 description: Produce the smallest possible production code required to make the current failing test pass.
 ---
 
