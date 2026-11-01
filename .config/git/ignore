@@ -1,1 +1,14 @@
+*.egg-info/
+*.py[cod]
+.coverage
 .OPEN.md
+.pytest_cache/
+.RData
+.Rhistory
+.Rproj.user
+.Ruserdata
+.venv/
+__pycache__/
+build/
+coverage.xml
+dist/
