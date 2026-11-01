@@ -37,6 +37,16 @@ no build step.
 - **Release**: no `DOCS.md`, `CHANGELOG.md`, or tag, so the sync commands report missing
   files and `/release-version` stops at its gate.
 
+## Public interface
+
+The public interface is the install and update entrypoint plus the command surface the installation exposes: the shell functions and the OpenCode commands.
+Configuration files, aliases, and internal helpers are implementation, not part of the public interface.
+
+## Version 1.0.0 release conditions
+
+- The install and update entrypoint is idempotent: rerunning it on an installed machine changes nothing or updates safely.
+- The installation is non-destructive: it backs up or refuses to overwrite existing files.
+
 ## OpenCode commands
 
 `.config/opencode/commands/` holds prompt templates, one command per file, each with a
@@ -64,17 +74,13 @@ no build step.
 - Phase commands confirm each step against their declared inputs: write the step's changes,
   report, and wait for the user to commit when an input changed; if no input changed, continue.
   Phase 1 checks `OUTLINE.md` instead, because that is the file it writes.
-- The paper-phase family has five scales and one closing pass, and all six share one section
-  order. Phase 1 is the only Selection command and the only
-  command without a reader mode; phases 2–6 are external-reader. The outline phase owns the
-  story and its frame, section roles, and the ordered outline items in `OUTLINE.md`; the
-  section phase owns paragraph boundaries and the initial per-paragraph comments; the
-  paragraph phase owns internal structure, sentence order within a paragraph, and point
-  updates; the sentence phase owns the sentence; the word phase owns the word; the manuscript
-  phase owns the whole manuscript and the issues that span scales. Keep each phase inside its
-  scale, except the manuscript phase, which crosses scales by design: it applies deterministic
-  fixes everywhere and annotates the rest, auditing delivery and never selecting the story.
-  An outline item is never a paragraph definition.
+- The paper-phase family has five scales and one closing pass in one section order. Phase 1
+  is the only Selection command and the only command without a reader mode; phases 2–6 are
+  external-reader. Each phase owns its scale: the outline owns the story and `OUTLINE.md`, the
+  section owns paragraph boundaries, the paragraph owns internal structure, the sentence owns
+  the sentence, the word owns the word, and the manuscript owns the whole manuscript. The
+  manuscript phase crosses scales by design and never selects the story. An outline item is
+  never a paragraph definition.
 - In a paper draft, `<!-- ... -->` are structural comments (item label and point),
   `[[ ... ]]` are gaps resolved later by iterate-quickfix-list, and `XXX` are user-only
   placeholders. The outline phase writes none; the sentence, word, and manuscript phases ignore
@@ -102,9 +108,7 @@ no build step.
 
 ### Idempotency and convergence
 
-A command is idempotent and convergent. Every durable action — a write, append, create,
-delete, rename, commit, tag, push, or remote sync — names the precondition, a state of a
-file, tree, index, tag, or remote, that makes a second run on the same unit of work a no-op;
-after the action that precondition is false. An action the command reverses leaves no durable
-effect, and a command with no durable action passes. When the work is already done, the
-command reports it and stops without writing.
+A command is idempotent and convergent. Every durable action names the precondition that
+makes a second run on the same work a no-op; after the action it is false. A reversed action
+leaves no durable effect; a command with no durable action passes. When the work is already
+done, the command reports it and stops without writing.
