@@ -10,3 +10,4 @@
     defaultBranch = develop
 [core]
 	editor = nvim
+	excludesFile = ~/.config/git/ignore
