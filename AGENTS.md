@@ -34,8 +34,8 @@ no build step.
   and lists themes with `ghostty +list-themes`.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
-- **Release**: no `DOCS.md`, `CHANGELOG.md`, or tag, so the sync commands report missing
-  files and `/release-version` stops at its gate.
+- **Release**: `DOCS.md`, `CHANGELOG.md`, and version tags exist; `/release-version` follows
+  its release gates.
 
 ## Public interface
 
