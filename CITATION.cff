@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "Dotfiles for a Linux development machine"
+type: software
+authors:
+  - family-names: Rojas Mayoral
+    given-names: Evaristo
+    affiliation: "Grupo de Ecología y Conservación de Islas, A.C."
+    orcid: "https://orcid.org/0000-0001-6812-9562"
+    website: "https://github.com/devarops"
+identifiers:
+  - type: url
+    value: "https://github.com/devarops/dotfiles"
+repository-code: "https://github.com/devarops/dotfiles"
+url: "https://github.com/devarops/dotfiles"
+license: "AGPL-3.0-only"
+version: "0.1.0"
+date-released: "2026-11-01"
+abstract: "Configuration for a Linux development machine: shell, terminal, editor, and assistant settings installed into the home directory."
+keywords:
+  - dotfiles
+  - shell
+  - neovim
+  - tmux
+  - ghostty
+  - opencode
+  - development environment
+  - Linux
+  - configuration
+  - provisioning
