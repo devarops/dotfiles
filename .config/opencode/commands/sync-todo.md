@@ -30,7 +30,7 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 ## Create TODO.md
 
 - If `TODO.md` is absent, ask once to create a minimal `# Backlog`.
-- If declined, report the items and candidates without writing; continue to the open-list close.
+- If declined, report the items and candidates without writing; continue to the close.
 
 ## Clean TODO.md
 
@@ -39,14 +39,15 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 ## Candidates
 
 - Find gaps from this session and the last eight commits (`git log --patch --max-count 8`), with evidence: an out-of-scope task; a parked task; unfinished work; a recent-diff gap. Omit the merely plausible; if an open item duplicates it, skip it and say so.
-- Include every remaining `.OPEN.md` item as a candidate; its evidence is its `Test:` line.
+- Include every remaining `.OPEN.md` item as a candidate; its evidence is its `Test:` line. Report an item without a `Test:` line as malformed; do not offer it as a candidate.
 - Present all candidates numbered: task, evidence, why it qualifies. Wait. The user names the numbers to add; `all` means all. Unnamed candidates are not added. An invalid selection gets one correction.
-- Add selected items to the best-fitting section. Never impose a template or add a missing section; explain each placement.
+- Write every new entry in the two-line format: `- [ ] <task>` followed by six spaces and `Test: <definition of done>`. Reuse the Test of an `.OPEN.md` candidate; use the evidence of any other candidate, or ask for a definition of done before writing.
+- Add selected items to the best-fitting section. The two-line format is not a section template; never impose one or add a missing section. `task-move` may create its `# Backlog` fallback, but this command does not. Explain each placement.
 - Remove duplicate and redundant `TODO.md` items, merging same-work items and keeping distinct tasks. Report every removal and merge.
 
 ## Close the open list
 
-- Delete `.OPEN.md` and report every item not carried forward, including when `TODO.md` was declined.
+- Delete `.OPEN.md` and report every item not carried forward, including malformed items and when `TODO.md` was declined.
 - Do not stage or commit.
 
 ## Report

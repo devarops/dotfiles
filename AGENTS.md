@@ -34,8 +34,8 @@ no build step.
   and lists themes with `ghostty +list-themes`.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
-- **Release**: no `DOCS.md`, `CHANGELOG.md`, or version tag, so `/end` skips its interface
-  steps and `/release-version` stops at its gate.
+- **Release**: no `DOCS.md`, `CHANGELOG.md`, or tag, so the sync commands report missing
+  files and `/release-version` stops at its gate.
 
 ## OpenCode commands
 

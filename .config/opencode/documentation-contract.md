@@ -16,7 +16,7 @@ Every entry belongs to the outermost interface the end user consumes. `AGENTS.md
 - `CHANGELOG.md` records changes to `DOCS.md` elements and nothing else.
 - `TODO.md` is the backlog.
 
-Files are complementary and must not overlap; do not add an entry another file covers, even if reworded. Review `AGENTS.md` and `README.md` on every run; write only when the intended content differs. Update `DOCS.md`, `CHANGELOG.md`, and `TODO.md` only if they exist. `sync-agents` creates an absent `AGENTS.md`; `sync-todo` asks before creating `TODO.md`; the other commands report a missing file and stop. `/end` continues with the remaining commands when a target is absent. No change is a success.
+Files are complementary and must not overlap; do not add an entry another file covers, even if reworded. Review `AGENTS.md` and `README.md` on every run; write only when the intended content differs. Update `DOCS.md`, `CHANGELOG.md`, and `TODO.md` only if they exist. `sync-agents` creates an absent `AGENTS.md`; `sync-todo` asks before creating `TODO.md`; the other commands report a missing file and stop. `/end` continues with the remaining commands when a target is absent. `task-move` may create `# Backlog` when no section fits; `sync-todo` adds selected items only to existing sections. No change is a success.
 
 ## Verifiable claims
 
@@ -28,7 +28,7 @@ Run the commands in this order: `sync-agents`, `sync-docs`, `sync-changelog`, `s
 
 ## Clean rule
 
-Each `sync-*` command requires its target file to be clean: `AGENTS.md`, `DOCS.md`, `CHANGELOG.md`, `README.md`, or `TODO.md`. It may run while other files are dirty. `/end` requires the whole tree to be clean before it starts. `sync-todo` checks `AGENTS.md` only when the user chooses an AGENTS fix.
+Each `sync-*` command requires its target file to be clean: `AGENTS.md`, `DOCS.md`, `CHANGELOG.md`, `README.md`, or `TODO.md`. It may run while other files are dirty. `/end` requires the whole tree to be clean before it starts. `sync-todo` checks `AGENTS.md` only when the user chooses an AGENTS fix. `task-move` is exempt because it inserts one item and preserves the rest of `TODO.md`.
 
 ## Commit rule
 

@@ -31,6 +31,7 @@ No argument is declared. Take the item from the conversation: a number, a descri
 
 Precondition: the item exists in `.OPEN.md` and the same normalized description is absent from `TODO.md`.
 
+- `TODO.md` may be dirty; insert the item and preserve the rest of the file.
 - Write `TODO.md` first.
 - Then remove the item from `.OPEN.md` and clear `[*]` if it was focused.
 - If the `TODO.md` write fails, leave `.OPEN.md` unchanged.

@@ -12,6 +12,7 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 - If `CHANGELOG.md` is absent, report and stop.
 - The target is `<root>/CHANGELOG.md`. It must be clean: `git status --porcelain -- CHANGELOG.md` prints nothing. If it is dirty, report and stop.
 - If `DOCS.md` is absent, report and stop; the changelog records only its elements.
+- If `AGENTS.md` lacks the interface definition, report the gap and stop. `sync-agents` owns that definition.
 - The rest of the tree may be dirty. Report every dirty path that `HEAD` does not include and do not record it.
 
 ## Update
