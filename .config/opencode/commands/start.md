@@ -9,6 +9,9 @@ description: Project orientation — what this is, current state, next steps
   that output.
 - If one does not, name it, ask the user to run `/end` in the previous session, and stop.
   Do not summarize.
+- Let `<root>` be `git rev-parse --show-toplevel`. If `<root>/.OPEN.md` exists and is
+  non-empty, report the path and stop. Never delete, truncate, or repair it. A nonexistent
+  or zero-byte file passes.
 
 Read every `./*.md` file at the project root, including any that are not standard.
 
