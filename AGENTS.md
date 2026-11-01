@@ -2,16 +2,13 @@
 
 Configuration for a Linux development machine. Every tracked path installs into
 `$HOME`, so the repository root is the home directory: `.bash_aliases` becomes
-`~/.bash_aliases`. Adding or renaming a root file changes the home directory, not just
-the repository.
+`~/.bash_aliases`. A root file change affects the home directory, not just the repository.
 
 ## Deployment
 
-Installed as a bare Git repository whose work-tree is `$HOME`; the `install` target in
-`Makefile` runs the clone, the forced checkout, and the untracked-file setting.
-
-The `gdot` alias wraps the same `--git-dir`/`--work-tree` pair. There is no build
-step; files take effect when they are checked out.
+Installed as a bare Git repository whose work-tree is `$HOME`; `make install` runs the clone,
+the forced checkout, and the untracked-file setting. The `gdot` alias wraps the same pair;
+no build step.
 
 ## Layout
 
@@ -22,34 +19,32 @@ step; files take effect when they are checked out.
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
 - **OpenCode**: `.config/opencode/` — `agent/`, `commands/`, `opencode.json`,
-  `prose-options.md`, and the global `AGENTS.md`, a separate short file that only points to
-  the wiki bundle and `prose-options.md`; the root `AGENTS.md` is this repository's guide.
-  OpenCode loads both.
-- **Other**: `.gitconfig` (default branch `develop`, editor `nvim`), `.ssh/config`,
-  `.lintr` (R, 100-character lines), `.journalotrc`.
+  `prose-options.md`, `documentation-contract.md`, and a global `AGENTS.md` for the wiki
+  bundle and prose rules; OpenCode loads both.
+- **Other**: `.gitconfig` (default branch `develop`, editor `nvim`, global ignore),
+  `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R,
+  100-character lines), `.journalotrc`.
 
 ## Conventions
 
 - **Commits**: a gitmoji followed by an imperative English summary under 72 characters,
   a blank second line, then a short body explaining why.
-- **Verification**: there is no test suite, CI, or build. Check a change by reading the
-  affected file; for shell code, `bash -n` catches syntax errors. Ghostty validates another
-  copy with `ghostty +validate-config --config-file=<path>`, and lists theme names with
-  `ghostty +list-themes`.
+- **Verification**: no test suite, CI, or build. Read the affected file; `bash -n`
+  checks shell syntax. Ghostty validates with `ghostty +validate-config --config-file=<path>`
+  and lists themes with `ghostty +list-themes`.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
-- **Release**: there is no `DOCS.md`, no `CHANGELOG.md`, and no version tag, so `/end` skips
-  its interface steps and `/release-version` stops at its gate.
+- **Release**: no `DOCS.md`, `CHANGELOG.md`, or version tag, so `/end` skips its interface
+  steps and `/release-version` stops at its gate.
 
 ## OpenCode commands
 
 `.config/opencode/commands/` holds prompt templates, one command per file, each with a
 `description` in YAML frontmatter.
 
-- Command names are verb-first, except when the command belongs to a set, which shares one
-  prefix; `pr-review` also avoids the built-in `/review`. Read a hyphenated name as an
-  imperative: `commit-message` is `commit a message`. A `name:` field, when present,
-  repeats the filename, so rename both.
+- Command names are verb-first, except sets, which share one prefix; `pr-review` avoids the
+  built-in `/review`. Read a hyphenated name as an imperative: `commit-message` is `commit a
+  message`. A `name:` field repeats the filename, so rename both.
 - Keep each command under 1,000 words.
 - `/release-version` commits the release changes the user has staged, after the user
   confirms the commit message. It never stages or unstages, amends, or pushes a branch;
@@ -92,6 +87,11 @@ step; files take effect when they are checked out.
   eight commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
   pathspec, which filters before the limit. The detector is deliberately narrow: it catches a
   missing `/end`, not one overtaken by later work.
+- `task-*` tracks `.OPEN.md`: flat `- [ ]` or `- [*]` items with a six-space `Test:` line.
+  `/start` accepts only an absent or zero-byte file; `sync-todo` purges and deletes it.
+- `sync-*` brings the five documentation files in line with the repository;
+  `documentation-contract.md` holds their shared rules. `/end` runs them in order before
+  verifying.
 - `/tidy-command` takes one command name, requires a clean tree, and edits only that command.
   It records an overlap boundary in `AGENTS.md` and leaves work for another command as a
   `TODO.md` task or a report.
@@ -103,8 +103,8 @@ step; files take effect when they are checked out.
 ### Idempotency and convergence
 
 A command is idempotent and convergent. Every durable action — a write, append, create,
-delete, rename, commit, tag, push, or remote sync whose effect survives the run — names the
-precondition, a state of a file, the tree, the index, a tag, or the remote, that makes a
-second run on the same unit of work a no-op; after the action that precondition is false. An
-action the command reverses leaves no durable effect, and a command with no durable action
-passes. When the work is already done, the command reports it and stops without writing.
+delete, rename, commit, tag, push, or remote sync — names the precondition, a state of a
+file, tree, index, tag, or remote, that makes a second run on the same unit of work a no-op;
+after the action that precondition is false. An action the command reverses leaves no durable
+effect, and a command with no durable action passes. When the work is already done, the
+command reports it and stops without writing.
