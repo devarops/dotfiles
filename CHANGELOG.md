@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-01
+
 ### Added
 
 - `make install` installs or updates the tracked configuration in `$HOME`.
@@ -26,3 +28,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Session and utility OpenCode commands: `ask-me`, `commit-message`, `end`, `fix-citation`, `grill-me`, `iterate-quickfix-list`, `notify-team`, `pr-review`, `release-version`, `stand-by`, `start`, `test-data-mutation`, `tidy-command`, and `write-r-script`.
 
 [Unreleased]: https://github.com/devarops/dotfiles/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/devarops/dotfiles/releases/tag/v0.1.0
