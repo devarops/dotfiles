@@ -34,7 +34,7 @@ open () {
     sleep 2
     tmux send-keys  -t "$session_name:1" "vim ." ENTER
     tmux send-keys  -t "$session_name:2" "cd $HOME/repositorios/$directory_name" ENTER
-    tmux send-keys  -t "$session_name:2" "run-ci" ENTER
+    tmux send-keys  -t "$session_name:2" "dev-run" ENTER
     tmux send-keys  -t "$session_name:3" "cd $HOME/repositorios/$directory_name" ENTER
     tmux send-keys  -t "$session_name:3" "git pull" ENTER
     tmux send-keys  -t "$session_name:4" "cd $HOME/repositorios/$directory_name" ENTER

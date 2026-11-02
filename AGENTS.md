@@ -25,6 +25,32 @@ no build step.
   `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R,
   100-character lines), `.journalotrc`.
 
+## Shell vocabulary
+
+- **`dev-*`** uses the development image: `Dockerfile.dev`, the `develop` Compose
+  profile and service, and the `:develop` tag. It builds FROM the production image
+  and carries qed plus the testing and development tools. `open` starts the session
+  with `dev-run`. Where a repository has no `develop` service, `dev-run` fails; add
+  the dev image.
+- **`prod-*`** uses the production image: `Dockerfile`, the default Compose service,
+  and the `:latest` tag. It carries only runtime dependencies; the testing and
+  development tools belong in `Dockerfile.dev`. Plain names target the `islasgeci`
+  service and registry; `-devarops` targets `evaristor` through the `devarops`
+  service.
+- Names are `<environment>-<action>[-no-compose][-devarops]`. `islasgeci` is implied
+  when the publisher suffix is absent. `-devarops` is always the last suffix.
+  `-no-compose` selects the direct `docker` path. Existing gaps in the matrix are
+  intentional.
+- Containers are `_dev` for the development image and `_prod` for the production
+  image. The old container name is gone.
+- `CI` names the continuous-integration pipeline, not an image environment. The
+  `/release-version` gate and the `code-reviewer` agent keep that meaning.
+- `devserver` and `init-devserver` name the remote development machine, not the
+  development image.
+- The Dockerfile split that moves testing and development tools from `Dockerfile`
+  to `Dockerfile.dev` lands per repository; until then, `Dockerfile` may still carry
+  those tools.
+
 ## Conventions
 
 - **Commits**: a gitmoji followed by an imperative English summary under 72 characters,

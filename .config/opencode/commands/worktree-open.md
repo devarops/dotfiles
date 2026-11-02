@@ -52,7 +52,7 @@ clean `git status --porcelain` there. If any check fails, report and stop.
 ## Report
 
 Name the worktree path, the branch, the base commit, every symlink, and the container name this
-directory will expect: `<basename>_ci`. State that ignored state is shared with the main
+directory will expect: `<basename>_dev`. State that ignored state is shared with the main
 checkout and that no container exists yet. If the session came from another linked worktree,
 name that worktree and state that it stays open. A second run with the same slug moves the
 session and changes nothing.
