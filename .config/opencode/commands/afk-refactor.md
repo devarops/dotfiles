@@ -13,7 +13,7 @@ The Refactor phase improves the internal structure of the code without changing 
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output `<error>FAIL: uncommitted changes detected</error>` and run `exit 1`
 - Read the full text of recent commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they contain.
-- Run the full test suite with `docker exec ${PWD##*/}_ci make tests` and confirm that all tests pass.
+- Run the full test suite with `docker exec ${PWD##*/}_dev make tests` and confirm that all tests pass.
 - If any test fails, output `<error>FAIL: failing tests detected</error>` and run `exit 1`
 - Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 - Prioritize refactorings that improve readability, clarity, and maintainability over those that reduce line count.

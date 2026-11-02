@@ -15,13 +15,13 @@ The Red phase identifies the behavioral gap between the current system and the f
 - If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
 - Read the full text of the last few commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they provide.
 - Use the single acceptance spec under `specs/` (`*.spec.toml` or `*.spec.json`). Zero or several: output <error>FAIL: acceptance spec not found or ambiguous</error> and run: exit 1
-- Run `docker exec ${PWD##*/}_ci make verify` from the repository root. It calls `qed verify specs`.
+- Run `docker exec ${PWD##*/}_dev make verify` from the repository root. It calls `qed verify specs`.
 - If every criterion passes, output <promise>COMPLETE</promise>.
 - Read the failing acceptance criterion's description and its `verify` block.
 - Analyze the existing test suite to determine the system's current observable behavior.
 - Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 - Compare the current behavior against the failing acceptance criterion to identify the behavioral gap.
-- Run the test suite with `docker exec ${PWD##*/}_ci make tests`. If a test already fails, report it and stop: the red test is already committed and the next move belongs to green.
+- Run the test suite with `docker exec ${PWD##*/}_dev make tests`. If a test already fails, report it and stop: the red test is already committed and the next move belongs to green.
 - Identify the next minimal failing test that represents the smallest possible behavioral increment toward closing that gap.
 - Ensure the test does not introduce premature generalization or attempt to reach the failing acceptance criterion in a single step.
 - Ensure the test requires the minimal possible production code change to pass.
@@ -29,7 +29,7 @@ The Red phase identifies the behavioral gap between the current system and the f
 - Write exactly one failing unit test.
 - Do not write production code.
 - Do not edit existing test or production code; only add the new test code.
-- Run the test suite with `docker exec ${PWD##*/}_ci make tests`
+- Run the test suite with `docker exec ${PWD##*/}_dev make tests`
 - Verify that exactly one test is failing.
 - Confirm the failure aligns with the expected behavioral gap between the current behavior and the failing acceptance criterion.
 - If exactly one test fails for the right reason, commit the failing test with a message that clearly describes the expected behavior.
