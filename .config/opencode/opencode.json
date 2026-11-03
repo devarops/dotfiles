@@ -1,13 +1,4 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "default_agent": "tdd",
-  "instructions": ["AGENTS.md"],
-  "agent": {
-    "plan": {
-      "color": "#D3D3D3"
-    },
-    "build": {
-      "color": "#FFC107"
-    }
-  }
+  "instructions": ["AGENTS.md"]
 }
