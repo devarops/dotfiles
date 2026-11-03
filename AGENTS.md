@@ -18,9 +18,10 @@ no build step.
   options; Ghostty reads it at launch).
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
-- **OpenCode**: `.config/opencode/` — `agent/`, `commands/`, `opencode.json`,
-  `prose-options.md`, `documentation-contract.md`, and a global `AGENTS.md` for the wiki
-  bundle and prose rules; OpenCode loads both.
+- **OpenCode**: `.config/opencode/` — `commands/`, `opencode.json`, `prose-options.md`,
+  `documentation-contract.md`, and a global `AGENTS.md`. `opencode.json` sets only
+  `instructions`, which loads that global guide; no custom agents exist, so a session starts
+  on the built-in default agent.
 - **Other**: `.gitconfig` (default branch `develop`, editor `nvim`, global ignore),
   `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R,
   100-character lines), `.journalotrc`.
@@ -30,26 +31,21 @@ no build step.
 - **`dev-*`** uses the development image: `Dockerfile.dev`, the `develop` Compose
   profile and service, and the `:develop` tag. It builds FROM the production image
   and carries qed plus the testing and development tools. `open` starts the session
-  with `dev-run`. Where a repository has no `develop` service, `dev-run` fails; add
+  with `dev-run`; where a repository has no `develop` service, `dev-run` fails, so add
   the dev image.
 - **`prod-*`** uses the production image: `Dockerfile`, the default Compose service,
-  and the `:latest` tag. It carries only runtime dependencies; the testing and
-  development tools belong in `Dockerfile.dev`. Plain names target the `islasgeci`
-  service and registry; `-devarops` targets `evaristor` through the `devarops`
-  service.
-- Names are `<environment>-<action>[-no-compose][-devarops]`. `islasgeci` is implied
-  when the publisher suffix is absent. `-devarops` is always the last suffix.
-  `-no-compose` selects the direct `docker` path. Existing gaps in the matrix are
-  intentional.
-- Containers are `_dev` for the development image and `_prod` for the production
-  image. The old container name is gone.
-- `CI` names the continuous-integration pipeline, not an image environment. The
-  `/release-version` gate and the `code-reviewer` agent keep that meaning.
+  and the `:latest` tag. It carries only runtime dependencies.
+- Names are `<environment>-<action>[-no-compose][-devarops]`, always in that order.
+  Plain names target the `islasgeci` service and registry; `-devarops` targets
+  `evaristor` through the `devarops` service. `-no-compose` selects the direct `docker`
+  path. Existing gaps in the matrix are intentional.
+- Containers are `_dev` for the development image and `_prod` for the production image.
+- `CI` names the continuous-integration pipeline, not an image environment; the
+  `/release-version` gate keeps that meaning.
 - `devserver` and `init-devserver` name the remote development machine, not the
   development image.
-- The Dockerfile split that moves testing and development tools from `Dockerfile`
-  to `Dockerfile.dev` lands per repository; until then, `Dockerfile` may still carry
-  those tools.
+- The split that moves testing and development tools to `Dockerfile.dev` lands per
+  repository; until then, `Dockerfile` may still carry them.
 
 ## Conventions
 
@@ -60,8 +56,7 @@ no build step.
   and lists themes with `ghostty +list-themes`.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
-- **Release**: `DOCS.md`, `CHANGELOG.md`, and version tags exist; `/release-version` follows
-  its release gates.
+- **Release**: `/release-version` follows its release gates.
 
 ## Public interface
 
@@ -75,58 +70,43 @@ Configuration files, aliases, and internal helpers are implementation, not part 
 
 ## OpenCode commands
 
-`.config/opencode/commands/` holds prompt templates, one command per file, each with a
+`.config/opencode/commands/` holds prompt templates, one per file, each with a
 `description` in YAML frontmatter.
 
-- Command names are verb-first, except sets, which share one prefix; `pr-review` avoids the
-  built-in `/review`. Read a hyphenated name as an imperative: `commit-message` is `commit a
-  message`. A `name:` field repeats the filename, so rename both.
-- Keep each command under 1,000 words.
-- `/release-version` commits the release changes the user has staged, after the user
-  confirms the commit message. It never stages or unstages, amends, or pushes a branch;
-  it pushes the release tag and syncs tags.
+- Names are verb-first, except sets sharing one prefix; `pr-review` avoids the built-in
+  `/review`. A `name:` field repeats the filename, so rename both. Keep each command under
+  1,000 words.
 - **External-reader commands** modify prose for readers outside the team; they guard against
   dispossession. **Internal-reader commands** modify team-internal prose and may use more help.
-  `paper-*` commands except the outline phase, and `blog-*` commands, are always external-reader;
-  the outline phase has no reader mode and does not read `prose-options.md`.
-  `docs-*` and `iterate-quickfix-list` determine the reader from the artifact.
-  External-reader commands read and follow
-  `~/.config/opencode/prose-options.md`, which carries the reader modes, direction step,
-  safe and finished alternatives, and authorship guard. Following it includes
-  reading `~/repositorios/wiki/bundle/4a.md` and its `4a.*.md` children before interviewing
-  about wording.
-- For judgment calls in paper editing commands, follow Schimel's principles and ideas
+  `paper-*` except the outline phase, and `blog-*`, are always external-reader; the outline
+  phase has no reader mode and does not read `prose-options.md`; `docs-*` and
+  `iterate-quickfix-list` read the reader from the artifact. External-reader commands follow
+  `~/.config/opencode/prose-options.md`, including reading `~/repositorios/wiki/bundle/4a.md`
+  and its `4a.*.md` children before interviewing about wording.
+- For judgment calls in paper editing commands, follow Schimel's principles
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
-- Phase commands confirm each step against their declared inputs: write the step's changes,
-  report, and wait for the user to commit when an input changed; if no input changed, continue.
-  Phase 1 checks `OUTLINE.md` instead, because that is the file it writes.
-- The paper-phase family has five scales and one closing pass in one section order. Phase 1
-  is the only Selection command and the only command without a reader mode; phases 2–6 are
-  external-reader. Each phase owns its scale: the outline owns the story and `OUTLINE.md`, the
-  section owns paragraph boundaries, the paragraph owns internal structure, the sentence owns
-  the sentence, the word owns the word, and the manuscript owns the whole manuscript. The
-  manuscript phase crosses scales by design and never selects the story. An outline item is
-  never a paragraph definition.
+- The paper phases run in one section order, each owning one scale: outline the story and
+  `OUTLINE.md`, section the paragraph boundaries, paragraph the internal structure, sentence
+  the sentence, word the word, manuscript the whole manuscript. Phase 1 alone selects the
+  story; phases 2–6 are external-reader. The manuscript crosses scales by design, and an
+  outline item is never a paragraph definition.
+- Phase commands write, report, and wait for the user to commit when an input changed;
+  otherwise they continue. Phase 1 checks `OUTLINE.md`, the file it writes.
 - In a paper draft, `<!-- ... -->` are structural comments (item label and point),
   `[[ ... ]]` are gaps resolved later by iterate-quickfix-list, and `XXX` are user-only
-  placeholders. The outline phase writes none; the sentence, word, and manuscript phases ignore
-  the comments and leave them in place even when stale, with headings as their only fences. The
-  manuscript phase never writes `XXX`. The user commits between steps; no phase command stages
-  or commits.
-- The external-reader rule does not bind `wiki-add`; it synthesises the concept body, which
-  the user confirms.
-- `/start` refuses unless every existing root `AGENTS.md` and `TODO.md` appears in the last
-  eight commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
-  pathspec, which filters before the limit. The detector is deliberately narrow: it catches a
-  missing `/end`, not one overtaken by later work.
+  placeholders. The outline phase writes none; the sentence, word, and manuscript phases leave
+  the comments in place even when stale, with headings as their only fences. The manuscript
+  phase never writes `XXX`; no phase command stages or commits.
+- The external-reader rule does not bind `wiki-add`; it synthesises the concept body for the
+  user to confirm.
+- `/start` refuses unless every root `AGENTS.md` and `TODO.md` appears in the last eight
+  commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
+  pathspec, which filters before the limit: the detector catches a missing `/end`, not one
+  overtaken by later work.
 - `task-*` tracks `.OPEN.md`: flat `- [ ]` or `- [*]` items with a six-space `Test:` line.
   `/start` accepts only an absent or zero-byte file; `sync-todo` purges and deletes it.
-- `sync-*` brings the five documentation files in line with the repository;
-  `documentation-contract.md` holds their shared rules. `/end` runs them in order before
-  verifying.
-- `/tidy-command` takes one command name, requires a clean tree, and edits only that command.
-  It records an overlap boundary in `AGENTS.md` and leaves work for another command as a
-  `TODO.md` task or a report.
+- `sync-*` brings the five documentation files in line; `documentation-contract.md` holds
+  their shared rules. `/end` runs them in order.
 - Field ownership in the `reference-*` family: `reference-normalize` owns structure, ordering,
   and field presence; `reference-extract` owns the thirteen screening fields and placeholders
   in every other field except `category`; `reference-classify` owns `category`. The commands do
@@ -134,7 +114,7 @@ Configuration files, aliases, and internal helpers are implementation, not part 
 
 ### Idempotency and convergence
 
-A command is idempotent and convergent. Every durable action names the precondition that
-makes a second run on the same work a no-op; after the action it is false. A reversed action
-leaves no durable effect; a command with no durable action passes. When the work is already
-done, the command reports it and stops without writing.
+A command is idempotent and convergent: every durable action names the precondition that
+makes a second run on the same work a no-op, and that precondition is false afterwards. A
+reversed action leaves no durable effect; a command with no durable action passes. When the
+work is done, the command reports it and stops without writing.
