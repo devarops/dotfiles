@@ -4,6 +4,7 @@
 .OPEN.md
 .pytest_cache/
 .RData
+.review/
 .Rhistory
 .Rproj.user
 .Ruserdata
