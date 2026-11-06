@@ -12,9 +12,9 @@ The Red phase identifies the behavioral gap between the current system and the f
 
 - The failing acceptance criterion is the first criterion in the spec, in file order, whose verify command fails, ignoring criteria marked skip.
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
-- If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
+- If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error>.
 - Read the full text of the last few commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they provide.
-- Use the single acceptance spec under `specs/` (`*.spec.toml` or `*.spec.json`). Zero or several: output <error>FAIL: acceptance spec not found or ambiguous</error> and run: exit 1
+- Use the single acceptance spec under `specs/` (`*.spec.toml` or `*.spec.json`). Zero or several: output <error>FAIL: acceptance spec not found or ambiguous</error>.
 - Run `docker exec ${PWD##*/}_dev make verify` from the repository root. It calls `qed verify specs`.
 - If every criterion passes, output <promise>COMPLETE</promise>.
 - Read the failing acceptance criterion's description and its `verify` block.

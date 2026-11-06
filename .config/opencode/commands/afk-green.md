@@ -11,11 +11,11 @@ The Green phase passes the failing test with the smallest possible production co
 ## Task
 
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
-- If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and run: exit 1
+- If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error>.
 - Read the full text of the last few commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they provide.
 - Run the test suite with `docker exec ${PWD##*/}_dev make tests` and confirm that exactly one test is failing.
-- If more than one test fails, output <error>FAIL: multiple failing tests detected</error> and run: exit 1
-- If no tests fail, output <error>FAIL: no failing tests detected</error> and run: exit 1
+- If more than one test fails, output <error>FAIL: multiple failing tests detected</error>.
+- If no tests fail, output <error>FAIL: no failing tests detected</error>.
 - Analyze the failing test to identify the exact behavioral requirement.
 - Infer the requirement strictly from the failing test, not from assumptions about future behavior.
 - Implement only what is necessary to make the failing test pass, and nothing more.
