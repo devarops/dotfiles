@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `afk-red` now writes and validates the failing unit test without committing; `afk-fail` owns the Red commit.
+- `fail` is now `afk-fail`; it re-validates the uncommitted failing unit test and commits it.
 - `afk-acceptance` is now `atdd-acceptance`; it reports a failing criterion without a phase error and removes one `skip` for the harness to commit.
 - `open` starts the session with the development container (`dev-run`).
 

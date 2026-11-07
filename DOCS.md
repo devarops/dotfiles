@@ -93,12 +93,16 @@ Parameters: none.
 
 ## TDD and AFK
 
+### /afk-fail
+Re-validate the uncommitted failing unit test and commit it.
+Parameters: none.
+
 ### /afk-green
 Produce the smallest possible production code to make the current failing test pass.
 Parameters: none.
 
 ### /afk-red
-Write the next smallest failing test toward the failing acceptance criterion.
+Write and validate the next failing unit test; leave it uncommitted for afk-fail.
 Parameters: none.
 
 ### /afk-refactor

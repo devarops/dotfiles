@@ -111,11 +111,11 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   and field presence; `reference-extract` owns the thirteen screening fields and placeholders
   in every other field except `category`; `reference-classify` owns `category`. The commands do
   not name one another.
-- The ATDD outer loop is `atdd-*`; `tdd-*` is the interactive inner loop and `afk-*` the
-  autonomous one. `atdd-acceptance` reports the first failing active criterion without an
-  error, emits `<promise>COMPLETE</promise>` when every active criterion passes and none is
-  skipped, and otherwise removes exactly one `skip` for `atdd-red`. It leaves that edit
-  uncommitted; the harness commits it.
+- The ATDD outer loop is `atdd-*`; `tdd-*` and `afk-*` are the interactive and
+  autonomous inner loops. `atdd-acceptance` reports a failing criterion without an error,
+  emits `<promise>COMPLETE</promise>` when none is skipped, and otherwise removes one `skip`
+  for `atdd-red`, leaving the edit for the harness. In the autonomous Red phase, `afk-red`
+  writes and validates one failing unit test and `afk-fail` re-validates and commits it.
 
 ### Idempotency and convergence
 
