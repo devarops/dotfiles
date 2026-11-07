@@ -23,7 +23,7 @@ The Refactor phase improves the internal structure of the code without changing 
 - Simplify unnecessarily complex or redundant structures.
 - Remove dead code, unused variables, or any code not covered by the tests.
 - Use the catalog of refactorings defined in: https://refactoring.com/catalog/
-- Follow the architectural principles defined in: https://islas.dev/2026/05/15/arquitectura and https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+- Follow the architecture defined in: https://islas.dev/guia_de_estilo/arquitectura and https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
 - Follow the design patterns defined in: https://islas.dev/2026/03/20/desacoplamiento
 - Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Prioritize refactorings that offer a clear and immediate improvement with lower risk.

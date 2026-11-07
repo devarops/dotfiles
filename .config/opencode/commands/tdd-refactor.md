@@ -23,6 +23,7 @@ Your mission is to improve the internal structure of the code without changing i
 - Avoid speculative generalization, over-engineering, or architectural expansion.
 - Refactor only in response to the current code structure and observable behavior, not anticipated future requirements.
 - Follow the design principles defined in: https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+- Follow the architecture defined in: https://islas.dev/guia_de_estilo/arquitectura
 - Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Prefer refactorings that improve alignment with the style guide without changing observable behavior.
 - If the style guide conflicts with behavior preservation or test correctness, preserve behavior and passing tests first.
