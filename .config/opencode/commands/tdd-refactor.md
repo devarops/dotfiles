@@ -31,8 +31,8 @@ Your mission is to improve the internal structure of the code without changing i
 
 1. Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 2. If any uncommitted change exists, notify the user and stop immediately.
-3. Run the full test suite with `docker exec <container_name> make tests` and confirm that all tests pass.
-4. If any test fails, notify the user and stop immediately.
+3. Run the unit test suite with `docker exec <container_name> make tests` and confirm that all unit tests pass.
+4. If any unit test fails, notify the user and stop immediately.
 5. Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 6. Infer refactoring opportunities strictly from the current implementation and tests, not from assumptions about future requirements.
 7. Enumerate the candidate refactorings before making any changes.
@@ -45,9 +45,9 @@ Your mission is to improve the internal structure of the code without changing i
 10. Do not apply any refactoring until the user explicitly approves it.
 11. After user approval, apply only the selected refactoring, one refactoring at a time.
 12. Keep each refactoring step as small and incremental as possible.
-13. Run the full test suite after each refactoring step.
-14. If any test fails after a refactoring step, undo the changes immediately. Do not introduce additional changes to fix the failed refactoring.
-15. When all tests pass, show the resulting changes using `git diff`.
+13. Run the unit test suite after each refactoring step.
+14. If any unit test fails after a refactoring step, undo the changes immediately. Do not introduce additional changes to fix the failed refactoring.
+15. When all unit tests pass, show the resulting changes using `git diff`.
 16. Do not stage or commit the changes.
 17. Ask the user whether to commit the refactoring changes.
 
@@ -63,6 +63,6 @@ Your mission is to improve the internal structure of the code without changing i
   - the expected improvement,
   - and the associated trade-offs or risks.
 - After applying approved refactorings:
-  - confirm that all tests pass,
+  - confirm that all unit tests pass,
   - show the resulting `git diff`,
   - and ask whether to commit the changes.

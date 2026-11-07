@@ -13,9 +13,9 @@ The Green phase passes the failing test with the smallest possible production co
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error>.
 - Read the full text of the last few commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they provide.
-- Run the test suite with `docker exec ${PWD##*/}_dev make tests` and confirm that exactly one test is failing.
-- If more than one test fails, output <error>FAIL: multiple failing tests detected</error>.
-- If no tests fail, output <error>FAIL: no failing tests detected</error>.
+- Run the unit test suite with `docker exec ${PWD##*/}_dev make tests` and confirm that exactly one unit test is failing.
+- If more than one unit test fails, output <error>FAIL: multiple failing unit tests detected</error>.
+- If no unit tests fail, output <error>FAIL: no failing unit tests detected</error>.
 - Analyze the failing test to identify the exact behavioral requirement.
 - Infer the requirement strictly from the failing test, not from assumptions about future behavior.
 - Implement only what is necessary to make the failing test pass, and nothing more.
@@ -23,8 +23,8 @@ The Green phase passes the failing test with the smallest possible production co
 - Prefer the simplest possible solution, including naive implementations, if they satisfy the test.
 - Generalize only if a naive implementation causes previously passing tests to fail.
 - Do not refactor, optimize, or improve structure beyond what is required for the test to pass.
-- Run the test suite with `docker exec ${PWD##*/}_dev make tests` to verify that the full test suite passes after the implementation.
-- Commit only when all tests pass.
+- Run the unit test suite with `docker exec ${PWD##*/}_dev make tests` to verify that the full unit test suite passes after the implementation.
+- Commit only when all unit tests pass.
 
 ## Format
 

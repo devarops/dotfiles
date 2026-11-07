@@ -17,8 +17,8 @@ We are now in the acceptance-test Red phase of the ATDD outer loop. The command 
 - Select the first criterion in file order that is not skipped and whose verify command fails.
 - If that criterion's referenced acceptance test already exists, output <error>FAIL: acceptance test already exists</error> and stop. Do not rewrite, duplicate, or delete it.
 - Read the failing criterion's description and verify block.
-- Read the full text of the last few commit messages, not just the first line, for their lessons, rationale, and recommendations.
-- Analyze the existing test suite to learn its conventions and the system's current observable behavior. Do not read production code to derive expected behavior.
+- Read the full text of the last few commit messages for their lessons and rationale.
+- Analyze the existing test suite for conventions and current observable behavior. Do not read production code to derive expected behavior.
 
 ### Public interface and runner
 
@@ -30,26 +30,28 @@ We are now in the acceptance-test Red phase of the ATDD outer loop. The command 
 
 - For pytest, use the exact file and test node named in the verify command. Create the file if needed; append the node if the file already exists.
 - For R testthat or ShellSpec, the verify command names a file rather than a node. Derive the group name from the criterion description's first sentence, normalized to one line. Use that name for the `describe` or `Describe` group and a generic case named `satisfies the criterion`.
-- Treat a pytest acceptance test as existing when both the file and the named node exist. Treat a file-level acceptance test as existing when the derived group name appears in the file.
-- Add only the new test case plus the imports or helpers it needs. Do not modify existing test cases.
+- A pytest test exists when its file and node exist; a file-level test exists when its group name appears.
+- Add only the new test case and its imports or helpers; do not modify existing cases.
 
 ### Test content
 
 - Write the complete acceptance test for the criterion. Cover the whole scenario, not a smaller unit step.
 - Use relational assertions derived from the scenario prose when exact values are absent. Assert observable states such as equality, inequality, presence, and status.
 - Test only through the declared public interface. Do not import internal modules or call private helpers from production code.
-- Create one dedicated fixture CSV under `tests/data/` named `acceptance_<feature>_<criterion_slug>.csv` when the scenario needs initial task data. Use the spec name for the feature and the criterion slug for the suffix.
+- Create the dedicated fixture CSV under `tests/data/` named `acceptance_<feature>_<criterion_slug>.csv` when needed. Use the spec name and criterion slug.
 - Do not write production code. Do not edit the spec, including its `skip` field. The criterion must already be unskipped.
 
 ### Validation
 
+- Before writing, `make verify` fails because the test is missing. After writing, a Red must fail inside the test body because the behavior is missing.
 - Run the criterion's exact acceptance test.
-- A passing test is valid. Run the full suite with `docker exec ${PWD##*/}_dev make tests`; commit Green only when everything passes.
+- If it passes, run `make tests` and `make verify`; commit Green only when neither reports a failure.
 - A failing test is a valid Red when the failure is an assertion or an interface-absence error inside the test body, such as a missing key, missing attribute, 404, unknown CLI command, or nonzero CLI exit.
 - A collection, import, or syntax error is not a valid Red. Output <error>FAIL: acceptance test does not run</error> and stop.
 - For a file-level runner, confirm the failure belongs to the new group. A failure in an existing group is not a valid Red.
-- After a valid Red, run the full suite. Commit only when the new acceptance test is the only failure.
-- In either outcome, if the full suite has other failures, output <error>FAIL: unexpected test failures</error> and stop.
+- After a valid Red, `make tests` must report no failure and `make verify` exactly one failing acceptance test, the new one. Commit Red only then.
+- If `make tests` reports any failure, output <error>FAIL: unit tests failed</error> and stop.
+- If `make verify` shows any other result, output <error>FAIL: unexpected acceptance result</error> and stop.
 - Do not investigate, repair, or commit after an error. Leave the generated files in place for inspection.
 
 ### Commit

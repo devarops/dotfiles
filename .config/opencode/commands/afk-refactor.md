@@ -13,8 +13,8 @@ The Refactor phase improves the internal structure of the code without changing 
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output `<error>FAIL: uncommitted changes detected</error>`.
 - Read the full text of recent commit messages (not just the first line) to understand the lessons, insights, rationale, and recommendations they contain.
-- Run the full test suite with `docker exec ${PWD##*/}_dev make tests` and confirm that all tests pass.
-- If any test fails, output `<error>FAIL: failing tests detected</error>`.
+- Run the unit test suite with `docker exec ${PWD##*/}_dev make tests` and confirm that all unit tests pass.
+- If any unit test fails, output `<error>FAIL: failing unit tests detected</error>`.
 - Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 - Prioritize refactorings that improve readability, clarity, and maintainability over those that reduce line count.
 - Extract duplicated logic into a shared variable, function, or abstraction to eliminate duplication and clarify intent.
@@ -29,9 +29,9 @@ The Refactor phase improves the internal structure of the code without changing 
 - Prioritize refactorings that offer a clear and immediate improvement with lower risk.
 - Look for refactoring opportunities in the tests as well as in the production code.
 - Apply only the single most important refactoring, even if multiple opportunities are identified. If no safe, behavior-preserving refactoring remains, report that and stop without writing or committing.
-- Run the full test suite after applying the refactoring to verify that all tests still pass and that no behavior has changed.
-- If any test fails after a refactoring, undo the changes immediately by running `git restore .`. Do not introduce additional changes to fix a failed refactoring.
-- When a refactoring was applied and all tests pass, commit the refactoring changes.
+- Run the unit test suite after applying the refactoring to verify that all unit tests still pass and that no behavior has changed.
+- If any unit test fails after a refactoring, undo the changes immediately by running `git restore .`. Do not introduce additional changes to fix a failed refactoring.
+- When a refactoring was applied and all unit tests pass, commit the refactoring changes.
 
 ## Format
 

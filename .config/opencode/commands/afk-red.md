@@ -18,10 +18,10 @@ The Red phase identifies the behavioral gap between the current system and the f
 - Run `docker exec ${PWD##*/}_dev make verify` from the repository root. It calls `qed verify specs`.
 - If every criterion passes, output <promise>COMPLETE</promise>.
 - Read the failing acceptance criterion's description and its `verify` block.
-- Analyze the existing test suite to determine the system's current observable behavior.
+- Analyze the existing unit test suite to determine the system's current observable behavior.
 - Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 - Compare the current behavior against the failing acceptance criterion to identify the behavioral gap.
-- Run the test suite with `docker exec ${PWD##*/}_dev make tests`. If a test already fails, report it and stop: the red test is already committed and the next move belongs to green.
+- Run the unit test suite with `docker exec ${PWD##*/}_dev make tests`. If a unit test already fails, report it and stop: the red unit test is already committed and the next move belongs to green.
 - Identify the next minimal failing test that represents the smallest possible behavioral increment toward closing that gap.
 - Ensure the test does not introduce premature generalization or attempt to reach the failing acceptance criterion in a single step.
 - Ensure the test requires the minimal possible production code change to pass.
@@ -29,11 +29,11 @@ The Red phase identifies the behavioral gap between the current system and the f
 - Write exactly one failing unit test.
 - Do not write production code.
 - Do not edit existing test or production code; only add the new test code.
-- Run the test suite with `docker exec ${PWD##*/}_dev make tests`
-- Verify that exactly one test is failing.
+- Run the unit test suite with `docker exec ${PWD##*/}_dev make tests`
+- Verify that exactly one unit test is failing.
 - Confirm the failure aligns with the expected behavioral gap between the current behavior and the failing acceptance criterion.
-- If exactly one test fails for the right reason, commit the failing test with a message that clearly describes the expected behavior.
-- If no test fails, if more than one test fails, or if the failure does not align with reducing the behavioral gap, output <error>FAIL: [the condition]</error> and stop. Do not investigate, repair, or commit.
+- If exactly one unit test fails for the right reason, commit the failing unit test with a message that clearly describes the expected behavior.
+- If no unit test fails, if more than one unit test fails, or if the failure does not align with reducing the behavioral gap, output <error>FAIL: [the condition]</error> and stop. Do not investigate, repair, or commit.
 
 ## Format
 
@@ -42,7 +42,7 @@ The Red phase identifies the behavioral gap between the current system and the f
     - Example: `🛑 🧪 Expect support for negative numbers`
   - Second line: blank
   - Remaining lines (each as a separate paragraph):
-    - Explain what behavior the failing test specifies.
+    - Explain what behavior the failing unit test specifies.
     - Explain why the test fails under the current implementation.
     - Explain why passing the test does not prematurely reach the failing acceptance criterion.
     - State the single most important lesson or insight from this session that is not present in the last few commit messages.
