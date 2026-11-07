@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- ATDD OpenCode commands: `atdd-red` and `atdd-acceptance`, the outer loop that writes a missing acceptance test and activates one skipped criterion at a time.
+
 ### Changed
 
+- `afk-acceptance` is now `atdd-acceptance`; it reports a failing criterion without a phase error and removes one `skip` for the harness to commit.
 - `open` starts the session with the development container (`dev-run`).
 
 ## [0.1.0] - 2026-11-01

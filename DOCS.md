@@ -81,11 +81,17 @@ Parameters: $1 manual.
 Tighten its verbs and word choice against Williams and Strunk, applying deterministic edits and recording the rest.
 Parameters: $1 blog post.
 
-## TDD and AFK
+## ATDD
 
-### /afk-acceptance
-Evaluate the codebase against the acceptance criteria its qed spec defines.
+### /atdd-acceptance
+Evaluate the acceptance spec, report the first failing criterion, and activate one skipped criterion.
 Parameters: none.
+
+### /atdd-red
+Write the acceptance test for the first failing criterion whose test is missing.
+Parameters: none.
+
+## TDD and AFK
 
 ### /afk-green
 Produce the smallest possible production code to make the current failing test pass.
