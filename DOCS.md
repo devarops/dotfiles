@@ -125,10 +125,6 @@ Parameters: none.
 Guide the user in applying small, safe refactorings.
 Parameters: none.
 
-### /fail
-Run the test suite during the Red TDD phase, verify one and only one test fails for the right reason, and commit if so.
-Parameters: none.
-
 ## Reference
 
 ### /reference-classify

@@ -9,14 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- ATDD OpenCode commands: `atdd-red` and `atdd-acceptance`, the outer loop that writes a missing acceptance test and activates one skipped criterion at a time.
+- `atdd-red` OpenCode command: write the acceptance test for the first failing criterion whose test is missing.
 
 ### Changed
 
 - `afk-red` now writes and validates the failing unit test without committing; `afk-fail` owns the Red commit.
-- `fail` is now `afk-fail`; it re-validates the uncommitted failing unit test and commits it.
+- `fail` is now `afk-fail`; it is non-interactive, re-validates the uncommitted failing unit test, and commits it.
 - `afk-acceptance` is now `atdd-acceptance`; it reports a failing criterion without a phase error and removes one `skip` for the harness to commit.
+- The TDD and AFK commands now distinguish unit tests from acceptance tests; Green and Refactor run only the unit suite.
 - `open` starts the session with the development container (`dev-run`).
+
+### Fixed
+
+- The TDD and AFK commands no longer attempt to exit the shell on failure; the error output already stops the phase.
 
 ## [0.1.0] - 2026-11-01
 

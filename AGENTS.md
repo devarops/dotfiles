@@ -7,15 +7,14 @@ Configuration for a Linux development machine. Every tracked path installs into
 ## Deployment
 
 Installed as a bare Git repository whose work-tree is `$HOME`; `make install` runs the clone,
-the forced checkout, and the untracked-file setting. The `gdot` alias wraps the same pair;
-no build step.
+the forced checkout, and the untracked-file setting.
 
 ## Layout
 
 - **Shell**: `.bash_aliases` (aliases; sources `.bash_functions` and `~/.vault/.secrets`),
   `.bash_functions` (`devserver`, `open`, `close`, `fw`).
 - **Terminal**: `.tmux.conf`; `.config/ghostty/config.ghostty` (font, theme, window
-  options; Ghostty reads it at launch).
+  options).
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
 - **OpenCode**: `.config/opencode/` — `commands/`, `opencode.json`, `prose-options.md`,
@@ -23,8 +22,8 @@ no build step.
   `instructions`, which loads that global guide; no custom agents exist, so a session starts
   on the built-in default agent.
 - **Other**: `.gitconfig` (default branch `develop`, editor `nvim`, global ignore),
-  `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R,
-  100-character lines), `.journalotrc`.
+  `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R),
+  `.journalotrc`.
 
 ## Shell vocabulary
 
@@ -44,8 +43,6 @@ no build step.
   `/release-version` gate keeps that meaning.
 - `devserver` and `init-devserver` name the remote development machine, not the
   development image.
-- The split that moves testing and development tools to `Dockerfile.dev` lands per
-  repository; until then, `Dockerfile` may still carry them.
 
 ## Conventions
 
@@ -81,8 +78,7 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   `paper-*` except the outline phase, and `blog-*`, are always external-reader; the outline
   phase has no reader mode and does not read `prose-options.md`; `docs-*` and
   `iterate-quickfix-list` read the reader from the artifact. External-reader commands follow
-  `~/.config/opencode/prose-options.md`, including reading `~/repositorios/wiki/bundle/4a.md`
-  and its `4a.*.md` children before interviewing about wording.
+  `~/.config/opencode/prose-options.md`, including `4a.md` and its children.
 - For judgment calls in paper editing commands, follow Schimel's principles
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
 - The paper phases run in one section order, each owning one scale: outline the story and
@@ -91,7 +87,7 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   story; phases 2–6 are external-reader. The manuscript crosses scales by design, and an
   outline item is never a paragraph definition.
 - Phase commands write, report, and wait for the user to commit when an input changed;
-  otherwise they continue. Phase 1 checks `OUTLINE.md`, the file it writes.
+  otherwise they continue.
 - In a paper draft, `<!-- ... -->` are structural comments (item label and point),
   `[[ ... ]]` are gaps resolved later by iterate-quickfix-list, and `XXX` are user-only
   placeholders. The outline phase writes none; the sentence, word, and manuscript phases leave
@@ -101,8 +97,7 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   user to confirm.
 - `/start` refuses unless every root `AGENTS.md` and `TODO.md` appears in the last eight
   commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
-  pathspec, which filters before the limit: the detector catches a missing `/end`, not one
-  overtaken by later work.
+  pathspec; the detector catches a missing `/end`.
 - `task-*` tracks `.OPEN.md`: flat `- [ ]` or `- [*]` items with a six-space `Test:` line.
   `/start` accepts only an absent or zero-byte file; `sync-todo` purges and deletes it.
 - `sync-*` brings the five documentation files in line; `documentation-contract.md` holds
