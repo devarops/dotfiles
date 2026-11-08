@@ -22,10 +22,6 @@ The Refactor phase improves the internal structure of the code without changing 
 - Ensure names within the same scope use a consistent level of abstraction and domain vocabulary.
 - Simplify unnecessarily complex or redundant structures.
 - Remove dead code, unused variables, or any code not covered by the tests.
-- Use the catalog of refactorings defined in: https://refactoring.com/catalog/
-- Follow the architecture defined in: https://islas.dev/guia_de_estilo/arquitectura and https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
-- Follow the design patterns defined in: https://islas.dev/2026/03/20/desacoplamiento
-- Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Prioritize refactorings that offer a clear and immediate improvement with lower risk.
 - Look for refactoring opportunities in the tests as well as in the production code.
 - Apply only the single most important refactoring, even if multiple opportunities are identified. If no safe, behavior-preserving refactoring remains, report that and stop without writing or committing.
@@ -33,10 +29,14 @@ The Refactor phase improves the internal structure of the code without changing 
 - If any unit test fails after a refactoring, undo the changes immediately by running `git restore .`. Do not introduce additional changes to fix a failed refactoring.
 - When a refactoring was applied and all unit tests pass, commit the refactoring changes.
 
+## References
+
+Read `~/.config/opencode/refactor-references.md` and each and every reference it lists before acting.
+
 ## Format
 
 - Commit message structure:
-  - First line: `♻ 🧪 [name from https://refactoring.com/catalog/]`
+  - First line: `♻ 🧪 [name from the refactoring catalog]`
     - Example: `♻ 🧪 Rename variable`
   - Second line: blank
   - Remaining lines (each as a separate paragraph):

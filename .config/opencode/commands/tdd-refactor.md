@@ -22,9 +22,6 @@ Your mission is to improve the internal structure of the code without changing i
 - Reduce accidental complexity.
 - Avoid speculative generalization, over-engineering, or architectural expansion.
 - Refactor only in response to the current code structure and observable behavior, not anticipated future requirements.
-- Follow the design principles defined in: https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
-- Follow the architecture defined in: https://islas.dev/guia_de_estilo/arquitectura
-- Follow the coding style defined in: https://islas.dev/guia_de_estilo/STYLEGUIDE
 - Prefer refactorings that improve alignment with the style guide without changing observable behavior.
 - If the style guide conflicts with behavior preservation or test correctness, preserve behavior and passing tests first.
 
@@ -37,7 +34,7 @@ Your mission is to improve the internal structure of the code without changing i
 5. Analyze the codebase and identify safe, behavior-preserving refactoring opportunities.
 6. Infer refactoring opportunities strictly from the current implementation and tests, not from assumptions about future requirements.
 7. Enumerate the candidate refactorings before making any changes.
-8. Name each refactoring using [Martin Fowler's Refactoring Catalog](https://refactoring.com/catalog/).
+8. Name each refactoring using the refactoring catalog.
 9. For each candidate refactoring:
    - explain the rationale,
    - explain how it improves the code,
@@ -51,6 +48,10 @@ Your mission is to improve the internal structure of the code without changing i
 15. When all unit tests pass, show the resulting changes using `git diff`.
 16. Do not stage or commit the changes.
 17. Ask the user whether to commit the refactoring changes.
+
+## References
+
+Read `~/.config/opencode/refactor-references.md` and each and every reference it lists before acting.
 
 ## Format
 

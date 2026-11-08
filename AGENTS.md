@@ -18,9 +18,9 @@ the forced checkout, and the untracked-file setting.
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
 - **OpenCode**: `.config/opencode/` — `commands/`, `opencode.json`, `prose-options.md`,
-  `documentation-contract.md`, and a global `AGENTS.md`. `opencode.json` sets only
-  `instructions`, which loads that global guide; no custom agents exist, so a session starts
-  on the built-in default agent.
+  `documentation-contract.md`, `refactor-references.md`, and a global `AGENTS.md`.
+  `opencode.json` sets only `instructions`, which loads that global guide; no custom agents
+  exist, so a session starts on the built-in default agent.
 - **Other**: `.gitconfig` (default branch `develop`, editor `nvim`, global ignore),
   `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R),
   `.journalotrc`.
