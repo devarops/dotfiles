@@ -17,6 +17,7 @@ Your mission is to identify the next smallest failing test that incrementally ad
 - Analyze the existing test suite to determine the system's current observable behavior.
 - Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 - Compare the current behavior against the failing acceptance criterion to identify the behavioral gap.
+- Read the Thorns around the Gold rule at https://blog.cleancoder.com/uncle-bob/2014/11/19/GoingForTheGold.html before choosing or approving a test. Use its definitions of exceptional, degenerate, and ancillary behaviors, in that order, before the core. Repeat across Red cycles until the suite covers them.
 - Identify the next minimal failing test that represents the smallest possible behavioral increment toward reducing that gap.
 - Formulate exactly one failing unit test in plain English, not code.
 - Ensure the test does not introduce premature generalization or attempt to reach the failing acceptance criterion in a single step.

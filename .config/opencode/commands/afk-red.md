@@ -22,8 +22,8 @@ The Red phase identifies the behavioral gap between the current system and the f
 - Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 - Compare the current behavior against the failing acceptance criterion to identify the behavioral gap.
 - Run the unit test suite with `docker exec ${PWD##*/}_dev make tests`. If a unit test already fails, report it and stop: the red unit test is already committed and the next move belongs to green.
+- Read the Thorns around the Gold rule at https://blog.cleancoder.com/uncle-bob/2014/11/19/GoingForTheGold.html before choosing or approving a test. Use its definitions of exceptional, degenerate, and ancillary behaviors, in that order, before the core. Repeat across Red cycles until the suite covers them.
 - Identify the next minimal failing test that represents the smallest possible behavioral increment toward closing the gap.
-- Apply the Going for the Gold rule from https://blog.cleancoder.com/uncle-bob/2014/11/19/GoingForTheGold.html: prefer an exceptional, degenerate, or ancillary behavior before the core behavior. When the suite already covers those behaviors, the test may approach the core.
 - Ensure the test does not introduce premature generalization or attempt to reach the failing acceptance criterion in a single step.
 - Ensure the test requires the minimal possible production code change to pass.
 - Do not write more of a test than is sufficient to fail: one assertion, minimal setup, no extra structure.
@@ -38,7 +38,7 @@ The Red phase identifies the behavioral gap between the current system and the f
 - Confirm that the failure is an assertion or interface-absence error inside the test body, such as a missing key, missing attribute, 404, unknown CLI command, or nonzero CLI exit.
 - A collection, import, or syntax error is not a valid Red. Output <error>FAIL: test does not run</error> and stop.
 - Confirm that the failure aligns with the expected behavioral gap between the current behavior and the failing acceptance criterion.
-- Confirm that the test covers an exceptional, degenerate, or ancillary behavior before the core, or that the suite already covers those behaviors.
+- Confirm that the test follows the Thorns around the Gold rule above.
 - Confirm that the test does not prematurely close the acceptance criterion and requires the smallest possible production change.
 - If no unit test fails, if more than one unit test fails, if the failure is not the right reason, if the test grabs the core before the thorns, or if the test needs more than the smallest production change, output <error>FAIL: [the condition]</error> and stop. Do not investigate, repair, or commit.
 - Leave the test and its fixtures uncommitted for `afk-fail`. Do not commit.

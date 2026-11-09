@@ -22,7 +22,7 @@ The command re-validates the uncommitted failing unit test that `afk-red` left b
 - Confirm that the failure is an assertion or interface-absence error inside the test body, such as a missing key, missing attribute, 404, unknown CLI command, or nonzero CLI exit.
 - A collection, import, or syntax error is not a valid Red. Output <error>FAIL: test does not run</error> and stop.
 - Confirm that the failure aligns with the selected acceptance criterion.
-- Apply the Going for the Gold rule from https://blog.cleancoder.com/uncle-bob/2014/11/19/GoingForTheGold.html: confirm that the test covers an exceptional, degenerate, or ancillary behavior before the core, or that the suite already covers those behaviors.
+- Read the Thorns around the Gold rule at https://blog.cleancoder.com/uncle-bob/2014/11/19/GoingForTheGold.html before choosing or approving a test. Use its definitions of exceptional, degenerate, and ancillary behaviors, in that order, before the core. Repeat across Red cycles until the suite covers them.
 - Confirm that the test does not prematurely close the acceptance criterion and requires the smallest possible production change.
 - If no unit test fails, if more than one unit test fails, if the failure is not the right reason, if the test grabs the core before the thorns, or if the test needs more than the smallest production change, output <error>FAIL: [the condition]</error> and stop. Do not commit.
 - Stage only the test files and their fixtures. Commit them with the message below.
