@@ -10,12 +10,14 @@ The Red phase identifies the behavioral gap between the current system and the f
 
 ## Task
 
-- The failing acceptance criterion is the first criterion in the spec, in file order, whose verify command fails, ignoring criteria marked skip.
+- The failing acceptance criterion is the first failing unskipped criterion in spec-path order, then criterion order.
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and stop.
-- Use the single acceptance spec under `specs/` (`*.spec.toml` or `*.spec.json`). Zero or several: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
+- Read every top-level `specs/*.spec.toml`; do not recurse. Zero specs, or duplicate `name` fields: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
 - Run `docker exec ${PWD##*/}_dev make verify` from the repository root. It calls `qed verify specs`.
-- If every criterion passes, output <promise>COMPLETE</promise> and stop.
+- If no unskipped criterion fails, report that and stop; acceptance owns completion.
+- If more than one unskipped criterion fails, output <error>FAIL: multiple failing acceptance criteria detected</error> and stop.
+- Qed names the failed spec. Resolve it to its file by the `name` field; an unknown name: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
 - Read the failing acceptance criterion's description and its `verify` block.
 - Read `git log --patch --max-count 8` and read the full commit messages and diffs. The messages carry the lessons, rationale, and the ATDD position of the session.
 - Analyze the existing unit test suite to determine the system's current observable behavior.
@@ -45,5 +47,5 @@ The Red phase identifies the behavioral gap between the current system and the f
 
 ## Report
 
-- Report the selected acceptance criterion, the test path, and the expected failure.
+- Report the selected acceptance criterion, its spec path, the test path, and the expected failure.
 - Stop. Do not proceed to Green or Refactor.

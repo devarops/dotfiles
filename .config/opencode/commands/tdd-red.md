@@ -9,11 +9,13 @@ Your mission is to identify the next smallest failing test that incrementally ad
 
 ## Task
 
-- The failing acceptance criterion is the first criterion in the spec, in file order, whose verify command fails, ignoring criteria marked skip.
+- The failing acceptance criterion is the first failing unskipped criterion in spec-path order, then criterion order.
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, notify the user and stop immediately.
+- Read every top-level `specs/*.spec.toml`; do not recurse. If no spec exists, or two specs share a `name` field, report the ambiguity and stop.
 - Run `docker exec <container_name> make verify` to find the failing acceptance criterion.
-- If no criterion fails, report the spec's criterion count and skipped count, then stop: The spec holds N criteria and M are skipped; no criterion fails. Do not ask, and do not repair anything.
+- If no criterion fails, state that no criterion fails and stop. Do not ask, and do not repair anything.
+- Qed names the failed spec. Resolve it to its file by the `name` field; an unknown name is ambiguous, so report it and stop.
 - Analyze the existing test suite to determine the system's current observable behavior.
 - Infer the current behavior strictly from the tests, not from assumptions about the implementation.
 - Compare the current behavior against the failing acceptance criterion to identify the behavioral gap.
@@ -25,7 +27,7 @@ Your mission is to identify the next smallest failing test that incrementally ad
 
 ## Format
 
-* Show the failing acceptance criterion.
+* Show the failing acceptance criterion and its spec path.
 * Provide exactly one failing test description in plain English, not code.
 * Include:
   * the scenario or input,

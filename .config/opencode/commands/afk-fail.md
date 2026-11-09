@@ -11,11 +11,14 @@ The command re-validates the uncommitted failing unit test that `afk-red` left b
 ## Task
 
 - Read `git log --patch --max-count 8` and read the full commit messages and diffs. The messages carry the lessons, rationale, and the ATDD position of the session.
-- Use the single acceptance spec under `specs/` (`*.spec.toml` or `*.spec.json`). Zero or several: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
+- Read every top-level `specs/*.spec.toml`; do not recurse. Zero specs, or duplicate `name` fields: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
 - If the development container is missing, output <error>FAIL: development container not found</error> and stop. If qed is unavailable, output <error>FAIL: qed not available</error> and stop.
 - Run `docker exec ${PWD##*/}_dev make verify` from the repository root. If every criterion passes, output <error>FAIL: acceptance criterion already passes</error> and stop. Do not commit.
 - If `make verify` fails without naming a criterion, output <error>FAIL: verification failed</error> and stop.
-- Select the first criterion in file order whose verify command fails, ignoring criteria marked skip. Read its description and `verify` block.
+- Qed names the failed spec. Resolve it to its file by the `name` field; an unknown name: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
+- Select the first failing unskipped criterion in spec-path order, then criterion order.
+- If more than one unskipped criterion fails, output <error>FAIL: multiple failing acceptance criteria detected</error> and stop.
+- Read its description and `verify` block.
 - Run the unit test suite with `docker exec ${PWD##*/}_dev make tests`.
 - Confirm that exactly one unit test fails.
 - Confirm that the uncommitted changes are only the new test code and its fixtures; everything else is committed. If not, output <error>FAIL: unexpected uncommitted changes</error> and stop.
