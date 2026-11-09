@@ -10,11 +10,11 @@ We are now in the acceptance-test Red phase of the ATDD outer loop. The command 
 
 - Verify that the working tree is clean: no staged changes, no modified or deleted tracked files, and no untracked files or directories.
 - If any uncommitted change exists, output <error>FAIL: uncommitted changes detected</error> and stop.
-- Use the single acceptance spec under `specs/` (`*.spec.toml` or `*.spec.json`). Zero or several: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
+- Read every top-level `specs/*.spec.toml`; do not recurse. Zero specs, or duplicate `name` fields: output <error>FAIL: acceptance spec not found or ambiguous</error> and stop.
 - Read the target repository's root `AGENTS.md`. Determine its public interface from the `Public Interface` section. Require exactly one declared public interface. If none or several are primary, output <error>FAIL: public interface not found or ambiguous</error> and stop.
 - Run `docker exec ${PWD##*/}_dev make verify` from the repository root. If the container is missing, output <error>FAIL: development container not found</error> and stop. If qed is unavailable, output <error>FAIL: qed not available</error> and stop.
-- If every unskipped criterion passes, output <promise>COMPLETE</promise> and stop. Skipped criteria do not prevent completion.
-- Select the first criterion in file order that is not skipped and whose verify command fails.
+- If no unskipped criterion fails, report that and stop without <promise>COMPLETE</promise>; acceptance owns completion.
+- Resolve the failing criterion's spec by qed's name; an unknown name: output the same error and stop. Select the first failing unskipped criterion in spec-path order, then criterion order.
 - If that criterion's referenced acceptance test already exists, output <error>FAIL: acceptance test already exists</error> and stop. Do not rewrite, duplicate, or delete it.
 - Read the failing criterion's description and verify block.
 - Read the full text of the last few commit messages for their lessons and rationale.
@@ -43,13 +43,13 @@ We are now in the acceptance-test Red phase of the ATDD outer loop. The command 
 
 ### Validation
 
-- Before writing, `make verify` fails because the test is missing. After writing, a Red must fail inside the test body because the behavior is missing.
+- Before writing, `make verify` fails because the test is missing. After writing, a Red must fail inside the test body.
 - Run the criterion's exact acceptance test.
 - If it passes, run `make tests` and `make verify`; commit Green only when neither reports a failure.
 - A failing test is a valid Red when the failure is an assertion or an interface-absence error inside the test body, such as a missing key, missing attribute, 404, unknown CLI command, or nonzero CLI exit.
 - A collection, import, or syntax error is not a valid Red. Output <error>FAIL: acceptance test does not run</error> and stop.
 - For a file-level runner, confirm the failure belongs to the new group. A failure in an existing group is not a valid Red.
-- After a valid Red, `make tests` must report no failure and `make verify` exactly one failing acceptance test, the new one. Commit Red only then.
+- After a valid Red, `make tests` must report no failure and `make verify` exactly one failing acceptance test across all specs, the new one. Commit Red only then.
 - If `make tests` reports any failure, output <error>FAIL: unit tests failed</error> and stop.
 - If `make verify` shows any other result, output <error>FAIL: unexpected acceptance result</error> and stop.
 - Do not investigate, repair, or commit after an error. Leave the generated files in place for inspection.
