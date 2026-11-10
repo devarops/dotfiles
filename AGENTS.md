@@ -41,7 +41,7 @@ the forced checkout, and the untracked-file setting.
 - Containers are `_dev` for the development image and `_prod` for the production image.
 - `CI` names the continuous-integration pipeline, not an image environment; the
   `/release-version` gate keeps that meaning.
-- `devserver` and `init-devserver` name the remote development machine, not the
+- `devserver` and `devserver-init` name the remote development machine, not the
   development image.
 
 ## Conventions
