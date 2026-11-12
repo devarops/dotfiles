@@ -38,7 +38,10 @@ the forced checkout, and the untracked-file setting.
 - Names are `<environment>-<action>[-no-compose][-devarops]`, always in that order.
   Plain names target the `islasgeci` service and registry; `-devarops` targets
   `evaristor` through the `devarops` service. `-no-compose` selects the direct `docker`
-  path. Existing gaps in the matrix are intentional.
+  path. The `dev-*` row has only the plain form, because it runs through the compose
+  `develop` service and the `_dev` container. The `exec` aliases without compose enter
+  `${PWD}_prod` whatever pulled it, so `-devarops` there names the image you meant, not
+  the one running.
 - Containers are `_dev` for the development image and `_prod` for the production image.
 - `CI` names the continuous-integration pipeline, not an image environment; the
   `/release-version` gate keeps that meaning.
