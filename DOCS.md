@@ -31,6 +31,15 @@ Errors: returns 1 when git pull or push fails, or when the repository has uncomm
 Open or create the free-writing tmux session.
 Parameters: none.
 
+## Commands
+
+### say [-o FILE] [TEXT...]
+Write text as speech, then play it.
+Parameters: TEXT; `-o FILE` writes there instead of `/tmp/say.wav` and does not play.
+Returns: exit status.
+Errors: exits 2 on an unknown option, a missing output value, or empty text; exits 1 when Kokoro is not installed.
+Notes: reads standard input when TEXT is absent; pads the start by 700 ms.
+
 ## OpenCode commands
 
 These commands take no formal arguments unless listed. They read the session context and ask when a reference is missing.
@@ -125,6 +134,24 @@ Parameters: none.
 Guide the user in applying small, safe refactorings.
 Parameters: none.
 
+## UI
+
+### /ui-red
+Write one failing acceptance test, or a capture scenario for a purely visual change.
+Parameters: none.
+
+### /ui-green
+Implement the change that makes the failing test pass.
+Parameters: none.
+
+### /ui-refactor
+Apply one safe refactoring without changing observable behaviour.
+Parameters: none.
+
+### /ui-approve
+Compare the received captures with the approved baseline and record the decision.
+Parameters: none.
+
 ## Reference
 
 ### /reference-classify
@@ -186,6 +213,22 @@ Parameters: none.
 ### /sync-todo
 Update TODO.md and close the session open list.
 Parameters: none.
+
+## Voice
+
+### /voice-on
+Start a spoken summary at the end of every reply in this session.
+Parameters: none.
+Notes: the toggle lives in the conversation, and a new session starts off.
+
+### /voice-off
+Stop the spoken summaries for the rest of this session.
+Parameters: none.
+
+### /voice-replay
+Play the most recent note of this session.
+Parameters: none.
+Errors: reports when the session has no note.
 
 ## Worktree
 
@@ -260,6 +303,11 @@ Parameters: $1 data directory.
 ### /tidy-command
 Tidy the command by repairing defects, generalizing over-specific rules, and staying under 1000 words.
 Parameters: $1 command name.
+
+### /update-issue
+Reconcile one GitHub issue around one next action and a dated changelog.
+Parameters: $1 issue number or URL.
+Errors: reports the missing argument and stops.
 
 ### /write-r-script
 Generate beginner-friendly, linear R scripts with strict naming conventions, modular file-based I/O, and Spanish commentary.

@@ -6,8 +6,8 @@ Configuration for a Linux development machine. Every tracked path installs into
 
 ## Deployment
 
-Installed as a bare Git repository whose work-tree is `$HOME`; `make install` runs the clone,
-the forced checkout, and the untracked-file setting.
+Installed as a bare repository with work-tree `$HOME`; `make install` clones, force-checks
+out, and hides untracked files.
 
 ## Layout
 
@@ -17,11 +17,10 @@ the forced checkout, and the untracked-file setting.
   options).
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
-- **OpenCode**: `.config/opencode/` — `commands/`, `opencode.json`, `prose-options.md`,
+- **OpenCode**: `.config/opencode/` — `commands/`, `prose-options.md`,
   `next-action-checks.md`, `documentation-contract.md`, `refactor-references.md`, and a
-  global `AGENTS.md`.
-  `opencode.json` sets only `instructions`, which loads that global guide; no custom agents
-  exist, so a session starts on the built-in default agent.
+  global `AGENTS.md`, which OpenCode reads without configuration. No custom agents exist;
+  a session starts on the default agent.
 - **Other**: `.gitconfig` (default branch `develop`, editor `nvim`, global ignore),
   `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R),
   `.journalotrc`.
@@ -43,8 +42,6 @@ the forced checkout, and the untracked-file setting.
   `${PWD}_prod` whatever pulled it, so `-devarops` there names the image you meant, not
   the one running.
 - Containers are `_dev` for the development image and `_prod` for the production image.
-- `CI` names the continuous-integration pipeline, not an image environment; the
-  `/release-version` gate keeps that meaning.
 - `devserver` and `devserver-init` name the remote development machine, not the
   development image.
 
@@ -53,15 +50,17 @@ the forced checkout, and the untracked-file setting.
 - **Commits**: a gitmoji followed by an imperative English summary under 72 characters,
   a blank second line, then a short body explaining why.
 - **Verification**: no test suite, CI, or build. Read the affected file; `bash -n`
-  checks shell syntax. Ghostty validates with `ghostty +validate-config --config-file=<path>`
-  and lists themes with `ghostty +list-themes`.
+  checks shell syntax. Ghostty validates with
+  `ghostty +validate-config --config-file=<path>`.
 - **Secrets**: `~/.vault/.secrets` is sourced by the shell and is not in this repository.
   Never commit secrets, tokens, or private keys.
 - **Release**: `/release-version` follows its release gates.
 
 ## Public interface
 
-The public interface is the install and update entrypoint plus the command surface the installation exposes: the shell functions and the OpenCode commands.
+The public interface is the install and update entrypoint plus the command surface the
+installation exposes: the shell functions, the OpenCode commands, and the executables in
+`.local/bin`.
 Configuration files, aliases, and internal helpers are implementation, not part of the public interface.
 
 ## Version 1.0.0 release conditions
@@ -71,8 +70,8 @@ Configuration files, aliases, and internal helpers are implementation, not part 
 
 ## OpenCode commands
 
-`.config/opencode/commands/` holds prompt templates, one per file, each with a
-`description` in YAML frontmatter.
+`.config/opencode/commands/` holds one prompt template per file, each with a YAML
+`description`.
 
 - Names are verb-first, except sets sharing one prefix; `pr-review` avoids the built-in
   `/review`. A `name:` field repeats the filename, so rename both. Keep each command under
@@ -85,13 +84,10 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   `~/.config/opencode/prose-options.md`, including `4a.md` and its children.
 - For judgment calls in paper editing commands, follow Schimel's principles
   first (`~/repositorios/wiki/raw/schimel2012writing.txt`).
-- The paper phases run in one section order, each owning one scale: outline the story and
-  `OUTLINE.md`, section the paragraph boundaries, paragraph the internal structure, sentence
-  the sentence, word the word, manuscript the whole manuscript. Phase 1 alone selects the
-  story; phases 2–6 are external-reader. The manuscript crosses scales by design, and an
-  outline item is never a paragraph definition.
-- Phase commands write, report, and wait for the user to commit when an input changed;
-  otherwise they continue.
+- The paper phases run in order, one scale each: outline, paragraph boundaries, internal
+  structure, sentence, word, manuscript. Phase 1 alone selects the story, and an outline
+  item is never a paragraph definition.
+- Phase commands wait for the user to commit when an input changed; otherwise they continue.
 - In a paper draft, `<!-- ... -->` are structural comments (item label and point),
   `[[ ... ]]` are gaps resolved later by iterate-quickfix-list, and `XXX` are user-only
   placeholders. The outline phase writes none; the sentence, word, and manuscript phases leave
@@ -106,6 +102,9 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   `/start` accepts only an absent or zero-byte file; `sync-todo` purges and deletes it.
 - `sync-*` brings the five documentation files in line; `documentation-contract.md` holds
   their shared rules. `/end` runs them in order.
+- The `voice-*` family toggles spoken replies for one session using the conversation alone,
+  with no file or configuration. It calls `say`, which needs Kokoro under
+  `~/.local/share/kokoro`, outside the repository.
 - Field ownership in the `reference-*` family: `reference-normalize` owns structure, ordering,
   and field presence; `reference-extract` owns the thirteen screening fields and placeholders
   in every other field except `category`; `reference-classify` owns `category`. The commands do

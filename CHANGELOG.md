@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `say` command: writes text as speech, pads the start, and plays it.
+- `voice-on`, `voice-off`, and `voice-replay` OpenCode commands: toggle spoken replies for the session and replay the most recent note.
+- `ui-red`, `ui-green`, `ui-refactor`, and `ui-approve` OpenCode commands: run the local UI loop against the make targets.
+- `update-issue` OpenCode command: reconcile one GitHub issue around one next action and a dated changelog.
 - `atdd-red` OpenCode command: write the acceptance test for the first failing criterion whose test is missing.
 
 ### Changed
