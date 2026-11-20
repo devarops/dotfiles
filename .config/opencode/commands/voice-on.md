@@ -25,14 +25,13 @@ next. It summarises the reply; it never reads it back.
 The audio is produced inside a tool call, so it plays just before the text appears. State that
 once, briefly, in the reply.
 
-1. Set the paths. The output name carries the session and the time.
-   `raw=/tmp/opencode/voice-raw-$OPENCODE_SESSION_ID.wav`
+1. Set the output path. The name carries the session and the time.
    `out=/tmp/opencode/voice-$OPENCODE_SESSION_ID-$(date +%Y%m%d-%H%M%S).wav`
-2. Synthesise, passing the summary on standard input so quotes survive.
-   `say -o "$raw" -v af_heart <<'TXT'`, then the text, then `TXT`.
-3. Pad the start, because the Bluetooth sink swallows the first half second.
-   `ffmpeg -loglevel error -y -i "$raw" -af adelay=700:all=1 "$out"`
-4. Play `pw-play "$out"`, then remove `$raw`.
+2. Synthesise from standard input so quotes survive, without playing yet.
+   `say -o "$out" <<'TXT'`, then the text, then `TXT`.
+3. Play `pw-play "$out"`.
+
+The script pads the start and normalises the level; the command does neither.
 
 If `OPENCODE_SESSION_ID` is unset, or synthesis fails, report it and still answer in text. A
 failed note never hides the answer.

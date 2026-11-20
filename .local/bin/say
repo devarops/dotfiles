@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# say - offline text to speech with Kokoro-82M.
+set -euo pipefail
+
+readonly KOKORO_DIR="${HOME}/.local/share/kokoro"
+readonly MODEL="${KOKORO_DIR}/kokoro-v1.0.onnx"
+readonly VOICES="${KOKORO_DIR}/voices-v1.0.bin"
+readonly PYTHON="${KOKORO_DIR}/venv/bin/python"
+readonly PAD_MS=700
+readonly OUTPUT="/tmp/say.wav"
+
+usage() {
+  cat <<'TXT'
+usage: say [-o FILE] [TEXT...]
+
+Write TEXT, or standard input when TEXT is absent, as speech. Writes
+/tmp/say.wav and plays it, unless -o names another file.
+
+  -o, --output FILE  write FILE and do not play
+  -h, --help         print this help
+TXT
+}
+
+out="${OUTPUT}"
+play=1
+text=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -o|--output) out="${2:?say: missing file after $1}"; play=0; shift 2 ;;
+    -h|--help)   usage; exit 0 ;;
+    -*)          echo "say: unknown option: $1" >&2; usage >&2; exit 2 ;;
+    *)           text+="$1 "; shift ;;
+  esac
+done
+
+[[ -z "${text// /}" ]] && text="$(cat)"
+[[ -n "${text// /}" ]] || { echo "say: no text" >&2; exit 2; }
+
+[[ -x "$PYTHON" && -e "$MODEL" && -e "$VOICES" ]] || {
+  echo "say: Kokoro is not installed in $KOKORO_DIR" >&2
+  exit 1
+}
+
+"$PYTHON" - "$MODEL" "$VOICES" "$out" "$PAD_MS" "$text" <<'PY'
+import sys
+import wave
+
+import numpy as np
+from kokoro_onnx import Kokoro
+
+model_path, voices_path, out_path, pad_ms, text = sys.argv[1:6]
+samples, rate = Kokoro(model_path, voices_path).create(
+    text.strip(), voice="af_heart", speed=1.0, lang="en-us"
+)
+
+audio = np.asarray(samples, dtype=np.float32)
+peak = float(np.abs(audio).max() or 1.0)
+audio = audio * min(0.891 / peak, 8.0)  # -1 dBFS
+audio = np.concatenate([np.zeros(int(rate * int(pad_ms) / 1000), np.float32), audio])
+
+pcm = (np.clip(audio, -1.0, 1.0) * 32767).astype(np.int16)
+with wave.open(out_path, "wb") as wav:
+    wav.setnchannels(1)
+    wav.setsampwidth(2)
+    wav.setframerate(rate)
+    wav.writeframes(pcm.tobytes())
+
+print(f"{out_path}  {len(pcm) / rate:.2f}s  {rate} Hz")
+PY
+
+(( play )) || exit 0
+pw-play "$out"
