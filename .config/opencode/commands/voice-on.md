@@ -1,5 +1,5 @@
 ---
-description: Speak a short summary at the end of every reply for the rest of this session.
+description: Speak a summary at the end of every reply for the rest of this session.
 ---
 
 # Turn On Voice Mode
@@ -16,18 +16,16 @@ change nothing. A new session starts with voice mode off.
 
 ## Summary
 
-Read `~/.config/opencode/character.md` and write as the character it describes.
-Apply the character to the spoken summary.
-If the file cannot be read, report that and continue in your own voice.
+Read `~/.config/opencode/character.md` and write the summary as the character it describes. If
+the file cannot be read, report that and continue in your own voice.
 
-Write the summary in the character's voice, in the language of the reply, with no lists, no file
-paths, and no commands read aloud. Say what was done and what the user needs next. It summarises
-the reply; it never reads it back.
+Write in the language of the reply, with no lists, no file paths, and no commands read aloud.
+Say what was done and what the user needs next. It summarises the reply; it never reads it back.
 
 ## Speak
 
-The audio is produced inside a tool call, so it plays just before the text appears. State that
-once, briefly, in the reply.
+The audio plays wherever the tool call is issued. Issue it after the last sentence and write
+nothing after it; any text that follows will appear after the note.
 
 1. Set the output path. The name carries the session and the time.
    `out=/tmp/opencode/voice-$OPENCODE_SESSION_ID-$(date +%Y%m%d-%H%M%S).wav`
@@ -42,7 +40,7 @@ failed note never hides the answer.
 
 ## Report
 
-State that voice mode is on, and that the user can replay the most recent note with
+State once that voice mode is on and that the user can replay the most recent note with
 `/voice-replay`.
 
 ## Idempotency
