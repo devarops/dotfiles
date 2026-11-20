@@ -14,9 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `ui-red`, `ui-green`, `ui-refactor`, and `ui-approve` OpenCode commands: run the local UI loop against the make targets.
 - `update-issue` OpenCode command: reconcile one GitHub issue around one next action and a dated changelog.
 - `atdd-red` OpenCode command: write the acceptance test for the first failing criterion whose test is missing.
+- `sync-specs` OpenCode command: route each TODO item to its spec, unit test, or UI capture, and empty the backlog.
 
 ### Changed
 
+- `end` now runs `sync-specs` after `sync-readme`, before `sync-todo`.
 - `afk-red` now writes and validates the failing unit test without committing; `afk-fail` owns the Red commit.
 - `fail` is now `afk-fail`; it is non-interactive, re-validates the uncommitted failing unit test, and commits it.
 - `afk-acceptance` is now `atdd-acceptance`; it reports a failing criterion without a phase error and removes one `skip` for the harness to commit.

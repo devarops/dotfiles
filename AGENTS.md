@@ -100,8 +100,9 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   pathspec; the detector catches a missing `/end`.
 - `task-*` tracks `.OPEN.md`: flat `- [ ]` or `- [*]` items with a six-space `Test:` line.
   `/start` accepts only an absent or zero-byte file; `sync-todo` purges and deletes it.
-- `sync-*` brings the five documentation files in line; `documentation-contract.md` holds
-  their shared rules. `/end` runs them in order.
+- `sync-*` brings the five documentation files in line, and `sync-specs` drains the backlog
+  into the verification plan; `documentation-contract.md` holds their shared rules. `/end`
+  runs them in order.
 - The `voice-*` family toggles spoken replies for one session using the conversation alone,
   with no file or configuration. It calls `say`, which needs Kokoro under
   `~/.local/share/kokoro`, outside the repository.

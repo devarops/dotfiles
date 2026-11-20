@@ -210,6 +210,10 @@ Parameters: none.
 Bring README.md in line with the project for non-technical readers.
 Parameters: none.
 
+### /sync-specs
+Route each TODO item to its verification home and empty the backlog.
+Parameters: none.
+
 ### /sync-todo
 Update TODO.md and close the session open list.
 Parameters: none.
@@ -261,7 +265,7 @@ Generate a commit message from the staged diff and this session.
 Parameters: none.
 
 ### /end
-Close the session by syncing the documentation and verifying it.
+Close the session by syncing the documentation and the verification plan.
 Parameters: none.
 
 ### /fix-citation

@@ -9,7 +9,7 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 ## Preconditions
 
 - Resolve `<root>` with `git rev-parse --show-toplevel`; if it fails, report and stop.
-- The target is `<root>/TODO.md`. It must be clean: `git status --porcelain -- TODO.md` prints nothing. An absent file is clean.
+- The target is `<root>/TODO.md`. When `/end` runs it after `sync-specs`, accept the `TODO.md` changes that step made; otherwise it must be clean: `git status --porcelain -- TODO.md` prints nothing. An absent file is clean.
 - Do not require the rest of the tree to be clean.
 - `AGENTS.md` must be clean only when the user chooses an AGENTS fix; check it at that moment.
 
@@ -57,6 +57,6 @@ Report the purged items, the AGENTS claim decisions, the TODO items added, remov
 ## Idempotency
 
 - The durable actions are the TODO.md write, the AGENTS.md fix, and the `.OPEN.md` deletion.
-- The TODO write has the precondition that the intended content differs and `TODO.md` is clean; after the write, a second run writes nothing.
+- The TODO write has the precondition that the intended content differs and `TODO.md` is clean, or the changes come from `sync-specs` in the same `/end` run; after the write, a second run writes nothing.
 - The AGENTS fix has the precondition that `AGENTS.md` is clean and the rule still needs the change; after the write, a second run reports it as done.
 - The deletion has the precondition that `.OPEN.md` exists; after the deletion, a second run reports no open list.

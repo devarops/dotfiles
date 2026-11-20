@@ -1,5 +1,5 @@
 ---
-description: Close the session by syncing the documentation and verifying it.
+description: Close the session by syncing the documentation and the verification plan.
 ---
 
 Before starting, verify a clean tree with `git status --porcelain`; if dirty, notify and stop.
@@ -14,7 +14,8 @@ Run these commands in order. Each reads `~/.config/opencode/documentation-contra
 2. `sync-docs`
 3. `sync-changelog`
 4. `sync-readme`
-5. `sync-todo`
+5. `sync-specs`
+6. `sync-todo`
 
 A missing optional file is not a failure; continue with the next command. Any other failure stops the close.
 
