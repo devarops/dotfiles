@@ -16,9 +16,13 @@ change nothing. A new session starts with voice mode off.
 
 ## Summary
 
-Write the summary yourself: at most three sentences, in the language of the reply, with no
-lists, no file paths, and no commands read aloud. Say what was done and what the user needs
-next. It summarises the reply; it never reads it back.
+Read `~/.config/opencode/character.md` and write as the character it describes.
+Apply the character to the spoken summary.
+If the file cannot be read, report that and continue in your own voice.
+
+Write the summary in the character's voice, in the language of the reply, with no lists, no file
+paths, and no commands read aloud. Say what was done and what the user needs next. It summarises
+the reply; it never reads it back.
 
 ## Speak
 
