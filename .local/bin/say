@@ -11,47 +11,117 @@ readonly OUTPUT="/tmp/say.wav"
 
 usage() {
   cat <<'TXT'
-usage: say [-o FILE] [TEXT...]
+usage: say [-v VOICE] [-o FILE] [TEXT...]
 
 Write TEXT, or standard input when TEXT is absent, as speech. Writes
 /tmp/say.wav and plays it, unless -o names another file.
 
+  -v, --voice NAME   voice to read with (default: af_heart)
+  -l, --list-voices  print the voices with gender, language, and grade
   -o, --output FILE  write FILE and do not play
   -h, --help         print this help
+
+KOKORO_VOICE sets the default voice.
 TXT
 }
 
 out="${OUTPUT}"
 play=1
+list=0
+voice="${KOKORO_VOICE:-af_heart}"
 text=""
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    -o|--output) out="${2:?say: missing file after $1}"; play=0; shift 2 ;;
-    -h|--help)   usage; exit 0 ;;
-    -*)          echo "say: unknown option: $1" >&2; usage >&2; exit 2 ;;
-    *)           text+="$1 "; shift ;;
+    -v|--voice)     voice="${2:?say: missing name after $1}"; shift 2 ;;
+    -l|--list-voices) list=1; shift ;;
+    -o|--output)    out="${2:?say: missing file after $1}"; play=0; shift 2 ;;
+    -h|--help)      usage; exit 0 ;;
+    -*)             echo "say: unknown option: $1" >&2; usage >&2; exit 2 ;;
+    *)              text+="$1 "; shift ;;
   esac
 done
-
-[[ -z "${text// /}" ]] && text="$(cat)"
-[[ -n "${text// /}" ]] || { echo "say: no text" >&2; exit 2; }
 
 [[ -x "$PYTHON" && -e "$MODEL" && -e "$VOICES" ]] || {
   echo "say: Kokoro is not installed in $KOKORO_DIR" >&2
   exit 1
 }
 
-"$PYTHON" - "$MODEL" "$VOICES" "$out" "$PAD_MS" "$text" <<'PY'
+if (( list )); then
+  "$PYTHON" - "$VOICES" <<'PY'
+import sys
+
+import numpy as np
+
+# Voice grades come from the Kokoro-82M model card (VOICES.md).
+CATALOG = {
+    ("female", "en-us", "A"): "af_heart",
+    ("female", "en-us", "A-"): "af_bella",
+    ("female", "en-us", "B-"): "af_nicole",
+    ("female", "en-us", "C+"): "af_aoede af_kore af_sarah",
+    ("female", "en-us", "C"): "af_alloy af_nova",
+    ("female", "en-us", "C-"): "af_sky",
+    ("female", "en-us", "D"): "af_jessica af_river",
+    ("male", "en-us", "C+"): "am_fenrir am_michael am_puck",
+    ("male", "en-us", "D"): "am_echo am_eric am_liam am_onyx",
+    ("male", "en-us", "D-"): "am_santa",
+    ("male", "en-us", "F+"): "am_adam",
+    ("female", "en-gb", "B-"): "bf_emma",
+    ("female", "en-gb", "C"): "bf_isabella",
+    ("female", "en-gb", "D"): "bf_alice bf_lily",
+    ("male", "en-gb", "C"): "bm_fable bm_george",
+    ("male", "en-gb", "D+"): "bm_lewis",
+    ("male", "en-gb", "D"): "bm_daniel",
+    ("female", "es", "?"): "ef_dora",
+    ("male", "es", "?"): "em_alex em_santa",
+}
+GRADES = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F+", "F", "F-"]
+
+installed = set(np.load(sys.argv[1]).files)
+rows = [(gender, lang, grade, name)
+        for (gender, lang, grade), names in CATALOG.items()
+        for name in names.split() if name in installed]
+
+rank = {grade: i for i, grade in enumerate(GRADES)}
+rows.sort(key=lambda r: (rank.get(r[2], len(GRADES)), r[0], r[3]))
+
+width = max(len(row[3]) for row in rows)
+for gender, lang, grade, name in rows:
+    print(f"{name:<{width}}  {gender:<6}  {lang:<5}  {grade}")
+PY
+  exit 0
+fi
+
+[[ -z "${text//[[:space:]]/}" ]] && text="$(cat)"
+[[ -n "${text//[[:space:]]/}" ]] || { echo "say: no text" >&2; exit 2; }
+
+"$PYTHON" - "$MODEL" "$VOICES" "$out" "$PAD_MS" "$voice" "$text" <<'PY'
 import sys
 import wave
 
 import numpy as np
 from kokoro_onnx import Kokoro
 
-model_path, voices_path, out_path, pad_ms, text = sys.argv[1:6]
-samples, rate = Kokoro(model_path, voices_path).create(
-    text.strip(), voice="af_heart", speed=1.0, lang="en-us"
-)
+# The first letter of a Kokoro voice name is its language.
+LANG_BY_PREFIX = {
+    "a": "en-us",
+    "b": "en-gb",
+    "e": "es",
+    "f": "fr-fr",
+    "h": "hi",
+    "i": "it",
+    "j": "ja",
+    "p": "pt-br",
+    "z": "cmn",
+}
+
+model_path, voices_path, out_path, pad_ms, name, text = sys.argv[1:7]
+
+kokoro = Kokoro(model_path, voices_path)
+if name not in kokoro.voices.files:
+    sys.exit(f"say: unknown voice: {name}\nrun 'say --list-voices' to see the installed voices")
+
+lang = LANG_BY_PREFIX.get(name[0], "en-us")
+samples, rate = kokoro.create(text.strip(), voice=name, speed=1.0, lang=lang)
 
 audio = np.asarray(samples, dtype=np.float32)
 peak = float(np.abs(audio).max() or 1.0)
@@ -65,7 +135,7 @@ with wave.open(out_path, "wb") as wav:
     wav.setframerate(rate)
     wav.writeframes(pcm.tobytes())
 
-print(f"{out_path}  {len(pcm) / rate:.2f}s  {rate} Hz")
+print(f"{out_path}  {len(pcm) / rate:.2f}s  {rate} Hz  {name}  {lang}")
 PY
 
 (( play )) || exit 0
