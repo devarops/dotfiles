@@ -40,8 +40,8 @@ failed note never hides the answer.
 
 ## Report
 
-State once that voice mode is on and that the user can replay the most recent note with
-`/voice-replay`.
+In the message that turns voice mode on, state once that voice mode is on and that the user can
+replay the most recent note with `/voice-replay`.
 
 ## Idempotency
 
