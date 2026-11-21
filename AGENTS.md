@@ -115,6 +115,21 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   emits `<promise>COMPLETE</promise>` when none is skipped, and otherwise removes one `skip`
   for `atdd-red`, leaving the edit for the harness. In the autonomous Red phase, `afk-red`
   writes and validates one failing unit test and `afk-fail` re-validates and commits it.
+- The UI loop splits by artifact. `ui-red` is the gate and the visual Red: when a change can
+  be expressed as a qed criterion, it reports a paste-ready criterion and stops; the user
+  adds the criterion manually, retires the old criterion, and `atdd-red` writes the test and
+  retires the old test. Only a change no acceptance test can express becomes a capture
+  scenario. The behavioural path is `atdd-red`, `afk-red`, `afk-fail`, `afk-green`,
+  `atdd-acceptance`, `ui-approve`, with `afk-refactor` optional; the visual-only path is
+  `ui-red`, `ui-green`, `ui-approve`, `ui-refactor`. `ui-green` changes production code,
+  requires the named scenario to be new or changed and no other scenario to change, and hands
+  off to `ui-approve`. `atdd-acceptance`
+  runs the print prerequisite at the acceptance boundary: it prints, compares `received/`
+  with `approved/`, and hands off to `ui-approve` on any difference before activating or
+  completing. Approval is terminal.
+- Test commits normalize the prefix: `🛑🧪`, `✅🧪`, `♻️🧪`, with no space and 🧪 second.
+  Every Red commit from `atdd-red`, `afk-fail`, and `ui-red` carries a `Screens and states:`
+  paragraph; `ui-approve` reads it as its scope record.
 
 ### Idempotency and convergence
 

@@ -20,8 +20,9 @@ approver. You never approve on your own.
   suite must pass. If one fails, report it and stop; do not compare or approve.
 - Read `specs/*.spec.toml` once.
 - Read `git log` since the last `📝 Approve print baseline` commit, or the last eight commits if
-  none. The bodies of the `🛑🧪` commits since the last approval name the expected screens and
-  states; their union is the scope record.
+  none. Every `🛑🧪` commit since the last approval carries a `Screens and states:` paragraph;
+  their union is the scope record. If a `🛑🧪` commit lacks the paragraph, report it and stop:
+  the scope record is incomplete.
 
 ## Scenarios
 

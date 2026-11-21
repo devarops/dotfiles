@@ -36,8 +36,8 @@ Read `~/.config/opencode/refactor-references.md` and each and every reference it
 ## Format
 
 - Commit message structure:
-  - First line: `♻ 🧪 [name from the refactoring catalog]`
-    - Example: `♻ 🧪 Rename variable`
+  - First line: `♻️🧪 [name from the refactoring catalog]`
+    - Example: `♻️🧪 Rename variable`
   - Second line: blank
   - Remaining lines (each as a separate paragraph):
     - Explain the rationale for the refactoring.

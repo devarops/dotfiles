@@ -34,15 +34,19 @@ The command re-validates the uncommitted failing unit test that `afk-red` left b
 ## Format
 
 - Commit message structure:
-  - First line: `🛑 🧪 [brief description of the expected behavior]`
-    - Example: `🛑 🧪 Expect support for negative numbers`
+  - First line: `🛑🧪 [brief description of the expected behavior]`
+    - Example: `🛑🧪 Expect support for negative numbers`
   - Second line: blank
   - Remaining paragraphs, each separated by a blank line:
-    1. Name the acceptance criterion: the spec path, the first sentence of its description, and its verify command.
-    2. Explain what behavior the failing unit test specifies.
-    3. Explain why the test fails under the current implementation.
-    4. Explain which exceptional, degenerate, and ancillary behaviors the test covers and which it leaves uncovered, and why passing it does not prematurely close the criterion.
-    5. Confirm that no other unit test fails.
-    6. State the single most important lesson or insight from this session that is not present in the last few commit messages.
+    1. `Screens and states:` the screens and states the criterion touches. Copy them from
+       the Red commit that introduced the criterion, or derive them from its spec; use
+       `Screens and states: none` when the repository has no printer or the change has no UI
+       surface.
+    2. Name the acceptance criterion: the spec path, the first sentence of its description, and its verify command.
+    3. Explain what behavior the failing unit test specifies.
+    4. Explain why the test fails under the current implementation.
+    5. Explain which exceptional, degenerate, and ancillary behaviors the test covers and which it leaves uncovered, and why passing it does not prematurely close the criterion.
+    6. Confirm that no other unit test fails.
+    7. State the single most important lesson or insight from this session that is not present in the last few commit messages.
 - Do not use Conventional Commit prefixes such as `feat:`, `fix:`, or `refactor:`.
 - Do not amend, push, or stage unrelated files.

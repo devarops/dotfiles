@@ -29,8 +29,8 @@ The Green phase passes the failing test with the smallest possible production co
 ## Format
 
 - Commit message structure:
-  - First line: `✅ 🧪 [brief imperative summary]`
-    - Example: `✅ 🧪 Add support for empty input`
+  - First line: `✅🧪 [brief imperative summary]`
+    - Example: `✅🧪 Add support for empty input`
   - Second line: blank
   - Remaining lines (each as a separate paragraph):
     - Explain how the change satisfies the failing test.

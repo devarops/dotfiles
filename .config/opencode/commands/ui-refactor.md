@@ -2,7 +2,8 @@
 description: Apply one small, safe, behaviour-preserving refactoring.
 ---
 
-We are now in the Refactor phase of the UI TDD loop.
+We are now in the Refactor phase of the visual-only UI loop. Run it only after `ui-approve`; the
+approved print is the visual contract.
 
 Refactor improves the internal structure of the production code and the acceptance tests without
 changing observable behaviour. Apply exactly one refactoring per invocation.
