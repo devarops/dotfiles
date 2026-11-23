@@ -103,6 +103,9 @@ Configuration files, aliases, and internal helpers are implementation, not part 
 - `sync-*` brings the five documentation files in line, and `sync-specs` drains the backlog
   into the verification plan; `documentation-contract.md` holds their shared rules. `/end`
   runs them in order.
+- `reconcile-backlog` probes the live public API, rewrites the client's API-assumption
+  and item tables in `TODO.md`, and refreshes the spec and test skip reasons; it never
+  removes a `skip` and never stages or commits.
 - The `voice-*` family toggles spoken replies for one session using the conversation alone,
   with no file or configuration. It calls `say`, which needs Kokoro under
   `~/.local/share/kokoro`, outside the repository.
