@@ -218,6 +218,12 @@ Parameters: none.
 Update TODO.md and close the session open list.
 Parameters: none.
 
+## Backlog
+
+### /reconcile-backlog
+Reconcile the client's API assumptions and backlog with the live public API.
+Parameters: none.
+
 ## Voice
 
 ### /voice-on
