@@ -18,8 +18,9 @@ out, and hides untracked files.
 - **Editor**: `.config/nvim/` (Lua). `omegadeck.lua` is a separate profile referenced by
   `.journalotrc`.
 - **OpenCode**: `.config/opencode/` — `commands/`, `prose-options.md`,
-  `next-action-checks.md`, `documentation-contract.md`, `refactor-references.md`, and a
-  global `AGENTS.md`, which OpenCode reads without configuration. No custom agents exist;
+  `next-action-checks.md`, `documentation-contract.md`, `refactor-references.md`,
+  `quality-practices.md`, and a global `AGENTS.md`, which OpenCode reads without
+  configuration. No custom agents exist;
   a session starts on the default agent.
 - **Other**: `.gitconfig` (default branch `develop`, editor `nvim`, global ignore),
   `.config/git/ignore` (`.OPEN.md`, Python and R artifacts), `.ssh/config`, `.lintr` (R),

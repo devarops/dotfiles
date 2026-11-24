@@ -32,6 +32,7 @@ The Refactor phase improves the internal structure of the code without changing 
 ## References
 
 Read `~/.config/opencode/refactor-references.md` and each and every reference it lists before acting.
+Read `~/.config/opencode/quality-practices.md` as an additional quality reference.
 
 ## Format
 

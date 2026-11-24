@@ -19,6 +19,7 @@ changing observable behaviour. Apply exactly one refactoring per invocation.
   `tests/test_acceptance_*.py`.
 - Use the catalog at https://refactoring.com/catalog/ and the style guide at
   https://islas.dev/guia_de_estilo/.
+- Read `~/.config/opencode/quality-practices.md` as an additional quality reference.
 - Prioritize readability, naming, duplication, dead code, and clarity over line count.
 - Apply only the single most important refactoring. If no safe refactoring remains, report that
   and stop without writing or committing.
