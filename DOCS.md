@@ -27,6 +27,12 @@ Sync and close the tmux session for a repository.
 Parameters: directory name.
 Errors: returns 1 when git pull or push fails, or when the repository has uncommitted changes.
 
+### sync-repos
+Sync every repository under `~/repositorios` to `develop`.
+Parameters: none.
+Errors: returns 1 when a repository cannot switch to `develop`, pull, or push, or when no repository is found.
+Notes: scans `~/repositorios/<directory>/.git` and `~/repositorios/<directory>/<subdirectory>/.git`; switches each repository to `develop` and leaves it there; pulls with `--ff-only`, so a diverged repository fails and is not pushed; skips hooks on push; ignores uncommitted changes and keeps going after a failure; prints only failures.
+
 ### fw
 Open or create the free-writing tmux session.
 Parameters: none.

@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `atdd-red` OpenCode command: write the acceptance test for the first failing criterion whose test is missing.
 - `sync-specs` OpenCode command: route each TODO item to its spec, unit test, or UI capture, and empty the backlog.
 - `reconcile-backlog` OpenCode command: reconcile the client's API assumptions and backlog with the live public API, and refresh the spec and test skip reasons.
+- `sync-repos` shell function: switch every repository under `~/repositorios` to `develop`, fast-forward it, and push it without hooks.
 
 ### Changed
 

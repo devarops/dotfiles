@@ -63,6 +63,37 @@ close () {
 }
 
 
+# sync every repo under ~/repositorios: switch to develop, pull, push
+sync-repos () {
+  repo_root="$HOME/repositorios"
+  failed=0
+  found=0
+  while IFS= read -r git_dir; do
+    repo_dir="${git_dir%/.git}"
+    found=1
+    if ! switch_output=$(git -C "$repo_dir" switch develop 2>&1); then
+      echo "❌ $repo_dir ⇐ cannot switch to develop: $switch_output" >&2
+      failed=1
+      continue
+    fi
+    if ! pull_output=$(git -C "$repo_dir" pull --ff-only 2>&1); then
+      echo "❌ $repo_dir ⇐ pull failed: $pull_output" >&2
+      failed=1
+      continue
+    fi
+    if ! push_output=$(git -C "$repo_dir" push --no-verify 2>&1); then
+      echo "❌ $repo_dir ⇐ push failed: $push_output" >&2
+      failed=1
+    fi
+  done < <(find "$repo_root" -maxdepth 3 -name .git | sort)
+  if [ "$found" -eq 0 ]; then
+    echo "❌ No repositories found under $repo_root" >&2
+    return 1
+  fi
+  return "$failed"
+}
+
+
 # Free writing
 fw () {
   if ! tmux has-session -t free_writing; then
