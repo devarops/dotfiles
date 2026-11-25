@@ -119,6 +119,9 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   emits `<promise>COMPLETE</promise>` when none is skipped, and otherwise removes one `skip`
   for `atdd-red`, leaving the edit for the harness. In the autonomous Red phase, `afk-red`
   writes and validates one failing unit test and `afk-fail` re-validates and commits it.
+- The mutation loop is `afk-mutant-kill` and `afk-mutant-commit`. The first runs the
+  mutation suite, adds one test under `tests/` that kills a survivor, and leaves it
+  uncommitted; the second commits it once `make tests` passes.
 - The UI loop splits by artifact. `ui-red` is the gate and the visual Red: when a change can
   be expressed as a qed criterion, it reports a paste-ready criterion and stops; the user
   adds the criterion manually, retires the old criterion, and `atdd-red` writes the test and
@@ -131,7 +134,8 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   runs the print prerequisite at the acceptance boundary: it prints, compares `received/`
   with `approved/`, and hands off to `ui-approve` on any difference before activating or
   completing. Approval is terminal.
-- Test commits normalize the prefix: `🛑🧪`, `✅🧪`, `♻️🧪`, with no space and 🧪 second.
+- Test commits use `🛑🧪`, `✅🧪`, or `♻️🧪`, with no space and 🧪 second; a mutation-killing
+  test uses `👾🏹` and names the mutation in the subject.
   Every Red commit from `atdd-red`, `afk-fail`, and `ui-red` carries a `Screens and states:`
   paragraph; `ui-approve` reads it as its scope record.
 
