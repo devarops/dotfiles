@@ -15,10 +15,11 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 
 ## Update
 
-- List every public-interface element and nothing else, inferred from tests, entrypoints, CLI definitions, and routes.
+- List every current public-interface element and nothing else, inferred from tests, entrypoints, CLI definitions, and routes.
 - Include only reachable elements; exclude internal elements, helpers, and developer-only utilities.
 - Remove entries for elements no longer exposed; mark discouraged elements Deprecated until removed.
-- Do not mention testing or implementation details.
+- List only elements that exist in the current implementation. A planned element is not current: it lives in a skipped `specs/` criterion and in `DESIGN.md`; do not add it here.
+- Do not mention testing, implementation details, or the system's design; `DESIGN.md` owns the mechanism.
 - Entries use `### symbol_name(signature)`, `### GET/POST /endpoint/`, or `### cli command --options`; then a one-line description; Parameters, Returns, Errors (omit if none), Notes (omit if none).
 - If `AGENTS.md` lacks the interface definition, report the gap and stop. `sync-agents` owns that definition.
 - Write only when the intended content differs. Do not stage or commit.

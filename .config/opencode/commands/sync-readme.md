@@ -15,7 +15,7 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 
 ## Update
 
-- Update `README.md` for non-technical readers, without overlapping `AGENTS.md`, `DOCS.md`, or `CHANGELOG.md`.
+- Update `README.md` for non-technical readers, without overlapping `AGENTS.md`, `DESIGN.md`, `DOCS.md`, `CHANGELOG.md`, or `specs/`.
 - No jargon, implementation details, or algorithms.
 - Structure: tagline; what it does; usage; before you start; run the project (Docker preferred, then native).
 - Write only when the intended content differs. Do not stage or commit.

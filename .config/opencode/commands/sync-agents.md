@@ -14,11 +14,12 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 
 ## Update
 
-- If `AGENTS.md` is absent, create it.
+- If `AGENTS.md` is absent, create it. It is the developer manual, not a design document.
 - Add this session's learnings and the repository's patterns, conventions, and facts that `AGENTS.md` lacks and an agent would miss, without asking.
 - Keep it compact: every line must be new and missed by an agent. Read tests; if none, read the repository's verification, root files, entrypoints, and execution flow. Prefer executable evidence; keep only verifiable facts.
-- Record developer commands, command order, boundaries, entrypoints, toolchain quirks, conventions, and preserved constraints. Exclude generic advice, tutorials, obvious conventions, unverifiable claims, and better-placed content. When in doubt, omit; prefer bullets.
-- Improve it in place: map findings to its sections, keep the tone, preserve verified guidance, and delete fluff and stale claims. Preserve the interface definition unless the criterion changes.
+- Record developer commands, command order, environment setup (including Docker), gates, conventions, and the operational map an agent needs to act: entrypoints, boundaries, and one-line rules. Exclude the system's workflow, data flow, invariants, and rationale; `DESIGN.md` owns them. Exclude generic advice, tutorials, obvious conventions, unverifiable claims, and better-placed content. When in doubt, omit; prefer bullets.
+- Read `DESIGN.md` when it exists. Link to it for the system's workflow, the blocks, the invariants, and the rationale. Never restate a `DESIGN.md` block or a `specs/` criterion; a fact that belongs in either is removed and linked.
+- Improve it in place: map findings to its sections, keep the tone, preserve verified guidance, delete fluff and stale claims, and remove any system-shape content that belongs in `DESIGN.md`. Preserve the interface definition unless the criterion changes.
 - If `DOCS.md` or `CHANGELOG.md` exists and `AGENTS.md` lacks the interface definition, infer it from the outermost entrypoints, present it for approval, and record it. If the user declines, report and stop.
 - Cap the file at 1,000 words by removing the lowest-signal content. Do not add a `---` boundary; if present, leave it and exclude everything below it from the count.
 - List the numbered claims with nothing to check against. Search the repo, its history, and cited paths; drop any claim with an artifact to check against; omit doubtful cases; report none if empty. Quote each with its location, the artifact checked or absent, and why it is not checkable. Ask `Clarify: ...`; `Delete: ...`; `Ignore the rest.` Unnamed numbers are ignored; one correction. `Clarify` names a checkable artifact without changing meaning, or reports if impossible. `Delete` removes; the interface definition is never deleted.

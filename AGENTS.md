@@ -98,12 +98,21 @@ Configuration files, aliases, and internal helpers are implementation, not part 
   user to confirm.
 - `/start` refuses unless every root `AGENTS.md` and `TODO.md` appears in the last eight
   commits, and reads uncommitted changes as input. Use `git log --max-count 8` with no
-  pathspec; the detector catches a missing `/end`.
+  pathspec; the detector catches a missing `/end`. `DESIGN.md` is read as a root document but
+  is not part of the detector.
 - `task-*` tracks `.OPEN.md`: flat `- [ ]` or `- [*]` items with a six-space `Test:` line.
   `/start` accepts only an absent or zero-byte file; `sync-todo` purges and deletes it.
-- `sync-*` brings the five documentation files in line, and `sync-specs` drains the backlog
-  into the verification plan; `documentation-contract.md` holds their shared rules. `/end`
-  runs them in order.
+- `sync-*` brings the six documentation files in line — `README.md`, `AGENTS.md`, `DESIGN.md`,
+  `DOCS.md`, `CHANGELOG.md`, and `TODO.md` — plus `specs/`. `/sync-design` keeps the design's
+  status table honest and reports prose drift; `/sync-specs` drains the backlog into the
+  verification plan. `/end` runs them in order: agents, design, docs, changelog, readme,
+  specs, todo.
+- `DESIGN.md` is the system's prose flowchart: one block per top-level section, a
+  `planned`/`built` status table with evidence, local rationale per block, and a closing
+  decisions section. `AGENTS.md` is the developer manual, not the design.
+- `TODO.md` is a flat ordered list: one item and a six-space `Test:` line, no `##` sections,
+  and no design detail; the list order is the build order. The design detail lives in
+  `DESIGN.md`.
 - `reconcile-backlog` probes the live public API, rewrites the client's API-assumption
   and item tables in `TODO.md`, and refreshes the spec and test skip reasons; it never
   removes a `skip` and never stages or commits.

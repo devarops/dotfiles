@@ -17,7 +17,8 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 
 ## Update
 
-- Follow [Keep a Changelog](https://keepachangelog.com/). Include only changes to a `DOCS.md` element.
+- Follow [Keep a Changelog](https://keepachangelog.com/). Include only changes to a `DOCS.md` element; a planned element is not an entry until it reaches `DOCS.md`.
+- Do not restate `DESIGN.md` or `specs/`; they are not changelog sources.
 - Use `git diff <last_tag>..HEAD`. If there is no tag, use `git diff $(git hash-object -t tree /dev/null)..HEAD`.
 - Prefer tests as evidence; otherwise read the diff. Categorize under Added, Changed, Deprecated, Removed, Fixed, Security.
 - Add to `## [Unreleased]` unless the entry covers the change. Describe end-user behaviour, one bullet per entry, code symbols in backticks. State deprecation and removal versions.

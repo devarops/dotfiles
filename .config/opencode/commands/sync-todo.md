@@ -29,20 +29,20 @@ Read `~/.config/opencode/documentation-contract.md` and follow it. If it cannot 
 
 ## Create TODO.md
 
-- If `TODO.md` is absent, ask once to create a minimal `# Backlog`.
+- If `TODO.md` is absent, ask once to create a minimal `# Backlog` with a single flat list. Do not add `##` sections.
 - If declined, report the items and candidates without writing; continue to the close.
 
 ## Clean TODO.md
 
-- Remove completed (`[x]`) and provably done or obsolete items, even if unmarked.
+- Remove completed (`[x]`) and provably done or obsolete items, even if unmarked. Report an item that carries design detail for `DESIGN.md`; do not keep it as a backlog item.
 
 ## Candidates
 
-- Find gaps from this session and the last eight commits (`git log --patch --max-count 8`), with evidence: an out-of-scope task; a parked task; unfinished work; a recent-diff gap. Omit the merely plausible; if an open item duplicates it, skip it and say so.
+- Find gaps from this session and the last eight commits (`git log --patch --max-count 8`), with evidence: an out-of-scope task; a parked task; unfinished work; a recent-diff gap. Omit the merely plausible; if an open item duplicates it, skip it and say so. Omit design detail: a candidate that describes the system's mechanism, a block, or a decision belongs in `DESIGN.md`; report it instead of adding it.
 - Include every remaining `.OPEN.md` item as a candidate; its evidence is its `Test:` line. Report an item without a `Test:` line as malformed; do not offer it as a candidate.
 - Present all candidates numbered: task, evidence, why it qualifies. Wait. The user names the numbers to add; `all` means all. Unnamed candidates are not added. An invalid selection gets one correction.
 - Write every new entry in the two-line format: `- [ ] <task>` followed by six spaces and `Test: <definition of done>`. Reuse the Test of an `.OPEN.md` candidate; use the evidence of any other candidate, or ask for a definition of done before writing.
-- Add selected items to the best-fitting section. The two-line format is not a section template; never impose one or add a missing section. `task-move` may create its `# Backlog` fallback, but this command does not. Explain each placement.
+- Add selected items to the single flat list, in the order the user names them. The list order is the build order. Never add a `##` section, a heading, or design detail. `task-move` may create the `# Backlog` fallback when `TODO.md` is absent, but this command does not. Explain the order when it differs from the selection order.
 - Remove duplicate and redundant `TODO.md` items, merging same-work items and keeping distinct tasks. Report every removal and merge.
 
 ## Close the open list

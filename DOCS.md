@@ -187,7 +187,7 @@ Show the session open items with numbers, focus, and Tests.
 Parameters: none.
 
 ### /task-move
-Move one open item into the best-fitting TODO.md section.
+Move one open item into the TODO.md list.
 Parameters: none.
 
 ### /task-purge
@@ -208,8 +208,12 @@ Parameters: none.
 Record committed public-interface changes in CHANGELOG.md.
 Parameters: none.
 
+### /sync-design
+Bring DESIGN.md's status table in line with the system and report prose drift.
+Parameters: none.
+
 ### /sync-docs
-Bring DOCS.md in line with the public interface.
+Bring DOCS.md in line with the current public interface.
 Parameters: none.
 
 ### /sync-readme

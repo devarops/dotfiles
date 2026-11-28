@@ -1,5 +1,5 @@
 ---
-description: Move one open item into the best-fitting TODO.md section.
+description: Move one open item into the TODO.md list.
 ---
 
 # Move an Open Item
@@ -15,17 +15,16 @@ No argument is declared. Take the item from the conversation: a number, a descri
 
 ## Destination
 
-- The current structure of `TODO.md` is authoritative. Read its headings and existing entries and choose the section that best fits the item's description and Test.
-- If no section fits, use `# Backlog`. If `# Backlog` is absent, create it at the end of `TODO.md` after a blank line.
+- `TODO.md` is a single flat ordered list; it has no `##` sections. Read its entries and append the item at the end, or insert it where the user names.
 - If `TODO.md` is absent, ask once to create it with `# Backlog`. If the user declines, report and leave the item in `.OPEN.md`.
-- Write the item in the `.OPEN.md` format, even when the target uses another indentation:
+- Write the item in the `.OPEN.md` format:
 
 ```
 - [ ] <description>
       Test: <test>
 ```
 
-- Place it at the end of the chosen section, before the next heading.
+- Place it at the end of the list, after the last item.
 
 ## Write
 
@@ -39,7 +38,7 @@ Precondition: the item exists in `.OPEN.md` and the same normalized description 
 
 ## Report
 
-Name the chosen heading, the exact two-line entry, whether `# Backlog` or `TODO.md` was created, and whether focus was cleared. State that nothing was staged or committed.
+Name the position, the exact two-line entry, whether `# Backlog` or `TODO.md` was created, and whether focus was cleared. State that nothing was staged or committed.
 
 ## Idempotency
 

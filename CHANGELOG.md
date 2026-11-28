@@ -15,12 +15,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `update-issue` OpenCode command: reconcile one GitHub issue around one next action and a dated changelog.
 - `atdd-red` OpenCode command: write the acceptance test for the first failing criterion whose test is missing.
 - `sync-specs` OpenCode command: route each TODO item to its spec, unit test, or UI capture, and empty the backlog.
+- `sync-design` OpenCode command: keep `DESIGN.md`'s planned/built status table honest and report prose drift.
 - `reconcile-backlog` OpenCode command: reconcile the client's API assumptions and backlog with the live public API, and refresh the spec and test skip reasons.
 - `sync-repos` shell function: switch every repository under `~/repositorios` to `develop`, fast-forward it, and push it without hooks.
 
 ### Changed
 
-- `end` now runs `sync-specs` after `sync-readme`, before `sync-todo`.
+- `end` now runs `sync-design` after `sync-agents`, before `sync-docs`, and `sync-specs` after `sync-readme`, before `sync-todo`.
+- `sync-agents` keeps the developer manual; the system's workflow and shape live in `DESIGN.md`.
+- `sync-docs` lists the current public interface only; planned elements live in skipped specs and `DESIGN.md`.
+- `sync-specs` routes `TODO.md` items to their verification home and leaves design detail to `DESIGN.md`; `TODO.md` is a flat ordered list.
+- `task-move` appends to the single `TODO.md` list instead of choosing a section.
 - `afk-red` now writes and validates the failing unit test without committing; `afk-fail` owns the Red commit.
 - `fail` is now `afk-fail`; it is non-interactive, re-validates the uncommitted failing unit test, and commits it.
 - `afk-acceptance` is now `atdd-acceptance`; it reports a failing criterion without a phase error and removes one `skip` for the harness to commit.
